@@ -1,9 +1,1 @@
-import React from 'react'
-
-const Button = ({children, onClick}) => (
-  <button className='Button' onClick={onClick}>
-    {children}
-  </button>
-)
-
-export {Button}
+export { default as DemoComponent } from './components/DemoComponent/DemoComponent'

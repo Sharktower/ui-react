@@ -16,9 +16,10 @@ setDefaults({
   maxPropStringLength: 100, // Displays the first 100 characters in the default prop string
 });
 
+const req = require.context('../src/components', true, /.story.js$/)
 
 function loadStories() {
-  require('../stories');
+  req.keys().forEach((filename) => req(filename))
 }
 
 configure(loadStories, module);
