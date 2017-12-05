@@ -1,0 +1,19 @@
+{
+  "name": "@mudano/ui-react",
+  "version": "0.0.1",
+  "description": "Mudano UI React components",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mudano/ui-react.git"
+  },
+  "author": "Mudano Ltd. (http://mudano.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mudano/ui-react/issues"
+  },
+  "homepage": "https://github.com/Mudano/ui-react#readme",
+  "scripts": {
+    "test": "echo \"todo\" && exit 1"
+  }
+}
