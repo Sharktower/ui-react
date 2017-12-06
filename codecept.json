@@ -1,0 +1,17 @@
+{
+  "tests": "./src/components/**/*_testint.js",
+  "timeout": 10000,
+  "output": "./src/testint_support/output",
+  "helpers": {
+    "WebDriverIO": {
+      "url": "http://localhost:6006",
+      "browser": "chrome"
+    }
+  },
+  "include": {
+    "I": "./src/testint_support/steps_file.js"
+  },
+  "bootstrap": false,
+  "mocha": {},
+  "name": "ui-react"
+}

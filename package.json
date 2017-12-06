@@ -18,7 +18,9 @@
     "clean-dist": "rm -rf ./dist",
     "test": "echo \"todo\" && exit 1",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "testint": "./node_modules/.bin/codeceptjs",
+    "selenium": "./node_modules/.bin/selenium-standalone"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.17",
@@ -30,8 +32,10 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "codeceptjs-webdriverio": "^1.1.0",
     "react": ">=0.14.0 <= 15",
-    "react-dom": ">=0.14.0 <= 15"
+    "react-dom": ">=0.14.0 <= 15",
+    "selenium-standalone": "^6.12.0"
   },
   "peerDependencies": {
     "react": ">=0.14.0 <= 15",
