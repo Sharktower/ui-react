@@ -3,7 +3,12 @@
   "helpers": {
     "WebDriverIO": {
       "url": "http://localhost:6006",
-      "browser": "chrome"
+      "browser": "chrome",
+      "desiredCapabilities": {
+        "chromeOptions": {
+          "args": ["--headless", "--start-maximized"]
+        }
+      }
     }
   },
   "include": {
