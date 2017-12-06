@@ -1,5 +1,34 @@
 import { configure } from '@storybook/react';
 import { setDefaults } from '@storybook/addon-info';
+import { setOptions } from '@storybook/addon-options';
+
+// addon-options
+setOptions({
+  name: 'UI React',  // name to display in the top left corner
+  url: 'https://github.com/Mudano/ui-react', // URL for name in top left corner to link to
+  goFullScreen: false, // show story component as full screen
+  showLeftPanel: true, // display left panel that shows a list of stories
+  showDownPanel: true, // display horizontal panel that displays addon configurations
+  showSearchBox: false, // display floating search box to search through stories
+  downPanelInRight: true, // show horizontal addons panel as a vertical panel on the right
+  sortStoriesByKind: false, // sorts stories
+  /**
+   * regex for finding the hierarchy separator
+   *   null - turn off hierarchy
+   *   /\// - split by `/`
+   *   /\./ - split by `.`
+   *   /\/|\./ - split by `/` or `.`
+   */
+  hierarchySeparator: null,
+  sidebarAnimations: true, // sidebar tree animations
+  /**
+   * id to select an addon panel
+   * // The order of addons in the "Addons Panel" is the same as you import them in 'addons.js'. 
+   * // The first panel will be opened by default as you run Storybook
+   */
+  selectedAddonPanel: undefined,
+});
+
 
 // addon-info
 setDefaults({
