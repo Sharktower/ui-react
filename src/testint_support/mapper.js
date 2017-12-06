@@ -1,6 +1,4 @@
-
 // stores component URLS
-'use strict';
 
 module.exports = {
 
