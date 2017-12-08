@@ -1,28 +1,41 @@
-import React from 'react';
+import React from "react";
+import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
+import { withInfo } from "@storybook/addon-info";
+import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
+import DemoComponent from "./DemoComponent";
 
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { linkTo } from '@storybook/addon-links';
-import { withInfo } from '@storybook/addon-info';
+const stories = storiesOf("DemoComponent", module);
 
-import { Welcome } from '@storybook/react/demo';
-import DemoComponent from './DemoComponent';
+stories
+  .addDecorator(withKnobs)
+  .addDecorator(story => <div id="ui-root-preview">{story()}</div>);
 
-storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
+stories.add(
+  "default",
+  withInfo(`
+        With a custom title
+    `)(() => (
+    <DemoComponent
+      isDisabled={boolean("isDisabled", false)}
+      title={text("title", "Custom title")}
+      onClick={action("clicked")}
+    >
+      children
+    </DemoComponent>
+  ))
+);
 
-storiesOf('DemoComponent', module)
-    .add('default',
-        withInfo(`
-            Default components without props
-        `)(() =>
-            <DemoComponent></DemoComponent>
-        )
-    )
-    .add('with title', 
-        withInfo(`
-            With a title prop
-        `)(() =>
-            <DemoComponent title="Custom title" onClick={action('clicked')}>Content</DemoComponent>
-        )
-    )
-    .add('with some emoji', () => <DemoComponent onClick={action('clicked')}>😀 😎 👍 💯</DemoComponent>);
+stories.add(
+  "with title",
+  withInfo(`
+        With a custom title
+    `)(() => <DemoComponent title="Custom title" />)
+);
+
+stories.add(
+  "with emoji",
+  withInfo()(() => (
+    <DemoComponent onClick={action("clicked")}>😀 😎 👍 💯</DemoComponent>
+  ))
+);
