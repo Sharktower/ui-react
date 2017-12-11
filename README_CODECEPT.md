@@ -6,7 +6,7 @@ This document gives the user an insight of how to use CodeceptJS, including pre-
 
 ### CodeceptJS Installation and Setup
 
-NB: `yarn testint` is always an alias for the `codecept` command
+NB: `yarn testint` is always an alias for the `codecept` command.
 
 Only required in the even that the suite needs to be re-installed.
 ```bash
