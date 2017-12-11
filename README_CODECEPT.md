@@ -2,7 +2,7 @@
 
 ### Purpose
 
-This document gives the user an insight of how to install Codeceptjs, pre-requisites before starting a test and how to execute a test.
+This document gives the user an insight of how to use CodeceptJS, including pre-requisites before starting a test, and how to execute a test.
 
 ### CodeceptJS Installation and Setup
 
