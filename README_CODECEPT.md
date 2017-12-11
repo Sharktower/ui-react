@@ -6,6 +6,8 @@ This document gives the user an insight of how to use CodeceptJS, including pre-
 
 ### CodeceptJS Installation and Setup
 
+NB: `yarn testint` is always an alias for the `codecept` command
+
 Only required in the even that the suite needs to be re-installed.
 ```bash
 yarn install # Only needs to be run once
@@ -14,15 +16,15 @@ yarn testint:setup # Run whenever storybook or selenium needs to be started
 Now you are ready to run your tests in a new terminal window!
 
 NB: Writing an initial test can be found on: http://codecept.io/quickstart/#creating-first-test
-Please note that the `yarn testint` command should be used in place of `codeceptjs` (e.g. `yarn testint gt` to generate tests).
+Please note that the `yarn testint` alias should be used in place of `codeceptjs` (e.g. `yarn testint gt` to generate tests).
 
 ### Execute Tests
 
 To execute the codecept test:
 ```bash
 yarn testint run --verbose # Run test with internal logs printed`
-yarn testint  # To run the Codecept commands/Is an alias for ./node_modules/.bin/codeceptjs
 ```
+
 Further commands can be found on http://codecept.io/commands/.
 
 ### Configuration: codecept.json
