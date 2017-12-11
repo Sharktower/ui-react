@@ -66,8 +66,7 @@ In the strange even that CodeceptJS needs to be reinstalled entirely within the 
 `yarn add -D codeceptjs-webdriverio`
 
 #### yarn testint:setup
-Executes `testint-setup` bash file:
-This file Includes:
+Executes `testint-setup` bash file. This file Includes:
 
 ```bash
 yarn selenium install # Start the selenium server
