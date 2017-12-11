@@ -26,7 +26,9 @@
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.17",
     "@storybook/addon-info": "^3.2.17",
+    "@storybook/addon-knobs": "^3.2.17",
     "@storybook/addon-links": "^3.2.17",
+    "@storybook/addon-options": "^3.2.17",
     "@storybook/react": "^3.2.17",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -34,15 +36,22 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "codeceptjs-webdriverio": "^1.1.0",
+    "eslint": "^4.12.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-jsx-a11y": "6.0.2",
+    "eslint-plugin-react": "7.4.0",
     "react": ">=0.14.0 <= 15",
     "react-dom": ">=0.14.0 <= 15",
     "selenium-standalone": "^6.12.0"
   },
   "peerDependencies": {
+    "prop-types": "15.6.0",
     "react": ">=0.14.0 <= 15",
     "react-dom": ">=0.14.0 <= 15"
   },
   "dependencies": {
-    "xterm": "^2.9.2"
+    "xterm": "^2.9.2",
+    "classnames": "^2.2.5"
   }
 }
