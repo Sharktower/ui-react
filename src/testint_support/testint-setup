@@ -1,0 +1,18 @@
+#!/bin/bash
+
+exitstatus=`ps -ef | grep "selenium"|grep -v grep | awk '{ print $2}'`
+echo "exitstatus" $exitstatus
+if [ "$exitstatus" = "" ]; then
+        yarn selenium install
+	( yarn selenium start 2>&1 | tee -a output/selenium_log.txt ) &
+else
+	echo "Selenium process is already running"
+fi
+
+sbstatus=`ps -ef | grep "storybook"|grep -v grep | awk '{ print $2}'`
+echo "sbstatus" $sbstatus
+if [ "$sbstatus" = "" ]; then
+	yarn storybook
+else
+	echo "storybook process is already running"
+fi
