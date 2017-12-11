@@ -40,5 +40,8 @@
   "peerDependencies": {
     "react": ">=0.14.0 <= 15",
     "react-dom": ">=0.14.0 <= 15"
+  },
+  "dependencies": {
+    "xterm": "^2.9.2"
   }
 }
