@@ -19,6 +19,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "testint": "./node_modules/.bin/codeceptjs",
+    "testint:setup": "./src/testint_support/testint-setup",
     "selenium": "./node_modules/.bin/selenium-standalone",
     "phantomjs": "./node_modules/.bin/phantomjs",
     "test": "jest",
