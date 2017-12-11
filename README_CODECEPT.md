@@ -22,7 +22,7 @@ Please note that the `yarn testint` alias should be used in place of `codeceptjs
 
 To execute the codecept test:
 ```bash
-yarn testint run --verbose # Run test with internal logs printed`
+yarn testint run --verbose # Run test with internal logs printed
 ```
 
 Further commands can be found on http://codecept.io/commands/.
