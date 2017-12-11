@@ -20,7 +20,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "testint": "./node_modules/.bin/codeceptjs",
-    "selenium": "./node_modules/.bin/selenium-standalone"
+    "selenium": "./node_modules/.bin/selenium-standalone",
+    "phantomjs": "./node_modules/.bin/phantomjs"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.17",
