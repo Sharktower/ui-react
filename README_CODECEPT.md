@@ -15,8 +15,7 @@ yarn testint:setup # Run whenever storybook or selenium needs to be started
 ```
 Now you are ready to run your tests in a new terminal window!
 
-NB: Writing an initial test can be found on: http://codecept.io/quickstart/#creating-first-test
-Please note that the `yarn testint` alias should be used in place of `codeceptjs` (e.g. `yarn testint gt` to generate tests).
+NB: Writing an initial test can be found on: http://codecept.io/quickstart/#creating-first-test.
 
 ### Execute Tests
 
@@ -65,6 +64,7 @@ General explanations of the `codecept.json` file can be found on http://codecept
 ### Appendix
 #### Installing CodeceptJS from Scratch
 In the strange even that CodeceptJS needs to be reinstalled entirely within the repo, run:
+
 `yarn add -D codeceptjs-webdriverio`
 
 #### yarn testint:setup
