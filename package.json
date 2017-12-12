@@ -22,7 +22,6 @@
     "testint:ignore": "./node_modules/.bin/codeceptjs run --grep '^(?!.*@ignore)'",
     "testint:setup": "./src/testint_support/testint-setup",
     "selenium": "./node_modules/.bin/selenium-standalone",
-    "phantomjs": "./node_modules/.bin/phantomjs",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
@@ -36,8 +35,7 @@
       "./test/jest/setupEnvironment.js"
     ],
     "testint": "./node_modules/.bin/codeceptjs",
-    "selenium": "./node_modules/.bin/selenium-standalone",
-    "phantomjs": "./node_modules/.bin/phantomjs"
+    "selenium": "./node_modules/.bin/selenium-standalone"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.17",
