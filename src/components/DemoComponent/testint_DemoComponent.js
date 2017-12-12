@@ -17,3 +17,17 @@ Scenario('test existence of story source', (I, mapper) => {
 
     });
 });
+
+Feature('Action Logger');
+Scenario('test existence of Action Logger and click', (I, mapper) => {
+    I.amOnPage(mapper.demoComponent.default);
+    I.click('Action Logger');
+});
+
+Feature('Proptypes');
+Scenario('test existence of Proptypes', (I, mapper) => {
+    I.amOnPage(mapper.demoComponent.default);
+    within({frame: "#storybook-preview-iframe"}, () => {
+        I.see('() => { }');
+    });
+});
