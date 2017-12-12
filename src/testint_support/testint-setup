@@ -12,7 +12,7 @@ else
 	kill -9 $exitstatus
 	yarn selenium install
         ( yarn selenium start 2>&1 | tee -a output/selenium_log.txt ) &
-	
+
 fi
 
 sbstatus=`ps -ef | grep "storybook"|grep -v grep | awk '{ print $2}'`

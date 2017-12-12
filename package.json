@@ -33,9 +33,7 @@
     "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
     "setupFiles": [
       "./test/jest/setupEnvironment.js"
-    ],
-    "testint": "./node_modules/.bin/codeceptjs",
-    "selenium": "./node_modules/.bin/selenium-standalone"
+    ]
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.17",

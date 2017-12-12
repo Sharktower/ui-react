@@ -63,7 +63,7 @@ General explanations of the `codecept.json` file can be found on http://codecept
 ---
 ### Appendix
 #### Installing CodeceptJS from Scratch
-In the strange even that CodeceptJS needs to be reinstalled entirely within the repo, run:
+In the strange event that CodeceptJS needs to be reinstalled entirely within the repo, run:
 
 `yarn add -D codeceptjs-webdriverio`
 
