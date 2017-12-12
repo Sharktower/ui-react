@@ -4,7 +4,7 @@ This script checks if the selenium process is currently running 1) if no : run s
 It also checks if story book is currently running 1) if no : run storybook, 2) if yes : print the message that storybook is already running
 '
 exitstatus=`ps -ef | grep "selenium"|grep -v grep | awk '{ print $2}'`
-echo "exitstatus" $exitstatus
+echo "selenium process id" $exitstatus
 if [ "$exitstatus" = "" ]; then
         yarn selenium install
 	( yarn selenium start 2>&1 | tee -a output/selenium_log.txt ) &
@@ -16,7 +16,7 @@ else
 fi
 
 sbstatus=`ps -ef | grep "storybook"|grep -v grep | awk '{ print $2}'`
-echo "sbstatus" $sbstatus
+echo "storybook process id" $sbstatus
 if [ "$sbstatus" = "" ]; then
 	yarn storybook
 else
