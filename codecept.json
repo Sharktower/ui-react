@@ -1,0 +1,25 @@
+{
+  "output": "./src/testint_support/output",
+  "helpers": {
+    "WebDriverIO": {
+      "url": "http://localhost:6006",
+      "browser": "chrome",
+      "desiredCapabilities": {
+        "chromeOptions": {
+          "args": ["--headless", "--start-maximized"]
+        }
+      }
+    }
+  },
+  "include": {
+    "I": "./src/testint_support/steps_file.js",
+    "mapper": "./src/testint_support/mapper.js"
+  },
+  "mocha": {},
+  "bootstrap": false,
+  "teardown": null,
+  "hooks": [],
+  "tests": "./src/components/**/testint_*.js",
+  "timeout": 10000,
+  "name": "ui-react"
+}
