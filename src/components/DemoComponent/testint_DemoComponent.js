@@ -7,27 +7,30 @@ Scenario('test default demo component', (I, mapper) => {
     within({frame: "#storybook-preview-iframe"}, () => {
         I.see('Custom title', '.ui-demo-component');
     });
-});
+}),
 
-Feature('StorySource');
-Scenario('test existence of story source', (I, mapper) => {
+Scenario('test existence of story source @ignore', (I, mapper) => {
     I.amOnPage(mapper.demoComponent.default);
     within({frame: "#storybook-preview-iframe"}, () => {
         I.see('Story Source', 'h1');
 
     });
-});
+}),
 
-Feature('Action Logger');
-Scenario('test existence of Action Logger and click', (I, mapper) => {
+Scenario('test existence of Action Logger and click @ignore', (I, mapper) => {
     I.amOnPage(mapper.demoComponent.default);
     I.click('Action Logger');
-});
+}),
 
-Feature('Proptypes');
-Scenario('test existence of Proptypes', (I, mapper) => {
+Scenario('test existence of Proptypes @ignore', (I, mapper) => {
     I.amOnPage(mapper.demoComponent.default);
     within({frame: "#storybook-preview-iframe"}, () => {
-        I.see('() => { }');
+        I.see('() => { }', );
     });
+}),
+
+Scenario('test existence of knob and isdisable checkbox @ignore', (I, mapper) => {
+    I.amOnPage(mapper.demoComponent.default);
+    I.click('Knobs');
+    I.checkOption('#isDisabled');
 });

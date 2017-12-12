@@ -1,12 +1,18 @@
 #!/bin/bash
-
+:'
+This script checks if the selenium process is currently running 1) if no : run selenium, 2) if yes : kill current process and run selenium in background
+It also checks if story book is currently running 1) if no : run storybook, 2) if yes : print the message that storybook is already running
+'
 exitstatus=`ps -ef | grep "selenium"|grep -v grep | awk '{ print $2}'`
 echo "exitstatus" $exitstatus
 if [ "$exitstatus" = "" ]; then
         yarn selenium install
 	( yarn selenium start 2>&1 | tee -a output/selenium_log.txt ) &
 else
-	echo "Selenium process is already running"
+	kill -9 $exitstatus
+	yarn selenium install
+        ( yarn selenium start 2>&1 | tee -a output/selenium_log.txt ) &
+	
 fi
 
 sbstatus=`ps -ef | grep "storybook"|grep -v grep | awk '{ print $2}'`
