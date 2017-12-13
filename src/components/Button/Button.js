@@ -9,19 +9,20 @@ const propTypes = {
     /** Expand width 100% */
     isFluid: PropTypes.bool,
     isActive: PropTypes.bool,
+    /** will show opaque and won't react to clicks because of "pointer-events:none" */
     isDisabled: PropTypes.bool,
     onClick: PropTypes.func,
-    children: PropTypes.node,
-    /** style of the button "default", "primary", "clear", "circle" */
-    skin: PropTypes.string,
-    /** object of CSS rules, camelCased */
+    /** Content of the button, just a string label or more complex React components */
+    children: PropTypes.node.isRequired,
+    /** visual skin for the button: cta (Call to Action), clear (transparent) */
+    skin: PropTypes.oneOf(['default', 'cta', 'clear']),
+    /** object with camelCased CSS rules, e.g.  style={{ marginBottom: '-1px'}} */
     style: PropTypes.objectOf(PropTypes.object),
 };
 
 const defaultProps = {
     className: '',
     skin: 'default',
-    children: null,
     isFluid: false,
     isActive: false,
     isDisabled: false,
@@ -37,6 +38,10 @@ class Button extends Component {
     }
 
     handleClick(e) {
+        if (this.props.isDisabled) {
+            e.preventDefault();
+            return;
+        }
         this.props.onClick(e);
     }
 

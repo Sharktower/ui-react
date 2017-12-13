@@ -22,7 +22,6 @@ const IconButton = ({
         {...extraProps}
         className={cx('uir-icon-button', className)}
         isFluid={false}
-        skin="none"
     />
 );
 

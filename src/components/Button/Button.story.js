@@ -24,10 +24,9 @@ stories.add(
             skin={select('skin', {
                 default: 'default',
                 clear: 'clear',
-                primary: 'primary',
-                circle: 'circle',
+                cta: 'cta',
             }, 'default')}
-            isActive={boolean('isActive', true)}
+            isActive={boolean('isActive', false)}
             isFluid={boolean('isFluid', false)}
             isDisabled={boolean('isDisabled', false)}
         >
@@ -37,17 +36,17 @@ stories.add(
 );
 
 stories.add(
-    'right icon',
+    'With left icon',
     withInfo(`
-        With right Icon
-    `)(() => <Button>Dropdown</Button>),
+        With an Icon passed as children. If you need only an Icon, check IconButton component
+    `)(() => <Button><IconArrow style={{ marginTop: '-3px' }} />Example</Button>),
 );
 
 stories.add(
-    'right & left icon',
+    'With right icon',
     withInfo(`
-        Two icons
-    `)(() => <Button><IconArrow style={{ marginTop: '-3px' }} />Example</Button>),
+        Right icon
+    `)(() => <Button>Example<IconArrow style={{ marginTop: '-3px' }} /></Button>),
 );
 
 stories.add(
@@ -60,21 +59,13 @@ stories.add(
 stories.add(
     'clear button',
     withInfo(`
-        Clear button
+        Clear buttons
     `)(() => <div><Button skin="clear">Not active</Button><Button skin="clear" isActive>Active</Button></div>),
 );
 
 stories.add(
-    'primary buttons',
+    'CTA button',
     withInfo(`
-        Primary buttons don't have "active" state.
-    `)(() => <Button skin="primary">Test</Button>),
+        Call to Action button. They don't have visual "active" state
+    `)(() => <Button skin="cta">Test</Button>),
 );
-
-stories.add(
-    'circle',
-    withInfo(`
-        When href is present, it will render as <a href="link"></a> element, not button
-    `)(() => <div><Button skin="circle">H</Button><Button skin="circle"><IconArrow /></Button></div>),
-);
-
