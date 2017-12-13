@@ -12,5 +12,9 @@ module.exports = {
 
   buttonComponentRightIcon: {
       righticon: '/?selectedKind=Button&selectedStory=right%20icon'
+  },
+
+  buttonComponentRightLeftIcon: {
+      rightlefticon: '/?selectedKind=Button&selectedStory=right%20%26%20left%20icon'
   }
 }
