@@ -4,16 +4,23 @@ import cx from 'classnames';
 import './Button.css';
 
 const propTypes = {
+    /** Extra classes for the top-level wrapper */
     className: PropTypes.string,
+    /** Expand width 100% */
     isFluid: PropTypes.bool,
     isActive: PropTypes.bool,
     isDisabled: PropTypes.bool,
     onClick: PropTypes.func,
     children: PropTypes.node,
+    /** Icon component to render on the right */
     rightIcon: PropTypes.node,
+    /** Icon component to render on the right */
     leftIcon: PropTypes.node,
     tabIndex: PropTypes.number,
+    /** style of the button "default", "primary", "clear", "circle" */
     skin: PropTypes.string,
+    /** object of CSS rules, camelCased */
+    style: PropTypes.shape,
 };
 
 const defaultProps = {
@@ -26,6 +33,7 @@ const defaultProps = {
     isActive: false,
     isDisabled: false,
     tabIndex: 0,
+    style: {},
     onClick: () => {},
 };
 
@@ -51,6 +59,7 @@ class Button extends Component {
             children,
             tabIndex,
             onClick,
+            style,
             ...extraProps
         } = this.props;
 
@@ -62,6 +71,7 @@ class Button extends Component {
             <Tag
                 type="button"
                 role="button"
+                style={style}
                 className={cx(
                     className,
                     'uir-button',
