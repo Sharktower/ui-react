@@ -14,10 +14,14 @@
   },
   "homepage": "https://github.com/Mudano/ui-react#readme",
   "scripts": {
-    "build": "yarn run clean-dist && NODE_ENV=production `yarn bin`/babel ./src --out-dir ./dist",
-    "clean-dist": "rm -rf ./dist",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "css:build": "node-sass-chokidar src/ -o src/",
+    "css:watch": "yarn css:build && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "js:clean": "rm -rf ./dist",
+    "js:build": "yarn js:clean && NODE_ENV=production babel ./src --out-dir ./dist --copy-files --ignore *.scss,*.story.js,*.test.js",
+    "storybook:start": "start-storybook -p 6006",
+    "storybook:build": "build-storybook",
+    "start": "npm-run-all -p css:watch storybook:start",
+    "build": "npm-run-all -s css:build js:build",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
@@ -56,12 +60,15 @@
     "jest-enzyme": "^4.0.1",
     "react": ">=0.14.0 <= 15",
     "react-dom": ">=0.14.0 <= 15",
-    "react-test-renderer": "<= 15"
+    "react-test-renderer": "<= 15",
+    "node-sass-chokidar": "^0.0.3",
+    "npm-run-all": "^4.1.2"
   },
   "peerDependencies": {
     "prop-types": "15.6.0",
     "react": ">=0.14.0 <= 15",
-    "react-dom": ">=0.14.0 <= 15"
+    "react-dom": ">=0.14.0 <= 15",
+    "node-sass-chokidar": "^0.0.3"
   },
   "dependencies": {
     "classnames": "^2.2.5"
