@@ -1,8 +1,9 @@
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean, select } from '@storybook/addon-knobs';
 import Button from './Button';
 import IconArrow from '../Icon/IconArrow';
 
@@ -13,13 +14,22 @@ stories
     .addDecorator(story => <div id="uir-root-preview">{story()}</div>);
 
 stories.add(
-    'default',
+    'full control',
     withInfo(`
         With a custom label
     `)(() => (
         <Button
-            isDisabled={boolean('isDisabled', false)}
             onClick={action('clicked')}
+            className={text('className', '')}
+            skin={select('skin', {
+                default: 'default',
+                clear: 'clear',
+                primary: 'primary',
+                circle: 'circle',
+            }, 'default')}
+            isActive={boolean('isActive', true)}
+            isFluid={boolean('isFluid', false)}
+            isDisabled={boolean('isDisabled', false)}
         >
             {text('label', 'Custom label')}
         </Button>
@@ -30,14 +40,14 @@ stories.add(
     'right icon',
     withInfo(`
         With right Icon
-    `)(() => <Button rightIcon={<IconArrow />}>Dropdown</Button>),
+    `)(() => <Button>Dropdown</Button>),
 );
 
 stories.add(
     'right & left icon',
     withInfo(`
         Two icons
-    `)(() => <Button leftIcon={<IconArrow />} rightIcon={<IconArrow />}>Dropdown</Button>),
+    `)(() => <Button><IconArrow style={{ marginTop: '-3px' }} />Example</Button>),
 );
 
 stories.add(
@@ -59,13 +69,6 @@ stories.add(
     withInfo(`
         Primary buttons don't have "active" state.
     `)(() => <Button skin="primary">Test</Button>),
-);
-
-stories.add(
-    'with href',
-    withInfo(`
-        When href is present, it will render as <a href="link"></a> element, not button
-    `)(() => <div><Button>No Link</Button><Button href="https://mudano.com">With Link</Button></div>),
 );
 
 stories.add(
