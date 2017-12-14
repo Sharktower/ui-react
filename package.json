@@ -14,21 +14,22 @@
   },
   "homepage": "https://github.com/Mudano/ui-react#readme",
   "scripts": {
-    "build": "yarn run clean-dist && yarn run lint && yarn run stylelint && NODE_ENV=production `yarn bin`/babel ./src --out-dir ./dist",
-    "clean-dist": "rm -rf ./dist",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
-    "lint:fix": "yarn run lint -- --fix",
-    "stylelint": "stylelint 'src/**/*.css'; exit 0;",
-    "stylelint:fix": "yarn run stylelint -- --fix",
-    "testint": "./node_modules/.bin/codeceptjs",
-    "testint:ignore": "./node_modules/.bin/codeceptjs run --grep '^(?!.*@ignore)'",
-    "testint:setup": "./src/testint_support/testint-setup",
-    "selenium": "./node_modules/.bin/selenium-standalone",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "css:lint": "stylelint 'src/**/*.scss'",
+    "css:build": "yarn css:lint && node-sass-chokidar src/ -o src/",
+    "css:watch": "yarn css:build && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "js:lint": "eslint ./src --cache",
+    "js:clean": "rm -rf ./dist",
+    "js:build": "yarn js:clean && yarn js:lint && NODE_ENV=production babel ./src --out-dir ./dist --copy-files --ignore *.scss,*.story.js,*.test.js",
+    "storybook:build": "yarn js:lint && build-storybook",
+    "storybook:watch": "start-storybook -p 6006",
+    "lint": "npm-run-all -s -c css:lint js:lint",
+    "lint:watch": "watch 'yarn lint' src -d -u",
+    "start": "npm-run-all -p lint:watch css:watch storybook:watch",
+    "build": "npm-run-all -s css:build js:build",
+    "test:codecept": "codeceptjs run",
+    "test:jest": "jest",
+    "test:jest:watch": "jest --watch",
+    "test": "npm-run-all test:jest test:codecept"
   },
   "jest": {
     "moduleNameMapper": {
@@ -69,6 +70,8 @@
     "react": ">=0.14.0 <= 15",
     "react-dom": ">=0.14.0 <= 15",
     "react-test-renderer": "<= 15",
+    "node-sass-chokidar": "^0.0.3",
+    "npm-run-all": "^4.1.2",
     "selenium-standalone": "^6.12.0",
     "stylelint": "^8.3.1",
     "stylelint-order": "^0.8.0",
@@ -77,7 +80,8 @@
   "peerDependencies": {
     "prop-types": "15.6.0",
     "react": ">=0.14.0 <= 15",
-    "react-dom": ">=0.14.0 <= 15"
+    "react-dom": ">=0.14.0 <= 15",
+    "node-sass-chokidar": "^0.0.3"
   },
   "dependencies": {
     "classnames": "^2.2.5"

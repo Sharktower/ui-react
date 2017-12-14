@@ -1,4 +1,4 @@
-// Airbnb linting. From https://github.com/airbnb/css/pull/56 
+// Airbnb linting. From https://github.com/airbnb/css/pull/56
 module.exports = {
   plugins: [
     'stylelint-scss',
@@ -6,7 +6,7 @@ module.exports = {
   ],
   rules: {
     // Base rules
-    indentation: 2,
+    indentation: 4,
     'number-leading-zero': 'never',
     'string-quotes': 'double',
     'selector-max-id': 0,
