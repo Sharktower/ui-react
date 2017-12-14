@@ -27,6 +27,6 @@ yarn test:unit
 Run these two commands in separate windows:
 
 ```
-yarn test:int-server
-yarn test:unit
+yarn test:int-setup
+yarn test:int
 ```

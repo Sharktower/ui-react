@@ -6,8 +6,6 @@ This document gives the user an insight of how to use CodeceptJS, including pre-
 
 ### CodeceptJS Installation and Setup
 
-NB: `yarn test:int` is an alias for `codeceptjs` command.
-
 ```bash
 yarn install # Only needs to be run once
 ```
