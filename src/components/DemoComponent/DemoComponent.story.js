@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import DemoComponent from './DemoComponent';
 
 const stories = storiesOf('DemoComponent', module);
@@ -23,19 +23,19 @@ stories.add(
         >
         children
         </DemoComponent>
-    ))
+    )),
 );
 
 stories.add(
     'with title',
     withInfo(`
         With a custom title
-    `)(() => <DemoComponent title="Custom title" />)
+    `)(() => <DemoComponent title="Custom title" />),
 );
 
 stories.add(
     'with emoji',
     withInfo()(() => (
-        <DemoComponent onClick={action('clicked')}>😀 😎 👍 💯</DemoComponent>
-    ))
+        <DemoComponent onClick={action('clicked')}><span role="img" aria-label="emoji">😀</span><span role="img" aria-label="emoji">😎</span><span role="img" aria-label="emoji">👍</span><span role="img" aria-label="emoji">💯</span></DemoComponent>
+    )),
 );
