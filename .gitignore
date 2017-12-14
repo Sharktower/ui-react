@@ -4,8 +4,9 @@
 # testing
 /coverage
 
-# production
+# production and build
 /dist
+/storybook-static
 
 # misc
 .DS_Store
@@ -16,8 +17,14 @@
 .env.test.local
 .env.production.local
 .sass-cache
+.eslintcache
 
 # logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# sass
+.sass-cache
+*.css.map
+*.css
