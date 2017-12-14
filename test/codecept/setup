@@ -18,7 +18,8 @@ fi
 sbstatus=`ps -ef | grep "storybook"|grep -v grep | awk '{ print $2}'`
 echo "storybook process id" $sbstatus
 if [ "$sbstatus" = "" ]; then
-	yarn storybook:watch
+    yarn css:build
+    yarn storybook:watch
 else
 	echo "storybook process is already running"
 fi
