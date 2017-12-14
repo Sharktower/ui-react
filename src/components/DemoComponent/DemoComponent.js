@@ -9,7 +9,7 @@ const DemoComponent = ({
     isDisabled,
     onClick,
 }) => (
-    <div className={cx('ui-demo-component', { 'is-disabled': isDisabled })} onClick={onClick}>
+    <div role="button" tabIndex={0} className={cx('ui-demo-component', { 'is-disabled': isDisabled })} onClick={onClick} onKeyPress={onClick}>
         <div className="ui-demo-component--title"><h2>{title}</h2></div>
         <div className="ui-demo-component--content">{children}</div>
     </div>

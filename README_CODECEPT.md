@@ -14,6 +14,10 @@ yarn install # Only needs to be run once
 
 NB: Writing an initial test can be found on: http://codecept.io/quickstart/#creating-first-test.
 
+### Test files
+
+Files follow this format `MyComponent.test-int.js`
+
 ### Execute Tests
 
 Prepare the test runner:

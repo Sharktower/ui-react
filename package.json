@@ -44,12 +44,6 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^3.2.17",
-    "@storybook/addon-info": "^3.2.17",
-    "@storybook/addon-knobs": "^3.2.17",
-    "@storybook/addon-links": "^3.2.17",
-    "@storybook/addon-options": "^3.2.17",
-    "@storybook/react": "^3.2.17",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-jest": "^21.2.0",
@@ -76,7 +70,9 @@
     "react-test-renderer": "<= 15",
     "stylelint": "^8.3.1",
     "stylelint-order": "^0.8.0",
-    "stylelint-scss": "^2.2.0"
+    "stylelint-scss": "^2.2.0",
+    "codeceptjs-webdriverio": "^1.1.0",
+    "selenium-standalone": "^6.12.0"
   },
   "peerDependencies": {
     "node-sass-chokidar": "^0.0.3",
@@ -86,7 +82,11 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "codeceptjs-webdriverio": "^1.1.0",
-    "selenium-standalone": "^6.12.0"
+    "@storybook/addon-actions": "^3.2.17",
+    "@storybook/addon-info": "^3.2.17",
+    "@storybook/addon-knobs": "^3.2.17",
+    "@storybook/addon-links": "^3.2.17",
+    "@storybook/addon-options": "^3.2.17",
+    "@storybook/react": "^3.2.17"
   }
 }
