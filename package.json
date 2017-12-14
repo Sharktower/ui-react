@@ -48,12 +48,14 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.3",
     "babel-jest": "^21.2.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-react-docgen": "^1.8.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "codeceptjs-webdriverio": "^1.1.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-15": "^1.0.5",
     "enzyme-to-json": "^3.2.2",
@@ -70,11 +72,10 @@
     "react": ">=0.14.0 <= 15",
     "react-dom": ">=0.14.0 <= 15",
     "react-test-renderer": "<= 15",
+    "selenium-standalone": "^6.12.0",
     "stylelint": "^8.3.1",
     "stylelint-order": "^0.8.0",
-    "stylelint-scss": "^2.2.0",
-    "codeceptjs-webdriverio": "^1.1.0",
-    "selenium-standalone": "^6.12.0"
+    "stylelint-scss": "^2.2.0"
   },
   "peerDependencies": {
     "node-sass-chokidar": "^0.0.3",
@@ -83,12 +84,12 @@
     "react-dom": ">=0.14.0 <= 15"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
     "@storybook/addon-actions": "^3.2.17",
     "@storybook/addon-info": "^3.2.17",
     "@storybook/addon-knobs": "^3.2.17",
     "@storybook/addon-links": "^3.2.17",
     "@storybook/addon-options": "^3.2.17",
-    "@storybook/react": "^3.2.17"
+    "@storybook/react": "^3.2.17",
+    "classnames": "^2.2.5"
   }
 }
