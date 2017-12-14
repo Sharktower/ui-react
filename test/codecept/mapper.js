@@ -2,7 +2,7 @@
 
 module.exports = {
 
-  demoComponent: {
-      default: '/?selectedKind=DemoComponent&selectedStory=default'
-  }
-}
+    demoComponent: {
+        default: '/?selectedKind=DemoComponent&selectedStory=default',
+    },
+};
