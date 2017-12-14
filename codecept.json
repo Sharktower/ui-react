@@ -1,5 +1,5 @@
 {
-  "output": "./src/testint_support/output",
+  "output": "./test/codecept/output",
   "helpers": {
     "WebDriverIO": {
       "url": "http://localhost:6006",
@@ -12,14 +12,14 @@
     }
   },
   "include": {
-    "I": "./src/testint_support/steps_file.js",
-    "mapper": "./src/testint_support/mapper.js"
+    "I": "./test/codecept/steps_file.js",
+    "mapper": "./test/codecept/mapper.js"
   },
   "mocha": {},
   "bootstrap": false,
   "teardown": null,
   "hooks": [],
-  "tests": "./src/components/**/testint_*.js",
+  "tests": "./src/components/**/*.test-int.js",
   "timeout": 10000,
   "name": "ui-react"
 }
