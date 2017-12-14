@@ -15,9 +15,11 @@
   "homepage": "https://github.com/Mudano/ui-react#readme",
   "scripts": {
     "css:lint": "stylelint 'src/**/*.scss'",
+    "css:lint-fix": "yarn css:lint --fix",
     "css:build": "yarn css:lint && node-sass-chokidar src/ -o src/",
     "css:watch": "yarn css:build && node-sass-chokidar src/ -o src/ --watch --recursive",
     "js:lint": "eslint ./src --cache",
+    "js:lint-fix": "yarn js:lint --fix",
     "js:clean": "rm -rf ./dist",
     "js:build": "yarn js:clean && yarn js:lint && NODE_ENV=production babel ./src --out-dir ./dist --copy-files --ignore *.scss,*.story.js,*.test.js",
     "storybook:build": "yarn js:lint && build-storybook",
