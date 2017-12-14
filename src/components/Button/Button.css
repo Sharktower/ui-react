@@ -1,108 +1,119 @@
 .uir-button {
-    position:relative;
-    border:0; /* override browser's default */
-    color:rgba(47,40,51,0.6);
-    min-width:50px;
+    position: relative;
+    border: 0; /* override browser's default */
+    color: rgba(47,40,51,.6);
+    min-width: 50px;
     height: 36px;
     padding: 0 18px;
     margin: 8px;   
     border-radius: 2px;
     text-align: center;
     white-space: nowrap;
-    text-transform:uppercase;
+    text-transform: uppercase;
     letter-spacing: 1px;
-    transition: all 0.3s;
+    transition: all .3s;
     font-family: "DINOT", sans-serif;
     box-sizing: border-box;
     font-size: 12px;
     vertical-align: middle;
-    user-select:none;
-    outline:none;
+    user-select: none;
+    outline: none;
 }
 
 .uir-button-skin-default {
-    background-color: rgba(47, 40, 51, 0.05);
+    background-color: rgba(47, 40, 51, .05);
 }
+
 .uir-button-skin-clear:focus,
 .uir-button-skin-clear:hover,
 .uir-button-skin-default:focus,
 .uir-button-skin-default:hover {
-    background-color:rgba(47, 40, 51, 0.1);
+    background-color: rgba(47, 40, 51, .1);
     color: rgb(47,40,51);
 }
+
 .uir-button-skin-default:active,
 .uir-button-skin-default.uir-button-active {
-    background-color: rgba(47, 40, 51, 0.1);
-    color:rgb(47,40,51);
+    background-color: rgba(47, 40, 51, .1);
+    color: rgb(47,40,51);
 }
 
 .uir-button-skin-clear:active {
-    background-color: rgba(47, 40, 51, 0.1);
-    color:rgb(47,40,51);
+    background-color: rgba(47, 40, 51, .1);
+    color: rgb(47,40,51);
 }
 
 
 .uir-button-skin-circle {
-    min-width:24px;
-    min-height:24px;
+    min-width: 24px;
+    min-height: 24px;
     padding: 8px;
-    height:auto;
-    width:auto;
-    border-radius:50%;
-    background-color: rgba(47, 40, 51, 0.05);
+    height: auto;
+    width: auto;
+    border-radius: 50%;
+    background-color: rgba(47, 40, 51, .05);
 }
+
 .uir-button-skin-default:focus,
 .uir-button-skin-circle:hover {
-    background-color:rgba(47, 40, 51, 0.1);
+    background-color: rgba(47, 40, 51, .1);
     color: rgb(47,40,51);
 }
+
 .uir-button-skin-circle:active,
 .uir-button-skin-circle.uir-button-active {
-    background-color: rgba(47, 40, 51, 0.1);
-    color:rgb(47,40,51);
+    background-color: rgba(47, 40, 51, .1);
+    color: rgb(47,40,51);
 }
 
 .uir-button-skin-primary {
     background-image: linear-gradient(to bottom, #ff1966 0%, #fa439f 100%);
-    color:#FFF;
+    color: #FFF;
 }
+
 .uir-button-skin-primary:focus,
 .uir-button-skin-primary:hover {
-    box-shadow: 0px 0px 3px 1px rgba(225, 25, 102, 0.4);
+    box-shadow: 0px 0px 3px 1px rgba(225, 25, 102, .4);
     background-image: linear-gradient(to bottom, #ff1966 100%, #fa439f 100%);
 }
 
 .uir-button-right-icon {
-    padding-left:16px;
+    padding-left: 16px;
 }
+
 .uir-button-right-icon svg {
-    position:absolute;
+    position: absolute;
     top: 4px;
     right: 8px;
 }
 
 .uir-button-left-icon {
-    padding-right:16px;
+    padding-right: 16px;
 }
+
 .uir-button-left-icon svg {
-    position:absolute;
+    position: absolute;
     top: 4px;
     left: 8px;
 }
+
 .uir-button svg,
 .uir-button-content {
     display: inline-block;
-    vertical-align:middle;
+    vertical-align: middle;
 }
+
 .uir-button-fluid {
-    width:100%;
-    margin-right:0;
-    margin-left:0;
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
 }
+
 .uir-button-disabled {
     pointer-events: none;
-    opacity:0.5;
+    opacity: .5;
 }
+
 .uir-button-active {
     font-weight: 600; /* Medium, not bold if available */
 }

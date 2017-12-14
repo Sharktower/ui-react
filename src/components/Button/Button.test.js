@@ -54,29 +54,6 @@ describe('Button', () => {
         ));
         expect(wrapper.find(Button).length).toBe(3);
     });
-/*
-    it('should re-render title imeditaley', () => {
-        class DefaultButton extends React.Component {
-            constructor() {
-                super();
-                state = {
-                    className: 'initial',
-                }
-            }
-            handleClick = () => {
-                this.setState({ className: 'loading' });
-            }
-            render() {
-                return <Button className={this.state.className} onClick={this.handleClick}>Button</Button>;
-            }
-        }
-        const wrapper = mount(
-          <DefaultButton />
-        );
-        wrapper.simulate('click');
-        expect(wrapper.hasClass('loading')).toBe(true);
-      });
-*/
     describe('onClick', () => {
         it('default does not throw when clicked', () => {
             const syntheticEvent = { preventDefault: () => undefined };

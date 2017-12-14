@@ -1,20 +1,17 @@
 .uir-icon-button {
-    /* Override default button rules */
-    min-width:24px;
-    min-height:24px;
-    padding: 8px;
-    height:auto;
-    width:auto;
-    border-radius:50%;
-    background-color: rgba(47, 40, 51, 0.05);
-}
+  /* Override default button rules */
+  min-width: 24px;
+  min-height: 24px;
+  padding: 8px;
+  height: auto;
+  width: auto;
+  border-radius: 50%;
+  background-color: rgba(47, 40, 51, 0.05); }
 
 .uir-icon-button:hover {
-    background-color:rgba(47, 40, 51, 0.1);
-    color: rgb(47,40,51);
-}
+  background-color: rgba(47, 40, 51, 0.1);
+  color: #2f2833; }
 
 .uir-icon-button.uir-button-active {
-    background-color: rgba(47, 40, 51, 0.1);
-    color:rgb(47,40,51);
-}
+  background-color: rgba(47, 40, 51, 0.1);
+  color: #2f2833; }
