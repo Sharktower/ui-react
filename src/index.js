@@ -1,1 +1,3 @@
-export { default as DemoComponent } from './components/DemoComponent/DemoComponent'
+import DemoComponent from './components/DemoComponent/DemoComponent';
+
+export default DemoComponent;
