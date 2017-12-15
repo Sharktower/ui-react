@@ -20,20 +20,20 @@ export default (Component, options = {}) => {
             const text = 'This is a test!&*';
             const wrapper = shallow(createElement(Component, requiredProps, text));
 
-            expect(wrapper).toIncludeText(text);
+            expect(wrapper).to.contain.text(text);
         });
 
         it('renders child components', () => {
             const child = <div data-child={{ test: 'This is test' }} />;
             const wrapper = shallow(createElement(Component, requiredProps, child));
 
-            expect(wrapper).toContainReact(child);
+            expect(wrapper).to.contain(child);
         });
 
         it('renders child number with 0 value', () => {
             const wrapper = shallow(createElement(Component, requiredProps, 0));
 
-            expect(wrapper).toIncludeText('0');
+            expect(wrapper).to.contain.text('0');
         });
     });
 };
