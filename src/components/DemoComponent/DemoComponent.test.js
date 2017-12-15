@@ -1,8 +1,10 @@
 /* global describe, expect, it, shallow */
 import React from 'react';
-import sinon from 'sinon';
 import * as common from '../../../test/unit/commonTests';
+import { sandbox } from '../../../test/unit/utils';
 import DemoComponent from './DemoComponent';
+
+const syntheticEvent = { preventDefault: () => undefined };
 
 describe('DemoComponent', () => {
     common.rendersChildren(DemoComponent);
@@ -53,7 +55,6 @@ describe('DemoComponent', () => {
 
     describe('onClick', () => {
         it('default does not throw when clicked', () => {
-            const syntheticEvent = { preventDefault: () => undefined };
             const wrapper = shallow((
                 <DemoComponent />
             ));
@@ -65,14 +66,13 @@ describe('DemoComponent', () => {
         });
 
         it('is called when clicked', () => {
-            const sandbox = sinon.sandbox.create();
             const onClick = sandbox.spy();
-            const syntheticEvent = { preventDefault: () => undefined };
             const wrapper = shallow((
                 <DemoComponent onClick={onClick} />
             ));
 
             wrapper.simulate('click', syntheticEvent);
+
             expect(onClick).to.have.been.calledOnce();
             expect(onClick).to.have.been.calledWithExactly(syntheticEvent);
         });
