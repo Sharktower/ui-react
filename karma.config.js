@@ -1,5 +1,5 @@
 // Karma configuration
-const path = require('path');
+const webpackConfig = require('./webpack.config.js');
 
 module.exports = (config) => {
     config.set({
@@ -30,32 +30,10 @@ module.exports = (config) => {
             'src/**/*.js': ['webpack'],
             'test/**/*.js': ['webpack'],
         },
-        webpack: {
-            devtool: 'inline-source-map',
-            module: {
-                loaders: [
-                    {
-                        test: /\.js$/,
-                        loader: 'babel-loader',
-                        exclude: path.resolve(__dirname, 'node_modules'),
-                        query: {
-                            presets: ['es2015', 'stage-2', 'react'],
-                        },
-                    },
-                    {
-                        test: /\.css$/,
-                        loader: 'css-loader',
-                    },
-                ],
-            },
-            externals: {
-                'react/addons': true,
-                'react/lib/ExecutionEnvironment': true,
-                'react/lib/ReactContext': true,
-            },
-        },
+        webpack: webpackConfig,
         webpackServer: {
             noInfo: false,
+            quiet: false,
         },
 
         // Test results reporter to use
