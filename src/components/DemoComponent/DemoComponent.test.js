@@ -1,7 +1,10 @@
-/* global describe, expect, it, jest, shallow */
+/* global describe, expect, it, shallow */
 import React from 'react';
-import * as common from '../../../test/jest/commonTests';
+import * as common from '../../../test/unit/commonTests';
+import { sandbox } from '../../../test/unit/utils';
 import DemoComponent from './DemoComponent';
+
+const syntheticEvent = { preventDefault: () => undefined };
 
 describe('DemoComponent', () => {
     common.rendersChildren(DemoComponent);
@@ -11,7 +14,7 @@ describe('DemoComponent', () => {
             <DemoComponent />
         ));
 
-        expect(wrapper).toHaveTagName('div');
+        expect(wrapper).to.have.tagName('div');
     });
 
     describe('title', () => {
@@ -20,7 +23,7 @@ describe('DemoComponent', () => {
                 <DemoComponent />
             ));
 
-            expect(wrapper.find('.ui-demo-component--title')).toHaveText('Demo');
+            expect(wrapper.find('.ui-demo-component--title')).to.have.text('Demo');
         });
 
         it('renders provided title text', () => {
@@ -28,13 +31,30 @@ describe('DemoComponent', () => {
                 <DemoComponent title="Test title text!" />
             ));
 
-            expect(wrapper.find('.ui-demo-component--title')).toHaveText('Test title text!');
+            expect(wrapper.find('.ui-demo-component--title')).to.have.text('Test title text!');
+        });
+    });
+
+    describe('isDisabled', () => {
+        it('does not add is-disabled class by default', () => {
+            const wrapper = shallow((
+                <DemoComponent />
+            ));
+
+            expect(wrapper).not.to.have.className('is-disabled');
+        });
+
+        it('adds is-disabled class', () => {
+            const wrapper = shallow((
+                <DemoComponent isDisabled />
+            ));
+
+            expect(wrapper).to.have.className('is-disabled');
         });
     });
 
     describe('onClick', () => {
         it('default does not throw when clicked', () => {
-            const syntheticEvent = { preventDefault: () => undefined };
             const wrapper = shallow((
                 <DemoComponent />
             ));
@@ -42,19 +62,19 @@ describe('DemoComponent', () => {
                 wrapper.simulate('click', syntheticEvent);
             };
 
-            expect(clickComponent).not.toThrow();
+            expect(clickComponent).not.to.throw();
         });
 
         it('is called when clicked', () => {
-            const onClick = jest.fn();
-            const syntheticEvent = { preventDefault: () => undefined };
+            const onClick = sandbox.spy();
             const wrapper = shallow((
                 <DemoComponent onClick={onClick} />
             ));
 
             wrapper.simulate('click', syntheticEvent);
-            expect(onClick.mock.calls.length).toEqual(1);
-            expect(onClick).toBeCalledWith(syntheticEvent);
+
+            expect(onClick).to.have.been.calledOnce();
+            expect(onClick).to.have.been.calledWithExactly(syntheticEvent);
         });
     });
 });
