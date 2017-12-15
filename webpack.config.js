@@ -1,19 +1,12 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'index_bundle.js',
+        filename: 'ui-react.js',
     },
     module: {
-        loaders: [
-            {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/,
-            },
-        ],
         rules: [{
             test: /\.scss$/,
             use: [{
@@ -22,6 +15,12 @@ module.exports = {
                 loader: 'css-loader',
             }, {
                 loader: 'sass-loader',
+            }],
+        }, {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: [{
+                loader: 'babel-loader',
             }],
         }],
     },

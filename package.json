@@ -17,7 +17,7 @@
     "start": "yarn storybook:watch",
     "build": "npm-run-all -s library:clean library:build",
     "library:clean": "rm -rf ./dist",
-    "library:build": "yarn lint && NODE_ENV=production babel ./src --out-dir ./dist --copy-files --ignore *.scss,*.story.js,*.test*.js",
+    "library:build": "yarn lint && webpack",
     "storybook:clean": "rm -rf ./storybook-static",
     "storybook:build": "yarn lint && build-storybook",
     "storybook:watch": "start-storybook -p 6006",
