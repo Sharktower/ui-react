@@ -1,4 +1,23 @@
-.uir-avatar {
+@keyframes uir-animate-icon-in {
+
+    0% {
+        transform: scale(.75);
+    }
+
+    40% {
+        transform: scale(1.25);
+    }
+
+    60% {
+        transform: scale(.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.uir-avatar-user-profile {
     position: relative;
     display: inline-block;
     width: 48px;
@@ -8,33 +27,87 @@
     font-size: 22px;
     text-align: center;
     vertical-align: middle;
-    background-color: #f5f5f5;
-    border-radius: 50%;
-    overflow: hidden;
 
-    img {
-        width: 100%;
-        height: 100%;
+    &:hover {
+        opacity: .8;
+        cursor: pointer;
     }
 
-    &.uir-avatar-sm {
+    .uir-avatar-user-profile-inner {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(47, 40, 51, .1);
+        border-radius: 50%;
+        overflow: hidden;
+
+        img,
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .uir-avatar-user-status {
+        position: absolute;
+        bottom: 0%;
+        right: -18%;
+        display: block;
+        width: 50%;
+        height: 50%;
+        border-radius: 50%;
+        font-size: 70%;
+        line-height: 180%;
+        animation-name: uir-animate-icon-in;
+        animation-delay: .2s;
+        animation-duration: .6s;
+    }
+
+    &.uir-avatar-user-profile-light {
+
+        .uir-avatar-user-status {
+            background: #fff;
+        }
+    }
+
+    &.uir-avatar-user-profile-dark {
+
+        .uir-avatar-user-status {
+            background: #3a333c;
+        }
+    }
+
+    &.uir-avatar-user-profile-sm {
         width: 24px;
         height: 24px;
         line-height: 24px;
         font-size: 12px;
+
+        .uir-avatar-user-status {
+            line-height: 160%;
+        }
     }
 
-    &.uir-avatar-md {
+    &.uir-avatar-user-profile-md {
         width: 36px;
         height: 36px;
         line-height: 36px;
         font-size: 16px;
+
+        .uir-avatar-user-status {
+            line-height: 180%;
+        }
     }
 
-    &.uir-avatar-lg {
+    &.uir-avatar-user-profile-lg {
         width: 60px;
         height: 60px;
         line-height: 60px;
         font-size: 28px;
+
+        .uir-avatar-user-status {
+            line-height: 160%;
+        }
     }
+
 }

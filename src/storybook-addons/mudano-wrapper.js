@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Markdown } from 'react-showdown';
 
 /*
     mudanoWrapper( String description, JSX component, [JSX variants] )
@@ -14,7 +15,7 @@ import PropTypes from 'prop-types';
     storiesOf('Parent.Component', module).add(
         'Default component usage',
         mudanoWrapper(
-            'Description of your component and intended usage',
+            'Description of your component and intended usage (could be *markdown*)',
             <Component prop="Example Prop" />,
         ),
     );
@@ -22,7 +23,7 @@ import PropTypes from 'prop-types';
     storiesOf('Parent.Component', module).add(
         'Default component usage',
         mudanoWrapper(
-            'Description of your component and intended usage',
+            'Description of your component and intended usage (could be *markdown*)',
             <Component prop="Example Prop" />,
             <div>
                 <Component prop="Example Prop" optionalVariant="A" />,
@@ -179,7 +180,7 @@ export default function mudanoWrapper(summary, component, variants) {
         <div style={storyWrapperStyle}>
             <h1>{getKind(context.kind)}</h1>
             <h2><strong>{context.story}</strong></h2>
-            <p>{summary}</p>
+            <Markdown markup={summary} />
             <h3>Example</h3>
             <div style={componentWrapperStyle}>
                 {component}
