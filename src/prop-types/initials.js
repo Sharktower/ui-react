@@ -4,7 +4,8 @@ function createInitialsPropType(isRequired) {
         if (typeof property === 'undefined' && isRequired) {
             return new Error(`The prop \`${propName}\` is marked as required in \`${componentName}\``);
         }
-        if (property.length < 1 || property.length > 2) {
+        if (typeof property !== 'undefined'
+            && (property.length < 1 || property.length > 2)) {
             return new Error(`Initials supplied to \`${componentName}\` should be 1 or 2 characters`);
         }
         return null;
