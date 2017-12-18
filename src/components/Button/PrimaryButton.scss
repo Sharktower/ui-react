@@ -1,0 +1,17 @@
+
+.uir-PrimaryButton {
+    background-image: linear-gradient(to bottom, #ff1966 0%, #fa439f 100%);
+    color: #FFF;
+}
+
+.uir-PrimaryButton:focus,
+.uir-PrimaryButton:hover {
+    box-shadow: 0px 0px 3px 1px rgba(225, 25, 102, .4);
+    background-image: linear-gradient(to bottom, #ff1966 100%, #fa439f 100%);
+    color: #FFF;
+    
+}
+
+.uir-PrimaryButton.uir-Button-active {
+    color: #FFF;
+}
