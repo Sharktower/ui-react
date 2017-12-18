@@ -1,15 +1,16 @@
 .uir-avatar {
+    position: relative;
     display: inline-block;
     width: 48px;
     height: 48px;
-    line-height: 50px;
+    line-height: 48px;
+    font-family: "DINOT", sans-serif;
+    font-size: 22px;
+    text-align: center;
+    vertical-align: middle;
     background-color: #f5f5f5;
     border-radius: 50%;
-    text-align: center;
-    font-family: "DINOT", sans-serif;
-    font-size: 20px;
     overflow: hidden;
-    vertical-align: middle;
 
     img {
         width: 100%;
@@ -19,21 +20,21 @@
     &.uir-avatar-sm {
         width: 24px;
         height: 24px;
-        line-height: 26px;
+        line-height: 24px;
         font-size: 12px;
     }
 
     &.uir-avatar-md {
         width: 36px;
         height: 36px;
-        line-height: 38px;
+        line-height: 36px;
         font-size: 16px;
     }
 
     &.uir-avatar-lg {
         width: 60px;
         height: 60px;
-        line-height: 62px;
-        font-size: 24px;
+        line-height: 60px;
+        font-size: 28px;
     }
 }

@@ -5,6 +5,7 @@ setOptions({
     name: 'UI React',
     url: 'https://github.com/Mudano/ui-react',
     showDownPanel: false,
+    hierarchySeparator: /\./,
 });
 
 const req = require.context('../src/components', true, /.story.js$/)

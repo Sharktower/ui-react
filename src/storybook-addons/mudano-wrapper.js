@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 
     Example usage:
 
-    storiesOf('Component', module).add(
+    storiesOf('Parent.Component', module).add(
         'Default component usage',
         mudanoWrapper(
             'Description of your component and intended usage',
@@ -19,7 +19,7 @@ import PropTypes from 'prop-types';
         ),
     );
 
-    storiesOf('Component', module).add(
+    storiesOf('Parent.Component', module).add(
         'Default component usage',
         mudanoWrapper(
             'Description of your component and intended usage',
@@ -167,13 +167,17 @@ function getVariations(variants) {
     );
 }
 
+function getKind(kind) {
+    return kind.replace(/\./, ': ');
+}
+
 export default function mudanoWrapper(summary, component, variants) {
     const sourceCode = getSourceCode(component);
     const props = getProps(component.type.propTypes, component.type.defaultProps);
     const variations = getVariations(variants);
     return context => (
         <div style={storyWrapperStyle}>
-            <h1>{context.kind}</h1>
+            <h1>{getKind(context.kind)}</h1>
             <h2><strong>{context.story}</strong></h2>
             <p>{summary}</p>
             <h3>Example</h3>
