@@ -1,11 +1,11 @@
-.uir-button {
+.uir-Button {
     position: relative;
     border: 0; /* override browser's default */
     color: rgba(47,40,51,.6);
     min-width: 50px;
     height: 36px;
-    padding: 0 18px;
-    margin: 8px;   
+    padding: 9px 18px;
+    margin: 8px 8px 8px 0;   
     border-radius: 2px;
     text-align: center;
     white-space: nowrap;
@@ -18,102 +18,50 @@
     vertical-align: middle;
     user-select: none;
     outline: none;
-}
-
-.uir-button-skin-default {
     background-color: rgba(47, 40, 51, .05);
 }
 
-.uir-button-skin-clear:focus,
-.uir-button-skin-clear:hover,
-.uir-button-skin-default:focus,
-.uir-button-skin-default:hover {
+.uir-Button-clear {
+    background: transparent;
+    color: black;
+}
+
+.uir-Button:hover {
     background-color: rgba(47, 40, 51, .1);
     color: rgb(47,40,51);
 }
 
-.uir-button-skin-default:active,
-.uir-button-skin-default.uir-button-active {
-    background-color: rgba(47, 40, 51, .1);
+.uir-Button:focus {
+    background-color: rgba(47, 40, 51, .2);
     color: rgb(47,40,51);
 }
 
-.uir-button-skin-clear:active {
-    background-color: rgba(47, 40, 51, .1);
+.uir-Button.uir-Button-active {
+    background-color: rgba(47, 40, 51, .4);
     color: rgb(47,40,51);
 }
 
-
-.uir-button-skin-circle {
-    min-width: 24px;
-    min-height: 24px;
-    padding: 8px;
-    height: auto;
-    width: auto;
-    border-radius: 50%;
-    background-color: rgba(47, 40, 51, .05);
-}
-
-.uir-button-skin-default:focus,
-.uir-button-skin-circle:hover {
-    background-color: rgba(47, 40, 51, .1);
-    color: rgb(47,40,51);
-}
-
-.uir-button-skin-circle:active,
-.uir-button-skin-circle.uir-button-active {
-    background-color: rgba(47, 40, 51, .1);
-    color: rgb(47,40,51);
-}
-
-.uir-button-skin-primary {
-    background-image: linear-gradient(to bottom, #ff1966 0%, #fa439f 100%);
-    color: #FFF;
-}
-
-.uir-button-skin-primary:focus,
-.uir-button-skin-primary:hover {
-    box-shadow: 0px 0px 3px 1px rgba(225, 25, 102, .4);
-    background-image: linear-gradient(to bottom, #ff1966 100%, #fa439f 100%);
-}
-
-.uir-button-right-icon {
-    padding-left: 16px;
-}
-
-.uir-button-right-icon svg {
-    position: absolute;
-    top: 4px;
-    right: 8px;
-}
-
-.uir-button-left-icon {
-    padding-right: 16px;
-}
-
-.uir-button-left-icon svg {
-    position: absolute;
-    top: 4px;
-    left: 8px;
-}
-
-.uir-button svg,
-.uir-button-content {
+/* Align vertically buttons with icons */
+.uir-Button svg,
+.uir-Button-content {
     display: inline-block;
     vertical-align: middle;
 }
 
-.uir-button-fluid {
+// isFluid prop
+.uir-Button-fluid {
     width: 100%;
     margin-right: 0;
     margin-left: 0;
 }
 
-.uir-button-disabled {
+// isDisabled prop
+.uir-Button-disabled {
     pointer-events: none;
     opacity: .5;
 }
 
-.uir-button-active {
+// isActive prop
+.uir-Button-active {
     font-weight: 600; /* Medium, not bold if available */
 }

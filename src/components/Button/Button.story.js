@@ -3,50 +3,32 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
-import { withKnobs, text, boolean, select } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import Button from './Button';
 import IconArrow from '../Icon/IconArrow';
 
-const stories = storiesOf('Button', module);
+const stories = storiesOf('Button.Button', module);
 
 stories
     .addDecorator(withKnobs)
     .addDecorator(story => <div id="uir-root-preview">{story()}</div>);
 
 stories.add(
-    'full control',
+    '-demo-',
     withInfo(`
-        With a custom label
+        Adjust props in the Knob panel of Storybook
     `)(() => (
         <Button
             onClick={action('clicked')}
             className={text('className', '')}
-            skin={select('skin', {
-                default: 'default',
-                clear: 'clear',
-                cta: 'cta',
-            }, 'default')}
             isActive={boolean('isActive', false)}
+            isClear={boolean('isClear', false)}
             isFluid={boolean('isFluid', false)}
             isDisabled={boolean('isDisabled', false)}
         >
             {text('label', 'Custom label')}
         </Button>
     )),
-);
-
-stories.add(
-    'With left icon',
-    withInfo(`
-        With an Icon passed as children. If you need only an Icon, check IconButton component
-    `)(() => <Button><IconArrow style={{ marginTop: '-3px' }} />Example</Button>),
-);
-
-stories.add(
-    'With right icon',
-    withInfo(`
-        Right icon
-    `)(() => <Button>Example<IconArrow style={{ marginTop: '-3px' }} /></Button>),
 );
 
 stories.add(
@@ -57,15 +39,28 @@ stories.add(
 );
 
 stories.add(
-    'clear button',
+    'clear',
     withInfo(`
         Clear buttons
-    `)(() => <div><Button skin="clear">Not active</Button><Button skin="clear" isActive>Active</Button></div>),
+    `)(() => (
+        <div>
+            <Button isClear>Not active</Button>
+            <Button isClear>Not active</Button>
+            <Button isClear isActive>Active</Button>
+        </div>
+    )),
 );
 
+
 stories.add(
-    'CTA button',
+    'with icon',
     withInfo(`
-        Call to Action button. They don't have visual "active" state
-    `)(() => <Button skin="cta">Test</Button>),
+        Icons, or other elements passed as children could need small adjustments to centre them vertically
+    `)(() => (
+        <div>
+            <Button isClear>Clear with Icon <IconArrow style={{ marginTop: '-3px' }} /></Button>
+            <Button><IconArrow style={{ marginTop: '-3px' }} />Default with Icon</Button>
+        </div>
+    )),
 );
+

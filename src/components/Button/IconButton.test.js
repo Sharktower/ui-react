@@ -12,35 +12,35 @@ describe('IconButton', () => {
         expect(wrapper).toHaveTagName('button');
     });
 
-    it('Button should render with class .uir-button', () => {
+    it('Button should render with class .uir-IconButton', () => {
         const wrapper = shallow(<IconButton><IconArrow /></IconButton>).dive();
-        expect(wrapper.find('.uir-icon-button').length).toBe(1);
+        expect(wrapper.find('.uir-IconButton').length).toBe(1);
     });
 
-    it('Default IconButton should render with class .uir-icon-button', () => {
+    it('Default IconButton should render with class .uir-IconButton', () => {
         const wrapper = shallow(<IconButton><IconArrow /></IconButton>).dive();
-        expect(wrapper.find('.uir-icon-button').length).toBe(1);
+        expect(wrapper.find('.uir-IconButton').length).toBe(1);
     });
 
-    it('Clear IconButton should render with custom class .uir-custom-class', () => {
+    it('Clear IconButton should render with custom class .custom-class', () => {
         const wrapper = shallow((
-            <IconButton className="uir-custom-class"><IconArrow /></IconButton>
+            <IconButton className="custom-class"><IconArrow /></IconButton>
         )).dive();
-        expect(wrapper.find('.uir-custom-class').length).toBe(1);
+        expect(wrapper.find('.custom-class').length).toBe(1);
     });
-    it('Disabled IconButton should render with class .uir-button-disabled', () => {
+    it('Disabled IconButton should render with class .uir-Button-disabled', () => {
         const wrapper = shallow(<IconButton isDisabled><IconArrow /></IconButton>).dive();
-        expect(wrapper.find('.uir-button-disabled').length).toBe(1);
+        expect(wrapper.find('.uir-Button-disabled').length).toBe(1);
     });
 
     it('IconButton should not be fluid, even if isFluid flag is passed', () => {
         const wrapper = shallow(<IconButton isFluid><IconArrow /></IconButton>).dive();
-        expect(wrapper.find('.uir-button-fluid').length).toBe(0);
+        expect(wrapper.find('.uir-Button-fluid').length).toBe(0);
     });
 
-    it('Active IconButton should render with class .uir-button-active', () => {
+    it('Active IconButton should render with class .uir-Button-active', () => {
         const wrapper = shallow(<IconButton isActive><IconArrow /></IconButton>).dive();
-        expect(wrapper.find('.uir-button-active').length).toBe(1);
+        expect(wrapper.find('.uir-Button-active').length).toBe(1);
     });
 
     describe('onClick', () => {

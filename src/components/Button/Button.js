@@ -6,24 +6,25 @@ import './Button.scss';
 const propTypes = {
     /** Extra classes for the top-level wrapper */
     className: PropTypes.string,
-    /** Expand width 100% */
+    /** width 100% */
     isFluid: PropTypes.bool,
+    /** transparent button */
+    isClear: PropTypes.bool,
+    /** for styling purposes */
     isActive: PropTypes.bool,
-    /** will show opaque and won't react to clicks because of "pointer-events:none" */
+    /** set disabled HTML attribute, custom styling and will prevent onClick from firing */
     isDisabled: PropTypes.bool,
     onClick: PropTypes.func,
-    /** Content of the button, just a string label or more complex React components */
+    /** Content of the button, e.g. a string label or more complex React components */
     children: PropTypes.node.isRequired,
-    /** visual skin for the button: cta (Call to Action), clear (transparent) */
-    skin: PropTypes.oneOf(['default', 'cta', 'clear']),
-    /** object with camelCased CSS rules, e.g.  style={{ marginBottom: '-1px'}} */
+    /** object with camelCased CSS rules, e.g.  style={{ marginTop: '-1px'}} */
     style: PropTypes.objectOf(PropTypes.object),
 };
 
 const defaultProps = {
     className: '',
-    skin: 'default',
     isFluid: false,
+    isClear: false,
     isActive: false,
     isDisabled: false,
     style: {},
@@ -31,13 +32,7 @@ const defaultProps = {
 };
 
 class Button extends Component {
-    constructor(props) {
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-        this.handleRef = this.handleRef.bind(this);
-    }
-
-    handleClick(e) {
+    handleClick = (e) => {
         if (this.props.isDisabled) {
             e.preventDefault();
             return;
@@ -45,47 +40,42 @@ class Button extends Component {
         this.props.onClick(e);
     }
 
-    handleRef(node) {
+    handleRef = (node) => {
         this.innerRef = node;
     }
 
     render() {
         const {
             className,
-            skin,
             isFluid,
+            isClear,
             isDisabled,
             isActive,
             children,
-            onClick,
             style,
-            ...extraProps
         } = this.props;
 
-        if (isDisabled) {
-            extraProps.disabled = isDisabled;
-        }
         return (
             <button
                 type="button"
                 style={style}
                 className={cx(
+                    'uir-Button',
                     className,
-                    'uir-button',
-                    `uir-button-skin-${skin}`,
                     {
-                        'uir-button-fluid': isFluid,
-                        'uir-button-active': isActive,
-                        'uir-button-disabled': isDisabled,
+                        'uir-Button-fluid': isFluid,
+                        'uir-Button-clear': isClear,
+                        'uir-Button-active': isActive,
+                        'uir-Button-disabled': isDisabled,
                     },
                 )}
                 ref={this.handleRef}
+                disabled={isDisabled}
                 onClick={this.handleClick}
-                {...extraProps}
             >
-                <span className="uir-button-content">
+                <div className="uir-Button-content">
                     {children}
-                </span>
+                </div>
             </button>
         );
     }

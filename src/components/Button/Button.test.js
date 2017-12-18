@@ -14,34 +14,24 @@ describe('Button', () => {
         expect(wrapper).toHaveTagName('button');
     });
 
-    it('Button should render with class .uir-button', () => {
+    it('Button should render with class .uir-Button', () => {
         const wrapper = shallow(<Button>Foo</Button>);
-        expect(wrapper.find('.uir-button').length).toBe(1);
+        expect(wrapper.find('.uir-Button').length).toBe(1);
     });
 
-    it('Default button should render with class .uir-button-skin-default', () => {
-        const wrapper = shallow(<Button>Foo</Button>);
-        expect(wrapper.find('.uir-button-skin-default').length).toBe(1);
-    });
-
-    it('Clear button should render with class .uir-button-skin-clear', () => {
+    it('Clear button should render with class .uir-Button-clear', () => {
         const wrapper = shallow(<Button skin="clear">Foo</Button>);
-        expect(wrapper.find('.uir-button-skin-clear').length).toBe(1);
+        expect(wrapper.find('.uir-Button-clear').length).toBe(1);
     });
 
-    it('CTA button should render with class .uir-button-skin-cta', () => {
-        const wrapper = shallow(<Button skin="cta">Foo</Button>);
-        expect(wrapper.find('.uir-button-skin-cta').length).toBe(1);
-    });
-
-    it('Disabled button should render with class .uir-button-disabled', () => {
+    it('Disabled button should render with class .uir-Button-disabled', () => {
         const wrapper = shallow(<Button isDisabled>Foo</Button>);
-        expect(wrapper.find('.uir-button-disabled').length).toBe(1);
+        expect(wrapper.find('.uir-Button-disabled').length).toBe(1);
     });
 
-    it('Active button should render with class .uir-button-active', () => {
+    it('Active button should render with class .uir-Button-active', () => {
         const wrapper = shallow(<Button isActive>Foo</Button>);
-        expect(wrapper.find('.uir-button-active').length).toBe(1);
+        expect(wrapper.find('.uir-Button-active').length).toBe(1);
     });
 
     it('should render three Button components', () => {
