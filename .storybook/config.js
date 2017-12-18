@@ -19,7 +19,7 @@ setOptions({
    *   /\./ - split by `.`
    *   /\/|\./ - split by `/` or `.`
    */
-  hierarchySeparator: null,
+  hierarchySeparator: /\./,
   sidebarAnimations: true, // sidebar tree animations
   /**
    * id to select an addon panel
