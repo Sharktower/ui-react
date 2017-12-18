@@ -1,7 +1,25 @@
 // Karma configuration
+const path = require('path');
 const webpackConfig = require('./webpack.config.js');
 
 module.exports = (config) => {
+    // Required by the coverage reporter
+    webpackConfig.module.rules.push({
+        test: /\.js$/,
+        use: {
+            loader: 'istanbul-instrumenter-loader',
+            options: { esModules: true },
+        },
+        enforce: 'post',
+        exclude: [
+            /(test|node_modules)\//,
+            modulePath => modulePath.endsWith('.test.js') ||
+                          modulePath.endsWith('.test-int.js') ||
+                          modulePath.endsWith('.story.js'),
+        ],
+    });
+    webpackConfig.devtool = 'inline-source-map';
+
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -38,7 +56,7 @@ module.exports = (config) => {
         // Test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['spec'],
+        reporters: ['spec', 'coverage-istanbul'],
 
         // web server port
         port: 9876,
@@ -71,6 +89,61 @@ module.exports = (config) => {
         concurrency: Infinity,
 
         // Reporter options
+        // any of these options are valid: https://github.com/istanbuljs/istanbuljs/blob/aae256fb8b9a3d19414dcf069c592e88712c32c6/packages/istanbul-api/lib/config.js#L33-L39
+        coverageIstanbulReporter: {
+
+            // Reports can be any that are listed here: https://github.com/istanbuljs/istanbuljs/tree/aae256fb8b9a3d19414dcf069c592e88712c32c6/packages/istanbul-reports/lib
+            reports: ['html', 'lcovonly', 'text-summary'],
+
+            // Base output directory.
+            // If you include %browser% in the path it will be replaced with the karma browser name
+            dir: path.join(__dirname, 'test/unit/coverage'),
+
+            // If using webpack and pre-loaders, work around webpack breaking the source path
+            fixWebpackSourcePaths: true,
+
+            // Stop istanbul outputting messages like:
+            // `File [${filename}] ignored, nothing could be mapped`
+            skipFilesWithNoCoverage: false,
+
+            // Most reporters accept additional config options.
+            // You can pass these through the `report-config` option
+            'report-config': {
+                // all options available at: https://github.com/istanbuljs/istanbuljs/blob/aae256fb8b9a3d19414dcf069c592e88712c32c6/packages/istanbul-reports/lib/html/index.js#L135-L137
+                html: {
+                    // outputs the report in ./coverage/html
+                    subdir: 'html',
+                },
+            },
+
+            // Enforce percentage thresholds
+            // Anything under these percentages will cause karma to fail
+            // with an exit code of 1 if not running in watch mode
+            thresholds: {
+                // Set to `true` to not fail the test command when thresholds are not met
+                emitWarning: true,
+                // Thresholds for all files
+                global: {
+                    statements: 100,
+                    lines: 100,
+                    branches: 100,
+                    functions: 100,
+                },
+                each: {
+                    // Thresholds per file
+                    statements: 100,
+                    lines: 100,
+                    branches: 100,
+                    functions: 100,
+                    // To override thresholds per file:
+                    // overrides: {
+                    //     'baz/component/**/*.js': {
+                    //         statements: 98,
+                    //     },
+                    // },
+                },
+            },
+        },
         specReporter: {
             maxLogLines: 100, // limit number of lines logged per test
             suppressErrorSummary: false, // do not print error summary
