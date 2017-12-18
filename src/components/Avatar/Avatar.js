@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import initialsPropType from '../../prop-types/initials';
+import InitialsPropType from '../../prop-types/initials';
+import './avatar.scss';
 
 const propTypes = {
     name: PropTypes.string.isRequired,
-    initials: initialsPropType.isRequired,
+    initials: InitialsPropType.isRequired,
     profileImage: PropTypes.string,
     notificationCount: PropTypes.number,
     size: PropTypes.oneOf(['sm', 'md', 'lg']),
     onClick: PropTypes.func,
+    style: PropTypes.object,
 };
 
 const defaultProps = {
@@ -16,6 +18,7 @@ const defaultProps = {
     notificationCount: 0,
     size: null,
     onClick: null,
+    style: null,
 };
 
 class Avatar extends Component {
@@ -33,7 +36,7 @@ class Avatar extends Component {
 
     render() {
         const componentClass = this.props.size
-            ? `uir-avatar-${this.props.size}`
+            ? `uir-avatar uir-avatar-${this.props.size}`
             : 'uir-avatar';
         const imageOrInitials = this.props.profileImage
             ? <img src={this.props.profileImage} alt={`${this.props.name} profile`} />
@@ -49,6 +52,7 @@ class Avatar extends Component {
                 tabIndex={0}
                 onClick={this.handleClick}
                 onKeyDown={this.handleClick}
+                style={this.props.style}
             >
                 {imageOrInitials}
                 {notificationCount}
