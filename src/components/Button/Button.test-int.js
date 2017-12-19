@@ -3,10 +3,12 @@
 
 Feature('ButtonComponent');
 
-Scenario('test default button component', (I, mapper) => {
+Scenario('default button should render and be clickable', (I, mapper) => {
+    const buttonContainer = '.uir-Button';
+
     I.amOnPage(mapper.buttonComponent.buttonDemo);
     within({ frame: '#storybook-preview-iframe' }, () => {
-        I.see('CUSTOM LABEL', '.uir-Button');
-        I.click('Custom label');
+        I.see('CUSTOM LABEL', buttonContainer);
+        I.click(buttonContainer);
     });
 });
