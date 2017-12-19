@@ -6,7 +6,7 @@ import './user-profile.scss';
 
 const propTypes = {
     name: PropTypes.string.isRequired,
-    initials: InitialsPropType.isRequired,
+    initials: InitialsPropType,
     profileImage: PropTypes.string,
     size: PropTypes.oneOf(['sm', 'md', 'lg']),
     theme: PropTypes.oneOf(['light', 'dark']),
@@ -18,6 +18,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    initials: null,
     profileImage: null,
     size: null,
     theme: 'light',
@@ -36,13 +37,19 @@ class UserProfile extends Component {
         }
     }
 
+    // NB: try not to rely on this fn
+    //  in the future it may be removed
+    calculateInitials = (name, initials) => (
+        initials || (name ? name.match(/\b\w/g).slice(0, 3).join('') : null)
+    )
+
     render() {
         const sizeClass = this.props.size
             ? `uir-avatar-user-profile-${this.props.size}`
             : null;
         const imageOrInitials = this.props.profileImage
             ? <img src={this.props.profileImage} alt={`${this.props.name} profile`} />
-            : this.props.initials;
+            : this.calculateInitials(this.props.name, this.props.initials);
         const notification = this.props.notification
             ? (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

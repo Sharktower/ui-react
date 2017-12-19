@@ -6,15 +6,27 @@ import mudanoWrapper from '../../storybook-addons/mudano-wrapper';
 const stories = storiesOf('Avatar.UserProfile', module);
 
 stories.add(
-    'With initials',
+    'Initials',
     mudanoWrapper(
         'The default avatar displays the users initials and no profile image',
         <UserProfile name="David Smith" initials="DS" />,
+        <div>
+            <UserProfile
+                name="Jane"
+                initials="J"
+                style={{ marginRight: '10px' }}
+            />
+            <UserProfile
+                name="Jane Doe"
+                initials="JD"
+                style={{ marginRight: '10px' }}
+            />
+        </div>,
     ),
 );
 
 stories.add(
-    'With profile image',
+    'Profile image',
     mudanoWrapper(
         'Provide a profileImage to the avatar and the initials will be hidden',
         <UserProfile
@@ -55,7 +67,7 @@ stories.add(
 );
 
 stories.add(
-    'With different sizes',
+    'Different sizes',
     mudanoWrapper(
         `Use the size prop to create a sm, md or lg avatar.
         Remove the size prop for the default size.`,
@@ -92,7 +104,7 @@ stories.add(
 );
 
 stories.add(
-    'With status icon',
+    'Status icon',
     mudanoWrapper(
         'Displays emoji status icon',
         <UserProfile
@@ -131,7 +143,7 @@ stories.add(
 );
 
 stories.add(
-    'With dark theme',
+    'Dark theme',
     mudanoWrapper(
         `The default avatar will work on light and dark backgrounds.
 
@@ -177,7 +189,7 @@ Use the theme prop to set the status and notification icon background.`,
 );
 
 stories.add(
-    'With notification warning',
+    'Notification warning',
     mudanoWrapper(
         'Displays an avatar with a warning icon. *NB: The warning icon overrides any status icon.*',
         <UserProfile
