@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Markdown } from 'react-showdown';
+import { Converter } from 'react-showdown';
+import Logo from './logo.svg';
 
 /*
     mudanoWrapper( String description, JSX component, [JSX variants] )
@@ -33,9 +34,11 @@ import { Markdown } from 'react-showdown';
     );
 */
 
+const markdown = new Converter({ simpleLineBreaks: true });
+
 const storyWrapperStyle = {
     fontFamily: '-apple-system,sans-serif',
-    color: '#444',
+    color: '#1e252b',
     margin: '30px',
 };
 
@@ -45,7 +48,7 @@ const componentWrapperStyle = {
 
 const codeStyle = {
     fontFamily: 'SFMono-Regular,Menlo,Monaco,monospace',
-    background: '#f5f5f5',
+    background: '#f7f6f4',
     padding: '10px 20px',
     display: 'inline-block',
     borderRadius: '4px',
@@ -85,6 +88,9 @@ function getType(prop, propTypes) {
 }
 
 function getDefaultValue(prop, defaultProps) {
+    if (typeof defaultProps === 'undefined') {
+        return '-';
+    }
     const defaultValue = defaultProps[prop];
     switch (defaultValue) {
     case true:
@@ -129,13 +135,27 @@ function getProps(propTypes, defaultProps) {
     );
 }
 
+function createPropValue(assignedProps, propName) {
+    const prop = assignedProps[propName];
+    if (prop === true) {
+        return '';
+    }
+    if (React.isValidElement(prop)) {
+        return `={${prop.type.name}}`;
+    }
+    return `=${prop}`;
+}
+
 function getSourceCodeProps(assignedProps, defaultProps) {
     let props = Object.keys(assignedProps);
     props = props.filter(propName => (
-        typeof defaultProps[propName] === 'undefined'
-        || assignedProps[propName] !== defaultProps[propName]
+        propName !== 'children' && (
+            typeof defaultProps === 'undefined'
+            || typeof defaultProps[propName] === 'undefined'
+            || assignedProps[propName] !== defaultProps[propName]
+        )
     ));
-    props = props.map(propName => (`${propName}="${assignedProps[propName]}"`));
+    props = props.map(propName => (`${propName}${createPropValue(assignedProps, propName)}`));
     return (props.length > 2) ? `\n    ${props.join('\n    ')}\n` : props.join(' ');
 }
 
@@ -178,9 +198,10 @@ export default function mudanoWrapper(summary, component, variants) {
     const variations = getVariations(variants);
     return context => (
         <div style={storyWrapperStyle}>
+            <Logo width="200px" style={{ float: 'right' }} />
             <h1>{getKind(context.kind)}</h1>
             <h2><strong>{context.story}</strong></h2>
-            <Markdown markup={summary} />
+            {markdown.convert(summary)}
             <h3>Example</h3>
             <div style={componentWrapperStyle}>
                 {component}

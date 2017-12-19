@@ -10,6 +10,21 @@ module.exports = (storybookBaseConfig, configType) => {
   // You can change the configuration based on that.
   // 'PRODUCTION' is used when building the static version of storybook.
 
+  storybookBaseConfig.module.rules.push({
+    test: /\.svg$/,
+    use: [
+      {
+        loader: "babel-loader"
+      },
+      {
+        loader: "react-svg-loader",
+        options: {
+          jsx: true // true outputs JSX tags
+        }
+      }
+    ]
+  });
+
   storybookBaseConfig.plugins.push(
       new StyleLintPlugin({
           configFile: path.resolve(__dirname, '../.stylelintrc.js'),
