@@ -1,43 +1,43 @@
 .uir-Button {
     position: relative;
-    border: 0; /* override browser's default */
-    color: rgba(47,40,51,.6);
+    box-sizing: border-box;
     min-width: 50px;
     height: 36px;
     padding: 9px 18px;
     margin: 8px 8px 8px 0;   
-    border-radius: 2px;
+    font-family: "DINOT", sans-serif;
+    font-size: 12px;
+    color: rgba(47,40,51,.6);
     text-align: center;
-    white-space: nowrap;
     text-transform: uppercase;
     letter-spacing: 1px;
-    transition: all .3s;
-    font-family: "DINOT", sans-serif;
-    box-sizing: border-box;
-    font-size: 12px;
+    white-space: nowrap;
     vertical-align: middle;
     user-select: none;
-    outline: none;
     background-color: rgba(47, 40, 51, .05);
+    border: 0; /* override browser's default */
+    border-radius: 2px;
+    outline: none;
+    transition: all .3s;
 
     &-clear {
-        background: transparent;
         color: black;
+        background: transparent;
     }
     
     &:hover {
-        background-color: rgba(47, 40, 51, .1);
         color: rgb(47,40,51);
+        background-color: rgba(47, 40, 51, .1);
     }
     
     &:focus {
-        background-color: rgba(47, 40, 51, .2);
         color: rgb(47,40,51);
+        background-color: rgba(47, 40, 51, .2);
     }
     
     &.uir-Button-active {
-        background-color: rgba(47, 40, 51, .4);
         color: rgb(47,40,51);
+        background-color: rgba(47, 40, 51, .4);
     }
 
     /* Align vertically buttons with icons */

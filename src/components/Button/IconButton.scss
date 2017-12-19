@@ -1,20 +1,20 @@
 .uir-IconButton {
     /* Override default button rules */
+    width: auto;
     min-width: 24px;
+    height: auto;
     min-height: 24px;
     padding: 8px;
-    height: auto;
-    width: auto;
-    border-radius: 50%;
     background-color: rgba(47, 40, 51, .05);
+    border-radius: 50%;
 }
 
 .uir-IconButton:hover {
-    background-color: rgba(47, 40, 51, .1);
     color: rgb(47,40,51);
+    background-color: rgba(47, 40, 51, .1);
 }
 
 .uir-IconButton.uir-Button-active {
-    background-color: rgba(47, 40, 51, .2);
     color: rgb(47,40,51);
+    background-color: rgba(47, 40, 51, .2);
 }
