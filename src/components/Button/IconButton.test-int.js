@@ -1,3 +1,5 @@
+// eslint-disable-next-line spaced-comment
+/// path="../../../test/codecept/steps.d.ts"
 
 Feature('IconButton');
 
