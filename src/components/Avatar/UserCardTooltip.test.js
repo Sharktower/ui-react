@@ -8,9 +8,9 @@ describe('UserCardTooltip', () => {
         expect(userCardTooltip.find('div').length).to.equal(1);
     });
 
-    it('has correct class', () => {
+    it('parent has correct class', () => {
         const userCardTooltip = shallow(<UserCardTooltip>contents</UserCardTooltip>);
-        expect(userCardTooltip.find('div').hasClass('uir-avatar-user-card-toolip'))
+        expect(userCardTooltip.find('div').hasClass('uir-avatar-user-card-tooltip'))
             .to.equal(true);
     });
 
@@ -19,6 +19,8 @@ describe('UserCardTooltip', () => {
         const userCardTooltip = shallow(<UserCardTooltip>{contents}</UserCardTooltip>);
         expect(userCardTooltip.find('div').text()).to.equal(contents);
     });
+
+    // complains if not passed a component to children
 
     // it('complains if chidlren not provided', () => {
     //     shallow(<UserCardTooltip />);
