@@ -1,0 +1,41 @@
+$tooltipTranslate: translate(-30%, -100%);
+
+@keyframes uir-animate-tooltip-in {
+
+    0% {
+        transform: $tooltipTranslate rotate(-2deg);
+    }
+
+    40% {
+        transform: $tooltipTranslate rotate(3deg);
+    }
+
+    60% {
+        transform: $tooltipTranslate rotate(-3deg);
+    }
+
+    100% {
+        transform: $tooltipTranslate rotate(0deg);
+    }
+}
+
+.uir-avatar-user-card-tooltip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: inline-block;
+    padding: 12px;
+    font-family: "DINOT", sans-serif;
+    color: #fff;
+    white-space: nowrap;
+    background-color: #2f2833;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
+    transition-timing-function: ease-in-out;
+    transition-duration: 1s;
+    transition-property: all;
+    transform: $tooltipTranslate;
+    animation-name: uir-animate-tooltip-in;
+    animation-duration: .3s;
+}
