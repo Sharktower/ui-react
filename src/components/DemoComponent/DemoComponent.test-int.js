@@ -1,5 +1,5 @@
 // eslint-disable-next-line spaced-comment
-/// <reference path="./test/codecept/steps.d.ts" />
+/// <reference path="../../../test/codecept/steps.d.ts" />
 
 Feature('DemoComponent');
 
