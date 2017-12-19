@@ -22,24 +22,24 @@
     display: inline-block;
     width: 48px;
     height: 48px;
-    line-height: 48px;
     font-family: "DINOT", sans-serif;
     font-size: 22px;
+    line-height: 48px;
     text-align: center;
     vertical-align: middle;
 
     &:hover {
-        opacity: .8;
         cursor: pointer;
+        opacity: .8;
     }
 
     .uir-avatar-user-profile-inner {
         display: block;
         width: 100%;
         height: 100%;
+        overflow: hidden;
         background-color: rgba(47, 40, 51, .1);
         border-radius: 50%;
-        overflow: hidden;
 
         img,
         svg {
@@ -50,17 +50,17 @@
 
     .uir-avatar-user-status {
         position: absolute;
-        bottom: 0%;
         right: -18%;
+        bottom: 0%;
         display: block;
-        width: 50%;
-        height: 50%;
+        width: 26px;
+        height: 26px;
+        font-size: 18px;
+        line-height: 27px;
         border-radius: 50%;
-        font-size: 70%;
-        line-height: 180%;
         animation-name: uir-animate-icon-in;
-        animation-delay: .2s;
         animation-duration: .6s;
+        animation-delay: .2s;
     }
 
     &.uir-avatar-user-profile-light {
@@ -80,33 +80,42 @@
     &.uir-avatar-user-profile-sm {
         width: 24px;
         height: 24px;
-        line-height: 24px;
         font-size: 12px;
+        line-height: 24px;
 
         .uir-avatar-user-status {
-            line-height: 160%;
+            width: 14px;
+            height: 14px;
+            font-size: 8px;
+            line-height: 14px;
         }
     }
 
     &.uir-avatar-user-profile-md {
         width: 36px;
         height: 36px;
-        line-height: 36px;
         font-size: 16px;
+        line-height: 36px;
 
         .uir-avatar-user-status {
-            line-height: 180%;
+            width: 20px;
+            height: 20px;
+            font-size: 13px;
+            line-height: 21px;
         }
     }
 
     &.uir-avatar-user-profile-lg {
         width: 60px;
         height: 60px;
-        line-height: 60px;
         font-size: 28px;
+        line-height: 60px;
 
         .uir-avatar-user-status {
-            line-height: 160%;
+            width: 33px;
+            height: 33px;
+            font-size: 23px;
+            line-height: 34px;
         }
     }
 

@@ -55,22 +55,6 @@ stories.add(
 );
 
 stories.add(
-    'With dark theme',
-    mudanoWrapper(
-        `The default avatar will work on light and dark backgrounds.
-
-Use the theme prop to set the status and notification icon background.`,
-        <UserProfile
-            name="David Smith"
-            initials="DS"
-            theme="dark"
-            profileImage="https://randomuser.me/api/portraits/men/3.jpg"
-            status="😡"
-        />,
-    ),
-);
-
-stories.add(
     'With different sizes',
     mudanoWrapper(
         `Use the size prop to create a sm, md or lg avatar.
@@ -140,6 +124,52 @@ stories.add(
                 initials="DS"
                 profileImage="https://randomuser.me/api/portraits/men/84.jpg"
                 status="🤕"
+                style={{ marginRight: '30px' }}
+            />
+        </div>,
+    ),
+);
+
+stories.add(
+    'With dark theme',
+    mudanoWrapper(
+        `The default avatar will work on light and dark backgrounds.
+
+Use the theme prop to set the status and notification icon background.`,
+        <UserProfile
+            name="David Smith"
+            initials="DS"
+            theme="dark"
+            size="lg"
+            profileImage="https://randomuser.me/api/portraits/men/3.jpg"
+            status="😡"
+        />,
+        <div style={{ backgroundColor: '#3a333c', display: 'inline-block', padding: '30px' }}>
+            <UserProfile
+                name="David Smith"
+                initials="DS"
+                theme="dark"
+                size="lg"
+                profileImage="https://randomuser.me/api/portraits/men/3.jpg"
+                status="🐴"
+                style={{ marginRight: '30px' }}
+            />
+            <UserProfile
+                name="David Smith"
+                initials="DS"
+                theme="dark"
+                size="lg"
+                profileImage="https://randomuser.me/api/portraits/men/3.jpg"
+                status="🚀"
+                style={{ marginRight: '30px' }}
+            />
+            <UserProfile
+                name="David Smith"
+                initials="DS"
+                theme="dark"
+                size="lg"
+                profileImage="https://randomuser.me/api/portraits/men/3.jpg"
+                status="🏆"
                 style={{ marginRight: '30px' }}
             />
         </div>,
