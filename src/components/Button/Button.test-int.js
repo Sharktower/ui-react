@@ -4,7 +4,7 @@
 Feature('ButtonComponent');
 
 Scenario('test default button component', (I, mapper) => {
-    I.amOnPage(mapper.buttonComponent.default);
+    I.amOnPage(mapper.buttonComponent.buttonDemo);
     within({ frame: '#storybook-preview-iframe' }, () => {
         I.see('CUSTOM LABEL', '.uir-Button');
         I.click('Custom label');
