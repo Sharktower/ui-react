@@ -7,14 +7,14 @@ module.exports = {
     },
 
     buttonComponent: {
-        default: '/?selectedKind=Button&selectedStory=default'
+        default: '/?selectedKind=Button&selectedStory=default',
     },
 
     buttonComponentRightIcon: {
-        righticon: '/?selectedKind=Button&selectedStory=right%20icon'
+        righticon: '/?selectedKind=Button&selectedStory=right%20icon',
     },
 
     buttonComponentRightLeftIcon: {
-        rightlefticon: '/?selectedKind=Button&selectedStory=right%20%26%20left%20icon'
+        rightlefticon: '/?selectedKind=Button&selectedStory=right%20%26%20left%20icon',
     },
 };
