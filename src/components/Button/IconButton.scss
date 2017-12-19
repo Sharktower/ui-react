@@ -7,14 +7,14 @@
     padding: 8px;
     background-color: rgba(47, 40, 51, .05);
     border-radius: 50%;
-}
 
-.uir-IconButton:hover {
-    color: rgb(47,40,51);
-    background-color: rgba(47, 40, 51, .1);
-}
+    &:hover {
+        color: rgb(47,40,51);
+        background-color: rgba(47, 40, 51, .1);
+    }
 
-.uir-IconButton.uir-Button-active {
-    color: rgb(47,40,51);
-    background-color: rgba(47, 40, 51, .2);
+    &.uir-Button-active {
+        color: rgb(47,40,51);
+        background-color: rgba(47, 40, 51, .2);
+    }
 }
