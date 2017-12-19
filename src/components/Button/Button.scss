@@ -19,49 +19,49 @@
     user-select: none;
     outline: none;
     background-color: rgba(47, 40, 51, .05);
-}
 
-.uir-Button-clear {
-    background: transparent;
-    color: black;
-}
+    &-clear {
+        background: transparent;
+        color: black;
+    }
+    
+    &:hover {
+        background-color: rgba(47, 40, 51, .1);
+        color: rgb(47,40,51);
+    }
+    
+    &:focus {
+        background-color: rgba(47, 40, 51, .2);
+        color: rgb(47,40,51);
+    }
+    
+    &.uir-Button-active {
+        background-color: rgba(47, 40, 51, .4);
+        color: rgb(47,40,51);
+    }
 
-.uir-Button:hover {
-    background-color: rgba(47, 40, 51, .1);
-    color: rgb(47,40,51);
-}
-
-.uir-Button:focus {
-    background-color: rgba(47, 40, 51, .2);
-    color: rgb(47,40,51);
-}
-
-.uir-Button.uir-Button-active {
-    background-color: rgba(47, 40, 51, .4);
-    color: rgb(47,40,51);
-}
-
-/* Align vertically buttons with icons */
-.uir-Button svg,
-.uir-Button-content {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-// isFluid prop
-.uir-Button-fluid {
-    width: 100%;
-    margin-right: 0;
-    margin-left: 0;
-}
-
-// isDisabled prop
-.uir-Button-disabled {
-    pointer-events: none;
-    opacity: .5;
-}
-
-// isActive prop
-.uir-Button-active {
-    font-weight: 600; /* Medium, not bold if available */
+    /* Align vertically buttons with icons */
+    svg,
+    &-content {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    
+    // isFluid prop
+    &-fluid {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+    }
+    
+    // isDisabled prop
+    &-disabled {
+        pointer-events: none;
+        opacity: .5;
+    }
+    
+    // isActive prop
+    &-active {
+        font-weight: 600; /* Medium, not bold if available */
+    }
 }
