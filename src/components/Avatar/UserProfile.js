@@ -39,9 +39,7 @@ class UserProfile extends Component {
 
     // NB: try not to rely on this fn
     //  in the future it may be removed
-    calculateInitials = (name, initials) => (
-        initials || (name ? name.match(/\b\w/g).slice(0, 3).join('') : null)
-    )
+    calculateInitials = name => (name ? name.match(/\b\w/g).slice(0, 3).join('') : '?')
 
     render() {
         const sizeClass = this.props.size
@@ -49,7 +47,7 @@ class UserProfile extends Component {
             : null;
         const imageOrInitials = this.props.profileImage
             ? <img src={this.props.profileImage} alt={`${this.props.name} profile`} />
-            : this.calculateInitials(this.props.name, this.props.initials);
+            : this.props.initials || this.calculateInitials(this.props.name);
         const notification = this.props.notification
             ? (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

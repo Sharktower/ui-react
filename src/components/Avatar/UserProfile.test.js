@@ -30,6 +30,11 @@ describe('UserProfile', () => {
         expect(userProfile.find('div').at(0).text()).to.equal(initials);
     });
 
+    it('initials are question mark if no name is provided', () => {
+        const userProfile = shallow(<UserProfile />);
+        expect(userProfile.find('div').at(0).text()).to.equal('?');
+    });
+
     it('can display user profile image', () => {
         const userProfile = shallow(<UserProfile
             name={sampleData.name}
