@@ -1,13 +1,21 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import UserProfile from './UserProfile';
-import mudanoWrapper from '../../storybook-addons/mudano-wrapper';
+import storyWrapper from '../../storybook-addons/storyWrapper';
 
 const stories = storiesOf('Avatar.UserProfile', module);
 
 stories.add(
+    'Overview',
+    storyWrapper(
+        'The avatar is a user icon that will display either the users initials or a profile image.',
+        <UserProfile name="David Smith" initials="DS" />,
+    ),
+);
+
+stories.add(
     'Initials',
-    mudanoWrapper(
+    storyWrapper(
         'The default avatar displays the users initials and no profile image',
         <UserProfile name="David Smith" initials="DS" />,
         <div>
@@ -27,7 +35,7 @@ stories.add(
 
 stories.add(
     'Profile image',
-    mudanoWrapper(
+    storyWrapper(
         'Provide a profileImage to the avatar and the initials will be hidden',
         <UserProfile
             name="Jane Doe"
@@ -68,7 +76,7 @@ stories.add(
 
 stories.add(
     'Different sizes',
-    mudanoWrapper(
+    storyWrapper(
         `Use the size prop to create a sm, md or lg avatar.
         Remove the size prop for the default size.`,
         <UserProfile
@@ -105,7 +113,7 @@ stories.add(
 
 stories.add(
     'Status icon',
-    mudanoWrapper(
+    storyWrapper(
         'Displays emoji status icon',
         <UserProfile
             name="David Smith"
@@ -144,7 +152,7 @@ stories.add(
 
 stories.add(
     'Dark theme',
-    mudanoWrapper(
+    storyWrapper(
         `The default avatar will work on light and dark backgrounds.
 
 Use the theme prop to set the status and notification icon background.`,
@@ -190,7 +198,7 @@ Use the theme prop to set the status and notification icon background.`,
 
 stories.add(
     'Notification warning',
-    mudanoWrapper(
+    storyWrapper(
         'Displays an avatar with a warning icon. *NB: The warning icon overrides any status icon.*',
         <UserProfile
             name="Jane Smith"

@@ -1,38 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Converter } from 'react-showdown';
+import PropTypes from 'prop-types';
 import Logo from './logo.svg';
-
-/*
-    mudanoWrapper( String description, JSX component, [JSX variants] )
-
-    - neatly style stories
-    - automatically create source code documentation
-    - show table of available props and defaults
-    - show variations of component
-
-    Example usage:
-
-    storiesOf('Parent.Component', module).add(
-        'Default component usage',
-        mudanoWrapper(
-            'Description of your component and intended usage (could be *markdown*)',
-            <Component prop="Example Prop" />,
-        ),
-    );
-
-    storiesOf('Parent.Component', module).add(
-        'Default component usage',
-        mudanoWrapper(
-            'Description of your component and intended usage (could be *markdown*)',
-            <Component prop="Example Prop" />,
-            <div>
-                <Component prop="Example Prop" optionalVariant="A" />,
-                <Component prop="Example Prop" optionalVariant="B" />,
-            </div>,
-        ),
-    );
-*/
 
 const markdown = new Converter({ simpleLineBreaks: true });
 
@@ -82,9 +51,7 @@ function isRequired(prop, propTypes) {
 function getType(prop, propTypes) {
     const propTypeFn = propTypes[prop];
     const propTypeFnName = propTypeFn.name;
-    return PropTypesMap.get(propTypeFn) || (propTypeFnName === 'bound checkType'
-        ? 'other'
-        : propTypeFnName);
+    return PropTypesMap.get(propTypeFn) || propTypeFnName;
 }
 
 function getDefaultValue(prop, defaultProps) {
@@ -143,7 +110,7 @@ function createPropValue(assignedProps, propName) {
     if (React.isValidElement(prop)) {
         return `={${prop.type.name}}`;
     }
-    return `=${prop}`;
+    return `="${prop}"`;
 }
 
 function getSourceCodeProps(assignedProps, defaultProps) {
@@ -192,23 +159,17 @@ function getKind(kind) {
     return kind.replace(/\./, ': ');
 }
 
-export default function mudanoWrapper(summary, component, variants) {
-    const sourceCode = getSourceCode(component);
-    const props = getProps(component.type.propTypes, component.type.defaultProps);
-    const variations = getVariations(variants);
-    return context => (
-        <div style={storyWrapperStyle}>
-            <Logo width="200px" style={{ float: 'right' }} />
-            <h1>{getKind(context.kind)}</h1>
-            <h2><strong>{context.story}</strong></h2>
-            {markdown.convert(summary)}
-            <h3>Example</h3>
-            <div style={componentWrapperStyle}>
-                {component}
-            </div>
-            {sourceCode}
-            {variations}
-            {props}
-        </div>
-    );
-}
+
+export {
+    Logo,
+    markdown,
+    storyWrapperStyle,
+    componentWrapperStyle,
+    codeStyle,
+    tableStyle,
+    trStyle,
+    getProps,
+    getSourceCode,
+    getVariations,
+    getKind,
+};

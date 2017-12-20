@@ -1,13 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import UserCardTooltip from './UserCardTooltip';
-import mudanoWrapper from '../../storybook-addons/mudano-wrapper';
+import storyWrapper from '../../storybook-addons/storyWrapper';
 
 const stories = storiesOf('Avatar.UserCardTooltip', module);
 
 stories.add(
     'Tooltip',
-    mudanoWrapper(
+    storyWrapper(
         `The UserCardTooltip is primarily to be used inside a UserCard.
 
 You can place anything you like inside the component as long as it is JSX.

@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import mudanoWrapper from '../../storybook-addons/mudano-wrapper';
+import storyWrapper from '../../storybook-addons/storyWrapper';
 import UserCard from './UserCard';
 import UserProfile from './UserProfile';
 
@@ -40,7 +40,7 @@ const exampleUserProfileFloat = (
 
 stories.add(
     'Default',
-    mudanoWrapper(
+    storyWrapper(
         `The UserCard provides a tooltip wrapper to the standard UserProfile.
 
 Add elements as children to have them display in the tooltip. For example:
