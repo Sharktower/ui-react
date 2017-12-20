@@ -1,9 +1,12 @@
 /* global describe, expect, it, shallow */
 import React from 'react';
+import * as common from '../../../test/unit/commonTests';
 import Button from './Button';
 import PrimaryButton from './PrimaryButton';
 
 describe('PrimaryButton', () => {
+    common.rendersChildren(PrimaryButton);
+
     it('renders an HTML tag button', () => {
         const wrapper = shallow((
             <PrimaryButton>Foo</PrimaryButton>

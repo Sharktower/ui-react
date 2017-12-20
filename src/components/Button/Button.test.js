@@ -6,6 +6,10 @@ import Button from './Button';
 
 describe('Button', () => {
     common.rendersChildren(Button);
+    common.propKeyToClassName(Button, 'isActive', { requiredProps: { children: 'Foo' } });
+    common.propKeyToClassName(Button, 'isClear', { requiredProps: { children: 'Foo' } });
+    common.propKeyToClassName(Button, 'isDisabled', { requiredProps: { children: 'Foo' } });
+    common.propKeyToClassName(Button, 'isFluid', { requiredProps: { children: 'Foo' } });
 
     it('renders an HTML tag button', () => {
         const wrapper = shallow((
@@ -50,45 +54,17 @@ describe('Button', () => {
         });
     });
 
-    describe('isActive', () => {
-        it('does not add class .uir-Button-active by default', () => {
-            const wrapper = shallow(<Button>Foo</Button>);
-
-            expect(wrapper).not.to.have.className('uir-Button-active');
-        });
-
-        it('adds class .uir-Button-active', () => {
-            const wrapper = shallow(<Button isActive>Foo</Button>);
-
-            expect(wrapper).to.have.className('uir-Button-active');
-        });
-    });
-
-    describe('isClear', () => {
-        it('does not add class .uir-Button-clear by default', () => {
-            const wrapper = shallow(<Button>Foo</Button>);
-
-            expect(wrapper).not.to.have.className('uir-Button-clear');
-        });
-
-        it('adds class .uir-Button-clear', () => {
-            const wrapper = shallow(<Button isClear>Foo</Button>);
-
-            expect(wrapper).to.have.className('uir-Button-clear');
-        });
-    });
-
     describe('isDisabled', () => {
-        it('does not add class .uir-Button-disabled by default', () => {
+        it('does not add disabled attribute when not defined', () => {
             const wrapper = shallow(<Button>Foo</Button>);
 
-            expect(wrapper).not.to.have.className('uir-Button-disabled');
+            expect(wrapper).not.to.have.attr('disabled');
         });
 
-        it('adds class .uir-Button-disabled', () => {
+        it('adds disabled attribute', () => {
             const wrapper = shallow(<Button isDisabled>Foo</Button>);
 
-            expect(wrapper).to.have.className('uir-Button-disabled');
+            expect(wrapper).to.have.attr('disabled');
         });
     });
 
@@ -117,7 +93,7 @@ describe('Button', () => {
             expect(onClick).to.have.been.calledWithExactly(syntheticEvent);
         });
 
-        it('is not called when clicked on Disable button', () => {
+        it('is not called when clicked on disabled button', () => {
             const onClick = sandbox.spy();
             const preventDefault = sandbox.spy();
             const wrapper = shallow((

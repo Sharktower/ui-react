@@ -1,10 +1,20 @@
 /* global describe, expect, it, shallow */
 import React from 'react';
 import { sandbox } from '../../../test/unit/utils';
+import * as common from '../../../test/unit/commonTests';
 import IconButton from './IconButton';
 import IconArrow from '../Icon/IconArrow';
 
 describe('IconButton', () => {
+    common.propKeyToClassName(IconButton, 'isActive', {
+        className: 'uir-Button-active',
+        requiredProps: { children: 'Foo' },
+    });
+    common.propKeyToClassName(IconButton, 'isDisabled', {
+        className: 'uir-Button-disabled',
+        requiredProps: { children: 'Foo' },
+    });
+
     it('renders an HTML tag button', () => {
         const wrapper = shallow((
             <IconButton><IconArrow /></IconButton>
@@ -28,27 +38,11 @@ describe('IconButton', () => {
         });
     });
 
-    describe('isDisabled', () => {
-        it('adds class .uir-Button-disabled', () => {
-            const wrapper = shallow(<IconButton isDisabled><IconArrow /></IconButton>).dive();
-
-            expect(wrapper).to.have.className('uir-Button-disabled');
-        });
-    });
-
     describe('isFluid', () => {
         it('does not add class uir-Button-fluid', () => {
             const wrapper = shallow(<IconButton isFluid><IconArrow /></IconButton>).dive();
 
             expect(wrapper).not.to.have.className('uir-Button-fluid');
-        });
-    });
-
-    describe('isActive', () => {
-        it('adds class .uir-Button-active', () => {
-            const wrapper = shallow(<IconButton isActive><IconArrow /></IconButton>).dive();
-
-            expect(wrapper).to.have.className('uir-Button-active');
         });
     });
 
