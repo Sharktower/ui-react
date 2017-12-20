@@ -58,8 +58,8 @@ stories.add(
         Icons, or other elements passed as children could need small adjustments to centre them vertically
     `)(() => (
         <div>
-            <Button isClear>Clear with Icon <IconArrow style={{ marginTop: '-3px' }} /></Button>
-            <Button><IconArrow style={{ marginTop: '-3px' }} />Default with Icon</Button>
+            <Button isClear>Clear with Icon <IconArrow style={{ marginTop: -3 }} /></Button>
+            <Button><IconArrow style={{ marginTop: -3 }} />Default with Icon</Button>
         </div>
     )),
 );

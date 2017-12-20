@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Style from 'react-style-proptype';
 import cx from 'classnames';
 import './Button.scss';
 
@@ -17,8 +18,8 @@ const propTypes = {
     onClick: PropTypes.func,
     /** Content of the button, e.g. a string label or more complex React components */
     children: PropTypes.node.isRequired,
-    /** object with camelCased CSS rules, e.g.  style={{ marginTop: '-1px'}} */
-    style: PropTypes.objectOf(PropTypes.object),
+    /** object with camelCased CSS rules, e.g.  style={{ marginTop: -1}} */
+    style: Style,
 };
 
 const defaultProps = {
