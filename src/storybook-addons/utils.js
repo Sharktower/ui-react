@@ -104,13 +104,22 @@ function getProps(propTypes, defaultProps) {
 
 function createPropValue(assignedProps, propName) {
     const prop = assignedProps[propName];
-    if (prop === true) {
-        return '';
+    let propValue;
+    switch (true) {
+    case prop === true:
+        propValue = '';
+        break;
+    case React.isValidElement(prop):
+        propValue = `={${prop.type.name}}`;
+        break;
+    case prop instanceof Object:
+        propValue = `={${propName}}`;
+        break;
+    default:
+        propValue = `="${prop}"`;
+        break;
     }
-    if (React.isValidElement(prop)) {
-        return `={${prop.type.name}}`;
-    }
-    return `="${prop}"`;
+    return propValue;
 }
 
 function getSourceCodeProps(assignedProps, defaultProps) {

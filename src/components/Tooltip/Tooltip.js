@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './user-card-tooltip.scss';
+import './tooltip.scss';
 
 const propTypes = {
     children: PropTypes.element.isRequired,
@@ -11,15 +11,15 @@ const defaultProps = {
     style: null,
 };
 
-function UserCardTooltip(props) {
+function Tooltip(props) {
     return (
-        <div className="uir-avatar-user-card-tooltip" style={props.style}>
+        <div className="uir-tooltip" style={props.style}>
             {props.children}
         </div>
     );
 }
 
-UserCardTooltip.propTypes = propTypes;
-UserCardTooltip.defaultProps = defaultProps;
+Tooltip.propTypes = propTypes;
+Tooltip.defaultProps = defaultProps;
 
-export default UserCardTooltip;
+export default Tooltip;

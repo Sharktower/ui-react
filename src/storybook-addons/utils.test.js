@@ -145,6 +145,11 @@ describe('Storybook Utils', () => {
         expect(wrapper.find('code').text()).to.equal('<MockComponent profile={MockComponent}/>');
     });
 
+    it('getSourceCode renders code snippet with non react object prop', () => {
+        const wrapper = shallow(getSourceCode(<MockComponent style={{ color: '#fff' }} />));
+        expect(wrapper.find('code').text()).to.equal('<MockComponent style={style}/>');
+    });
+
     it('getSourceCode renders code snippet with children', () => {
         const wrapper = shallow(getSourceCode(<MockComponent name="testing">example</MockComponent>));
         expect(wrapper.find('code').text()).to.equal('<MockComponent name="testing"> ... </MockComponent>');

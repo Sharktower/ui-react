@@ -15,6 +15,7 @@
   "homepage": "https://github.com/Mudano/ui-react#readme",
   "scripts": {
     "start": "yarn storybook:watch",
+    "watch": "yarn storybook:watch",
     "build": "npm-run-all -s library:clean library:build",
     "library:clean": "rm -rf ./dist",
     "library:build": "yarn lint && webpack",

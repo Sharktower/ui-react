@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import UserProfile from './UserProfile';
-import UserCardTooltip from './UserCardTooltip';
+import Tooltip from '../Tooltip/Tooltip';
 import './user-card.scss';
 
 const propTypes = {
@@ -30,7 +30,7 @@ class UserCard extends Component {
             ? this.props.showTooltip
             : this.state.showTooltip;
         const tooltip = showTooltip
-            ? <UserCardTooltip>{this.props.children}</UserCardTooltip>
+            ? <Tooltip>{this.props.children}</Tooltip>
             : null;
         return (
             <div
