@@ -1,4 +1,4 @@
-/* global describe, expect, it, shallow */
+/* global describe, document, expect, it, mount, shallow */
 import React from 'react';
 import * as common from '../../../test/unit/commonTests';
 import { sandbox } from '../../../test/unit/utils';
@@ -7,7 +7,7 @@ import Button from './Button';
 describe('Button', () => {
     common.rendersChildren(Button);
 
-    it('Button should render an HTML tag button', () => {
+    it('renders an HTML tag button', () => {
         const wrapper = shallow((
             <Button>Foo</Button>
         ));
@@ -15,27 +15,13 @@ describe('Button', () => {
         expect(wrapper).to.have.tagName('button');
     });
 
-    it('Button should render with class .uir-Button', () => {
+    it('renders with class .uir-Button', () => {
         const wrapper = shallow(<Button>Foo</Button>);
-        expect(wrapper.find('.uir-Button').length).to.equal(1);
+
+        expect(wrapper).to.have.className('uir-Button');
     });
 
-    it('Clear button should render with class .uir-Button-clear', () => {
-        const wrapper = shallow(<Button isClear>Foo</Button>);
-        expect(wrapper.find('.uir-Button-clear').length).to.equal(1);
-    });
-
-    it('Disabled button should render with class .uir-Button-disabled', () => {
-        const wrapper = shallow(<Button isDisabled>Foo</Button>);
-        expect(wrapper.find('.uir-Button-disabled').length).to.equal(1);
-    });
-
-    it('Active button should render with class .uir-Button-active', () => {
-        const wrapper = shallow(<Button isActive>Foo</Button>);
-        expect(wrapper.find('.uir-Button-active').length).to.equal(1);
-    });
-
-    it('should render three Button components', () => {
+    it('renders three Button components', () => {
         const wrapper = shallow((
             <div>
                 <Button isActive>Foo</Button>
@@ -43,7 +29,67 @@ describe('Button', () => {
                 <Button isDisabled>Foo</Button>
             </div>
         ));
+
         expect(wrapper.find(Button).length).to.equal(3);
+    });
+
+    describe('handleRef', () => {
+        it('can set focus via a ref', () => {
+            const mountNode = document.createElement('div');
+            document.body.appendChild(mountNode);
+
+            const wrapper = mount(<Button>Foo</Button>, { attachTo: mountNode });
+            wrapper.instance().innerRef.focus();
+
+            const button = document.querySelector('button');
+
+            expect(document.activeElement).to.equal(button);
+
+            wrapper.detach();
+            document.body.removeChild(mountNode);
+        });
+    });
+
+    describe('isActive', () => {
+        it('does not add class .uir-Button-active by default', () => {
+            const wrapper = shallow(<Button>Foo</Button>);
+
+            expect(wrapper).not.to.have.className('uir-Button-active');
+        });
+
+        it('adds class .uir-Button-active', () => {
+            const wrapper = shallow(<Button isActive>Foo</Button>);
+
+            expect(wrapper).to.have.className('uir-Button-active');
+        });
+    });
+
+    describe('isClear', () => {
+        it('does not add class .uir-Button-clear by default', () => {
+            const wrapper = shallow(<Button>Foo</Button>);
+
+            expect(wrapper).not.to.have.className('uir-Button-clear');
+        });
+
+        it('adds class .uir-Button-clear', () => {
+            const wrapper = shallow(<Button isClear>Foo</Button>);
+
+            expect(wrapper).to.have.className('uir-Button-clear');
+        });
+    });
+
+    describe('isDisabled', () => {
+        it('does not add class .uir-Button-disabled by default', () => {
+            const wrapper = shallow(<Button>Foo</Button>);
+
+            expect(wrapper).not.to.have.className('uir-Button-disabled');
+        });
+
+        it('adds class .uir-Button-disabled', () => {
+            const wrapper = shallow(<Button isDisabled>Foo</Button>);
+
+            expect(wrapper).to.have.className('uir-Button-disabled');
+        });
     });
 
     describe('onClick', () => {
