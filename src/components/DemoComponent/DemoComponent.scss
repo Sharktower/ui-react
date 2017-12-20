@@ -1,9 +1,9 @@
-.ui-demo-component {
+.uir-DemoComponent {
     width: 200px;
     padding: 20px;
     border: 1px solid black;
-}
 
-.ui-demo-component.is-disabled {
-    opacity: .4;
+    &.uir-DemoComponent-disabled {
+        opacity: .4;
+    }
 }
