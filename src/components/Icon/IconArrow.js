@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-
 const IconArrow = ({
     width,
     height,
@@ -32,7 +31,10 @@ IconArrow.propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
     className: PropTypes.string,
-    style: PropTypes.objectOf(PropTypes.object),
+    style: PropTypes.objectOf(PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+    ])),
 };
 
 export default IconArrow;

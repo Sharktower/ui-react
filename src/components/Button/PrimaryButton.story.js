@@ -35,7 +35,7 @@ stories.add(
 stories.add(
     'active',
     withInfo(`
-        Active PrimaryButtons can be used, as part of Tabs component for example
+        Active PrimaryButtons can be used to indicate button selection, for example as part of the Tabs component
     `)(() => <div><PrimaryButton>Not active</PrimaryButton><PrimaryButton isActive>Active</PrimaryButton></div>),
 );
 
@@ -46,16 +46,14 @@ stories.add(
     `)(() => <div><PrimaryButton isClear>Not active</PrimaryButton><PrimaryButton isClear isActive>Active</PrimaryButton></div>),
 );
 
-
 stories.add(
     'with icon',
     withInfo(`
-        Icons, or other elements passed as children could need small adjustments to centre them vertically
+        Icons, or other elements passed as children might need small adjustments to centre them vertically
     `)(() => (
         <div>
             <PrimaryButton isClear>Foo <IconArrow style={{ marginTop: '-3px', stroke: 'white' }} /></PrimaryButton>
-            <PrimaryButton><IconArrow style={{ marginTop: '-3px', stroke: 'white' }} />Bar</PrimaryButton>
+            <PrimaryButton><IconArrow style={{ marginTop: -3, stroke: 'white' }} />Bar</PrimaryButton>
         </div>
     )),
 );
-

@@ -8,6 +8,7 @@ const syntheticEvent = { preventDefault: () => undefined };
 
 describe('DemoComponent', () => {
     common.rendersChildren(DemoComponent);
+    common.propKeyToClassName(DemoComponent, 'isDisabled');
 
     it('renders a div by default', () => {
         const wrapper = shallow((
@@ -32,24 +33,6 @@ describe('DemoComponent', () => {
             ));
 
             expect(wrapper.find('.ui-demo-component--title')).to.have.text('Test title text!');
-        });
-    });
-
-    describe('isDisabled', () => {
-        it('does not add is-disabled class by default', () => {
-            const wrapper = shallow((
-                <DemoComponent />
-            ));
-
-            expect(wrapper).not.to.have.className('is-disabled');
-        });
-
-        it('adds is-disabled class', () => {
-            const wrapper = shallow((
-                <DemoComponent isDisabled />
-            ));
-
-            expect(wrapper).to.have.className('is-disabled');
         });
     });
 

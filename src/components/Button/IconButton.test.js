@@ -1,47 +1,49 @@
 /* global describe, expect, it, shallow */
 import React from 'react';
 import { sandbox } from '../../../test/unit/utils';
+import * as common from '../../../test/unit/commonTests';
 import IconButton from './IconButton';
 import IconArrow from '../Icon/IconArrow';
 
 describe('IconButton', () => {
-    it('IconButton should render an HTML tag button', () => {
+    common.propKeyToClassName(IconButton, 'isActive', {
+        className: 'uir-Button-active',
+        requiredProps: { children: 'Foo' },
+    });
+    common.propKeyToClassName(IconButton, 'isDisabled', {
+        className: 'uir-Button-disabled',
+        requiredProps: { children: 'Foo' },
+    });
+
+    it('renders an HTML tag button', () => {
         const wrapper = shallow((
             <IconButton><IconArrow /></IconButton>
-        )).dive();
+        ));
 
         expect(wrapper).to.have.tagName('button');
     });
 
-    it('Button should render with class .uir-IconButton', () => {
-        const wrapper = shallow(<IconButton><IconArrow /></IconButton>).dive();
-        expect(wrapper.find('.uir-IconButton').length).to.equal(1);
+    it('adds class .uir-IconButton', () => {
+        const wrapper = shallow(<IconButton><IconArrow /></IconButton>);
+        expect(wrapper).to.have.className('uir-IconButton');
     });
 
-    it('Default IconButton should render with class .uir-IconButton', () => {
-        const wrapper = shallow(<IconButton><IconArrow /></IconButton>).dive();
-        expect(wrapper.find('.uir-IconButton').length).to.equal(1);
+    describe('className', () => {
+        it('adds user provided class .custom-class', () => {
+            const wrapper = shallow((
+                <IconButton className="custom-class"><IconArrow /></IconButton>
+            ));
+
+            expect(wrapper).to.have.className('custom-class');
+        });
     });
 
-    it('Clear IconButton should render with custom class .custom-class', () => {
-        const wrapper = shallow((
-            <IconButton className="custom-class"><IconArrow /></IconButton>
-        )).dive();
-        expect(wrapper.find('.custom-class').length).to.equal(1);
-    });
-    it('Disabled IconButton should render with class .uir-Button-disabled', () => {
-        const wrapper = shallow(<IconButton isDisabled><IconArrow /></IconButton>).dive();
-        expect(wrapper.find('.uir-Button-disabled').length).to.equal(1);
-    });
+    describe('isFluid', () => {
+        it('does not add class uir-Button-fluid', () => {
+            const wrapper = shallow(<IconButton isFluid><IconArrow /></IconButton>).dive();
 
-    it('IconButton should not be fluid, even if isFluid flag is passed', () => {
-        const wrapper = shallow(<IconButton isFluid><IconArrow /></IconButton>).dive();
-        expect(wrapper.find('.uir-Button-fluid').length).to.equal(0);
-    });
-
-    it('Active IconButton should render with class .uir-Button-active', () => {
-        const wrapper = shallow(<IconButton isActive><IconArrow /></IconButton>).dive();
-        expect(wrapper.find('.uir-Button-active').length).to.equal(1);
+            expect(wrapper).not.to.have.className('uir-Button-fluid');
+        });
     });
 
     describe('onClick', () => {

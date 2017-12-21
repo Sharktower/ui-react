@@ -17,8 +17,11 @@ const propTypes = {
     onClick: PropTypes.func,
     /** Content of the button, e.g. a string label or more complex React components */
     children: PropTypes.node.isRequired,
-    /** object with camelCased CSS rules, e.g.  style={{ marginTop: '-1px'}} */
-    style: PropTypes.objectOf(PropTypes.object),
+    /** object with camelCased CSS rules, e.g.  style={{ marginTop: -1}} */
+    style: PropTypes.objectOf(PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+    ])),
 };
 
 const defaultProps = {
