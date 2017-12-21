@@ -8,11 +8,11 @@ before_script:
     # - "export DISPLAY=:99.0"
     # - "sh -e /etc/init.d/xvfb start"
     # - sleep 3 # give xvfb some time to start
-    # - yarn test:int-setup
-    - yarn start &
+    - yarn test:int-setup &
+    # - yarn start &
     - sleep 3
 script:
     - yarn lint:js
     - yarn lint:scss
     - yarn test:unit
-    # - yarn test:int
+    - yarn test:int
