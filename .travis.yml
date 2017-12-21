@@ -15,8 +15,8 @@ jobs:
         - stage: install
           script: yarn install
         - stage: lint
-          - script: yarn lint:js
-          - script: yarn lint:scss
+          script: yarn lint:js
+          script: yarn lint:scss
         - stage: test-unit
           script: yarn test:unit
         - stage: integration-setup
