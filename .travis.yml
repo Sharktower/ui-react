@@ -5,7 +5,7 @@ cache: yarn
 install:
     - yarn install
 before_script:
-    - test:int-setup
+    - yarn test:int-setup
 script:
     - yarn lint:js
     - yarn lint:scss
