@@ -37,8 +37,8 @@ stories.add(
         <AvatarTitle
             name="Jane Smith"
             jobRole="Delivery Manager"
-            Avatar={exampleAvatarLarge}
-            large
+            avatar={exampleAvatarLarge}
+            size="lg"
         />,
     ),
 );
@@ -59,7 +59,7 @@ stories.add(
         'Example AvatarTitle',
         <AvatarTitle
             name="Jane Smith"
-            Avatar={exampleAvatarSmall}
+            avatar={exampleAvatarSmall}
         />,
     ),
 );
@@ -82,7 +82,7 @@ stories.add(
         <AvatarTitle
             name="Jane Smith"
             jobRole="Delivery Manager"
-            Avatar={exampleAvatarMedium}
+            avatar={exampleAvatarMedium}
         />,
     ),
 );
@@ -94,7 +94,7 @@ stories.add(
         <AvatarTitle
             name="Jane Smith"
             jobRole="Delivery Manager"
-            large
+            size="lg"
         />,
     ),
 );
@@ -106,8 +106,8 @@ stories.add(
         <AvatarTitle
             name="Jane Smith"
             jobRole="Delivery Manager"
-            Avatar={exampleAvatarLarge}
-            large
+            avatar={exampleAvatarLarge}
+            size="lg"
         />,
     ),
 );
