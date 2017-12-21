@@ -1,43 +1,58 @@
+@import "../../_variables";
+
 .uir-Button {
+    $button-font-family: $font-family !default;
+    $button-font-size: $base-font-size !default;
+    $button-color: rgba(47,40,51,.6) !default;
+    $button-color-clear: #000 !default;
+    $button-color-hover: rgb(47,40,51) !default;
+    $button-color-focus: rgb(47,40,51) !default;
+    $button-color-active: rgb(47,40,51) !default;
+    $button-background-color: rgba(47, 40, 51, .05) !default;
+    $button-background-color-clear: transparent !default;
+    $button-background-color-hover: rgba(47, 40, 51, .1) !default;
+    $button-background-color-focus: rgba(47, 40, 51, .2) !default;
+    $button-background-color-active: rgba(47, 40, 51, .4) !default;
+
     position: relative;
     box-sizing: border-box;
     min-width: 50px;
     height: 36px;
     padding: 9px 18px;
-    margin: 8px 8px 8px 0;   
-    font-family: "DINOT", sans-serif;
-    font-size: 12px;
-    color: rgba(47,40,51,.6);
+    margin: 8px 8px 8px 0;
+    font-family: $button-font-family;
+    font-size: $button-font-size;
+    color: $button-color;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
     white-space: nowrap;
     vertical-align: middle;
     user-select: none;
-    background-color: rgba(47, 40, 51, .05);
+    background-color: $button-background-color;
     border: 0; /* override browser's default */
     border-radius: 2px;
     outline: none;
     transition: all .3s;
 
     &-clear {
-        color: black;
-        background: transparent;
+        color: $button-color-clear;
+        background: $button-background-color-clear;
     }
-    
+
     &:hover {
-        color: rgb(47,40,51);
-        background-color: rgba(47, 40, 51, .1);
+        color: $button-color-hover;
+        background-color: $button-background-color-hover;
     }
-    
+
     &:focus {
-        color: rgb(47,40,51);
-        background-color: rgba(47, 40, 51, .2);
+        color: $button-color-focus;
+        background-color: $button-background-color-focus;
     }
-    
+
     &.uir-Button-active {
-        color: rgb(47,40,51);
-        background-color: rgba(47, 40, 51, .4);
+        color: $button-color-active;
+        background-color: $button-background-color-active;
     }
 
     /* Align vertically buttons with icons */
@@ -46,20 +61,20 @@
         display: inline-block;
         vertical-align: middle;
     }
-    
+
     // isFluid prop
     &-fluid {
         width: 100%;
         margin-right: 0;
         margin-left: 0;
     }
-    
+
     // isDisabled prop
     &-disabled {
         pointer-events: none;
         opacity: .5;
     }
-    
+
     // isActive prop
     &-active {
         font-weight: 600; /* Medium, not bold if available */
