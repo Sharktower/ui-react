@@ -17,14 +17,11 @@
     }
 }
 
-.uir-avatar-user-profile {
+.uir-avatar {
     position: relative;
+    box-sizing: border-box;
     display: inline-block;
-    width: 48px;
-    height: 48px;
     font-family: "DINOT", sans-serif;
-    font-size: 22px;
-    line-height: 48px;
     text-align: center;
     text-transform: uppercase;
     vertical-align: middle;
@@ -34,7 +31,7 @@
         opacity: .8;
     }
 
-    .uir-avatar-user-profile-inner {
+    .uir-avatar-inner {
         display: block;
         width: 100%;
         height: 100%;
@@ -54,31 +51,27 @@
         right: -18%;
         bottom: 0%;
         display: block;
-        width: 26px;
-        height: 26px;
-        font-size: 18px;
-        line-height: 27px;
         border-radius: 50%;
         animation-name: uir-animate-icon-in;
         animation-duration: .6s;
         animation-delay: .2s;
     }
 
-    &.uir-avatar-user-profile-light {
+    &.uir-avatar--light {
 
         .uir-avatar-user-status {
             background: #fff;
         }
     }
 
-    &.uir-avatar-user-profile-dark {
+    &.uir-avatar--dark {
 
         .uir-avatar-user-status {
             background: #3a333c;
         }
     }
 
-    &.uir-avatar-user-profile-sm {
+    &.uir-avatar--xs {
         width: 24px;
         height: 24px;
         font-size: 12px;
@@ -92,7 +85,21 @@
         }
     }
 
-    &.uir-avatar-user-profile-md {
+    &.uir-avatar--md {
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
+        line-height: 48px;
+
+        .uir-avatar-user-status {
+            width: 26px;
+            height: 26px;
+            font-size: 18px;
+            line-height: 27px;
+        }
+    }
+
+    &.uir-avatar--sm {
         width: 36px;
         height: 36px;
         font-size: 16px;
@@ -106,7 +113,7 @@
         }
     }
 
-    &.uir-avatar-user-profile-lg {
+    &.uir-avatar--lg {
         width: 60px;
         height: 60px;
         font-size: 28px;

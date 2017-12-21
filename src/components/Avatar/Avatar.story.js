@@ -1,15 +1,15 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import UserProfile from './UserProfile';
+import Avatar from './Avatar';
 import storyWrapper from '../../storybook-addons/storyWrapper';
 
-const stories = storiesOf('Avatar.UserProfile', module);
+const stories = storiesOf('Avatar.Avatar', module);
 
 stories.add(
     'Overview',
     storyWrapper(
-        'The avatar is a user icon that will display either the users initials or a profile image.',
-        <UserProfile name="David Smith" initials="DS" />,
+        'Avatar description will go here',
+        <Avatar name="David Smith" initials="DS" />,
     ),
 );
 
@@ -17,14 +17,14 @@ stories.add(
     'Initials',
     storyWrapper(
         'The default avatar displays the users initials and no profile image',
-        <UserProfile name="David Smith" initials="DS" />,
+        <Avatar name="David Smith" initials="DS" />,
         <div>
-            <UserProfile
+            <Avatar
                 name="Jane"
                 initials="J"
                 style={{ marginRight: '10px' }}
             />
-            <UserProfile
+            <Avatar
                 name="Jane Doe"
                 initials="JD"
                 style={{ marginRight: '10px' }}
@@ -34,39 +34,40 @@ stories.add(
 );
 
 stories.add(
-    'Profile image',
+    'Image',
     storyWrapper(
-        'Provide a profileImage to the avatar and the initials will be hidden',
-        <UserProfile
+        'Provide a src to the avatar and the initials will be hidden',
+        <Avatar
             name="Jane Doe"
             initials="JD"
-            profileImage="https://randomuser.me/api/portraits/women/58.jpg"
+            src="https://randomuser.me/api/portraits/women/58.jpg"
         />,
         <div>
-            <UserProfile
+            <Avatar
                 name="Jane Doe"
                 initials="JD"
-                profileImage="https://randomuser.me/api/portraits/women/58.jpg"
+                src="https://randomuser.me/api/portraits/women/58.jpg"
+                size="xs"
+                style={{ marginRight: '10px' }}
+            />
+            <Avatar
+                name="Jane Doe"
+                initials="JD"
+                src="https://randomuser.me/api/portraits/women/58.jpg"
                 size="sm"
                 style={{ marginRight: '10px' }}
             />
-            <UserProfile
+            <Avatar
                 name="Jane Doe"
                 initials="JD"
-                profileImage="https://randomuser.me/api/portraits/women/58.jpg"
+                src="https://randomuser.me/api/portraits/women/58.jpg"
                 size="md"
                 style={{ marginRight: '10px' }}
             />
-            <UserProfile
+            <Avatar
                 name="Jane Doe"
                 initials="JD"
-                profileImage="https://randomuser.me/api/portraits/women/58.jpg"
-                style={{ marginRight: '10px' }}
-            />
-            <UserProfile
-                name="Jane Doe"
-                initials="JD"
-                profileImage="https://randomuser.me/api/portraits/women/58.jpg"
+                src="https://randomuser.me/api/portraits/women/58.jpg"
                 size="lg"
                 style={{ marginRight: '10px' }}
             />
@@ -75,34 +76,35 @@ stories.add(
 );
 
 stories.add(
-    'Different sizes',
+    'Size',
     storyWrapper(
         `Use the size prop to create a sm, md or lg avatar.
         Remove the size prop for the default size.`,
-        <UserProfile
+        <Avatar
             name="Joe Bloggs"
             initials="JB"
             size="lg"
         />,
         <div>
-            <UserProfile
+            <Avatar
                 name="small"
+                initials="XS"
+                size="xs"
+                style={{ marginRight: '10px' }}
+            />
+            <Avatar
+                name="medium"
                 initials="SM"
                 size="sm"
                 style={{ marginRight: '10px' }}
             />
-            <UserProfile
-                name="medium"
+            <Avatar
+                name="default"
                 initials="MD"
                 size="md"
                 style={{ marginRight: '10px' }}
             />
-            <UserProfile
-                name="default"
-                initials="DF"
-                style={{ marginRight: '10px' }}
-            />
-            <UserProfile
+            <Avatar
                 name="large"
                 initials="LG"
                 size="lg"
@@ -112,37 +114,37 @@ stories.add(
 );
 
 stories.add(
-    'Status icon',
+    'Status',
     storyWrapper(
         'Displays emoji status icon',
-        <UserProfile
+        <Avatar
             name="David Smith"
             initials="DS"
             size="lg"
-            profileImage="https://randomuser.me/api/portraits/men/84.jpg"
+            src="https://randomuser.me/api/portraits/men/84.jpg"
             status="🦄"
         />,
         <div>
-            <UserProfile
+            <Avatar
                 name="David Smith"
                 initials="DS"
                 size="sm"
-                profileImage="https://randomuser.me/api/portraits/men/84.jpg"
+                src="https://randomuser.me/api/portraits/men/84.jpg"
                 status="🌴"
                 style={{ marginRight: '30px' }}
             />
-            <UserProfile
+            <Avatar
                 name="David Smith"
                 initials="DS"
                 size="md"
-                profileImage="https://randomuser.me/api/portraits/men/84.jpg"
+                src="https://randomuser.me/api/portraits/men/84.jpg"
                 status="🤚"
                 style={{ marginRight: '30px' }}
             />
-            <UserProfile
+            <Avatar
                 name="David Smith"
                 initials="DS"
-                profileImage="https://randomuser.me/api/portraits/men/84.jpg"
+                src="https://randomuser.me/api/portraits/men/84.jpg"
                 status="🤕"
                 style={{ marginRight: '30px' }}
             />
@@ -151,44 +153,44 @@ stories.add(
 );
 
 stories.add(
-    'Dark theme',
+    'Theme',
     storyWrapper(
         `The default avatar will work on light and dark backgrounds.
 
 Use the theme prop to set the status and notification icon background.`,
-        <UserProfile
+        <Avatar
             name="David Smith"
             initials="DS"
             theme="dark"
             size="lg"
-            profileImage="https://randomuser.me/api/portraits/men/3.jpg"
+            src="https://randomuser.me/api/portraits/men/3.jpg"
             status="😡"
         />,
         <div style={{ backgroundColor: '#3a333c', display: 'inline-block', padding: '30px' }}>
-            <UserProfile
+            <Avatar
                 name="David Smith"
                 initials="DS"
                 theme="dark"
                 size="lg"
-                profileImage="https://randomuser.me/api/portraits/men/3.jpg"
+                src="https://randomuser.me/api/portraits/men/3.jpg"
                 status="🐴"
                 style={{ marginRight: '30px' }}
             />
-            <UserProfile
+            <Avatar
                 name="David Smith"
                 initials="DS"
                 theme="dark"
                 size="lg"
-                profileImage="https://randomuser.me/api/portraits/men/3.jpg"
+                src="https://randomuser.me/api/portraits/men/3.jpg"
                 status="🚀"
                 style={{ marginRight: '30px' }}
             />
-            <UserProfile
+            <Avatar
                 name="David Smith"
                 initials="DS"
                 theme="dark"
                 size="lg"
-                profileImage="https://randomuser.me/api/portraits/men/3.jpg"
+                src="https://randomuser.me/api/portraits/men/3.jpg"
                 status="🏆"
                 style={{ marginRight: '30px' }}
             />
@@ -197,38 +199,38 @@ Use the theme prop to set the status and notification icon background.`,
 );
 
 stories.add(
-    'Notification warning',
+    'Notification',
     storyWrapper(
         'Displays an avatar with a warning icon. *NB: The warning icon overrides any status icon.*',
-        <UserProfile
+        <Avatar
             name="Jane Smith"
             initials="JS"
             size="lg"
-            profileImage="https://randomuser.me/api/portraits/women/68.jpg"
+            src="https://randomuser.me/api/portraits/women/68.jpg"
             notification
         />,
         <div>
-            <UserProfile
+            <Avatar
                 name="Jane Smith"
                 initials="JS"
                 size="sm"
                 notification
                 style={{ marginRight: '30px' }}
             />
-            <UserProfile
+            <Avatar
                 name="Jane Smith"
                 initials="JS"
                 size="md"
                 notification
                 style={{ marginRight: '30px' }}
             />
-            <UserProfile
+            <Avatar
                 name="Jane Smith"
                 initials="JS"
                 notification
                 style={{ marginRight: '30px' }}
             />
-            <UserProfile
+            <Avatar
                 name="Jane Smith"
                 initials="JS"
                 size="lg"

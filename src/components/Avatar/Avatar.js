@@ -2,25 +2,28 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import InitialsPropType from '../../prop-types/initials';
-import './user-profile.scss';
+import './Avatar.scss';
 
 const propTypes = {
     name: PropTypes.string.isRequired,
     initials: InitialsPropType,
-    profileImage: PropTypes.string,
-    size: PropTypes.oneOf(['sm', 'md', 'lg']),
+    src: PropTypes.string,
+    size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg']),
     theme: PropTypes.oneOf(['light', 'dark']),
     status: PropTypes.string,
     notification: PropTypes.bool,
     onClick: PropTypes.func,
     tabIndex: PropTypes.number,
-    style: PropTypes.objectOf(PropTypes.object),
+    style: PropTypes.objectOf(PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+    ])),
 };
 
 const defaultProps = {
     initials: null,
-    profileImage: null,
-    size: null,
+    src: null,
+    size: 'md',
     theme: 'light',
     status: null,
     notification: false,
@@ -29,7 +32,7 @@ const defaultProps = {
     style: null,
 };
 
-class UserProfile extends Component {
+class Avatar extends Component {
     handleClick = (event) => {
         const propsOnClick = this.props.onClick;
         if (propsOnClick) {
@@ -42,11 +45,8 @@ class UserProfile extends Component {
     calculateInitials = name => (name ? name.match(/\b\w/g).slice(0, 3).join('') : '?')
 
     render() {
-        const sizeClass = this.props.size
-            ? `uir-avatar-user-profile-${this.props.size}`
-            : null;
-        const imageOrInitials = this.props.profileImage
-            ? <img src={this.props.profileImage} alt={`${this.props.name} profile`} />
+        const imageOrInitials = this.props.src
+            ? <img src={this.props.src} alt={`${this.props.name} profile`} />
             : this.props.initials || this.calculateInitials(this.props.name);
         const notification = this.props.notification
             ? (
@@ -64,7 +64,7 @@ class UserProfile extends Component {
             : null;
         return (
             <div
-                className={cx('uir-avatar-user-profile', `uir-avatar-user-profile-${this.props.theme}`, sizeClass)}
+                className={cx('uir-avatar', `uir-avatar--${this.props.theme}`, `uir-avatar--${this.props.size}`)}
                 title={this.props.name}
                 aria-label={`${this.props.name} avatar`}
                 role="button"
@@ -73,7 +73,7 @@ class UserProfile extends Component {
                 onKeyDown={this.handleClick}
                 style={this.props.style}
             >
-                <span className="uir-avatar-user-profile-inner">
+                <span className="uir-avatar-inner">
                     {imageOrInitials}
                 </span>
                 {notificationOrStatus}
@@ -82,7 +82,7 @@ class UserProfile extends Component {
     }
 }
 
-UserProfile.propTypes = propTypes;
-UserProfile.defaultProps = defaultProps;
+Avatar.propTypes = propTypes;
+Avatar.defaultProps = defaultProps;
 
-export default UserProfile;
+export default Avatar;
