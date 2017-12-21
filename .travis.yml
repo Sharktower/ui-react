@@ -9,7 +9,7 @@ before_script:
     # - "sh -e /etc/init.d/xvfb start"
     # - sleep 3 # give xvfb some time to start
     # - yarn test:int-setup
-    - yarn start
+    # - yarn start
 script:
     - yarn lint:js
     - yarn lint:scss
