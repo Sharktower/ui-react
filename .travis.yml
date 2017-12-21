@@ -2,26 +2,13 @@ language: node_js
 node_js:
     - "8"
 cache: yarn
-install: true
-stages:
-    - install
-    - lint
-    - test-unit
-    - integration-setup
-    - test-integration
-    - deploy
-jobs:
-    include:
-        - stage: install
-          script: yarn install
-        - stage: lint
-          script: yarn lint:js
-          script: yarn lint:scss
-        - stage: test-unit
-          script: yarn test:unit
-        - stage: integration-setup
-          script: yarn test:int-setup & sleep 3
-        - stage: test-integration
-          script: yarn test:int
-        - stage: deploy
-          script: yarn build
+install:
+    - yarn install
+before_script:
+    - yarn test:int-setup &
+    - sleep 3
+script:
+    - yarn lint:js
+    - yarn lint:scss
+    - yarn test:unit
+    - yarn test:int
