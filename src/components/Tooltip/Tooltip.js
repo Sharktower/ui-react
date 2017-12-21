@@ -6,6 +6,7 @@ const propTypes = {
     children: PropTypes.element.isRequired,
     tooltip: PropTypes.element.isRequired,
     showTooltip: PropTypes.bool,
+    tabIndex: PropTypes.number,
     style: PropTypes.objectOf(PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -14,6 +15,7 @@ const propTypes = {
 
 const defaultProps = {
     showTooltip: null,
+    tabIndex: 0,
     style: null,
 };
 
@@ -40,6 +42,8 @@ class Tooltip extends Component {
                 onMouseLeave={this.handleBlur}
                 onFocus={this.handleFocus}
                 onBlur={this.handleBlur}
+                role="tooltip"
+                tabIndex={this.props.tabIndex}
                 style={this.props.style}
             >
                 {tooltip}
