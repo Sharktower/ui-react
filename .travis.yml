@@ -4,11 +4,22 @@ node_js:
 cache: yarn
 install:
     - yarn install
-before_script:
-    - yarn test:int-setup &
-    - sleep 3
-script:
-    - yarn lint:js
-    - yarn lint:scss
-    - yarn test:unit
-    - yarn test:int
+stages:
+    - lint
+    - test-unit
+    - integration-setup
+    - test-integration
+    - deploy
+jobs:
+  include:
+    - stage: lint
+      script: yarn lint:js
+      script: yarn lint:scss
+    - stage: test-unit
+      script: yarn test:unit
+    - stage: integration-setup
+      script: yarn test:int-setup & sleep 3
+    - stage: test-integration
+      script: yarn test:int
+    - stage: deploy
+      script: yarn build
