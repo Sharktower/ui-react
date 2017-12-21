@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Style from 'react-style-proptype';
 import cx from 'classnames';
 
 const IconArrow = ({
@@ -32,7 +31,10 @@ IconArrow.propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
     className: PropTypes.string,
-    style: Style,
+    style: PropTypes.objectOf(PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+    ])),
 };
 
 export default IconArrow;
