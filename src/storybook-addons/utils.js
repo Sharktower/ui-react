@@ -51,7 +51,11 @@ function isRequired(prop, propTypes) {
 function getType(prop, propTypes) {
     const propTypeFn = propTypes[prop];
     const propTypeFnName = propTypeFn.name;
-    return PropTypesMap.get(propTypeFn) || propTypeFnName;
+    return PropTypesMap.get(propTypeFn) || (
+        propTypeFnName === 'bound checkType'
+            ? 'other'
+            : propTypeFnName
+    );
 }
 
 function getDefaultValue(prop, defaultProps) {
@@ -110,7 +114,7 @@ function createPropValue(assignedProps, propName) {
         propValue = '';
         break;
     case React.isValidElement(prop):
-        propValue = `={${prop.type.name}}`;
+        propValue = `={<${prop.type.name} ... />}`;
         break;
     case prop instanceof Object:
         propValue = `={${propName}}`;

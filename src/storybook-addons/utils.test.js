@@ -39,6 +39,7 @@ describe('Storybook Utils', () => {
             fn: PropTypes.func,
             example: PropTypes.string,
             initials: InitialsPropType,
+            list: PropTypes.oneOf(['xs', 'sm']),
         };
         const defaultProps = {
             description: null,
@@ -47,6 +48,7 @@ describe('Storybook Utils', () => {
             fn: () => {},
             example: 'hello world',
             initials: null,
+            list: null,
         };
         const wrapper = shallow(getProps(propTypes, defaultProps));
         expect(wrapper.find('table').length).to.equal(1);
@@ -92,6 +94,11 @@ describe('Storybook Utils', () => {
         expect(wrapper.find('td').at(25).text()).to.equal('initials');
         expect(wrapper.find('td').at(26).text()).to.equal('no');
         expect(wrapper.find('td').at(27).text()).to.equal('null');
+        // check table row eight
+        expect(wrapper.find('td').at(28).text()).to.equal('list');
+        expect(wrapper.find('td').at(29).text()).to.equal('other');
+        expect(wrapper.find('td').at(30).text()).to.equal('no');
+        expect(wrapper.find('td').at(31).text()).to.equal('null');
     });
 
     it('getProps can create props table without default props', () => {
@@ -142,7 +149,7 @@ describe('Storybook Utils', () => {
     it('getSourceCode renders code snippet with react prop', () => {
         const mockProfile = <MockComponent name="Matt" />;
         const wrapper = shallow(getSourceCode(<MockComponent profile={mockProfile} />));
-        expect(wrapper.find('code').text()).to.equal('<MockComponent profile={MockComponent}/>');
+        expect(wrapper.find('code').text()).to.equal('<MockComponent profile={<MockComponent ... />}/>');
     });
 
     it('getSourceCode renders code snippet with non react object prop', () => {

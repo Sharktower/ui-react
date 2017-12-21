@@ -15,9 +15,6 @@ function prepareWrapper() {
     const hoc = overviewWrapper(
         'My summary',
         <MockComponent name="example" />,
-        <div>
-            <MockComponent name="example" />
-        </div>,
     );
     const storyContextMock = { kind: 'Foo', story: 'Bar' };
     return mount(hoc(storyContextMock));
@@ -47,5 +44,12 @@ describe('overviewWrapper', () => {
     it('renders an example heading', () => {
         const wrapper = prepareWrapper();
         expect(wrapper.find('h3').text()).to.equal('Basic Example');
+    });
+
+    it('does not render an example if component undefined', () => {
+        const hoc = overviewWrapper('My summary');
+        const storyContextMock = { kind: 'Foo', story: 'Bar' };
+        const wrapper = mount(hoc(storyContextMock));
+        expect(wrapper.find('h3').length).to.equal(0);
     });
 });
