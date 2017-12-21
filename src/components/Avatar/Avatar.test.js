@@ -54,7 +54,7 @@ describe('Avatar', () => {
 
     it('has ariaLabel with user name', () => {
         const avatar = shallow(<Avatar name={sampleData.name} />);
-        expect(avatar.find('div').at(0).props()).to.have.property('ariaLabel', `${sampleData.name} avatar`);
+        expect(avatar.find('div').at(0).props()).to.have.property('aria-label', `${sampleData.name} avatar`);
     });
 
     it('can have a tabIndex', () => {
