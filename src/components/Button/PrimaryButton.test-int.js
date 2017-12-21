@@ -1,9 +1,9 @@
 // eslint-disable-next-line spaced-comment
 /// path="../../../test/codecept/steps.d.ts"
 
-Feature('IconButton');
+Feature('PrimaryButton');
 
-Scenario('primary button should render and be clickable', (I, mapper) => {
+Scenario('renders and is clickable', (I, mapper) => {
     const buttonContainer = '.uir-PrimaryButton';
 
     I.amOnPage(mapper.buttonComponent.primaryButtonDemo);

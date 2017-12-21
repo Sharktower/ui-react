@@ -3,7 +3,7 @@
 
 Feature('IconButton');
 
-Scenario('icon button should render and be clickable', (I, mapper) => {
+Scenario('renders and is clickable', (I, mapper) => {
     const buttonContainer = '.uir-IconButton';
     const arrowIcon = 'svg.uir-icon-arrow';
 
