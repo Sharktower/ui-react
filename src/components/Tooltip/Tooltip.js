@@ -1,22 +1,52 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './tooltip.scss';
+import './Tooltip.scss';
 
 const propTypes = {
     children: PropTypes.element.isRequired,
-    style: PropTypes.objectOf(PropTypes.object),
+    tooltip: PropTypes.element.isRequired,
+    showTooltip: PropTypes.bool,
+    style: PropTypes.objectOf(PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+    ])),
 };
 
 const defaultProps = {
+    showTooltip: null,
     style: null,
 };
 
-function Tooltip(props) {
-    return (
-        <div className="uir-tooltip" style={props.style}>
-            {props.children}
-        </div>
-    );
+class Tooltip extends Component {
+    state = {
+        showTooltip: false,
+    }
+
+    handleFocus = () => this.setState({ showTooltip: true })
+
+    handleBlur = () => this.setState({ showTooltip: false })
+
+    render() {
+        const showTooltip = this.props.showTooltip !== null
+            ? this.props.showTooltip
+            : this.state.showTooltip;
+        const tooltip = showTooltip
+            ? <div className="uir-tooltip-contents">{this.props.tooltip}</div>
+            : null;
+        return (
+            <div
+                className="uir-tooltip"
+                onMouseEnter={this.handleFocus}
+                onMouseLeave={this.handleBlur}
+                onFocus={this.handleFocus}
+                onBlur={this.handleBlur}
+                style={this.props.style}
+            >
+                {tooltip}
+                {this.props.children}
+            </div>
+        );
+    }
 }
 
 Tooltip.propTypes = propTypes;

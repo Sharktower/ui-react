@@ -1,0 +1,16 @@
+.uir-tooltip-box {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    padding: 12px;
+    font-family: "DINOT", sans-serif;
+    font-size: 13px;
+    color: #fff;
+    white-space: nowrap;
+    background-color: #2f2833;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
+    transition-timing-function: ease-in-out;
+    transition-duration: 1s;
+    transition-property: all;
+}

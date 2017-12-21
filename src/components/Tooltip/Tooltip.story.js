@@ -1,18 +1,35 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Tooltip from '../Tooltip/Tooltip';
 import storyWrapper from '../../storybook-addons/storyWrapper';
+import Tooltip from './Tooltip';
+import Avatar from '../Avatar/Avatar';
+import AvatarCard from '../Avatar/AvatarCard';
 
 const stories = storiesOf('Tooltip', module);
+
+const exampleAvatar = (
+    <Avatar
+        name="John Smith"
+        src="https://randomuser.me/api/portraits/men/21.jpg"
+        size="lg"
+    />
+);
+
+const exampleTooltip = (
+    <AvatarCard
+        name="John Smith"
+        jobRole="Sales Manager"
+        team="Communication Team"
+        avatar={exampleAvatar}
+    />
+);
 
 stories.add(
     'Tooltip',
     storyWrapper(
-        'Simple tooltip component',
-        (
-            <Tooltip style={{ position: 'relative', transform: 'translate(0, 0)', animationName: 'none' }}>
-                <div>My Tooltip Contents</div>
-            </Tooltip>
-        ),
+        'Simple tooltip wrapper',
+        <Tooltip tooltip={exampleTooltip}>
+            {exampleAvatar}
+        </Tooltip>,
     ),
 );
