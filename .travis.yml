@@ -4,7 +4,10 @@ node_js:
 cache: yarn
 install:
     - yarn install
+before_script:
+    - test:int-setup
 script:
     - yarn lint:js
     - yarn lint:scss
     - yarn test:unit
+    - yarn test:int
