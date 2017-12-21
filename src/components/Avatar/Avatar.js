@@ -66,7 +66,7 @@ class Avatar extends Component {
             <div
                 className={cx('uir-avatar', `uir-avatar--${this.props.theme}`, `uir-avatar--${this.props.size}`)}
                 title={this.props.name}
-                aria-label={`${this.props.name} avatar`}
+                ariaLabel={`${this.props.name} avatar`}
                 role="button"
                 tabIndex={this.props.tabIndex}
                 onClick={this.handleClick}

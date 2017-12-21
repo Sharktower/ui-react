@@ -52,9 +52,14 @@ describe('Avatar', () => {
         expect(avatar.find('div').at(1).text()).to.equal('');
     });
 
-    it('has aria-label with user name', () => {
+    it('has ariaLabel with user name', () => {
         const avatar = shallow(<Avatar name={sampleData.name} />);
-        expect(avatar.find('div').at(0).props()).to.have.property('aria-label', `${sampleData.name} avatar`);
+        expect(avatar.find('div').at(0).props()).to.have.property('ariaLabel', `${sampleData.name} avatar`);
+    });
+
+    it('can have a tabIndex', () => {
+        const avatar = shallow(<Avatar tabIndex={-1} />);
+        expect(avatar.find('div').at(0).props()).to.have.property('tabIndex', -1);
     });
 
     it('render light theme by default', () => {
