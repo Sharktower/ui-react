@@ -5,4 +5,6 @@ cache: yarn
 install:
     - yarn install
 script:
+    - yarn lint:js
+    - yarn lint:scss
     - yarn test:unit
