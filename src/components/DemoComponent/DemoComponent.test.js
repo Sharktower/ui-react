@@ -24,7 +24,7 @@ describe('DemoComponent', () => {
                 <DemoComponent />
             ));
 
-            expect(wrapper.find('.ui-demo-component--title')).to.have.text('Demo');
+            expect(wrapper.find('.uir-demo-component--title')).to.have.text('Demo');
         });
 
         it('renders provided title text', () => {
@@ -32,7 +32,7 @@ describe('DemoComponent', () => {
                 <DemoComponent title="Test title text!" />
             ));
 
-            expect(wrapper.find('.ui-demo-component--title')).to.have.text('Test title text!');
+            expect(wrapper.find('.uir-demo-component--title')).to.have.text('Test title text!');
         });
     });
 
