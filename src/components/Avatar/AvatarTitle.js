@@ -8,6 +8,7 @@ const propTypes = {
     jobRole: PropTypes.string,
     avatar: PropTypes.element,
     size: PropTypes.oneOf(['sm', 'lg']),
+    className: PropTypes.string,
     style: PropTypes.objectOf(PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -18,6 +19,7 @@ const defaultProps = {
     jobRole: null,
     avatar: null,
     size: 'sm',
+    className: null,
     style: null,
 };
 
@@ -31,7 +33,7 @@ function AvatarCard(props) {
         : null;
     return (
         <div
-            className={cx('uir-avatar-title', `uir-avatar-title--${props.size}`)}
+            className={cx('uir-avatar-title', `uir-avatar-title--${props.size}`, props.className)}
             style={props.style}
         >
             {profile}

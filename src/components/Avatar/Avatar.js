@@ -14,6 +14,7 @@ const propTypes = {
     notification: PropTypes.bool,
     onClick: PropTypes.func,
     tabIndex: PropTypes.number,
+    className: PropTypes.string,
     style: PropTypes.objectOf(PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -29,6 +30,7 @@ const defaultProps = {
     notification: false,
     onClick: null,
     tabIndex: 0,
+    className: null,
     style: null,
 };
 
@@ -64,7 +66,12 @@ class Avatar extends Component {
             : null;
         return (
             <div
-                className={cx('uir-avatar', `uir-avatar--${this.props.theme}`, `uir-avatar--${this.props.size}`)}
+                className={cx(
+                    'uir-avatar',
+                    `uir-avatar--${this.props.theme}`,
+                    `uir-avatar--${this.props.size}`,
+                    this.props.className,
+                )}
                 title={this.props.name}
                 aria-label={`${this.props.name} avatar`}
                 role="button"

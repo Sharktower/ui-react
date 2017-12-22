@@ -1,7 +1,18 @@
-/* global describe, expect, it, shallow  */
+/* global describe, expect, it, shallow, beforeEach, afterEach  */
 import React from 'react';
+// import sinon from 'sinon';
 import Avatar from './Avatar';
 import AvatarCard from './AvatarCard';
+
+// const sandbox = sinon.sandbox.create();
+//
+// beforeEach(() => {
+//     sandbox.stub(console, 'error');
+// });
+//
+// afterEach(() => {
+//     sandbox.restore();
+// });
 
 const exampleAvatar = (
     <Avatar
@@ -18,6 +29,12 @@ const exampleUser = {
 };
 
 describe('AvatarCard', () => {
+    // it('complains if user name is not provided', () => {
+    //     shallow(<AvatarCard />);
+    //     // eslint-disable-next-line no-console
+    //     expect(console.error.calledWithMatch('The prop `name` is marked as required in `Avatar`')).to.equal(true);
+    // });
+
     it('renders div elements', () => {
         const avatarCard = shallow(<AvatarCard />);
         expect(avatarCard.find('div').length).to.equal(3);
@@ -27,6 +44,12 @@ describe('AvatarCard', () => {
         const avatarCard = shallow(<AvatarCard />);
         expect(avatarCard.find('div').at(0).hasClass('uir-avatar-card'))
             .to.equal(true);
+    });
+
+    it('can pass through class', () => {
+        const exampleClassName = 'example-class';
+        const avatarCard = shallow(<AvatarCard name={exampleUser.name} className={exampleClassName} />);
+        expect(avatarCard.find('div').at(0).hasClass(exampleClassName)).to.equal(true);
     });
 
     it('can display name', () => {
@@ -69,6 +92,4 @@ describe('AvatarCard', () => {
         const avatarCard = shallow(<AvatarCard style={style} />);
         expect(avatarCard.props()).to.have.property('style', style);
     });
-
-    // @TODO: complains if name is undefined
 });

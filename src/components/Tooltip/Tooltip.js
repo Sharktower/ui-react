@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cx from 'classnames';
 import PropTypes from 'prop-types';
 import './Tooltip.scss';
 
@@ -7,6 +8,7 @@ const propTypes = {
     tooltip: PropTypes.element.isRequired,
     showTooltip: PropTypes.bool,
     tabIndex: PropTypes.number,
+    className: PropTypes.string,
     style: PropTypes.objectOf(PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -16,6 +18,7 @@ const propTypes = {
 const defaultProps = {
     showTooltip: null,
     tabIndex: 0,
+    className: null,
     style: null,
 };
 
@@ -37,7 +40,7 @@ class Tooltip extends Component {
             : null;
         return (
             <div
-                className="uir-tooltip"
+                className={cx('uir-tooltip', this.props.className)}
                 onMouseEnter={this.handleFocus}
                 onMouseLeave={this.handleBlur}
                 onFocus={this.handleFocus}

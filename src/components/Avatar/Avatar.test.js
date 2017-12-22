@@ -1,7 +1,17 @@
-/* global describe, expect, it, shallow  */
+/* global describe, expect, it, shallow, beforeEach, afterEach  */
 import React from 'react';
 import sinon from 'sinon';
 import Avatar from './Avatar';
+
+const sandbox = sinon.sandbox.create();
+
+beforeEach(() => {
+    sandbox.stub(console, 'error');
+});
+
+afterEach(() => {
+    sandbox.restore();
+});
 
 const sampleData = {
     name: 'Matt Davies',
@@ -9,6 +19,18 @@ const sampleData = {
 };
 
 describe('Avatar', () => {
+    it('complains if name is not provided', () => {
+        shallow(<Avatar />);
+        // eslint-disable-next-line no-console
+        expect(console.error.calledWithMatch('The prop `name` is marked as required in `Avatar`')).to.equal(true);
+    });
+
+    it('complains if initials longer than 2 characters are used', () => {
+        shallow(<Avatar name={sampleData.name} initials="MPD" />);
+        // eslint-disable-next-line no-console
+        expect(console.error.calledWithMatch('Initials supplied to `Avatar` should be 1 or 2 characters')).to.equal(true);
+    });
+
     it('renders a div element', () => {
         const avatar = shallow(<Avatar name={sampleData.name} />);
         expect(avatar.find('div').length).to.equal(1);
@@ -17,6 +39,12 @@ describe('Avatar', () => {
     it('has correct class', () => {
         const avatar = shallow(<Avatar name={sampleData.name} />);
         expect(avatar.find('div').at(0).hasClass('uir-avatar')).to.equal(true);
+    });
+
+    it('can pass through class', () => {
+        const exampleClassName = 'example-class';
+        const avatar = shallow(<Avatar name={sampleData.name} className={exampleClassName} />);
+        expect(avatar.find('div').at(0).hasClass(exampleClassName)).to.equal(true);
     });
 
     it('calculates initials from name', () => {
@@ -53,12 +81,17 @@ describe('Avatar', () => {
     });
 
     it('has ariaLabel with user name', () => {
-        const avatar = shallow(<Avatar name={sampleData.name} />);
+        const avatar = shallow(<Avatar
+            name={sampleData.name}
+        />);
         expect(avatar.find('div').at(0).props()).to.have.property('aria-label', `${sampleData.name} avatar`);
     });
 
     it('can have a tabIndex', () => {
-        const avatar = shallow(<Avatar tabIndex={-1} />);
+        const avatar = shallow(<Avatar
+            name={sampleData.name}
+            tabIndex={-1}
+        />);
         expect(avatar.find('div').at(0).props()).to.have.property('tabIndex', -1);
     });
 
@@ -122,7 +155,10 @@ describe('Avatar', () => {
 
     it('can pass through style object', () => {
         const style = { width: '10%' };
-        const avatarCard = shallow(<Avatar style={style} />);
+        const avatarCard = shallow(<Avatar
+            name={sampleData.name}
+            style={style}
+        />);
         expect(avatarCard.props()).to.have.property('style', style);
     });
 
@@ -144,18 +180,4 @@ describe('Avatar', () => {
         avatar.find('div').at(0).simulate('click');
         expect(onClickSpy.notCalled).to.equal(true);
     });
-
-    // @TODO: complains if not passed certain props
-
-    // it('complains if user name is not provided', () => {
-    //     shallow(<Avatar />);
-    //     // eslint-disable-next-line no-console
-    //     expect(console.error.calledWithMatch('The prop `name` is marked as required in `Avatar`')).to.equal(true);
-    // });
-
-    // it('complains if initials longer than 2 characters are used', () => {
-    //     shallow(<Avatar name={sampleData.name} initials="MPD" />);
-    //     // eslint-disable-next-line no-console
-    //     expect(console.error.calledWithMatch('Initials supplied to `Avatar` should have 1 to 2 characters')).to.equal(true);
-    // });
 });

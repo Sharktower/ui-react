@@ -1,7 +1,18 @@
-/* global describe, expect, it, shallow  */
+/* global describe, expect, it, shallow, beforeEach, afterEach  */
 import React from 'react';
+// import sinon from 'sinon';
 import Avatar from './Avatar';
 import AvatarTitle from './AvatarTitle';
+
+// const sandbox = sinon.sandbox.create();
+//
+// beforeEach(() => {
+//     sandbox.stub(console, 'error');
+// });
+//
+// afterEach(() => {
+//     sandbox.restore();
+// });
 
 const exampleAvatar = (
     <Avatar
@@ -18,47 +29,57 @@ const exampleUser = {
 };
 
 describe('AvatarTitle', () => {
+    // it('complains if user name is not provided', () => {
+    //     shallow(<AvatarTitle />);
+    //     // eslint-disable-next-line no-console
+    //     expect(console.error.calledWithMatch('The prop `name` is marked as required in `AvatarTitle`')).to.equal(true);
+    // });
+
     it('renders div elements', () => {
-        const avatarCard = shallow(<AvatarTitle />);
-        expect(avatarCard.find('div').length).to.equal(3);
+        const avatarTitle = shallow(<AvatarTitle />);
+        expect(avatarTitle.find('div').length).to.equal(3);
     });
 
     it('has correct class', () => {
-        const avatarCard = shallow(<AvatarTitle />);
-        expect(avatarCard.find('div').at(0).hasClass('uir-avatar-title'))
+        const avatarTitle = shallow(<AvatarTitle />);
+        expect(avatarTitle.find('div').at(0).hasClass('uir-avatar-title'))
             .to.equal(true);
     });
 
+    it('can pass through class', () => {
+        const exampleClassName = 'example-class';
+        const avatarTitle = shallow(<AvatarTitle name={exampleUser.name} className={exampleClassName} />);
+        expect(avatarTitle.find('div').at(0).hasClass(exampleClassName)).to.equal(true);
+    });
+
     it('can display name', () => {
-        const avatarCard = shallow(<AvatarTitle name={exampleUser.name} />);
-        expect(avatarCard.find('div.uir-avatar-title-name').text())
+        const avatarTitle = shallow(<AvatarTitle name={exampleUser.name} />);
+        expect(avatarTitle.find('div.uir-avatar-title-name').text())
             .to.equal(exampleUser.name);
     });
 
     it('can display job role', () => {
-        const avatarCard = shallow(<AvatarTitle
+        const avatarTitle = shallow(<AvatarTitle
             name={exampleUser.name}
             jobRole={exampleUser.jobRole}
         />);
-        expect(avatarCard.find('div.uir-avatar-title-job-role').text())
+        expect(avatarTitle.find('div.uir-avatar-title-job-role').text())
             .to.equal(exampleUser.jobRole);
     });
 
     it('can display avatar', () => {
-        const avatarCard = shallow(<AvatarTitle
+        const avatarTitle = shallow(<AvatarTitle
             name={exampleUser.name}
             jobRole={exampleUser.jobRole}
             team={exampleUser.team}
             avatar={exampleAvatar}
         />);
-        expect(avatarCard.find(Avatar).length).to.equal(1);
+        expect(avatarTitle.find(Avatar).length).to.equal(1);
     });
 
     it('can pass through style object', () => {
         const style = { width: '10%' };
-        const avatarCard = shallow(<AvatarTitle style={style} />);
-        expect(avatarCard.props()).to.have.property('style', style);
+        const avatarTitle = shallow(<AvatarTitle style={style} />);
+        expect(avatarTitle.props()).to.have.property('style', style);
     });
-
-    // @TODO: complains if name is undefined
 });

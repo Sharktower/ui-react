@@ -8,6 +8,7 @@ const propTypes = {
     jobRole: PropTypes.string,
     team: PropTypes.string,
     avatar: PropTypes.element,
+    className: PropTypes.string,
     style: PropTypes.objectOf(PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -18,6 +19,7 @@ const defaultProps = {
     jobRole: null,
     team: null,
     avatar: null,
+    className: null,
     style: null,
 };
 
@@ -39,6 +41,7 @@ function AvatarCard(props) {
                 { 'uir-avatar-card-has-role': jobRole },
                 { 'uir-avatar-card-has-team': team },
                 { 'uir-avatar-card-has-profile': profile },
+                props.className,
             )}
             style={props.style}
         >
