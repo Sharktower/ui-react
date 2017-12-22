@@ -22,6 +22,14 @@ $tooltipTranslate: translate(-20%, -100%);
 .uir-tooltip {
     position: relative;
     display: inline-block;
+
+    &:focus {
+        outline: none;
+
+        .uir-tooltip-inner {
+            opacity: .8;
+        }
+    }
 }
 
 .uir-tooltip-contents {

@@ -41,12 +41,18 @@ describe('Tooltip', () => {
 
     it('renders a div element', () => {
         const tooltip = shallow(<Tooltip tooltip={<div />}>{exampleAvatar}</Tooltip>);
-        expect(tooltip.find('div').length).to.equal(1);
+        expect(tooltip.find('div').length).to.equal(2);
     });
 
     it('has correct class', () => {
         const tooltip = shallow(<Tooltip tooltip={<div />}>{exampleAvatar}</Tooltip>);
-        expect(tooltip.find('div').hasClass('uir-tooltip'))
+        expect(tooltip.find('div').at(0).hasClass('uir-tooltip'))
+            .to.equal(true);
+    });
+
+    it('has correct inner class', () => {
+        const tooltip = shallow(<Tooltip tooltip={<div />}>{exampleAvatar}</Tooltip>);
+        expect(tooltip.find('div').at(1).hasClass('uir-tooltip-inner'))
             .to.equal(true);
     });
 

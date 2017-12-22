@@ -50,7 +50,9 @@ class Tooltip extends Component {
                 style={this.props.style}
             >
                 {tooltip}
-                {this.props.children}
+                <div className="uir-tooltip-inner">
+                    {this.props.children}
+                </div>
             </div>
         );
     }
