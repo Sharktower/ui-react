@@ -67,6 +67,15 @@ describe('AvatarCard', () => {
             .to.equal(exampleUser.jobRole);
     });
 
+    it('adds class when role provided', () => {
+        const avatarCard = shallow(<AvatarCard
+            name={exampleUser.name}
+            jobRole={exampleUser.jobRole}
+        />);
+        expect(avatarCard.find('div').at(0).hasClass('uir-avatar-card--has-role'))
+            .to.equal(true);
+    });
+
     it('can display team', () => {
         const avatarCard = shallow(<AvatarCard
             name={exampleUser.name}
@@ -75,6 +84,15 @@ describe('AvatarCard', () => {
         />);
         expect(avatarCard.find('div.uir-avatar-card-team').text())
             .to.equal(exampleUser.team);
+    });
+
+    it('adds class when team provided', () => {
+        const avatarCard = shallow(<AvatarCard
+            name={exampleUser.name}
+            team={exampleUser.team}
+        />);
+        expect(avatarCard.find('div').at(0).hasClass('uir-avatar-card--has-team'))
+            .to.equal(true);
     });
 
     it('can display avatar', () => {
