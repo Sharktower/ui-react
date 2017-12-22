@@ -5,6 +5,7 @@ import './TooltipBox.scss';
 
 const propTypes = {
     children: PropTypes.element.isRequired,
+    status: PropTypes.oneOf(['default', 'success', 'error']),
     className: PropTypes.string,
     style: PropTypes.objectOf(PropTypes.oneOfType([
         PropTypes.string,
@@ -13,13 +14,14 @@ const propTypes = {
 };
 
 const defaultProps = {
+    status: 'default',
     className: null,
     style: null,
 };
 
 function TooltipBox(props) {
     return (
-        <div className={cx('uir-tooltip-box', props.className)} style={props.style}>
+        <div className={cx('uir-tooltip-box', `uir-tooltip-box--${props.status}`, props.className)} style={props.style}>
             {props.children}
         </div>
     );

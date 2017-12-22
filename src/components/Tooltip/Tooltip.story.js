@@ -5,7 +5,7 @@ import Tooltip from './Tooltip';
 import Avatar from '../Avatar/Avatar';
 import AvatarCard from '../Avatar/AvatarCard';
 
-const stories = storiesOf('Tooltip', module);
+const stories = storiesOf('Tooltip.Tooltip', module);
 
 const exampleAvatar = (
     <Avatar
@@ -25,7 +25,7 @@ const exampleTooltip = (
 );
 
 stories.add(
-    'Tooltip',
+    'Wrapper',
     storyWrapper(
         'Simple tooltip wrapper',
         <Tooltip tooltip={exampleTooltip}>
