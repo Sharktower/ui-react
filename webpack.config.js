@@ -12,9 +12,11 @@ const defaultConfig = {
         library: libraryName,
         libraryTarget: 'umd',
     },
+    devtool: 'cheap-source-map',
     module: {
         rules: [{
             test: /\.scss$/,
+            exclude: /node_modules\//,
             use: [{
                 loader: 'style-loader',
             }, {
@@ -24,11 +26,13 @@ const defaultConfig = {
             }],
         }, {
             test: /\.js$/,
+            exclude: /node_modules\//,
             use: [{
                 loader: 'babel-loader',
             }],
         }, {
             test: /\.svg$/,
+            exclude: /node_modules\//,
             use: [{
                 loader: 'babel-loader',
             }, {
@@ -66,7 +70,7 @@ const defaultConfig = {
 
 const minifiedBundleConfig = clone(defaultConfig);
 minifiedBundleConfig.output.filename = `${libraryName}.min.js`;
-minifiedBundleConfig.plugins = [new UglifyJsPlugin()];
+minifiedBundleConfig.plugins = [new UglifyJsPlugin({ sourceMap: false })];
 
 module.exports = [
     defaultConfig,
