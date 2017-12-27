@@ -18,8 +18,7 @@
     "build": "npm-run-all -s library:clean library:build",
     "library:clean": "rm -rf ./dist",
     "library:build": "yarn lint && webpack",
-    "storybook:clean": "rm -rf ./storybook-static",
-    "storybook:build": "yarn lint && build-storybook",
+    "storybook:deploy": "yarn lint && storybook-to-ghpages",
     "storybook:watch": "start-storybook -p 6006",
     "lint": "npm-run-all -s lint:scss lint:js",
     "lint:scss": "stylelint 'src/**/*.scss'",
@@ -93,6 +92,7 @@
     "@storybook/addon-links": "^3.2.17",
     "@storybook/addon-options": "^3.2.17",
     "@storybook/react": "^3.2.17",
+    "@storybook/storybook-deployer": "^2.2.0",
     "classnames": "^2.2.5"
   }
 }
