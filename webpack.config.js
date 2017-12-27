@@ -12,7 +12,6 @@ const defaultConfig = {
         library: libraryName,
         libraryTarget: 'umd',
     },
-    devtool: 'cheap-source-map',
     module: {
         rules: [{
             test: /\.scss$/,
