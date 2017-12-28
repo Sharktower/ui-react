@@ -1,4 +1,4 @@
-.uir-IconButton {
+.uir-icon-button {
     /* Override default button rules */
     width: auto;
     min-width: 24px;
@@ -13,7 +13,7 @@
         background-color: rgba(47, 40, 51, .1);
     }
 
-    &.uir-Button-active {
+    &.uir-button--active {
         color: rgb(47,40,51);
         background-color: rgba(47, 40, 51, .2);
     }

@@ -1,4 +1,4 @@
-.uir-PrimaryButton {
+.uir-primary-button {
     color: #FFF;
     background-image: linear-gradient(to bottom, #ff1966 0%, #fa439f 100%);
 
@@ -9,7 +9,7 @@
         box-shadow: 0px 0px 3px 1px rgba(225, 25, 102, .4);
     }
 
-    &.uir-Button-active {
+    &.uir-button--active {
         color: #FFF;
     }
 }

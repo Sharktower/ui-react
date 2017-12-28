@@ -19,10 +19,10 @@ describe('Button', () => {
         expect(wrapper).to.have.tagName('button');
     });
 
-    it('renders with class .uir-Button', () => {
+    it('renders with class .uir-button', () => {
         const wrapper = shallow(<Button>Foo</Button>);
 
-        expect(wrapper).to.have.className('uir-Button');
+        expect(wrapper).to.have.className('uir-button');
     });
 
     it('renders three Button components', () => {

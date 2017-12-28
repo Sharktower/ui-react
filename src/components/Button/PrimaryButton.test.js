@@ -1,6 +1,7 @@
 /* global describe, expect, it, shallow */
 import React from 'react';
 import * as common from '../../../test/unit/commonTests';
+import getClassNameFromBoolPropKey from '../../../test/unit/utils/getClassNameFromBoolPropKey';
 import Button from './Button';
 import PrimaryButton from './PrimaryButton';
 
@@ -23,10 +24,10 @@ describe('PrimaryButton', () => {
         expect(wrapper).to.have.exactly(1).descendants(Button);
     });
 
-    it('adds class .uir-PrimaryButton', () => {
+    it('adds class .uir-primary-button', () => {
         const wrapper = shallow(<PrimaryButton>Foo</PrimaryButton>);
 
-        expect(wrapper).to.have.className('uir-PrimaryButton');
+        expect(wrapper).to.have.className('uir-primary-button');
     });
 
     describe('className', () => {
@@ -38,10 +39,12 @@ describe('PrimaryButton', () => {
     });
 
     describe('isClear', () => {
-        it('does not add class .uir-Button-clear', () => {
+        const isClearClassName = getClassNameFromBoolPropKey(Button, 'isClear');
+
+        it(`does not add class ${isClearClassName}`, () => {
             const wrapper = shallow(<PrimaryButton isClear>Foo</PrimaryButton>);
 
-            expect(wrapper).not.to.have.className('uir-Button-clear');
+            expect(wrapper).not.to.have.className(isClearClassName);
         });
     });
 });

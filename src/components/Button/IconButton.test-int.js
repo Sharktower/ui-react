@@ -4,7 +4,7 @@
 Feature('IconButton');
 
 Scenario('renders and is clickable', (I, mapper) => {
-    const buttonContainer = '.uir-IconButton';
+    const buttonContainer = '.uir-icon-button';
     const arrowIcon = 'svg.uir-icon-arrow';
 
     I.amOnPage(mapper.buttonComponent.iconButtonDemo);

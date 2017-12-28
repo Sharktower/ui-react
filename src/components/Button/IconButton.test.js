@@ -7,11 +7,11 @@ import IconArrow from '../Icon/IconArrow';
 
 describe('IconButton', () => {
     common.propKeyToClassName(IconButton, 'isActive', {
-        className: 'uir-Button-active',
+        className: 'uir-button--active',
         requiredProps: { children: 'Foo' },
     });
     common.propKeyToClassName(IconButton, 'isDisabled', {
-        className: 'uir-Button-disabled',
+        className: 'uir-button--disabled',
         requiredProps: { children: 'Foo' },
     });
 
@@ -25,7 +25,7 @@ describe('IconButton', () => {
 
     it('adds class .uir-IconButton', () => {
         const wrapper = shallow(<IconButton><IconArrow /></IconButton>);
-        expect(wrapper).to.have.className('uir-IconButton');
+        expect(wrapper).to.have.className('uir-icon-button');
     });
 
     describe('className', () => {
@@ -39,10 +39,10 @@ describe('IconButton', () => {
     });
 
     describe('isFluid', () => {
-        it('does not add class uir-Button-fluid', () => {
+        it('does not add class uir-button--fluid', () => {
             const wrapper = shallow(<IconButton isFluid><IconArrow /></IconButton>).dive();
 
-            expect(wrapper).not.to.have.className('uir-Button-fluid');
+            expect(wrapper).not.to.have.className('uir-button--fluid');
         });
     });
 

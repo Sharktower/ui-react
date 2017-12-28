@@ -4,7 +4,6 @@ import cx from 'classnames';
 import Button from './Button';
 import './PrimaryButton.scss';
 
-
 const propTypes = {
     /** Extra classes for the top-level wrapper */
     className: PropTypes.string,
@@ -20,7 +19,7 @@ const PrimaryButton = ({
 }) => (
     <Button
         {...extraProps}
-        className={cx('uir-PrimaryButton', className)}
+        className={cx('uir-primary-button', className)}
         isClear={false}
     />
 );

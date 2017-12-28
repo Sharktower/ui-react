@@ -20,7 +20,7 @@ const IconButton = ({
 }) => (
     <Button
         {...extraProps}
-        className={cx('uir-IconButton', className)}
+        className={cx('uir-icon-button', className)}
         isFluid={false}
     />
 );

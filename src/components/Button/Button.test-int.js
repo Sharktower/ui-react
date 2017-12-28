@@ -4,7 +4,7 @@
 Feature('Button');
 
 Scenario('renders and is clickable', (I, mapper) => {
-    const buttonContainer = '.uir-Button';
+    const buttonContainer = '.uir-button';
 
     I.amOnPage(mapper.buttonComponent.buttonDemo);
     within({ frame: '#storybook-preview-iframe' }, () => {

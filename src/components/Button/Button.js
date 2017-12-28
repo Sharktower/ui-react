@@ -63,20 +63,20 @@ class Button extends Component {
                 type="button"
                 style={style}
                 className={cx(
-                    'uir-Button',
+                    'uir-button',
                     className,
                     {
-                        'uir-Button-fluid': isFluid,
-                        'uir-Button-clear': isClear,
-                        'uir-Button-active': isActive,
-                        'uir-Button-disabled': isDisabled,
+                        'uir-button--fluid': isFluid,
+                        'uir-button--clear': isClear,
+                        'uir-button--active': isActive,
+                        'uir-button--disabled': isDisabled,
                     },
                 )}
                 ref={this.handleRef}
                 disabled={isDisabled}
                 onClick={this.handleClick}
             >
-                <div className="uir-Button-content">
+                <div className="uir-button--content">
                     {children}
                 </div>
             </button>
