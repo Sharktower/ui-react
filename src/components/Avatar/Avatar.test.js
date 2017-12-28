@@ -3,22 +3,22 @@ import React from 'react';
 import sinon from 'sinon';
 import Avatar from './Avatar';
 
-const sandbox = sinon.sandbox.create();
-
-beforeEach(() => {
-    sandbox.stub(console, 'error');
-});
-
-afterEach(() => {
-    sandbox.restore();
-});
-
-const sampleData = {
-    name: 'Matt Davies',
-    src: 'https://randomuser.me/api/portraits/lego/2.jpg',
-};
-
 describe('Avatar', () => {
+    const sampleData = {
+        name: 'Matt Davies',
+        src: 'https://randomuser.me/api/portraits/lego/2.jpg',
+    };
+
+    const sandbox = sinon.sandbox.create();
+
+    beforeEach(() => {
+        sandbox.stub(console, 'error');
+    });
+
+    afterEach(() => {
+        sandbox.restore();
+    });
+
     it('complains if name is not provided', () => {
         shallow(<Avatar />);
         // eslint-disable-next-line no-console

@@ -1,43 +1,43 @@
 /* global describe, expect, it, shallow, beforeEach, afterEach */
 import React from 'react';
-// import sinon from 'sinon';
+import sinon from 'sinon';
 import Tooltip from './Tooltip';
 import Avatar from '../Avatar/Avatar';
 import AvatarCard from '../Avatar/AvatarCard';
 
-// const sandbox = sinon.sandbox.create();
-
-// beforeEach(() => {
-//     sandbox.stub(console, 'error');
-// });
-//
-// afterEach(() => {
-//     sandbox.restore();
-// });
-
-const exampleAvatar = (
-    <Avatar
-        name="John Smith"
-        src="https://randomuser.me/api/portraits/men/21.jpg"
-        size="lg"
-    />
-);
-
-const exampleTooltip = (
-    <AvatarCard
-        name="John Smith"
-        jobRole="Sales Manager"
-        team="Communication Team"
-        avatar={exampleAvatar}
-    />
-);
-
 describe('Tooltip', () => {
-    // it('complains if tooltip is not provided', () => {
-    //     shallow(<Tooltip>contents</Tooltip>);
-    //     // eslint-disable-next-line no-console
-    //     expect(console.error.calledWithMatch('The prop `name` is marked as required in `AvatarTitle`')).to.equal(true);
-    // });
+    const exampleAvatar = (
+        <Avatar
+            name="John Smith"
+            src="https://randomuser.me/api/portraits/men/21.jpg"
+            size="lg"
+        />
+    );
+
+    const exampleTooltip = (
+        <AvatarCard
+            name="John Smith"
+            jobRole="Sales Manager"
+            team="Communication Team"
+            avatar={exampleAvatar}
+        />
+    );
+
+    const sandbox = sinon.sandbox.create();
+
+    beforeEach(() => {
+        sandbox.stub(console, 'error');
+    });
+
+    afterEach(() => {
+        sandbox.restore();
+    });
+
+    it('complains if tooltip is not provided', () => {
+        shallow(<Tooltip>contents</Tooltip>);
+        // eslint-disable-next-line no-console
+        expect(console.error.calledWithMatch('The prop `tooltip` is marked as required in `Tooltip`')).to.equal(true);
+    });
 
     it('renders a div element', () => {
         const tooltip = shallow(<Tooltip tooltip={<div />}>{exampleAvatar}</Tooltip>);

@@ -1,39 +1,39 @@
 /* global describe, expect, it, shallow, beforeEach, afterEach  */
 import React from 'react';
-// import sinon from 'sinon';
+import sinon from 'sinon';
 import Avatar from './Avatar';
 import AvatarTitle from './AvatarTitle';
 
-// const sandbox = sinon.sandbox.create();
-//
-// beforeEach(() => {
-//     sandbox.stub(console, 'error');
-// });
-//
-// afterEach(() => {
-//     sandbox.restore();
-// });
-
-const exampleAvatar = (
-    <Avatar
-        name="David Smith"
-        src="https://randomuser.me/api/portraits/men/30.jpg"
-        size="lg"
-    />
-);
-
-const exampleUser = {
-    name: 'David Smith',
-    jobRole: 'Sales Manager',
-    team: 'Communication Team',
-};
-
 describe('AvatarTitle', () => {
-    // it('complains if user name is not provided', () => {
-    //     shallow(<AvatarTitle />);
-    //     // eslint-disable-next-line no-console
-    //     expect(console.error.calledWithMatch('The prop `name` is marked as required in `AvatarTitle`')).to.equal(true);
-    // });
+    const exampleAvatar = (
+        <Avatar
+            name="David Smith"
+            src="https://randomuser.me/api/portraits/men/30.jpg"
+            size="lg"
+        />
+    );
+
+    const exampleUser = {
+        name: 'David Smith',
+        jobRole: 'Sales Manager',
+        team: 'Communication Team',
+    };
+
+    const sandbox = sinon.sandbox.create();
+
+    beforeEach(() => {
+        sandbox.stub(console, 'error');
+    });
+
+    afterEach(() => {
+        sandbox.restore();
+    });
+
+    it('complains if user name is not provided', () => {
+        shallow(<AvatarTitle />);
+        // eslint-disable-next-line no-console
+        expect(console.error.called).to.equal(true);
+    });
 
     it('renders div elements', () => {
         const avatarTitle = shallow(<AvatarTitle />);
