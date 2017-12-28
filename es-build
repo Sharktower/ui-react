@@ -1,0 +1,47 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+
+const srcDir = path.resolve(__dirname, './src');
+const distDir = path.resolve(__dirname, './dist');
+const buildDir = `${distDir}/es`;
+
+const filesToAvoidRegEx = /(test|story).+$/;
+
+function findSourceFiles(directory, foundFiles) {
+    const files = fs.readdirSync(directory);
+    let sourceFiles = foundFiles || [];
+    files.forEach((file) => {
+        const fullPath = path.resolve(directory, file);
+        if (fs.statSync(fullPath).isDirectory()) {
+            sourceFiles = findSourceFiles(fullPath, sourceFiles);
+        } else {
+            sourceFiles.push(fullPath);
+        }
+    });
+    return sourceFiles;
+}
+
+function createDirectory(dir) {
+    if (fs.existsSync(dir) === false
+        || fs.statSync(dir).isDirectory() === false) {
+        fs.mkdirSync(dir);
+    }
+}
+
+let filesToMove = findSourceFiles(srcDir);
+filesToMove = filesToMove.filter(file => file.match(filesToAvoidRegEx) === null);
+filesToMove = filesToMove.map(file => ({ from: file, to: file.replace(srcDir, buildDir) }));
+
+createDirectory(distDir);
+createDirectory(buildDir);
+
+filesToMove.forEach((file) => {
+    const fileDir = path.dirname(file.to);
+    createDirectory(path.dirname(fileDir));
+    createDirectory(fileDir);
+    fs.copyFileSync(file.from, file.to);
+});
+
+console.log('Native ES build complete'); // eslint-disable-line no-console
