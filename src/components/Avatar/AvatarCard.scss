@@ -1,13 +1,15 @@
+@import "../variables";
+
 .uir-avatar-card {
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
     padding: 12px;
-    font-family: "DINOT", sans-serif;
+    font-family: $font;
     font-size: 13px;
-    color: #fff;
+    color: $white;
     white-space: nowrap;
-    background-color: #2f2833;
+    background-color: $charocal;
     border-radius: 3px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
     transition-timing-function: ease-in-out;

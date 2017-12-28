@@ -1,3 +1,5 @@
+@import "../variables";
+
 @keyframes uir-animate-icon-in {
 
     0% {
@@ -21,7 +23,7 @@
     position: relative;
     box-sizing: border-box;
     display: inline-block;
-    font-family: "DINOT", sans-serif;
+    font-family: $font;
     text-align: center;
     text-transform: uppercase;
     vertical-align: middle;
@@ -60,14 +62,14 @@
     &.uir-avatar--light {
 
         .uir-avatar-user-status {
-            background: #fff;
+            background: $white;
         }
     }
 
     &.uir-avatar--dark {
 
         .uir-avatar-user-status {
-            background: #3a333c;
+            background: $charocal;
         }
     }
 

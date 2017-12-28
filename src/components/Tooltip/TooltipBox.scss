@@ -1,11 +1,13 @@
+@import "../variables";
+
 .uir-tooltip-box {
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
     padding: 12px;
-    font-family: "DINOT", sans-serif;
+    font-family: $font;
     font-size: 13px;
-    color: #fff;
+    color: $white;
     white-space: nowrap;
     border-radius: 3px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
@@ -14,14 +16,14 @@
     transition-property: all;
 
     &.uir-tooltip-box--default {
-        background-color: #2f2833;
+        background-color: $charocal;
     }
 
     &.uir-tooltip-box--success {
-        background-color: #46bead;
+        background-color: $teal;
     }
 
     &.uir-tooltip-box--error {
-        background-color: #fd2a7d;
+        background-color: $pink;
     }
 }

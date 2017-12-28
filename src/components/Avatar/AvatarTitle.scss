@@ -1,9 +1,11 @@
+@import "../variables";
+
 .uir-avatar-title {
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
-    font-family: "DINOT", sans-serif;
-    color: #302933;
+    font-family: $font;
+    color: $charocal;
     white-space: nowrap;
     transition-timing-function: ease-in-out;
     transition-duration: 1s;
