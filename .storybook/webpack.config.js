@@ -1,68 +1,31 @@
 const path = require('path');
-var StyleLintPlugin = require('stylelint-webpack-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
+const webpackConfig = require('../webpack.config.js')[0];
 
 // We are extending the default storybook webpack config.
 // https://github.com/storybooks/storybook/blob/master/app/react/src/server/config/defaults/webpack.config.js
 
-// Export a function. Accept the base config as the only param.
-module.exports = (storybookBaseConfig, configType) => {
-  // configType has a value of 'DEVELOPMENT' or 'PRODUCTION'
-  // You can change the configuration based on that.
-  // 'PRODUCTION' is used when building the static version of storybook.
+module.exports = (storybookWebpackConfig, configType) => {
 
-  storybookBaseConfig.module.rules.push({
-    test: /\.svg$/,
-    use: [
-      {
-        loader: "babel-loader"
-      },
-      {
-        loader: "react-svg-loader",
+    storybookWebpackConfig.plugins.push(
+        new StyleLintPlugin({
+            configFile: path.resolve(__dirname, '../.stylelintrc.js'),
+            context: path.resolve(__dirname, '../src'),
+            syntax: 'scss'
+        }),
+    );
+
+    storybookWebpackConfig.module.rules.push({
+        test: /\.js$/,
+        enforce: "pre",
+        loader: "eslint-loader",
         options: {
-          jsx: true // true outputs JSX tags
-        }
-      }
-    ]
-  });
+            emitWarning: true
+        },
+        include: path.resolve(__dirname, '../src')
+    });
 
-  storybookBaseConfig.plugins.push(
-      new StyleLintPlugin({
-          configFile: path.resolve(__dirname, '../.stylelintrc.js'),
-          context: path.resolve(__dirname, '../src'),
-          syntax: 'scss'
-      }),
-  );
+    webpackConfig.module.rules.forEach(rule => storybookWebpackConfig.module.rules.push(rule));
 
-  storybookBaseConfig.module.rules.push({
-    test: /\.scss$/,
-    loaders: [
-      "style-loader",
-      {
-        loader: "css-loader",
-        options: {
-            importLoaders: 1,
-        }
-      },
-      "sass-loader"
-    ],
-    include: path.resolve(__dirname, '../src')
-  });
-
-  storybookBaseConfig.module.rules.push({
-    test: /\.js$/,
-    enforce: "pre",
-    loader: "eslint-loader",
-    options: {
-        emitWarning: true
-    },
-    include: path.resolve(__dirname, '../src')
-  });
-
-  storybookBaseConfig.module.rules.push({
-    test: /\.js$/,
-    loader: "babel-loader",
-    include: path.resolve(__dirname, '../src')
-  });
-
-  return storybookBaseConfig;
+    return storybookWebpackConfig;
 };
