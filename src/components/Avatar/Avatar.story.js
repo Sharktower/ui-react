@@ -27,7 +27,6 @@ stories.add(
             <Avatar
                 name="Jane Doe"
                 initials="JD"
-                style={{ marginRight: '10px' }}
             />
         </div>,
     ),
@@ -69,7 +68,6 @@ stories.add(
                 initials="JD"
                 src="https://randomuser.me/api/portraits/women/58.jpg"
                 size="lg"
-                style={{ marginRight: '10px' }}
             />
         </div>,
     ),
@@ -154,7 +152,6 @@ stories.add(
                 src="https://randomuser.me/api/portraits/women/44.jpg"
                 hasHalo
                 size="lg"
-                style={{ marginRight: '10px' }}
             />
         </div>,
     ),
@@ -193,7 +190,6 @@ stories.add(
                 initials="DS"
                 src="https://randomuser.me/api/portraits/men/84.jpg"
                 status="🤕"
-                style={{ marginRight: '30px' }}
             />
         </div>,
     ),
@@ -239,7 +235,6 @@ Use the theme prop to set the status and notification icon background.`,
                 size="lg"
                 src="https://randomuser.me/api/portraits/men/3.jpg"
                 status="🏆"
-                style={{ marginRight: '30px' }}
             />
         </div>,
     ),
@@ -282,7 +277,6 @@ stories.add(
                 initials="JS"
                 size="lg"
                 hasNotification
-                style={{ marginRight: '30px' }}
             />
         </div>,
     ),
