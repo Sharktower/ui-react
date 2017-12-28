@@ -36,7 +36,7 @@
     "test:unit": "karma start karma.config.js --autoWatch false --singleRun true",
     "test:unit-watch": "karma start karma.config.js --autoWatch true --singleRun false",
     "test:int": "codeceptjs run",
-    "test:int-setup": "./test/codecept/setup.sh",
+    "test:int-setup": "./test/codecept/setup",
     "selenium": "selenium-standalone"
   },
   "devDependencies": {
