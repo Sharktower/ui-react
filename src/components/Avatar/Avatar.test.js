@@ -1,4 +1,4 @@
-/* global describe, expect, it, shallow, beforeEach, afterEach  */
+/* global describe, expect, it, shallow, mount, beforeEach, afterEach  */
 import React from 'react';
 import sinon from 'sinon';
 import Avatar from './Avatar';
@@ -84,7 +84,7 @@ describe('Avatar', () => {
         const avatar = shallow(<Avatar
             name={sampleData.name}
         />);
-        expect(avatar.find('div').at(0).props()).to.have.property('aria-label', `${sampleData.name} avatar`);
+        expect(avatar.find('div').at(0).props()).to.have.property('aria-label', sampleData.name);
     });
 
     it('can have a tabIndex', () => {
@@ -164,7 +164,7 @@ describe('Avatar', () => {
 
     it('triggers click handler when clicked', () => {
         const onClickSpy = sinon.spy();
-        const avatar = shallow(<Avatar
+        const avatar = mount(<Avatar
             name={sampleData.name}
             onClick={onClickSpy}
         />);

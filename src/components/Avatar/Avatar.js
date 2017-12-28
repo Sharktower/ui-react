@@ -35,10 +35,13 @@ const defaultProps = {
 };
 
 class Avatar extends Component {
+    avatarRef = null
+
     handleClick = (event) => {
         const propsOnClick = this.props.onClick;
         if (propsOnClick) {
             propsOnClick(event);
+            this.avatarRef.blur();
         }
     }
 
@@ -66,14 +69,16 @@ class Avatar extends Component {
             : null;
         return (
             <div
+                ref={(div) => { this.avatarRef = div; }}
                 className={cx(
                     'uir-avatar',
                     `uir-avatar--${this.props.theme}`,
                     `uir-avatar--${this.props.size}`,
+                    { 'uir-avatar--disabled': this.props.onClick === null },
                     this.props.className,
                 )}
                 title={this.props.name}
-                aria-label={`${this.props.name} avatar`}
+                aria-label={this.props.name}
                 role="button"
                 tabIndex={this.props.tabIndex}
                 onClick={this.handleClick}

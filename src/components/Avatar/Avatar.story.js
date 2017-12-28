@@ -240,3 +240,16 @@ stories.add(
         </div>,
     ),
 );
+
+stories.add(
+    'Clickable',
+    storyWrapper(
+        'Any avatar can be clicked',
+        <Avatar
+            name="Jane Smith"
+            size="lg"
+            src="https://randomuser.me/api/portraits/women/68.jpg"
+            onClick={() => { alert('it works!') }} // eslint-disable-line
+        />,
+    ),
+);
