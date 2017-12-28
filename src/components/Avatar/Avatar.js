@@ -11,7 +11,8 @@ const propTypes = {
     size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg']),
     theme: PropTypes.oneOf(['light', 'dark']),
     status: PropTypes.string,
-    notification: PropTypes.bool,
+    hasNotification: PropTypes.bool,
+    hasHalo: PropTypes.bool,
     onClick: PropTypes.func,
     tabIndex: PropTypes.number,
     className: PropTypes.string,
@@ -27,7 +28,8 @@ const defaultProps = {
     size: 'md',
     theme: 'light',
     status: null,
-    notification: false,
+    hasNotification: false,
+    hasHalo: false,
     onClick: null,
     tabIndex: 0,
     className: null,
@@ -53,7 +55,7 @@ class Avatar extends Component {
         const imageOrInitials = this.props.src
             ? <img src={this.props.src} alt={`${this.props.name} profile`} />
             : this.props.initials || this.calculateInitials(this.props.name);
-        const notification = this.props.notification
+        const notification = this.props.hasNotification
             ? (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <g fill="none" fillRule="evenodd" transform="translate(3 3)">
@@ -75,6 +77,7 @@ class Avatar extends Component {
                     `uir-avatar--${this.props.theme}`,
                     `uir-avatar--${this.props.size}`,
                     { 'uir-avatar--disabled': this.props.onClick === null },
+                    { 'uir-avatar--halo': this.props.hasHalo },
                     this.props.className,
                 )}
                 title={this.props.name}

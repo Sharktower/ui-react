@@ -114,6 +114,53 @@ stories.add(
 );
 
 stories.add(
+    'Halo',
+    storyWrapper(
+        'Use the hasHalo prop to give the avatar a spinning halo',
+        <Avatar
+            name="Jane Doe"
+            initials="JD"
+            src="https://randomuser.me/api/portraits/women/44.jpg"
+            hasHalo
+        />,
+        <div>
+            <Avatar
+                name="Jane Doe"
+                initials="JD"
+                src="https://randomuser.me/api/portraits/women/44.jpg"
+                hasHalo
+                size="xs"
+                style={{ marginRight: '10px' }}
+            />
+            <Avatar
+                name="Jane Doe"
+                initials="JD"
+                src="https://randomuser.me/api/portraits/women/44.jpg"
+                hasHalo
+                size="sm"
+                style={{ marginRight: '10px' }}
+            />
+            <Avatar
+                name="Jane Doe"
+                initials="JD"
+                src="https://randomuser.me/api/portraits/women/44.jpg"
+                hasHalo
+                size="md"
+                style={{ marginRight: '10px' }}
+            />
+            <Avatar
+                name="Jane Doe"
+                initials="JD"
+                src="https://randomuser.me/api/portraits/women/44.jpg"
+                hasHalo
+                size="lg"
+                style={{ marginRight: '10px' }}
+            />
+        </div>,
+    ),
+);
+
+stories.add(
     'Status',
     storyWrapper(
         'Displays emoji status icon',
@@ -207,34 +254,34 @@ stories.add(
             initials="JS"
             size="lg"
             src="https://randomuser.me/api/portraits/women/68.jpg"
-            notification
+            hasNotification
         />,
         <div>
             <Avatar
                 name="Jane Smith"
                 initials="JS"
                 size="sm"
-                notification
+                hasNotification
                 style={{ marginRight: '30px' }}
             />
             <Avatar
                 name="Jane Smith"
                 initials="JS"
                 size="md"
-                notification
+                hasNotification
                 style={{ marginRight: '30px' }}
             />
             <Avatar
                 name="Jane Smith"
                 initials="JS"
-                notification
+                hasNotification
                 style={{ marginRight: '30px' }}
             />
             <Avatar
                 name="Jane Smith"
                 initials="JS"
                 size="lg"
-                notification
+                hasNotification
                 style={{ marginRight: '30px' }}
             />
         </div>,
@@ -248,7 +295,7 @@ stories.add(
         <Avatar
             name="Jane Smith"
             size="lg"
-            src="https://randomuser.me/api/portraits/women/68.jpg"
+            src="https://randomuser.me/api/portraits/women/8.jpg"
             onClick={() => { alert('it works!') }} // eslint-disable-line
         />,
     ),

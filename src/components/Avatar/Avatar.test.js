@@ -133,10 +133,19 @@ describe('Avatar', () => {
     testComponentSize('medium', 'md');
     testComponentSize('large', 'lg');
 
+    it('can display a halo around the avatar', () => {
+        const avatar = shallow(<Avatar
+            name={sampleData.name}
+            hasHalo
+        />);
+        const hasClass = avatar.find('div').at(0).hasClass('uir-avatar--halo');
+        expect(hasClass).to.equal(true);
+    });
+
     it('can display a notification icon', () => {
         const avatar = shallow(<Avatar
             name={sampleData.name}
-            notification
+            hasNotification
         />);
         expect(avatar.find('span').at(1).hasClass('uir-avatar-user-status'))
             .to.equal(true);

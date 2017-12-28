@@ -1,6 +1,17 @@
 @import "../variables";
 
-@keyframes uir-animate-icon-in {
+@keyframes uir-spin-halo {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes uir-status-icon-pop-in {
 
     0% {
         transform: scale(.75);
@@ -19,6 +30,30 @@
     }
 }
 
+$sizes: (
+    xs: (
+        avatar: ( size: 24px, font: 12px ),
+        status: ( size: 14px, font: 8px )
+    ),
+    sm: (
+        avatar: ( size: 36px, font: 16px ),
+        status: ( size: 20px, font: 12px )
+    ),
+    md: (
+        avatar: ( size: 48px, font: 22px ),
+        status: ( size: 26px, font: 18px )
+    ),
+    lg: (
+        avatar: ( size: 60px, font: 28px ),
+        status: ( size: 33px, font: 23px )
+    ),
+);
+
+$themes: (
+    light: $white,
+    dark: $charocal
+);
+
 .uir-avatar {
     position: relative;
     box-sizing: border-box;
@@ -27,6 +62,44 @@
     text-align: center;
     text-transform: uppercase;
     vertical-align: middle;
+
+    @each $size, $details in $sizes {
+        $avatarDetails: map-get($details, "avatar");
+        $statusDetails: map-get($details, "status");
+
+        &.uir-avatar--#{$size} {
+            $avatarSize: map-get($avatarDetails, "size");
+            $avatarFont: map-get($avatarDetails, "font");
+            width: $avatarSize;
+            height: $avatarSize;
+            font-size: $avatarFont;
+            line-height: $avatarSize;
+
+            .uir-avatar-user-status {
+                $statusSize: map-get($statusDetails, "size");
+                $statusFont: map-get($statusDetails, "font");
+                width: $statusSize;
+                height: $statusSize;
+                font-size: $statusFont;
+                line-height: $statusSize;
+            }
+
+            &.uir-avatar--halo .uir-avatar-inner::before {
+                width: $avatarSize + 4px;
+                height: $avatarSize + 4px;
+            }
+        }
+    }
+
+    @each $theme, $background in $themes {
+
+        &.uir-avatar--#{$theme} {
+
+            .uir-avatar-user-status {
+                background: $background;
+            }
+        }
+    }
 
     &:hover {
         cursor: pointer;
@@ -38,12 +111,47 @@
         opacity: .8;
     }
 
+    &.uir-avatar--disabled {
+
+        &:hover,
+        &:focus {
+            cursor: default;
+            outline: none;
+            opacity: 1;
+        }
+    }
+
+    &.uir-avatar--halo {
+
+        .uir-avatar-inner {
+            border-color: #fff;
+            border-style: solid;
+            border-width: 2px;
+
+            &::before {
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                z-index: -1;
+                display: block;
+                content: "";
+                background-image: radial-gradient(farthest-corner at 0 0, $pink 0%, $pink 75%, $yellow 80%);
+                border-radius: 50%;
+                animation-name: uir-spin-halo;
+                animation-duration: 3s;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
+            }
+        }
+    }
+
     .uir-avatar-inner {
+        box-sizing: border-box;
         display: block;
         width: 100%;
         height: 100%;
         overflow: hidden;
-        background-color: rgba(47, 40, 51, .1);
+        background-color: $grey;
         border-radius: 50%;
 
         img,
@@ -59,89 +167,8 @@
         bottom: 0%;
         display: block;
         border-radius: 50%;
-        animation-name: uir-animate-icon-in;
+        animation-name: uir-status-icon-pop-in;
         animation-duration: .6s;
         animation-delay: .2s;
     }
-
-    &.uir-avatar--disabled {
-
-        &:hover,
-        &:focus {
-            cursor: default;
-            outline: none;
-            opacity: 1;
-        }
-    }
-
-    &.uir-avatar--light {
-
-        .uir-avatar-user-status {
-            background: $white;
-        }
-    }
-
-    &.uir-avatar--dark {
-
-        .uir-avatar-user-status {
-            background: $charocal;
-        }
-    }
-
-    &.uir-avatar--xs {
-        width: 24px;
-        height: 24px;
-        font-size: 12px;
-        line-height: 24px;
-
-        .uir-avatar-user-status {
-            width: 14px;
-            height: 14px;
-            font-size: 8px;
-            line-height: 14px;
-        }
-    }
-
-    &.uir-avatar--md {
-        width: 48px;
-        height: 48px;
-        font-size: 22px;
-        line-height: 48px;
-
-        .uir-avatar-user-status {
-            width: 26px;
-            height: 26px;
-            font-size: 18px;
-            line-height: 27px;
-        }
-    }
-
-    &.uir-avatar--sm {
-        width: 36px;
-        height: 36px;
-        font-size: 16px;
-        line-height: 36px;
-
-        .uir-avatar-user-status {
-            width: 20px;
-            height: 20px;
-            font-size: 13px;
-            line-height: 21px;
-        }
-    }
-
-    &.uir-avatar--lg {
-        width: 60px;
-        height: 60px;
-        font-size: 28px;
-        line-height: 60px;
-
-        .uir-avatar-user-status {
-            width: 33px;
-            height: 33px;
-            font-size: 23px;
-            line-height: 34px;
-        }
-    }
-
 }
