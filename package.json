@@ -18,7 +18,7 @@
     "build": "npm-run-all -s library:clean library:build",
     "library:clean": "rm -rf ./dist",
     "library:build": "yarn lint && webpack",
-    "storybook:deploy": "yarn lint && storybook-to-ghpages",
+    "storybook:build": "yarn lint && build-storybook -o ./docs",
     "storybook:watch": "start-storybook -p 6006",
     "lint": "npm-run-all -s lint:scss lint:js",
     "lint:scss": "stylelint 'src/**/*.scss'",
