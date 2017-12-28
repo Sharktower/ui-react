@@ -56,6 +56,20 @@ describe('Tooltip', () => {
             .to.equal(true);
     });
 
+    it('has top-left class by default', () => {
+        const tooltip = shallow(<Tooltip tooltip={<div />}>{exampleAvatar}</Tooltip>);
+        expect(tooltip.find('div').at(0).hasClass('uir-tooltip--top-left'))
+            .to.equal(true);
+    });
+
+    ['top-left', 'top-right', 'bottom-right', 'bottom-left'].forEach((position) => {
+        it(`can pass through position class ${position}`, () => {
+            const tooltip = shallow(<Tooltip position={position} tooltip={<div />}>{exampleAvatar}</Tooltip>);
+            expect(tooltip.find('div').at(0).hasClass(`uir-tooltip--${position}`))
+                .to.equal(true);
+        });
+    });
+
     it('can pass through class', () => {
         const exampleClassName = 'example-class';
         const tooltip = shallow(<Tooltip tooltip={<div />} className={exampleClassName} />);

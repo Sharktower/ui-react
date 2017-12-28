@@ -1,27 +1,57 @@
-$tooltipTranslate: translate(-20%, -100%);
+$tooltipTranslations: (
+    top-left: translate(-10%, -100%),
+    top-right: translate(10%, -100%),
+    bottom-right: translate(10%, 100%),
+    bottom-left: translate(-10%, 100%),
+);
 
-@keyframes uir-animate-tooltip-in {
+$tooltipPositions: (
+    top-left: (top: 0, right: auto, bottom: auto, left: 0),
+    top-right: (top: 0, right: 0, bottom: auto, left: auto),
+    bottom-right: (top: auto, right: 0, bottom: 0, left: auto),
+    bottom-left: (top: auto, right: auto, bottom: 0, left: 0),
+);
 
-    0% {
-        transform: $tooltipTranslate rotate(-2deg);
-    }
+@each $position, $tooltipTranslate in $tooltipTranslations {
+    @keyframes uir-animate-tooltip-in--#{$position} {
 
-    40% {
-        transform: $tooltipTranslate rotate(3deg);
-    }
+        0% {
+            transform: $tooltipTranslate rotate(-2deg);
+        }
 
-    60% {
-        transform: $tooltipTranslate rotate(-3deg);
-    }
+        40% {
+            transform: $tooltipTranslate rotate(3deg);
+        }
 
-    100% {
-        transform: $tooltipTranslate rotate(0deg);
+        60% {
+            transform: $tooltipTranslate rotate(-3deg);
+        }
+
+        100% {
+            transform: $tooltipTranslate rotate(0deg);
+        }
     }
 }
 
 .uir-tooltip {
     position: relative;
     display: inline-block;
+
+    @each $position in top-left, top-right, bottom-right, bottom-left {
+
+        &.uir-tooltip--#{$position} {
+            $positons: map-get($tooltipPositions, $position);
+
+            .uir-tooltip-contents {
+                top: map-get($positons, "top");
+                right: map-get($positons, "right");
+                bottom: map-get($positons, "bottom");
+                left: map-get($positons, "left");
+                transform: map-get($tooltipTranslations, $position);
+                animation-name: uir-animate-tooltip-in--#{$position};
+            }
+        }
+    }
 
     &:focus {
         outline: none;
@@ -30,14 +60,10 @@ $tooltipTranslate: translate(-20%, -100%);
             opacity: .8;
         }
     }
-}
 
-.uir-tooltip-contents {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    transform: $tooltipTranslate;
-    animation-name: uir-animate-tooltip-in;
-    animation-duration: .3s;
+    .uir-tooltip-contents {
+        position: absolute;
+        z-index: 1000;
+        animation-duration: .3s;
+    }
 }

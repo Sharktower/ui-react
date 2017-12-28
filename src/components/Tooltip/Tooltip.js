@@ -6,6 +6,7 @@ import './Tooltip.scss';
 const propTypes = {
     children: PropTypes.element.isRequired,
     tooltip: PropTypes.element.isRequired,
+    position: PropTypes.oneOf(['top-left', 'top-right', 'bottom-right', 'bottom-left']),
     showTooltip: PropTypes.bool,
     tabIndex: PropTypes.number,
     className: PropTypes.string,
@@ -16,6 +17,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    position: 'top-left',
     showTooltip: null,
     tabIndex: 0,
     className: null,
@@ -40,7 +42,11 @@ class Tooltip extends Component {
             : null;
         return (
             <div
-                className={cx('uir-tooltip', this.props.className)}
+                className={cx(
+                    'uir-tooltip',
+                    `uir-tooltip--${this.props.position}`,
+                    this.props.className,
+                )}
                 onMouseEnter={this.handleFocus}
                 onMouseLeave={this.handleBlur}
                 onFocus={this.handleFocus}
