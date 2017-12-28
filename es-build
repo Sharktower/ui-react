@@ -23,16 +23,16 @@ function findSourceFiles(directory, foundFiles) {
     return sourceFiles;
 }
 
-let filesToMove = findSourceFiles(srcDir);
-filesToMove = filesToMove.filter(file => file.match(filesToAvoidRegEx) === null);
-filesToMove = filesToMove.map(file => ({ from: file, to: file.replace(srcDir, buildDir) }));
-
 function createDirectory(dir) {
     if (fs.existsSync(dir) === false
         || fs.statSync(dir).isDirectory() === false) {
         fs.mkdirSync(dir);
     }
 }
+
+let filesToMove = findSourceFiles(srcDir);
+filesToMove = filesToMove.filter(file => file.match(filesToAvoidRegEx) === null);
+filesToMove = filesToMove.map(file => ({ from: file, to: file.replace(srcDir, buildDir) }));
 
 createDirectory(distDir);
 createDirectory(buildDir);
