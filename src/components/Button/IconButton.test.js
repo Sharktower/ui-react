@@ -2,16 +2,20 @@
 import React from 'react';
 import { sandbox } from '../../../test/unit/utils';
 import * as common from '../../../test/unit/commonTests';
+import getClassNameFromBoolPropKey from '../../../test/unit/utils/getClassNameFromBoolPropKey';
+import Button from './Button';
 import IconButton from './IconButton';
 import IconArrow from '../Icon/IconArrow';
 
 describe('IconButton', () => {
+    const buttonActiveClassName = getClassNameFromBoolPropKey(Button, 'isActive');
     common.propKeyToClassName(IconButton, 'isActive', {
-        className: 'uir-button--active',
+        className: buttonActiveClassName,
         requiredProps: { children: 'Foo' },
     });
+    const buttonDisabledClassName = getClassNameFromBoolPropKey(Button, 'isDisabled');
     common.propKeyToClassName(IconButton, 'isDisabled', {
-        className: 'uir-button--disabled',
+        className: buttonDisabledClassName,
         requiredProps: { children: 'Foo' },
     });
 
@@ -23,7 +27,15 @@ describe('IconButton', () => {
         expect(wrapper).to.have.tagName('button');
     });
 
-    it('adds class .uir-IconButton', () => {
+    it('wraps a Button component', () => {
+        const wrapper = shallow((
+            <IconButton>Foo</IconButton>
+        ));
+
+        expect(wrapper).to.have.exactly(1).descendants(Button);
+    });
+
+    it('adds class .uir-icon-button', () => {
         const wrapper = shallow(<IconButton><IconArrow /></IconButton>);
         expect(wrapper).to.have.className('uir-icon-button');
     });
@@ -39,10 +51,12 @@ describe('IconButton', () => {
     });
 
     describe('isFluid', () => {
-        it('does not add class uir-button--fluid', () => {
+        const isFluidClassName = getClassNameFromBoolPropKey(Button, 'isFluid');
+
+        it(`does not add class ${isFluidClassName}`, () => {
             const wrapper = shallow(<IconButton isFluid><IconArrow /></IconButton>).dive();
 
-            expect(wrapper).not.to.have.className('uir-button--fluid');
+            expect(wrapper).not.to.have.className(isFluidClassName);
         });
     });
 
