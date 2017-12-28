@@ -23,7 +23,7 @@
     "library:clean": "rimraf ./dist",
     "library:build": "npm-run-all -s lint library:build-umd library:build-es",
     "library:build-umd": "webpack",
-    "library:build-es": "./es-build.sh",
+    "library:build-es": "node es-build",
     "storybook:clean": "rimraf ./storybook-static",
     "storybook:build": "yarn lint && build-storybook",
     "storybook:watch": "start-storybook -p 6006",
