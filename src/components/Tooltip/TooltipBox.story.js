@@ -8,7 +8,11 @@ const stories = storiesOf('Tooltip.TooltipBox', module);
 stories.add(
     'Standard',
     storyWrapper(
-        'Standard tooltip box component',
+        `
+The tooltip box component provides default tooltip styling.
+
+_NB: any element can be used as a tooltip._
+`,
         <TooltipBox style={{ position: 'relative', transform: 'translate(0, 0)', animationName: 'none' }}>
             <div>My Tooltip Contents</div>
         </TooltipBox>,
@@ -18,7 +22,7 @@ stories.add(
 stories.add(
     'Success',
     storyWrapper(
-        'Success tooltip box component',
+        'Pass "success" to the `status` prop to change to the success state.',
         <TooltipBox status="success" style={{ position: 'relative', transform: 'translate(0, 0)', animationName: 'none' }}>
             <div>My Tooltip Contents</div>
         </TooltipBox>,
@@ -28,7 +32,7 @@ stories.add(
 stories.add(
     'Error',
     storyWrapper(
-        'Error tooltip box component',
+        'Pass "error" to the `status` prop to change to the error state.',
         <TooltipBox status="error" style={{ position: 'relative', transform: 'translate(0, 0)', animationName: 'none' }}>
             <div>My Tooltip Contents</div>
         </TooltipBox>,

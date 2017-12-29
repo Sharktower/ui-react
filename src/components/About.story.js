@@ -6,8 +6,73 @@ const stories = storiesOf('About', module);
 stories.add(
     'Welcome',
     overviewWrapper(`
-This is my example introduction...
 
-More code will go here!
+UI React is the Mudano component library.
+
+If you have questions ask the development team on Slack: [#ui-react](slack://channel?id=C89RXMYJY&team=T065RT3A7)
+
+### Installation
+
+    yarn add @mudano/ui-react
+
+_NB: installation from NPM is not yet available_
+
+### Requirements
+
+UI React components are only compatibly with a React application and require the following:
+
+    node >=8.5.0
+    react >=0.14.0 <= 15
+    react-dom >=0.14.0 <= 15
+
+You'll also need the prop-types package:
+
+    yarn add prop-types
+
+If you are using the native ES6 modules, you'll need to compile your application, we recommend webpack.
+
+    yarn add babel-core babel-loader css-loader node-sass sass-loader style-loader webpack --dev
+
+### Usage
+
+You can consume UI React in one of two ways, as a whole library or as individual components.
+
+    import { YourComponent } from '@mudano/ui-react'; // UMD Modules
+
+    import { YourComponent } from 'node_modules/@mudao/ui-react/es/index.js'; // Native ES6 Modules
+
+    import YourComponent from 'node_modules/@mudao/ui-react/es/component/YourComponent/YourComponent.js';
+
+### Issues
+
+Spotted an issue?
+
+Please report it at [https://github.com/Mudano/ui-react/issues](https://github.com/Mudano/ui-react/issues)
+
+### Development
+
+To help with development, clone the repoistory from here: [https://github.com/Mudano/ui-react](https://github.com/Mudano/ui-react)
+
+To get started run the following:
+
+    yarn install
+    yarn start
+
+You can then view the Storybook here: [http://localhost:6006/](http://localhost:6006/)
+
+### Testing
+
+To run unit tests use:
+
+    yarn test:unit
+
+To run integration tests first setup the test server:
+
+    yarn test:int-setup
+
+And then in a new terminal run:
+
+    yarn test:int
+
     `),
 );

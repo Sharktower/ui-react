@@ -33,7 +33,11 @@ const exampleAvatarLarge = (
 stories.add(
     'Overview',
     storyWrapper(
-        'AvatarTitle description will go here',
+        `
+The AvatarTitle component displays a user's name and job role with a clear background.
+
+The AvatarTitle resizes depending on the content provided.
+        `,
         <AvatarTitle
             name="Jane Smith"
             jobRole="Delivery Manager"
@@ -46,7 +50,7 @@ stories.add(
 stories.add(
     'Name only',
     storyWrapper(
-        'Example AvatarTitle',
+        'The most simple AvatarTitle takes a `name` prop only.',
         <AvatarTitle
             name="Jane Smith"
         />,
@@ -56,7 +60,7 @@ stories.add(
 stories.add(
     'Name and profile',
     storyWrapper(
-        'Example AvatarTitle',
+        'The smallest AvatarTitle can also display an Avatar via the `avatar` prop.',
         <AvatarTitle
             name="Jane Smith"
             avatar={exampleAvatarSmall}
@@ -67,7 +71,7 @@ stories.add(
 stories.add(
     'Name and role',
     storyWrapper(
-        'Example AvatarTitle',
+        'Provide a `jobRole` prop for a midsize AvatarTitle.',
         <AvatarTitle
             name="Jane Smith"
             jobRole="Delivery Manager"
@@ -78,7 +82,7 @@ stories.add(
 stories.add(
     'Name, role and profile',
     storyWrapper(
-        'Example AvatarTitle',
+        'The midsize AvatarTitle can also take an Avatar via the `avatar` prop.',
         <AvatarTitle
             name="Jane Smith"
             jobRole="Delivery Manager"
@@ -90,7 +94,7 @@ stories.add(
 stories.add(
     'Name and role (large)',
     storyWrapper(
-        'Example AvatarTitle',
+        'Pass "lg" to the `size` prop to render a larger AvatarTitle.',
         <AvatarTitle
             name="Jane Smith"
             jobRole="Delivery Manager"
@@ -102,7 +106,7 @@ stories.add(
 stories.add(
     'Name, role and profile (large)',
     storyWrapper(
-        'Example AvatarTitle',
+        'The large AvatarTitle can also take an Avatar via the `avatar` prop.',
         <AvatarTitle
             name="Jane Smith"
             jobRole="Delivery Manager"

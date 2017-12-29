@@ -28,7 +28,30 @@ const exampleTooltip = (
 stories.add(
     'Wrapper',
     storyWrapper(
-        'Simple tooltip wrapper',
+        `
+To utilise a tooltip, wrap your trigger element in the Tooltip component.
+
+Then pass your tooltip element to the \`tooltip\` prop.
+
+For example:
+
+    const AvatarCard = (
+        <AvatarCard
+            name="John Smith"
+            jobRole="Sales Manager"
+            team="Communication Team"
+            avatar={exampleAvatar}
+        />
+    );
+
+    <Tooltip tooltip={AvatarCard}>
+        <Avatar
+            name="John Smith"
+            src="https://randomuser.me/api/portraits/men/21.jpg"
+            size="lg"
+        />
+    </Tooltip>
+`,
         <Tooltip tooltip={exampleTooltip}>
             {exampleAvatar}
         </Tooltip>,
@@ -38,8 +61,8 @@ stories.add(
 stories.add(
     'Show',
     storyWrapper(
-        'Simple tooltip wrapper',
-        <Tooltip showTooltip tooltip={exampleTooltip}>
+        'Pass the `showTooltip` prop to force show a tooltip.',
+        <Tooltip showTooltip tooltip={<TooltipBox>my tooltip</TooltipBox>}>
             {exampleAvatar}
         </Tooltip>,
     ),
@@ -48,7 +71,7 @@ stories.add(
 stories.add(
     'Position',
     storyWrapper(
-        'Simple tooltip wrapper',
+        'Use the `position` prop to change the location of the tooltip.',
         <Tooltip position="top-left" tooltip={<TooltipBox>Top Left</TooltipBox>}>
             {exampleAvatar}
         </Tooltip>,

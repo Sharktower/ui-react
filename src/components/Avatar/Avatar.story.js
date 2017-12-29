@@ -8,7 +8,7 @@ const stories = storiesOf('Avatar.Avatar', module);
 stories.add(
     'Overview',
     storyWrapper(
-        'Avatar description will go here',
+        'The avatar is a round user profile icon.  The avatar\'s primary role is as a button.',
         <Avatar name="David Smith" initials="DS" />,
     ),
 );
@@ -16,7 +16,13 @@ stories.add(
 stories.add(
     'Initials',
     storyWrapper(
-        'The default avatar displays the users initials and no profile image',
+        `
+The default avatar displays the user's initials.
+
+Initials is automatically calculated from the user's name.
+
+You can override this by setting the \`initials\` prop.
+        `,
         <Avatar name="David Smith" initials="DS" />,
         <div>
             <Avatar
@@ -35,7 +41,7 @@ stories.add(
 stories.add(
     'Image',
     storyWrapper(
-        'Provide a src to the avatar and the initials will be hidden',
+        'Provide an image to the `src` prop and the initials will be hidden in favour of the image.',
         <Avatar
             name="Jane Doe"
             initials="JD"
@@ -76,8 +82,11 @@ stories.add(
 stories.add(
     'Size',
     storyWrapper(
-        `Use the size prop to create a sm, md or lg avatar.
-        Remove the size prop for the default size.`,
+        `
+Use the size prop to create a xs, sm, md or lg avatar.
+
+Remove the size prop for the default (md) size.
+        `,
         <Avatar
             name="Joe Bloggs"
             initials="JB"
@@ -114,7 +123,7 @@ stories.add(
 stories.add(
     'Halo',
     storyWrapper(
-        'Use the hasHalo prop to give the avatar a spinning halo',
+        'Use the `hasHalo` prop to give the avatar a spinning halo border.',
         <Avatar
             name="Jane Doe"
             initials="JD"
@@ -160,7 +169,7 @@ stories.add(
 stories.add(
     'Status',
     storyWrapper(
-        'Displays emoji status icon',
+        'Pass an emoji to the `status` prop to display a status icon.',
         <Avatar
             name="David Smith"
             initials="DS"
@@ -172,7 +181,7 @@ stories.add(
             <Avatar
                 name="David Smith"
                 initials="DS"
-                size="sm"
+                size="xs"
                 src="https://randomuser.me/api/portraits/men/84.jpg"
                 status="🌴"
                 style={{ marginRight: '30px' }}
@@ -180,7 +189,7 @@ stories.add(
             <Avatar
                 name="David Smith"
                 initials="DS"
-                size="md"
+                size="sm"
                 src="https://randomuser.me/api/portraits/men/84.jpg"
                 status="🤚"
                 style={{ marginRight: '30px' }}
@@ -188,6 +197,7 @@ stories.add(
             <Avatar
                 name="David Smith"
                 initials="DS"
+                size="md"
                 src="https://randomuser.me/api/portraits/men/84.jpg"
                 status="🤕"
             />
@@ -198,9 +208,7 @@ stories.add(
 stories.add(
     'Theme',
     storyWrapper(
-        `The default avatar will work on light and dark backgrounds.
-
-Use the theme prop to set the status and notification icon background.`,
+        'Use the `theme` prop to set the status and notification icon background.',
         <Avatar
             name="David Smith"
             initials="DS"
@@ -243,7 +251,11 @@ Use the theme prop to set the status and notification icon background.`,
 stories.add(
     'Notification',
     storyWrapper(
-        'Displays an avatar with a warning icon. *NB: The warning icon overrides any status icon.*',
+        `
+Use the \`hasNotification\` prop to displays a notification icon.
+
+_NB: The warning icon overrides any status icon._
+`,
         <Avatar
             name="Jane Smith"
             initials="JS"
@@ -252,6 +264,13 @@ stories.add(
             hasNotification
         />,
         <div>
+            <Avatar
+                name="Jane Smith"
+                initials="JS"
+                size="xs"
+                hasNotification
+                style={{ marginRight: '30px' }}
+            />
             <Avatar
                 name="Jane Smith"
                 initials="JS"
@@ -269,12 +288,6 @@ stories.add(
             <Avatar
                 name="Jane Smith"
                 initials="JS"
-                hasNotification
-                style={{ marginRight: '30px' }}
-            />
-            <Avatar
-                name="Jane Smith"
-                initials="JS"
                 size="lg"
                 hasNotification
             />
@@ -285,7 +298,11 @@ stories.add(
 stories.add(
     'Clickable',
     storyWrapper(
-        'Any avatar can be clicked',
+        `
+Pass a function to the \`onClick\` prop to handle user interaction.
+
+_NB: when you add a click handler the avatar hover state changes._
+`,
         <Avatar
             name="Jane Smith"
             size="lg"

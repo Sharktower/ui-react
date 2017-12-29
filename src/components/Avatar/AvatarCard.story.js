@@ -32,7 +32,7 @@ const exampleAvatarLarge = (
 stories.add(
     'Overview',
     storyWrapper(
-        'AvatarCard description will go here',
+        'The AvatarCard component is a user profile box that resizes depending on the content provided.',
         <AvatarCard
             name="David Smith"
             jobRole="Sales Manager"
@@ -45,7 +45,7 @@ stories.add(
 stories.add(
     'Name only',
     storyWrapper(
-        'Example AvatarCard',
+        'The most simple AvatarCard takes a `name` prop only.',
         <AvatarCard name="David Smith" />,
     ),
 );
@@ -53,7 +53,7 @@ stories.add(
 stories.add(
     'Name and profile',
     storyWrapper(
-        'Example AvatarCard',
+        'The smallest AvatarCard can also display an Avatar via the `avatar` prop.',
         <AvatarCard name="David Smith" avatar={exampleAvatarSmall} />,
     ),
 );
@@ -61,7 +61,7 @@ stories.add(
 stories.add(
     'Name and role',
     storyWrapper(
-        'Example AvatarCard',
+        'Provide a `jobRole` prop for a midsize AvatarCard.',
         <AvatarCard
             name="David Smith"
             jobRole="Sales Manager"
@@ -72,7 +72,7 @@ stories.add(
 stories.add(
     'Name, role and profile',
     storyWrapper(
-        'Example AvatarCard',
+        'The midsize AvatarCard can also take an Avatar via the `avatar` prop.',
         <AvatarCard
             name="David Smith"
             jobRole="Sales Manager"
@@ -84,7 +84,7 @@ stories.add(
 stories.add(
     'Name and team',
     storyWrapper(
-        'Example AvatarCard',
+        'The `team` prop can be provided as an alternative to `jobRole`.',
         <AvatarCard
             name="David Smith"
             team="Communication Team"
@@ -95,7 +95,7 @@ stories.add(
 stories.add(
     'Name, team and profile',
     storyWrapper(
-        'Example AvatarCard',
+        'The midsize AvatarCard can also take an Avatar via the `avatar` prop.',
         <AvatarCard
             name="David Smith"
             team="Communication Team"
@@ -107,7 +107,7 @@ stories.add(
 stories.add(
     'Name, role and team',
     storyWrapper(
-        'Example AvatarCard',
+        'The largest AvatarCard takes `name`, `jobRole` and `team` props.',
         <AvatarCard
             name="David Smith"
             jobRole="Sales Manager"
@@ -119,7 +119,7 @@ stories.add(
 stories.add(
     'Name, role, team and profile',
     storyWrapper(
-        'Example AvatarCard',
+        'The large AvatarCard can also take an Avatar via the `avatar` prop.',
         <AvatarCard
             name="David Smith"
             jobRole="Sales Manager"

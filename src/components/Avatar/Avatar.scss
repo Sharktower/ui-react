@@ -123,6 +123,13 @@ $themes: (
 
     &.uir-avatar--halo {
 
+        &:hover {
+
+            .uir-avatar-inner::before {
+                animation-play-state: paused;
+            }
+        }
+
         .uir-avatar-inner {
             border-color: #fff;
             border-style: solid;
@@ -135,7 +142,8 @@ $themes: (
                 z-index: -1;
                 display: block;
                 content: "";
-                background-image: radial-gradient(farthest-corner at 0 0, $pink 0%, $pink 75%, $yellow 80%);
+                // background-image: radial-gradient(farthest-corner at 0 0, $pink 0%, $pink 75%, $yellow 80%);
+                background-image: radial-gradient(farthest-corner at 0 0, $purple 0%, $purple 75%, $pink 80%);
                 border-radius: 50%;
                 animation-name: uir-spin-halo;
                 animation-duration: 3s;
