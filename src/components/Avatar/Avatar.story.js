@@ -173,45 +173,6 @@ stories.add(
 );
 
 stories.add(
-    'Status',
-    storyWrapper(
-        'Pass an emoji to the `status` prop to display a status icon.',
-        <Avatar
-            name="David Smith"
-            initials="DS"
-            size="lg"
-            src="https://randomuser.me/api/portraits/men/84.jpg"
-            status="🦄"
-        />,
-        <div>
-            <Avatar
-                name="David Smith"
-                initials="DS"
-                size="xs"
-                src="https://randomuser.me/api/portraits/men/84.jpg"
-                status="🌴"
-                style={{ marginRight: '30px' }}
-            />
-            <Avatar
-                name="David Smith"
-                initials="DS"
-                size="sm"
-                src="https://randomuser.me/api/portraits/men/84.jpg"
-                status="🤚"
-                style={{ marginRight: '30px' }}
-            />
-            <Avatar
-                name="David Smith"
-                initials="DS"
-                size="md"
-                src="https://randomuser.me/api/portraits/men/84.jpg"
-                status="🤕"
-            />
-        </div>,
-    ),
-);
-
-stories.add(
     'Theme',
     storyWrapper(
         'Use the `theme` prop to set the status and notification icon background.',
@@ -249,6 +210,45 @@ stories.add(
                 size="lg"
                 src="https://randomuser.me/api/portraits/men/3.jpg"
                 status="🏆"
+            />
+        </div>,
+    ),
+);
+
+stories.add(
+    'Status',
+    storyWrapper(
+        'Pass an emoji to the `status` prop to display a status icon.',
+        <Avatar
+            name="David Smith"
+            initials="DS"
+            size="lg"
+            src="https://randomuser.me/api/portraits/men/84.jpg"
+            status="🦄"
+        />,
+        <div>
+            <Avatar
+                name="David Smith"
+                initials="DS"
+                size="xs"
+                src="https://randomuser.me/api/portraits/men/84.jpg"
+                status="🌴"
+                style={{ marginRight: '30px' }}
+            />
+            <Avatar
+                name="David Smith"
+                initials="DS"
+                size="sm"
+                src="https://randomuser.me/api/portraits/men/84.jpg"
+                status="🤚"
+                style={{ marginRight: '30px' }}
+            />
+            <Avatar
+                name="David Smith"
+                initials="DS"
+                size="md"
+                src="https://randomuser.me/api/portraits/men/84.jpg"
+                status="🤕"
             />
         </div>,
     ),
