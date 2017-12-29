@@ -27,7 +27,9 @@
     "library:build": "npm-run-all -s lint library:build-umd library:build-es",
     "library:build-umd": "webpack",
     "library:build-es": "node es-build",
-    "storybook:build": "yarn lint && build-storybook -o ./docs",
+    "storybook:clean": "rimraf ./storybook-static",
+    "storybook:build": "yarn lint && build-storybook -o ./storybook-static",
+    "storybook:deploy": "storybook-to-ghpages",
     "storybook:watch": "start-storybook -p 6006",
     "lint": "npm-run-all -s lint:scss lint:js",
     "lint:scss": "stylelint './src/**/*.scss'",
@@ -42,6 +44,7 @@
     "selenium": "selenium-standalone"
   },
   "devDependencies": {
+    "@storybook/storybook-deployer": "^2.2.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.3",
@@ -110,7 +113,7 @@
     "@storybook/addons": "^3.2.17",
     "@storybook/react": "^3.2.17",
     "classnames": "^2.2.5",
-    "react-showdown": "^1.6.0",
-    "prop-types": "15.6.0"
+    "prop-types": "15.6.0",
+    "react-showdown": "^1.6.0"
   }
 }
