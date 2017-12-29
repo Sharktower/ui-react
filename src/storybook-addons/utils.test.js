@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import InitialsPropType from '../prop-types/initials';
+import ListPropType from '../prop-types/list';
 import {
     Logo,
     markdown,
@@ -39,7 +40,11 @@ describe('Storybook Utils', () => {
             fn: PropTypes.func,
             example: PropTypes.string,
             initials: InitialsPropType,
-            list: PropTypes.oneOf(['xs', 'sm']),
+            list: ListPropType(['xs', 'sm']),
+            style: PropTypes.objectOf(PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number,
+            ])),
         };
         const defaultProps = {
             description: null,
@@ -48,7 +53,8 @@ describe('Storybook Utils', () => {
             fn: () => {},
             example: 'hello world',
             initials: null,
-            list: null,
+            list: 'xs',
+            style: null,
         };
         const wrapper = shallow(getProps(propTypes, defaultProps));
         expect(wrapper.find('table').length).to.equal(1);
@@ -56,7 +62,7 @@ describe('Storybook Utils', () => {
         expect(wrapper.find('h3').text()).to.equal('Props');
         // check table headings
         expect(wrapper.find('th').at(0).text()).to.equal('property');
-        expect(wrapper.find('th').at(1).text()).to.equal('type');
+        expect(wrapper.find('th').at(1).text()).to.equal('value');
         expect(wrapper.find('th').at(2).text()).to.equal('required');
         expect(wrapper.find('th').at(3).text()).to.equal('default');
         // check table row one
@@ -96,9 +102,14 @@ describe('Storybook Utils', () => {
         expect(wrapper.find('td').at(27).text()).to.equal('null');
         // check table row eight
         expect(wrapper.find('td').at(28).text()).to.equal('list');
-        expect(wrapper.find('td').at(29).text()).to.equal('other');
+        expect(wrapper.find('td').at(29).text()).to.equal('xs / sm');
         expect(wrapper.find('td').at(30).text()).to.equal('no');
-        expect(wrapper.find('td').at(31).text()).to.equal('null');
+        expect(wrapper.find('td').at(31).text()).to.equal('xs');
+        // check table row nine
+        expect(wrapper.find('td').at(32).text()).to.equal('style');
+        expect(wrapper.find('td').at(33).text()).to.equal('other');
+        expect(wrapper.find('td').at(34).text()).to.equal('no');
+        expect(wrapper.find('td').at(35).text()).to.equal('null');
     });
 
     it('getProps can create props table without default props', () => {
@@ -111,7 +122,7 @@ describe('Storybook Utils', () => {
         expect(wrapper.find('h3').text()).to.equal('Props');
         // check table headings
         expect(wrapper.find('th').at(0).text()).to.equal('property');
-        expect(wrapper.find('th').at(1).text()).to.equal('type');
+        expect(wrapper.find('th').at(1).text()).to.equal('value');
         expect(wrapper.find('th').at(2).text()).to.equal('required');
         expect(wrapper.find('th').at(3).text()).to.equal('default');
         // check table row one

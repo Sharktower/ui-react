@@ -48,14 +48,21 @@ function isRequired(prop, propTypes) {
     return propTypeFn.isRequired === undefined ? 'yes' : 'no';
 }
 
+function getComplexType(propTypeFnName, propTypeFn) {
+    if (propTypeFnName === 'bound checkType') {
+        if (Array.isArray(propTypeFn.expectedValues)) {
+            return propTypeFn.expectedValues.join(' / ');
+        }
+        return 'other';
+    }
+    return propTypeFnName;
+}
+
 function getType(prop, propTypes) {
     const propTypeFn = propTypes[prop];
     const propTypeFnName = propTypeFn.name;
-    return PropTypesMap.get(propTypeFn) || (
-        propTypeFnName === 'bound checkType'
-            ? 'other'
-            : propTypeFnName
-    );
+    return PropTypesMap.get(propTypeFn)
+        || getComplexType(propTypeFnName, propTypeFn);
 }
 
 function getDefaultValue(prop, defaultProps) {
@@ -93,7 +100,7 @@ function getProps(propTypes, defaultProps) {
                 <thead>
                     <tr>
                         <th style={trStyle} width="30%">property</th>
-                        <th style={trStyle} width="30%">type</th>
+                        <th style={trStyle} width="30%">value</th>
                         <th style={trStyle} width="20%">required</th>
                         <th style={trStyle} width="20%">default</th>
                     </tr>

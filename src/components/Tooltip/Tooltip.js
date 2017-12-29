@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import ListPropType from '../../prop-types/list';
 import './Tooltip.scss';
 
 const propTypes = {
     children: PropTypes.element.isRequired,
     tooltip: PropTypes.element.isRequired,
-    position: PropTypes.oneOf(['top-left', 'top-right', 'bottom-right', 'bottom-left']),
+    position: ListPropType(['top-left', 'top-right', 'bottom-right', 'bottom-left']),
     showTooltip: PropTypes.bool,
     tabIndex: PropTypes.number,
     className: PropTypes.string,

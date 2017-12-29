@@ -1,13 +1,14 @@
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import ListPropType from '../../prop-types/list';
 import './AvatarTitle.scss';
 
 const propTypes = {
     name: PropTypes.string.isRequired,
     jobRole: PropTypes.string,
     avatar: PropTypes.element,
-    size: PropTypes.oneOf(['sm', 'lg']),
+    size: ListPropType(['sm', 'lg']),
     className: PropTypes.string,
     style: PropTypes.objectOf(PropTypes.oneOfType([
         PropTypes.string,

@@ -1,11 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import ListPropType from '../../prop-types/list';
 import './TooltipBox.scss';
 
 const propTypes = {
     children: PropTypes.element.isRequired,
-    status: PropTypes.oneOf(['default', 'success', 'error']),
+    status: ListPropType(['default', 'success', 'error']),
     className: PropTypes.string,
     style: PropTypes.objectOf(PropTypes.oneOfType([
         PropTypes.string,

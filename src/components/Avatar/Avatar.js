@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import InitialsPropType from '../../prop-types/initials';
+import ListPropType from '../../prop-types/list';
 import './Avatar.scss';
 
 const propTypes = {
     name: PropTypes.string.isRequired,
     initials: InitialsPropType,
     src: PropTypes.string,
-    size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg']),
-    theme: PropTypes.oneOf(['light', 'dark']),
+    size: ListPropType(['xs', 'sm', 'md', 'lg']),
+    theme: ListPropType(['light', 'dark']),
     status: PropTypes.string,
     hasNotification: PropTypes.bool,
     hasHalo: PropTypes.bool,
