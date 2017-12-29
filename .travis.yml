@@ -12,7 +12,7 @@ script:
     - yarn lint:scss
     - yarn test:unit
     - yarn test:int
-    # - yarn storybook:build
+    - yarn storybook:build
 deploy:
     provider: pages
     skip_cleanup: true
