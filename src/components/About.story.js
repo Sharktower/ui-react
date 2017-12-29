@@ -19,7 +19,7 @@ _NB: installation from NPM is not yet available_
 
 ### Requirements
 
-UI React components are only compatibly with a React application and require the following:
+UI React components are only compatible with a React application and require the following:
 
     node >=8.5.0
     react >=0.14.0 <= 15
@@ -41,7 +41,7 @@ You can consume UI React in one of two ways, as a whole library or as individual
 
     import { YourComponent } from 'node_modules/@mudao/ui-react/es/index'; // Native ES6 Modules
 
-    import YourComponent from 'node_modules/@mudao/ui-react/es/component/YourComponent/YourComponent';
+    import YourComponent from 'node_modules/@mudao/ui-react/es/components/YourComponent/YourComponent';
 
 ### Issues
 
@@ -51,7 +51,7 @@ Please report it at [https://github.com/Mudano/ui-react/issues](https://github.c
 
 ### Development
 
-To help with development, clone the repoistory from here: [https://github.com/Mudano/ui-react](https://github.com/Mudano/ui-react)
+To help with development, clone the repository from here: [https://github.com/Mudano/ui-react](https://github.com/Mudano/ui-react)
 
 To get started run the following:
 
