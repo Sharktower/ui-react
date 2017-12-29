@@ -189,4 +189,28 @@ describe('Avatar', () => {
         avatar.find('div').at(0).simulate('click');
         expect(onClickSpy.notCalled).to.equal(true);
     });
+
+    it('triggers click handler when enter or space pressed', () => {
+        const onClickSpy = sinon.spy();
+        const wrapper = mount(<Avatar
+            name={sampleData.name}
+            onClick={onClickSpy}
+        />);
+        const avatar = wrapper.find('div').at(0);
+        avatar.simulate('keyDown', { key: ' ' });
+        expect(onClickSpy.calledOnce).to.equal(true);
+        avatar.simulate('keyDown', { key: 'Enter' });
+        expect(onClickSpy.calledTwice).to.equal(true);
+    });
+
+    it('does nothing when any key (other than space or enter) pressed', () => {
+        const onClickSpy = sinon.spy();
+        const wrapper = mount(<Avatar
+            name={sampleData.name}
+            onClick={onClickSpy}
+        />);
+        const avatar = wrapper.find('div').at(0);
+        avatar.simulate('keyDown', { key: 'a' });
+        expect(onClickSpy.notCalled).to.equal(true);
+    });
 });

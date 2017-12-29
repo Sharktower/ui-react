@@ -48,6 +48,13 @@ class Avatar extends Component {
         }
     }
 
+    handleKeyDown = (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            this.handleClick(event);
+        }
+    }
+
     // NB: try not to rely on this fn
     //  in the future it may be removed
     calculateInitials = name => (name ? name.match(/\b\w/g).slice(0, 3).join('') : '?')
@@ -86,7 +93,7 @@ class Avatar extends Component {
                 role="button"
                 tabIndex={this.props.tabIndex}
                 onClick={this.handleClick}
-                onKeyDown={this.handleClick}
+                onKeyDown={this.handleKeyDown}
                 style={this.props.style}
             >
                 <span className="uir-avatar-inner">
