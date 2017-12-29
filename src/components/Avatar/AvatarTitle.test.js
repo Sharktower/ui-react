@@ -48,7 +48,10 @@ describe('AvatarTitle', () => {
 
     it('can pass through class', () => {
         const exampleClassName = 'example-class';
-        const avatarTitle = shallow(<AvatarTitle name={exampleUser.name} className={exampleClassName} />);
+        const avatarTitle = shallow(<AvatarTitle
+            name={exampleUser.name}
+            className={exampleClassName}
+        />);
         expect(avatarTitle.find('div').at(0).hasClass(exampleClassName)).to.equal(true);
     });
 

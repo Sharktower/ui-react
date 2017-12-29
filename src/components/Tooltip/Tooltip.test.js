@@ -64,7 +64,14 @@ describe('Tooltip', () => {
 
     ['top-left', 'top-right', 'bottom-right', 'bottom-left'].forEach((position) => {
         it(`can pass through position class ${position}`, () => {
-            const tooltip = shallow(<Tooltip position={position} tooltip={<div />}>{exampleAvatar}</Tooltip>);
+            const tooltip = shallow((
+                <Tooltip
+                    position={position}
+                    tooltip={<div />}
+                >
+                    {exampleAvatar}
+                </Tooltip>
+            ));
             expect(tooltip.find('div').at(0).hasClass(`uir-tooltip--${position}`))
                 .to.equal(true);
         });
@@ -92,7 +99,9 @@ describe('Tooltip', () => {
     });
 
     it('can choose to show tooltip', () => {
-        const tooltip = shallow(<Tooltip tooltip={exampleTooltip} showTooltip>{exampleAvatar}</Tooltip>);
+        const tooltip = shallow((
+            <Tooltip tooltip={exampleTooltip} showTooltip>{exampleAvatar}</Tooltip>
+        ));
         expect(tooltip.find(AvatarCard).length).to.equal(1);
     });
 
