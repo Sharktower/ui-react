@@ -18,7 +18,7 @@ stories.add(
     `)(() => (
         <DemoComponent
             isDisabled={boolean('isDisabled', false)}
-            title={text('title', 'Custom title')}
+            title={text('title', 'Custom title goes here')}
             onClick={action('clicked')}
         >
         children
