@@ -76,9 +76,9 @@ class Button extends Component {
                 disabled={isDisabled}
                 onClick={this.handleClick}
             >
-                <div className="uir-button--content">
+                <span className="uir-button--content">
                     {children}
-                </div>
+                </span>
             </button>
         );
     }
