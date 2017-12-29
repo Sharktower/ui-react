@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/Mudano/ui-react#readme",
   "engines": {
-      "node": ">=8.5.0"
+    "node": ">=8.5.0"
   },
   "scripts": {
     "start": "yarn storybook:watch",
@@ -28,7 +28,8 @@
     "library:build-umd": "webpack",
     "library:build-es": "node es-build",
     "storybook:clean": "rimraf ./storybook-static",
-    "storybook:build": "yarn lint && build-storybook -o ./docs",
+    "storybook:build": "yarn lint && build-storybook -o ./storybook-static",
+    "storybook:deploy": "storybook-to-ghpages",
     "storybook:watch": "start-storybook -p 6006",
     "lint": "npm-run-all -s lint:scss lint:js",
     "lint:scss": "stylelint './src/**/*.scss'",
