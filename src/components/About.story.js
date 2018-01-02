@@ -9,7 +9,7 @@ stories.add(
 
 UI React is the Mudano component library.
 
-If you have questions ask the development team on Slack: [#ui-react](slack://channel?id=C89RXMYJY&team=T065RT3A7)
+If you have questions ask the development team via [GitHub Issues](https://github.com/Mudano/ui-react/issues)
 
 ### Installation
 
