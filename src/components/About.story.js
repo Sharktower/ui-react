@@ -39,9 +39,9 @@ You can consume UI React in one of two ways, as a whole library or as individual
 
     import { YourComponent } from '@mudano/ui-react'; // UMD Modules
 
-    import { YourComponent } from 'node_modules/@mudao/ui-react/es/index'; // Native ES6 Modules
+    import { YourComponent } from 'node_modules/@mudano/ui-react/es/index'; // Native ES6 Modules
 
-    import YourComponent from 'node_modules/@mudao/ui-react/es/components/YourComponent/YourComponent';
+    import YourComponent from 'node_modules/@mudano/ui-react/es/components/YourComponent/YourComponent';
 
 ### Issues
 
