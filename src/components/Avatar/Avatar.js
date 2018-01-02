@@ -88,7 +88,6 @@ class Avatar extends Component {
                     { 'uir-avatar--halo': this.props.hasHalo },
                     this.props.className,
                 )}
-                title={this.props.name}
                 aria-label={this.props.name}
                 role="button"
                 tabIndex={this.props.tabIndex}
