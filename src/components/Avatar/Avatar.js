@@ -38,13 +38,15 @@ const defaultProps = {
 };
 
 class Avatar extends Component {
-    avatarRef = null
+    handleRef = (node) => {
+        this.innerRef = node;
+    }
 
     handleClick = (event) => {
         const propsOnClick = this.props.onClick;
         if (propsOnClick) {
             propsOnClick(event);
-            this.avatarRef.blur();
+            this.innerRef.blur();
         }
     }
 
@@ -79,7 +81,7 @@ class Avatar extends Component {
             : null;
         return (
             <div
-                ref={(node) => { this.avatarRef = node; }}
+                ref={this.handleRef}
                 className={cx(
                     'uir-avatar',
                     `uir-avatar--${this.props.theme}`,
