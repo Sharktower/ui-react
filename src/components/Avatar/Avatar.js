@@ -79,7 +79,7 @@ class Avatar extends Component {
             : null;
         return (
             <div
-                ref={(div) => { this.avatarRef = div; }}
+                ref={(node) => { this.avatarRef = node; }}
                 className={cx(
                     'uir-avatar',
                     `uir-avatar--${this.props.theme}`,
