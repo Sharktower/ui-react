@@ -171,6 +171,21 @@ describe('Avatar', () => {
         expect(avatarCard.props()).to.have.property('style', style);
     });
 
+    it('does not have an interactive class when onClick is null', () => {
+        const avatar = shallow(<Avatar name={sampleData.name} />);
+        const hasClass = avatar.find('div').at(0).hasClass('uir-avatar--interactive');
+        expect(hasClass).to.equal(false);
+    });
+
+    it('adds an interactive class when onClick is set', () => {
+        const avatar = shallow(<Avatar
+            name={sampleData.name}
+            onClick={() => {}}
+        />);
+        const hasClass = avatar.find('div').at(0).hasClass('uir-avatar--interactive');
+        expect(hasClass).to.equal(true);
+    });
+
     it('triggers click handler when clicked', () => {
         const onClickSpy = sinon.spy();
         const avatar = mount(<Avatar

@@ -62,6 +62,7 @@ $themes: (
     text-align: center;
     text-transform: uppercase;
     vertical-align: middle;
+    outline: none;
 
     @each $size, $details in $sizes {
         $avatarDetails: map-get($details, "avatar");
@@ -101,23 +102,16 @@ $themes: (
         }
     }
 
-    &:hover {
-        cursor: pointer;
-        opacity: .8;
-    }
+    &.uir-avatar--interactive {
 
-    &:focus {
-        outline: none;
-        opacity: .8;
-    }
+        &:hover {
+            cursor: pointer;
+            opacity: .8;
+        }
 
-    &.uir-avatar--disabled {
-
-        &:hover,
         &:focus {
-            cursor: default;
             outline: none;
-            opacity: 1;
+            opacity: .8;
         }
     }
 

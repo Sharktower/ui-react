@@ -86,7 +86,7 @@ class Avatar extends Component {
                     'uir-avatar',
                     `uir-avatar--${this.props.theme}`,
                     `uir-avatar--${this.props.size}`,
-                    { 'uir-avatar--disabled': this.props.onClick === null },
+                    { 'uir-avatar--interactive': this.props.onClick },
                     { 'uir-avatar--halo': this.props.hasHalo },
                     this.props.className,
                 )}
