@@ -5,11 +5,11 @@ import ListPropType from '../../prop-types/list';
 import './AvatarTitle.scss';
 
 const propTypes = {
-    name: PropTypes.string.isRequired,
-    jobRole: PropTypes.string,
     avatar: PropTypes.element,
-    size: ListPropType(['sm', 'lg']),
     className: PropTypes.string,
+    jobRole: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    size: ListPropType(['sm', 'lg']),
     style: PropTypes.objectOf(PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -17,10 +17,10 @@ const propTypes = {
 };
 
 const defaultProps = {
-    jobRole: null,
     avatar: null,
-    size: 'sm',
     className: null,
+    jobRole: null,
+    size: 'sm',
     style: null,
 };
 

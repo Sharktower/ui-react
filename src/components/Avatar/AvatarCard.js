@@ -4,23 +4,23 @@ import PropTypes from 'prop-types';
 import './AvatarCard.scss';
 
 const propTypes = {
-    name: PropTypes.string.isRequired,
-    jobRole: PropTypes.string,
-    team: PropTypes.string,
     avatar: PropTypes.element,
     className: PropTypes.string,
+    jobRole: PropTypes.string,
+    name: PropTypes.string.isRequired,
     style: PropTypes.objectOf(PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
     ])),
+    team: PropTypes.string,
 };
 
 const defaultProps = {
-    jobRole: null,
-    team: null,
     avatar: null,
     className: null,
+    jobRole: null,
     style: null,
+    team: null,
 };
 
 function AvatarCard(props) {

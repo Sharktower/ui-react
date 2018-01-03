@@ -6,35 +6,35 @@ import ListPropType from '../../prop-types/list';
 import './Avatar.scss';
 
 const propTypes = {
-    name: PropTypes.string.isRequired,
-    initials: InitialsPropType,
-    src: PropTypes.string,
-    size: ListPropType(['xs', 'sm', 'md', 'lg']),
-    theme: ListPropType(['light', 'dark']),
-    status: PropTypes.string,
-    hasNotification: PropTypes.bool,
-    hasHalo: PropTypes.bool,
-    onClick: PropTypes.func,
-    tabIndex: PropTypes.number,
     className: PropTypes.string,
+    hasHalo: PropTypes.bool,
+    hasNotification: PropTypes.bool,
+    initials: InitialsPropType,
+    name: PropTypes.string.isRequired,
+    onClick: PropTypes.func,
+    size: ListPropType(['xs', 'sm', 'md', 'lg']),
+    src: PropTypes.string,
+    status: PropTypes.string,
     style: PropTypes.objectOf(PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
     ])),
+    tabIndex: PropTypes.number,
+    theme: ListPropType(['light', 'dark']),
 };
 
 const defaultProps = {
-    initials: null,
-    src: null,
-    size: 'md',
-    theme: 'light',
-    status: null,
-    hasNotification: false,
-    hasHalo: false,
-    onClick: null,
-    tabIndex: 0,
     className: null,
+    hasHalo: false,
+    hasNotification: false,
+    initials: null,
+    onClick: null,
+    size: 'md',
+    src: null,
+    status: null,
     style: null,
+    tabIndex: 0,
+    theme: 'light',
 };
 
 class Avatar extends Component {
