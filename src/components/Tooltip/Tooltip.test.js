@@ -36,7 +36,7 @@ describe('Tooltip', () => {
     it('complains if tooltip is not provided', () => {
         shallow(<Tooltip>contents</Tooltip>);
         // eslint-disable-next-line no-console
-        expect(console.error.calledWithMatch('The prop `tooltip` is marked as required in `Tooltip`')).to.equal(true);
+        expect(console.error).to.be.calledWithMatch('The prop `tooltip` is marked as required in `Tooltip`');
     });
 
     it('renders a div element', () => {

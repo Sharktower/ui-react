@@ -22,13 +22,13 @@ describe('Avatar', () => {
     it('complains if name is not provided', () => {
         shallow(<Avatar />);
         // eslint-disable-next-line no-console
-        expect(console.error.calledWithMatch('The prop `name` is marked as required in `Avatar`')).to.equal(true);
+        expect(console.error).to.be.calledWithMatch('The prop `name` is marked as required in `Avatar`');
     });
 
     it('complains if initials longer than 2 characters are used', () => {
         shallow(<Avatar name={sampleData.name} initials="MPD" />);
         // eslint-disable-next-line no-console
-        expect(console.error.calledWithMatch('Initials supplied to `Avatar` should be 1 or 2 characters')).to.equal(true);
+        expect(console.error).to.be.calledWithMatch('Initials supplied to `Avatar` should be 1 or 2 characters');
     });
 
     it('renders a div element', () => {

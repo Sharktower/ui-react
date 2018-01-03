@@ -32,7 +32,7 @@ describe('AvatarCard', () => {
     it('complains if user name is not provided', () => {
         shallow(<AvatarCard />);
         // eslint-disable-next-line no-console
-        expect(console.error.calledWithMatch('The prop `name` is marked as required in `AvatarCard`')).to.equal(true);
+        expect(console.error).to.be.calledWithMatch('The prop `name` is marked as required in `AvatarCard`');
     });
 
     it('renders div elements', () => {

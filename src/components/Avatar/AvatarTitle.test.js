@@ -32,7 +32,7 @@ describe('AvatarTitle', () => {
     it('complains if user name is not provided', () => {
         shallow(<AvatarTitle />);
         // eslint-disable-next-line no-console
-        expect(console.error.called).to.equal(true);
+        expect(console.error).to.be.called();
     });
 
     it('renders div elements', () => {
