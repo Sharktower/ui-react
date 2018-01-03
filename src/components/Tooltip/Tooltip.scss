@@ -39,7 +39,7 @@ $tooltipPositions: (
 
     @each $position in top-left, top-right, bottom-right, bottom-left {
 
-        &.uir-tooltip--#{$position} {
+        &--#{$position} {
             $positons: map-get($tooltipPositions, $position);
 
             .uir-tooltip-contents {

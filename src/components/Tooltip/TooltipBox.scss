@@ -16,15 +16,15 @@
     transition-duration: 1s;
     transition-property: all;
 
-    &.uir-tooltip-box--default {
+    &--default {
         background-color: $charcoal;
     }
 
-    &.uir-tooltip-box--success {
+    &--success {
         background-color: $teal;
     }
 
-    &.uir-tooltip-box--error {
+    &--error {
         background-color: $pink;
     }
 }
