@@ -2,6 +2,7 @@
 import React from 'react';
 import sinon from 'sinon';
 import TooltipBox from './TooltipBox';
+import Avatar from '../Avatar/Avatar';
 
 describe('TooltipBox', () => {
     const sandbox = sinon.sandbox.create();
@@ -50,9 +51,15 @@ describe('TooltipBox', () => {
         expect(tooltipBox).to.have.className('uir-tooltip-box--error');
     });
 
-    it('can past in children props', () => {
+    it('can pass string in children props', () => {
         const contents = 'this is an example';
         const tooltipBox = shallow(<TooltipBox>{contents}</TooltipBox>);
         expect(tooltipBox).to.have.text(contents);
+    });
+
+    it('can pass element in children props', () => {
+        const contents = <Avatar name="Matt Davies" />;
+        const tooltipBox = shallow(<TooltipBox>{contents}</TooltipBox>);
+        expect(tooltipBox.find(Avatar).length).to.equal(1);
     });
 });

@@ -5,7 +5,10 @@ import ListPropType from '../../prop-types/list';
 import './TooltipBox.scss';
 
 const propTypes = {
-    children: PropTypes.element.isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+    ]).isRequired,
     status: ListPropType(['default', 'success', 'error']),
     className: PropTypes.string,
     style: PropTypes.objectOf(PropTypes.oneOfType([
