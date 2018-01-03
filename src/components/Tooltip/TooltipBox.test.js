@@ -14,7 +14,7 @@ describe('TooltipBox', () => {
         sandbox.restore();
     });
 
-    it('complains if chidlren not provided', () => {
+    it('complains if children not provided', () => {
         shallow(<TooltipBox />);
         // eslint-disable-next-line no-console
         expect(console.error).to.be.calledWithMatch('The prop `children` is marked as required in `TooltipBox`');
