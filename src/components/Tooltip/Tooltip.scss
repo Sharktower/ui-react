@@ -1,34 +1,38 @@
 $tooltipTranslations: (
+    top-center: translate(-50%, -100%),
     top-left: translate(-10%, -100%),
     top-right: translate(10%, -100%),
+    bottom-center: translate(-50%, 100%),
     bottom-right: translate(10%, 100%),
     bottom-left: translate(-10%, 100%),
 );
 
 $tooltipPositions: (
-    top-left: (top: 0, right: auto, bottom: auto, left: 0),
-    top-right: (top: 0, right: 0, bottom: auto, left: auto),
-    bottom-right: (top: auto, right: 0, bottom: 0, left: auto),
-    bottom-left: (top: auto, right: auto, bottom: 0, left: 0),
+    top-center: (top: -4px, right: auto, bottom: auto, left: 50%),
+    top-left: (top: -4px, right: auto, bottom: auto, left: 0),
+    top-right: (top: -4px, right: 0, bottom: auto, left: auto),
+    bottom-center: (top: auto, right: auto, bottom: -4px, left: 50%),
+    bottom-right: (top: auto, right: 0, bottom: -4px, left: auto),
+    bottom-left: (top: auto, right: auto, bottom: -4px, left: 0),
 );
 
-@each $position, $tooltipTranslate in $tooltipTranslations {
-    @keyframes uir-animate-tooltip-in--#{$position} {
+@each $label, $translation in $tooltipTranslations {
+    @keyframes uir-animate-tooltip-in--#{$label} {
 
         0% {
-            transform: $tooltipTranslate rotate(-2deg);
+            transform: $translation rotate(-2deg);
         }
 
         40% {
-            transform: $tooltipTranslate rotate(3deg);
+            transform: $translation rotate(3deg);
         }
 
         60% {
-            transform: $tooltipTranslate rotate(-3deg);
+            transform: $translation rotate(-3deg);
         }
 
         100% {
-            transform: $tooltipTranslate rotate(0deg);
+            transform: $translation rotate(0deg);
         }
     }
 }
@@ -37,18 +41,17 @@ $tooltipPositions: (
     position: relative;
     display: inline-block;
 
-    @each $position in top-left, top-right, bottom-right, bottom-left {
+    @each $label, $positons in $tooltipPositions {
 
-        &--#{$position} {
-            $positons: map-get($tooltipPositions, $position);
+        &--#{$label} {
 
             .uir-tooltip-contents {
                 top: map-get($positons, "top");
                 right: map-get($positons, "right");
                 bottom: map-get($positons, "bottom");
                 left: map-get($positons, "left");
-                transform: map-get($tooltipTranslations, $position);
-                animation-name: uir-animate-tooltip-in--#{$position};
+                transform: map-get($tooltipTranslations, $label);
+                animation-name: uir-animate-tooltip-in--#{$label};
             }
         }
     }

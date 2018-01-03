@@ -54,12 +54,19 @@ describe('Tooltip', () => {
         expect(tooltip.find('div').at(1)).to.have.className('uir-tooltip-inner');
     });
 
-    it('has top-left class by default', () => {
+    it('has top-center class by default', () => {
         const tooltip = shallow(<Tooltip tooltip={<div />}>{exampleAvatar}</Tooltip>);
-        expect(tooltip.find('div').at(0)).to.have.className('uir-tooltip--top-left');
+        expect(tooltip.find('div').at(0)).to.have.className('uir-tooltip--top-center');
     });
 
-    ['top-left', 'top-right', 'bottom-right', 'bottom-left'].forEach((position) => {
+    [
+        'top-center',
+        'top-left',
+        'top-right',
+        'bottom-center',
+        'bottom-left',
+        'bottom-right',
+    ].forEach((position) => {
         it(`can pass through position class ${position}`, () => {
             const tooltip = shallow((
                 <Tooltip

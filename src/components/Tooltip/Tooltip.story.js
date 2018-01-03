@@ -52,7 +52,7 @@ For example:
         />
     </Tooltip>
 `,
-        <Tooltip tooltip={exampleTooltip}>
+        <Tooltip position="top-left" tooltip={exampleTooltip}>
             {exampleAvatar}
         </Tooltip>,
     ),
@@ -72,7 +72,7 @@ stories.add(
     'Position',
     storyWrapper(
         'Use the `position` prop to change the location of the tooltip.',
-        <Tooltip position="top-left" tooltip={<TooltipBox>Top Left</TooltipBox>}>
+        <Tooltip position="top-center" tooltip={<TooltipBox>top center</TooltipBox>}>
             {exampleAvatar}
         </Tooltip>,
         <div style={{ display: 'inline-block', padding: '30px', border: '1px dashed #999' }}>
@@ -80,7 +80,7 @@ stories.add(
                 position="top-left"
                 tooltip={<TooltipBox>positioned top left</TooltipBox>}
                 showTooltip
-                style={{ marginRight: '100px' }}
+                style={{ marginRight: '100px', marginBottom: '100px' }}
             >
                 {exampleAvatar}
             </Tooltip>
@@ -88,21 +88,39 @@ stories.add(
                 position="bottom-left"
                 tooltip={<TooltipBox>positioned bottom left</TooltipBox>}
                 showTooltip
-                style={{ marginRight: '100px' }}
+                style={{ marginRight: '100px', marginBottom: '100px' }}
             >
                 {exampleAvatar}
             </Tooltip>
+            <br />
             <Tooltip
                 position="top-right"
                 tooltip={<TooltipBox>positioned top right</TooltipBox>}
                 showTooltip
-                style={{ marginRight: '100px' }}
+                style={{ marginRight: '100px', marginBottom: '100px' }}
             >
                 {exampleAvatar}
             </Tooltip>
             <Tooltip
                 position="bottom-right"
                 tooltip={<TooltipBox>positioned bottom right</TooltipBox>}
+                showTooltip
+                style={{ marginRight: '100px', marginBottom: '100px' }}
+            >
+                {exampleAvatar}
+            </Tooltip>
+            <br />
+            <Tooltip
+                position="top-center"
+                tooltip={<TooltipBox>positioned top center</TooltipBox>}
+                showTooltip
+                style={{ marginRight: '100px' }}
+            >
+                {exampleAvatar}
+            </Tooltip>
+            <Tooltip
+                position="bottom-center"
+                tooltip={<TooltipBox>positioned bottom center</TooltipBox>}
                 showTooltip
             >
                 {exampleAvatar}

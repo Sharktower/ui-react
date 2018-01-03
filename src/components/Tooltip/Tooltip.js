@@ -7,7 +7,14 @@ import './Tooltip.scss';
 const propTypes = {
     children: PropTypes.element.isRequired,
     tooltip: PropTypes.element.isRequired,
-    position: ListPropType(['top-left', 'top-right', 'bottom-right', 'bottom-left']),
+    position: ListPropType([
+        'top-center',
+        'top-left',
+        'top-right',
+        'bottom-center',
+        'bottom-right',
+        'bottom-left',
+    ]),
     showTooltip: PropTypes.bool,
     tabIndex: PropTypes.number,
     className: PropTypes.string,
@@ -18,7 +25,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    position: 'top-left',
+    position: 'top-center',
     showTooltip: null,
     tabIndex: 0,
     className: null,
