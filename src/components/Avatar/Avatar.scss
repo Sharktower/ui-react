@@ -45,13 +45,13 @@ $sizes: (
     ),
     lg: (
         avatar: ( size: 60px, font: 28px ),
-        status: ( size: 34px, font: 22px )
+        status: ( size: 32px, font: 22px )
     ),
 );
 
 $themes: (
-    light: $white,
-    dark: $charcoal
+    light: ( background-color: $white, color: $charcoal ),
+    dark: ( background-color: $charcoal, color: $white ),
 );
 
 .uir-avatar {
@@ -92,12 +92,13 @@ $themes: (
         }
     }
 
-    @each $theme, $background in $themes {
+    @each $label, $theme in $themes {
 
-        &--#{$theme} {
+        &--#{$label} {
 
             .uir-avatar-user-status {
-                background: $background;
+                color: map-get($theme, "color");
+                background-color: map-get($theme, "background-color");
             }
         }
     }
