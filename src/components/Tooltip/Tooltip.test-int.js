@@ -36,7 +36,7 @@ Scenario('Show', (I) => {
 
 Scenario('Position', (I) => {
     searchWithinIframe(I, KIND, 'Position', () => {
-        I.seeNumberOfElements('.uir-tooltip', 5);
+        I.seeNumberOfElements('.uir-tooltip', 7);
         I.seeElement('.uir-tooltip--top-left');
         I.seeElement('.uir-tooltip--top-right');
         I.seeElement('.uir-tooltip--bottom-left');
