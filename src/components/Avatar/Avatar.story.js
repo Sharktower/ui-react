@@ -46,7 +46,12 @@ stories.add(
         `
 Provide an image to the \`src\` prop and the initials will be hidden in favour of the image.
 
-_NB: you can provide a base 64 encoded string_
+You can provide a base 64 encoded string like so:
+
+    <Avatar
+        name="Matt Davies"
+        src="'data:image/jpeg;base64,/9j/4AAQ ... FGrOP/2Q==';"
+    />
         `,
         <Avatar
             name="Jane Doe"
