@@ -95,10 +95,20 @@ Scenario('Clickable', (I) => {
         I.click('.uir-avatar');
         I.seeInPopup('it works!');
         I.acceptPopup();
-        // @TODO: test for key press, space and enter
-        // I.seeElement('.uir-avatar');
-        // I.pressKey('Enter');
-        // I.seeInPopup('it works!');
-        // I.acceptPopup();
+    });
+});
+
+Scenario('Clickable Key Press', (I) => {
+    searchWithinIframe(I, KIND, 'Clickable', () => {
+        I.see('Clickable');
+        I.seeElement('.uir-avatar');
+        I.click('.uir-avatar');
+        I.acceptPopup();
+        I.pressKey('Enter');
+        I.seeInPopup('it works!');
+        I.acceptPopup();
+        I.pressKey('Space');
+        I.seeInPopup('it works!');
+        I.acceptPopup();
     });
 });
