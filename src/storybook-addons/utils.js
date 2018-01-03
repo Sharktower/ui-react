@@ -44,6 +44,9 @@ Object.keys(PropTypes).forEach((typeName) => {
 });
 
 function isRequired(prop, propTypes) {
+    // each React prop-type validator has an isRequired method
+    // the isRequired method itself does not have an isRequired property/method
+    // therefore if isRequired is undefined then the prop is required
     const propTypeFn = propTypes[prop];
     return propTypeFn.isRequired === undefined ? 'yes' : 'no';
 }
