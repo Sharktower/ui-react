@@ -38,15 +38,10 @@ const defaultProps = {
 };
 
 class Avatar extends Component {
-    handleRef = (node) => {
-        this.innerRef = node;
-    }
-
     handleClick = (event) => {
         const propsOnClick = this.props.onClick;
         if (propsOnClick) {
             propsOnClick(event);
-            this.innerRef.blur();
         }
     }
 
@@ -65,23 +60,24 @@ class Avatar extends Component {
         const imageOrInitials = this.props.src
             ? <img src={this.props.src} alt={`${this.props.name} profile`} />
             : this.props.initials || this.calculateInitials(this.props.name);
-        const notification = this.props.hasNotification
+        const notificationSVG = this.props.hasNotification
             ? (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <g fill="none" fillRule="evenodd" transform="translate(3 3)">
-                        <circle cx="9" cy="9" r="8" stroke="#F33061" strokeWidth="2" />
-                        <path fill="#F33061" d="M8 5h2v5H8zM8 11h2v2H8z" />
+                    <g fill="none" transform="translate(3 3)">
+                        <circle cx="9" cy="9" r="8" stroke="#F33061" />
+                        <path fill="#F33061" d="M8 5h2v5H8zm0 6h2v2H8z" />
                     </g>
                 </svg>
             )
             : null;
         const status = this.props.status || null;
-        const notificationOrStatus = notification || status
-            ? <span className="uir-avatar-user-status">{notification || status}</span>
+        const notificationOrStatus = notificationSVG || status
+            ? <span className="uir-avatar-user-status">{notificationSVG || status}</span>
             : null;
+        /* eslint-disable jsx-a11y/no-static-element-interactions */
+        // disabling aria role lint rule to allow for ternary operator
         return (
             <div
-                ref={this.handleRef}
                 className={cx(
                     'uir-avatar',
                     `uir-avatar--${this.props.theme}`,
@@ -91,10 +87,10 @@ class Avatar extends Component {
                     this.props.className,
                 )}
                 aria-label={this.props.name}
-                role="button"
-                tabIndex={this.props.tabIndex}
+                role={this.props.onClick ? 'button' : 'img'}
                 onClick={this.handleClick}
                 onKeyDown={this.handleKeyDown}
+                tabIndex={this.props.tabIndex}
                 style={this.props.style}
             >
                 <span className="uir-avatar-inner">
@@ -103,6 +99,7 @@ class Avatar extends Component {
                 {notificationOrStatus}
             </div>
         );
+        /* eslint-enable */
     }
 }
 
