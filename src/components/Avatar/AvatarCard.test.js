@@ -42,8 +42,7 @@ describe('AvatarCard', () => {
 
     it('has correct class', () => {
         const avatarCard = shallow(<AvatarCard />);
-        expect(avatarCard.find('div').at(0).hasClass('uir-avatar-card'))
-            .to.equal(true);
+        expect(avatarCard).to.have.className('uir-avatar-card');
     });
 
     it('can pass through class', () => {
@@ -52,13 +51,12 @@ describe('AvatarCard', () => {
             name={exampleUser.name}
             className={exampleClassName}
         />);
-        expect(avatarCard.find('div').at(0).hasClass(exampleClassName)).to.equal(true);
+        expect(avatarCard).to.have.className(exampleClassName);
     });
 
     it('can display name', () => {
         const avatarCard = shallow(<AvatarCard name={exampleUser.name} />);
-        expect(avatarCard.find('div.uir-avatar-card-name').text())
-            .to.equal(exampleUser.name);
+        expect(avatarCard.find('div.uir-avatar-card-name')).to.have.text(exampleUser.name);
     });
 
     it('can display job role', () => {
@@ -66,8 +64,7 @@ describe('AvatarCard', () => {
             name={exampleUser.name}
             jobRole={exampleUser.jobRole}
         />);
-        expect(avatarCard.find('div.uir-avatar-card-job-role').text())
-            .to.equal(exampleUser.jobRole);
+        expect(avatarCard.find('div.uir-avatar-card-job-role')).to.have.text(exampleUser.jobRole);
     });
 
     it('adds class when role provided', () => {
@@ -75,8 +72,7 @@ describe('AvatarCard', () => {
             name={exampleUser.name}
             jobRole={exampleUser.jobRole}
         />);
-        expect(avatarCard.find('div').at(0).hasClass('uir-avatar-card--has-role'))
-            .to.equal(true);
+        expect(avatarCard).to.have.className('uir-avatar-card--has-role');
     });
 
     it('can display team', () => {
@@ -85,8 +81,7 @@ describe('AvatarCard', () => {
             jobRole={exampleUser.jobRole}
             team={exampleUser.team}
         />);
-        expect(avatarCard.find('div.uir-avatar-card-team').text())
-            .to.equal(exampleUser.team);
+        expect(avatarCard.find('div.uir-avatar-card-team')).to.have.text(exampleUser.team);
     });
 
     it('adds class when team provided', () => {
@@ -94,8 +89,7 @@ describe('AvatarCard', () => {
             name={exampleUser.name}
             team={exampleUser.team}
         />);
-        expect(avatarCard.find('div').at(0).hasClass('uir-avatar-card--has-team'))
-            .to.equal(true);
+        expect(avatarCard).to.have.className('uir-avatar-card--has-team');
     });
 
     it('can display avatar', () => {

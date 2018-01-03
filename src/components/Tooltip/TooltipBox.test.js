@@ -22,42 +22,37 @@ describe('TooltipBox', () => {
 
     it('renders a div element', () => {
         const tooltipBox = shallow(<TooltipBox>contents</TooltipBox>);
-        expect(tooltipBox.find('div').length).to.equal(1);
+        expect(tooltipBox).to.have.tagName('div');
     });
 
     it('has correct parent class', () => {
         const tooltipBox = shallow(<TooltipBox>contents</TooltipBox>);
-        expect(tooltipBox.find('div').hasClass('uir-tooltip-box'))
-            .to.equal(true);
+        expect(tooltipBox).to.have.className('uir-tooltip-box');
     });
 
     it('has default theme class as standard', () => {
         const tooltipBox = shallow(<TooltipBox>contents</TooltipBox>);
-        expect(tooltipBox.find('div').hasClass('uir-tooltip-box--default'))
-            .to.equal(true);
+        expect(tooltipBox).to.have.className('uir-tooltip-box--default');
     });
 
     it('adds class when default theme provided', () => {
         const tooltipBox = shallow(<TooltipBox status="default">contents</TooltipBox>);
-        expect(tooltipBox.find('div').hasClass('uir-tooltip-box--default'))
-            .to.equal(true);
+        expect(tooltipBox).to.have.className('uir-tooltip-box--default');
     });
 
     it('adds class when success theme provided', () => {
         const tooltipBox = shallow(<TooltipBox status="success">contents</TooltipBox>);
-        expect(tooltipBox.find('div').hasClass('uir-tooltip-box--success'))
-            .to.equal(true);
+        expect(tooltipBox).to.have.className('uir-tooltip-box--success');
     });
 
     it('adds class when error theme provided', () => {
         const tooltipBox = shallow(<TooltipBox status="error">contents</TooltipBox>);
-        expect(tooltipBox.find('div').hasClass('uir-tooltip-box--error'))
-            .to.equal(true);
+        expect(tooltipBox).to.have.className('uir-tooltip-box--error');
     });
 
     it('can past in children props', () => {
         const contents = 'this is an example';
         const tooltipBox = shallow(<TooltipBox>{contents}</TooltipBox>);
-        expect(tooltipBox.find('div').text()).to.equal(contents);
+        expect(tooltipBox).to.have.text(contents);
     });
 });

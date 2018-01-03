@@ -46,20 +46,17 @@ describe('Tooltip', () => {
 
     it('has correct class', () => {
         const tooltip = shallow(<Tooltip tooltip={<div />}>{exampleAvatar}</Tooltip>);
-        expect(tooltip.find('div').at(0).hasClass('uir-tooltip'))
-            .to.equal(true);
+        expect(tooltip).to.have.className('uir-tooltip');
     });
 
     it('has correct inner class', () => {
         const tooltip = shallow(<Tooltip tooltip={<div />}>{exampleAvatar}</Tooltip>);
-        expect(tooltip.find('div').at(1).hasClass('uir-tooltip-inner'))
-            .to.equal(true);
+        expect(tooltip.find('div').at(1)).to.have.className('uir-tooltip-inner');
     });
 
     it('has top-left class by default', () => {
         const tooltip = shallow(<Tooltip tooltip={<div />}>{exampleAvatar}</Tooltip>);
-        expect(tooltip.find('div').at(0).hasClass('uir-tooltip--top-left'))
-            .to.equal(true);
+        expect(tooltip.find('div').at(0)).to.have.className('uir-tooltip--top-left');
     });
 
     ['top-left', 'top-right', 'bottom-right', 'bottom-left'].forEach((position) => {
@@ -72,15 +69,14 @@ describe('Tooltip', () => {
                     {exampleAvatar}
                 </Tooltip>
             ));
-            expect(tooltip.find('div').at(0).hasClass(`uir-tooltip--${position}`))
-                .to.equal(true);
+            expect(tooltip).to.have.className(`uir-tooltip--${position}`);
         });
     });
 
     it('can pass through class', () => {
         const exampleClassName = 'example-class';
         const tooltip = shallow(<Tooltip tooltip={<div />} className={exampleClassName} />);
-        expect(tooltip.find('div').at(0).hasClass(exampleClassName)).to.equal(true);
+        expect(tooltip).to.have.className(exampleClassName);
     });
 
     it('can past in children props', () => {

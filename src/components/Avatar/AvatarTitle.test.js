@@ -42,8 +42,7 @@ describe('AvatarTitle', () => {
 
     it('has correct class', () => {
         const avatarTitle = shallow(<AvatarTitle />);
-        expect(avatarTitle.find('div').at(0).hasClass('uir-avatar-title'))
-            .to.equal(true);
+        expect(avatarTitle).to.have.className('uir-avatar-title');
     });
 
     it('can pass through class', () => {
@@ -52,13 +51,12 @@ describe('AvatarTitle', () => {
             name={exampleUser.name}
             className={exampleClassName}
         />);
-        expect(avatarTitle.find('div').at(0).hasClass(exampleClassName)).to.equal(true);
+        expect(avatarTitle).to.have.className(exampleClassName);
     });
 
     it('can display name', () => {
         const avatarTitle = shallow(<AvatarTitle name={exampleUser.name} />);
-        expect(avatarTitle.find('div.uir-avatar-title-name').text())
-            .to.equal(exampleUser.name);
+        expect(avatarTitle.find('div.uir-avatar-title-name')).to.have.text(exampleUser.name);
     });
 
     it('can display job role', () => {
@@ -66,8 +64,7 @@ describe('AvatarTitle', () => {
             name={exampleUser.name}
             jobRole={exampleUser.jobRole}
         />);
-        expect(avatarTitle.find('div.uir-avatar-title-job-role').text())
-            .to.equal(exampleUser.jobRole);
+        expect(avatarTitle.find('div.uir-avatar-title-job-role')).to.have.text(exampleUser.jobRole);
     });
 
     it('can display avatar', () => {

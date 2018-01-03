@@ -33,34 +33,34 @@ describe('Avatar', () => {
 
     it('renders a div element', () => {
         const avatar = shallow(<Avatar name={sampleData.name} />);
-        expect(avatar.find('div').length).to.equal(1);
+        expect(avatar).to.have.tagName('div');
     });
 
     it('has correct class', () => {
         const avatar = shallow(<Avatar name={sampleData.name} />);
-        expect(avatar.find('div').at(0).hasClass('uir-avatar')).to.equal(true);
+        expect(avatar).to.have.className('uir-avatar');
     });
 
     it('can pass through class', () => {
         const exampleClassName = 'example-class';
         const avatar = shallow(<Avatar name={sampleData.name} className={exampleClassName} />);
-        expect(avatar.find('div').at(0).hasClass(exampleClassName)).to.equal(true);
+        expect(avatar).to.have.className(exampleClassName);
     });
 
     it('calculates initials from name', () => {
         const avatar = shallow(<Avatar name={sampleData.name} />);
-        expect(avatar.find('div').at(0).text()).to.equal('MD');
+        expect(avatar).to.have.text('MD');
     });
 
     it('can override user initials', () => {
         const initials = 'FF';
         const avatar = shallow(<Avatar name={sampleData.name} initials={initials} />);
-        expect(avatar.find('div').at(0).text()).to.equal(initials);
+        expect(avatar).to.have.text(initials);
     });
 
     it('initials are question mark if no name is provided', () => {
         const avatar = shallow(<Avatar />);
-        expect(avatar.find('div').at(0).text()).to.equal('?');
+        expect(avatar).to.have.text('?');
     });
 
     it('can display user profile image', () => {
@@ -77,7 +77,7 @@ describe('Avatar', () => {
             name={sampleData.name}
             src={sampleData.src}
         />);
-        expect(avatar.find('div').at(1).text()).to.equal('');
+        expect(avatar).to.have.text('');
     });
 
     it('has ariaLabel with user name', () => {
@@ -99,8 +99,7 @@ describe('Avatar', () => {
         const avatar = shallow(<Avatar
             name={sampleData.name}
         />);
-        const hasClass = avatar.find('div').at(0).hasClass('uir-avatar--light');
-        expect(hasClass).to.equal(true);
+        expect(avatar).to.have.className('uir-avatar--light');
     });
 
     function testComponentTheme(theme) {
@@ -109,8 +108,7 @@ describe('Avatar', () => {
                 name={sampleData.name}
                 theme={theme}
             />);
-            const hasClass = avatar.find('div').at(0).hasClass(`uir-avatar--${theme}`);
-            expect(hasClass).to.equal(true);
+            expect(avatar).to.have.className(`uir-avatar--${theme}`);
         });
     }
 
@@ -123,8 +121,7 @@ describe('Avatar', () => {
                 name={sampleData.name}
                 size={label}
             />);
-            const hasClass = avatar.find('div').at(0).hasClass(`uir-avatar--${label}`);
-            expect(hasClass).to.equal(true);
+            expect(avatar).to.have.className(`uir-avatar--${label}`);
         });
     }
 
@@ -138,8 +135,7 @@ describe('Avatar', () => {
             name={sampleData.name}
             hasHalo
         />);
-        const hasClass = avatar.find('div').at(0).hasClass('uir-avatar--halo');
-        expect(hasClass).to.equal(true);
+        expect(avatar).to.have.className('uir-avatar--halo');
     });
 
     it('can display a notification icon', () => {
@@ -147,8 +143,7 @@ describe('Avatar', () => {
             name={sampleData.name}
             hasNotification
         />);
-        expect(avatar.find('span').at(1).hasClass('uir-avatar-user-status'))
-            .to.equal(true);
+        expect(avatar.find('span').at(1)).to.have.className('uir-avatar-user-status');
         expect(avatar.find('svg').length).to.equal(1);
     });
 
@@ -158,8 +153,8 @@ describe('Avatar', () => {
             status="🤓"
         />);
         const span = avatar.find('span').at(1);
-        expect(span.hasClass('uir-avatar-user-status')).to.equal(true);
-        expect(span.text()).to.equal('🤓');
+        expect(span).to.have.className('uir-avatar-user-status');
+        expect(span).to.have.text('🤓');
     });
 
     it('can pass through style object', () => {
@@ -173,8 +168,7 @@ describe('Avatar', () => {
 
     it('does not have an interactive class when onClick is null', () => {
         const avatar = shallow(<Avatar name={sampleData.name} />);
-        const hasClass = avatar.find('div').at(0).hasClass('uir-avatar--interactive');
-        expect(hasClass).to.equal(false);
+        expect(avatar).not.to.have.className('uir-avatar--interactive');
     });
 
     it('adds an interactive class when onClick is set', () => {
@@ -182,8 +176,7 @@ describe('Avatar', () => {
             name={sampleData.name}
             onClick={() => {}}
         />);
-        const hasClass = avatar.find('div').at(0).hasClass('uir-avatar--interactive');
-        expect(hasClass).to.equal(true);
+        expect(avatar).to.have.className('uir-avatar--interactive');
     });
 
     it('triggers click handler when clicked', () => {
