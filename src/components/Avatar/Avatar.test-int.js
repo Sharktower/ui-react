@@ -100,14 +100,9 @@ Scenario('Clickable', (I) => {
 
 Scenario('Clickable Key Press', (I) => {
     searchWithinIframe(I, KIND, 'Clickable', () => {
-        I.see('Clickable');
-        I.seeElement('.uir-avatar');
-        I.click('.uir-avatar');
-        I.acceptPopup();
+        I.click('#root');
+        I.pressKey('Tab');
         I.pressKey('Enter');
-        I.seeInPopup('it works!');
-        I.acceptPopup();
-        I.pressKey('Space');
         I.seeInPopup('it works!');
         I.acceptPopup();
     });
