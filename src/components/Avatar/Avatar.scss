@@ -45,7 +45,7 @@ $sizes: (
     ),
     lg: (
         avatar: ( size: 60px, font: 28px ),
-        status: ( size: 33px, font: 23px )
+        status: ( size: 34px, font: 22px )
     ),
 );
 
@@ -136,7 +136,6 @@ $themes: (
                 z-index: -1;
                 display: block;
                 content: "";
-                // background-image: radial-gradient(farthest-corner at 0 0, $pink 0%, $pink 75%, $yellow 80%);
                 background-image: radial-gradient(farthest-corner at 0 0, $purple 0%, $purple 75%, $pink 80%);
                 border-radius: 50%;
                 animation-name: uir-spin-halo;
@@ -168,6 +167,7 @@ $themes: (
         right: -18%;
         bottom: 0%;
         display: block;
+        vertical-align: middle;
         border-radius: 50%;
         animation-name: uir-status-icon-pop-in;
         animation-duration: .6s;
