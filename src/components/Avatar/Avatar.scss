@@ -68,7 +68,7 @@ $themes: (
         $avatarDetails: map-get($details, "avatar");
         $statusDetails: map-get($details, "status");
 
-        &.uir-avatar--#{$size} {
+        &--#{$size} {
             $avatarSize: map-get($avatarDetails, "size");
             $avatarFont: map-get($avatarDetails, "font");
             width: $avatarSize;
@@ -94,7 +94,7 @@ $themes: (
 
     @each $theme, $background in $themes {
 
-        &.uir-avatar--#{$theme} {
+        &--#{$theme} {
 
             .uir-avatar-user-status {
                 background: $background;
@@ -102,7 +102,7 @@ $themes: (
         }
     }
 
-    &.uir-avatar--interactive {
+    &--interactive {
 
         &:hover {
             cursor: pointer;
@@ -115,7 +115,7 @@ $themes: (
         }
     }
 
-    &.uir-avatar--halo {
+    &--halo {
 
         &:hover {
 
