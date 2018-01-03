@@ -34,7 +34,11 @@ function AvatarCard(props) {
         : null;
     return (
         <div
-            className={cx('uir-avatar-title', `uir-avatar-title--${props.size}`, props.className)}
+            className={cx(
+                'uir-avatar-title',
+                `uir-avatar-title--${props.size}`,
+                props.className,
+            )}
             style={props.style}
         >
             {profile}
