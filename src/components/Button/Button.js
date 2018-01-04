@@ -31,16 +31,20 @@ const defaultProps = {
     isActive: false,
     isDisabled: false,
     style: {},
-    onClick: () => {},
+    onClick: null,
 };
 
 class Button extends Component {
     handleClick = (e) => {
+        const propsOnClick = this.props.onClick;
+        if (!propsOnClick) { return; }
+
         if (this.props.isDisabled) {
             e.preventDefault();
             return;
         }
-        this.props.onClick(e);
+
+        propsOnClick(e);
     }
 
     handleRef = (node) => {
