@@ -1,4 +1,4 @@
-/* global describe, document, expect, it, mount, shallow */
+/* global describe, expect, it, shallow */
 import React from 'react';
 import * as common from '../../../test/unit/commonTests';
 import { sandbox } from '../../../test/unit/utils';
