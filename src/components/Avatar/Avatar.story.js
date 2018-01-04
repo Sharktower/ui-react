@@ -1,15 +1,48 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { withKnobs, text, boolean, select } from '@storybook/addon-knobs/react';
 import Avatar from './Avatar';
+import Tooltip from '../Tooltip/Tooltip';
 import storyWrapper from '../../storybook-addons/storyWrapper';
 
 const stories = storiesOf('Avatar.Avatar', module);
 
+stories.addDecorator(withKnobs);
+
 stories.add(
     'Overview',
     storyWrapper(
-        'The avatar is a round user profile icon.  The avatar\'s primary role is as a button.',
-        <Avatar name="David Smith" initials="DS" />,
+        'The avatar is a round user profile icon. The avatar\'s primary role is as a button.',
+        <Avatar
+            name={text('Name', 'David Smith')}
+            initials={text('Initials', 'DS')}
+            size={select('Size', {
+                xs: 'XS', sm: 'SM', md: 'MD', lg: 'LG',
+            }, 'md')}
+            hasHalo={boolean('Halo', false)}
+            hasNotification={boolean('Notification', false)}
+        />,
+        <div>
+            <Tooltip tooltip="Click me!">
+                <Avatar
+                    name="Harriet Inkwell"
+                    initials="HI"
+                    onClick={() => { alert('hello!'); }} // eslint-disable-line
+                    style={{ marginRight: '30px' }}
+                />
+            </Tooltip>
+            <Avatar
+                name="David Smith"
+                src="https://randomuser.me/api/portraits/men/3.jpg"
+                style={{ marginRight: '30px' }}
+            />
+            <Avatar
+                name="Jane Smith"
+                src="https://randomuser.me/api/portraits/women/58.jpg"
+                hasHalo
+                hasNotification
+            />
+        </div>,
     ),
 );
 

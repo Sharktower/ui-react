@@ -1,20 +1,18 @@
 /* global Feature, Scenario */
-const searchWithinIframe = require('../../../test/codecept/utils/searchWithinIframe.js');
 
 const KIND = 'Avatar.Avatar';
 
 Feature('Avatar');
 
-Scenario('Overview', (I) => {
-    searchWithinIframe(I, KIND, 'Overview', () => {
+Scenario('Storybook Documentation', (I) => {
+    I.searchWithinIframe(KIND, 'Overview', () => {
         I.see('Avatar: Avatar');
-        I.see('Overview');
-        I.see('Example');
-        I.seeElement('.uir-avatar');
-        I.see('DS');
-        I.see('Source Code');
+        I.see('Overview', 'h2');
+        I.see('Example', 'h3');
+        I.see('Source Code', 'h3');
         I.seeElement('code');
-        I.see('Props');
+        I.see('Variations', 'h3');
+        I.see('Props', 'h3');
         I.seeElement('table');
         I.see('property');
         I.see('value');
@@ -24,86 +22,20 @@ Scenario('Overview', (I) => {
     });
 });
 
-Scenario('Initials', (I) => {
-    searchWithinIframe(I, KIND, 'Initials', () => {
-        I.see('Initials');
-        I.see('Variations');
-        I.seeNumberOfElements('.uir-avatar', 3);
+Scenario('Avatar', (I) => {
+    I.searchWithinIframe(KIND, 'Overview', () => {
+        I.seeElement('.uir-avatar', 4);
+        I.seeNumberOfElements('.uir-avatar--halo', 1);
+        I.seeNumberOfElements('.uir-avatar-user-status svg', 1);
     });
 });
 
-Scenario('Image', (I) => {
-    searchWithinIframe(I, KIND, 'Image', () => {
-        I.see('Image');
-        I.seeNumberOfElements('.uir-avatar', 5);
-        I.seeElement('.uir-avatar--xs');
-        I.seeElement('.uir-avatar--sm');
-        I.seeElement('.uir-avatar--md');
-        I.seeElement('.uir-avatar--lg');
-    });
-});
-
-Scenario('Halo', (I) => {
-    searchWithinIframe(I, KIND, 'Halo', () => {
-        I.see('Halo');
-        I.seeNumberOfElements('.uir-avatar--halo', 5);
-        I.seeElement('.uir-avatar--xs');
-        I.seeElement('.uir-avatar--sm');
-        I.seeElement('.uir-avatar--md');
-        I.seeElement('.uir-avatar--lg');
-    });
-});
-
-Scenario('Theme', (I) => {
-    searchWithinIframe(I, KIND, 'Theme', () => {
-        I.see('Theme');
-        I.seeNumberOfElements('.uir-avatar--dark', 4);
-    });
-});
-
-Scenario('Status', (I) => {
-    searchWithinIframe(I, KIND, 'Status', () => {
-        I.see('Status');
-        I.seeNumberOfElements('.uir-avatar', 4);
-        I.seeNumberOfElements('.uir-avatar-user-status', 4);
-        I.see('🦄');
-        I.see('🌴');
-        I.see('🤚');
-        I.see('🤕');
-        I.seeElement('.uir-avatar--xs');
-        I.seeElement('.uir-avatar--sm');
-        I.seeElement('.uir-avatar--md');
-        I.seeElement('.uir-avatar--lg');
-    });
-});
-
-Scenario('Notification', (I) => {
-    searchWithinIframe(I, KIND, 'Notification', () => {
-        I.see('Notification');
-        I.seeNumberOfElements('.uir-avatar-user-status svg', 5);
-        I.seeElement('.uir-avatar--xs');
-        I.seeElement('.uir-avatar--sm');
-        I.seeElement('.uir-avatar--md');
-        I.seeElement('.uir-avatar--lg');
-    });
-});
-
-Scenario('Clickable', (I) => {
-    searchWithinIframe(I, KIND, 'Clickable', () => {
-        I.see('Clickable');
+Scenario('Avatar Clickable', (I) => {
+    I.searchWithinIframe(KIND, 'Overview', () => {
         I.seeElement('.uir-avatar');
-        I.click('.uir-avatar');
-        I.seeInPopup('it works!');
-        I.acceptPopup();
-    });
-});
-
-Scenario('Clickable Key Press', (I) => {
-    searchWithinIframe(I, KIND, 'Clickable', () => {
         I.click('#root');
-        I.pressKey('Tab');
-        I.pressKey('Enter');
-        I.seeInPopup('it works!');
+        I.click('.uir-avatar', '.uir-tooltip');
+        I.seeInPopup('hello!');
         I.acceptPopup();
     });
 });

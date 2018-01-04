@@ -6,14 +6,16 @@ It also checks if story book is currently running 1) if no : run storybook, 2) i
 exitstatus=`ps -ef | grep "selenium"|grep -v grep | awk '{ print $2}'`
 echo "selenium process id" $exitstatus
 if [ "$exitstatus" = "" ]; then
-        yarn selenium install
-	( yarn selenium start 2>&1 | tee -a output/selenium_log.txt ) &
+        yarn selenium install --version=3.4.0
+	( yarn selenium start --version=3.4.0 2>&1 | tee -a output/selenium_log.txt ) &
 else
 	kill -9 $exitstatus
-	yarn selenium install
-        ( yarn selenium start 2>&1 | tee -a output/selenium_log.txt ) &
+	yarn selenium install --version=3.4.0
+        ( yarn selenium start --version=3.4.0 2>&1 | tee -a output/selenium_log.txt ) &
 
 fi
+
+# @NB: using selenium version 3.4.0 as per: https://github.com/Codeception/CodeceptJS/issues/687
 
 sbstatus=`ps -ef | grep "storybook"|grep -v grep | awk '{ print $2}'`
 echo "storybook process id" $sbstatus

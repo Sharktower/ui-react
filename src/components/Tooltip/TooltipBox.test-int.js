@@ -1,12 +1,11 @@
 /* global Feature, Scenario  */
-const searchWithinIframe = require('../../../test/codecept/utils/searchWithinIframe.js');
 
 const KIND = 'Tooltip.TooltipBox';
 
 Feature('TooltipBox');
 
 Scenario('Standard', (I) => {
-    searchWithinIframe(I, KIND, 'Standard', () => {
+    I.searchWithinIframe(KIND, 'Standard', () => {
         I.see('Tooltip: TooltipBox');
         I.see('Standard');
         I.see('Example');
@@ -23,14 +22,14 @@ Scenario('Standard', (I) => {
     });
 });
 
-Scenario('Success', (I) => {
-    searchWithinIframe(I, KIND, 'Success', () => {
-        I.seeElement('.uir-tooltip-box.uir-tooltip-box--success');
-    });
-});
-
-Scenario('Error', (I) => {
-    searchWithinIframe(I, KIND, 'Error', () => {
-        I.seeElement('.uir-tooltip-box.uir-tooltip-box--error');
-    });
-});
+// Scenario('Success', (I) => {
+//     I.searchWithinIframe(KIND, 'Success', () => {
+//         I.seeElement('.uir-tooltip-box.uir-tooltip-box--success');
+//     });
+// });
+//
+// Scenario('Error', (I) => {
+//     I.searchWithinIframe(KIND, 'Error', () => {
+//         I.seeElement('.uir-tooltip-box.uir-tooltip-box--error');
+//     });
+// });
