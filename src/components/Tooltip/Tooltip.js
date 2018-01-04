@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import ListPropType from '../../prop-types/list';
+import TooltipBox from './TooltipBox';
 import './Tooltip.scss';
 
 const propTypes = {
     children: PropTypes.element.isRequired,
-    tooltip: PropTypes.element.isRequired,
+    tooltip: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+    ]).isRequired,
     position: ListPropType([
         'top-center',
         'top-left',
@@ -37,6 +41,13 @@ class Tooltip extends Component {
         showTooltip: false,
     }
 
+    getTooltipContents() {
+        const { tooltip } = this.props;
+        return typeof tooltip === 'string'
+            ? <TooltipBox>{tooltip}</TooltipBox>
+            : tooltip;
+    }
+
     handleFocus = () => this.setState({ showTooltip: true })
 
     handleBlur = () => this.setState({ showTooltip: false })
@@ -46,7 +57,7 @@ class Tooltip extends Component {
             ? this.props.showTooltip
             : this.state.showTooltip;
         const tooltip = showTooltip
-            ? <div className="uir-tooltip-contents">{this.props.tooltip}</div>
+            ? <div className="uir-tooltip-contents">{this.getTooltipContents()}</div>
             : null;
         return (
             <div

@@ -1,7 +1,8 @@
-/* global describe, expect, it, shallow, beforeEach, afterEach */
+/* global describe, expect, it, shallow, mount, beforeEach, afterEach */
 import React from 'react';
 import sinon from 'sinon';
 import Tooltip from './Tooltip';
+import TooltipBox from './TooltipBox';
 import Avatar from '../Avatar/Avatar';
 import AvatarCard from '../Avatar/AvatarCard';
 
@@ -86,7 +87,7 @@ describe('Tooltip', () => {
         expect(tooltip).to.have.className(exampleClassName);
     });
 
-    it('can past in children props', () => {
+    it('can pass in children props', () => {
         const tooltip = shallow(<Tooltip tooltip={<div />}>{exampleAvatar}</Tooltip>);
         expect(tooltip.find(Avatar).length).to.equal(1);
     });
@@ -106,6 +107,24 @@ describe('Tooltip', () => {
             <Tooltip tooltip={exampleTooltip} showTooltip>{exampleAvatar}</Tooltip>
         ));
         expect(tooltip.find(AvatarCard).length).to.equal(1);
+    });
+
+    it('can take an element as a tooltip', () => {
+        const tooltipWrapper = shallow((
+            <Tooltip tooltip={<div className="test">example</div>} showTooltip>{exampleAvatar}</Tooltip>
+        ));
+        const tooltip = tooltipWrapper.find('div.test');
+        expect(tooltip.length).to.equal(1);
+        expect(tooltip).to.have.text('example');
+    });
+
+    it('can take a string as a tooltip', () => {
+        const tooltipWrapper = mount((
+            <Tooltip tooltip="example tooltip" showTooltip>{exampleAvatar}</Tooltip>
+        ));
+        const tooltipBox = tooltipWrapper.find(TooltipBox);
+        expect(tooltipBox.length).to.equal(1);
+        expect(tooltipBox.text()).to.equal('example tooltip');
     });
 
     it('sets state showTooltip to true on mouse enter', () => {
