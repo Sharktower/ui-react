@@ -58,6 +58,12 @@ describe('Avatar', () => {
         expect(avatar).to.have.text(initials);
     });
 
+    it('initials longer than 3 characters shortened to 2', () => {
+        const initials = 'AAB';
+        const avatar = shallow(<Avatar name={sampleData.name} initials={initials} />);
+        expect(avatar).to.have.text(initials.substr(0, 2));
+    });
+
     it('initials are question mark if no name is provided', () => {
         const avatar = shallow(<Avatar />);
         expect(avatar).to.have.text('?');

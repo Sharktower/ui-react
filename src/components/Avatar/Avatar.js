@@ -56,10 +56,12 @@ class Avatar extends Component {
     //  in the future it may be removed
     calculateInitials = name => (name ? name.match(/\b\w/g).slice(0, 3).join('') : '?')
 
+    shortenInitials = initials => initials.substr(0, 2);
+
     render() {
         const imageOrInitials = this.props.src
             ? <img src={this.props.src} alt={`${this.props.name} profile`} />
-            : this.props.initials || this.calculateInitials(this.props.name);
+            : this.shortenInitials(this.props.initials || this.calculateInitials(this.props.name));
         const notificationSVG = this.props.hasNotification
             ? (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

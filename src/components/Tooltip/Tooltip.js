@@ -41,7 +41,7 @@ class Tooltip extends Component {
         showTooltip: false,
     }
 
-    getTooltipContents() {
+    getTooltipContents = () => {
         const { tooltip } = this.props;
         return typeof tooltip === 'string'
             ? <TooltipBox>{tooltip}</TooltipBox>
