@@ -16,7 +16,7 @@ const IconArrow = ({
         style={style}
         viewBox="0 0 24 24"
     >
-        <path fill="#2F2833" d="M12.778 14.72l5.657-5.656.707.707-5.657 5.657zM5 9.771l.707-.707 7.071 7.071-.707.707z" fillRule="evenodd" />
+        <path d="M 13.1 15.319 L 21.9 6.521 L 23 7.621 L 14.2 16.42 L 13.1 15.319 Z  M 1 7.621 L 2.1 6.521 L 13.1 17.52 L 12 18.619 L 1 7.621 Z" fillRule="evenodd" />
     </svg>
 );
 

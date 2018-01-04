@@ -29,7 +29,7 @@ stories.add(
 stories.add(
     'bigger',
     withInfo(`
-        Assign width and height 
+        Assign width and height
     `)(() => <IconArrow width="100" height="100" />),
 );
 
@@ -39,7 +39,7 @@ stories.add(
         Using style attribute
     `)(() => (
         <div style={{ background: '#333' }}>
-            <IconArrow width="100" height="100" style={{ marginTop: '-3px', stroke: '#FFF' }} />
+            <IconArrow width="100" height="100" style={{ marginTop: '-3px', fill: '#fff', stroke: '#fff' }} />
         </div>
     )),
 );

@@ -54,11 +54,11 @@ stories.add(
 stories.add(
     'with icon',
     withInfo(`
-        Icons, or other elements passed as children might need small adjustments to centre them vertically
+        Icons can be used as children, their size will be adjusted to match text size
     `)(() => (
         <div>
-            <Button isClear>Clear with Icon <IconArrow style={{ marginTop: -3 }} /></Button>
-            <Button><IconArrow style={{ marginTop: -3 }} />Default with Icon</Button>
+            <Button isClear>Clear button with Icon <IconArrow /></Button>
+            <Button><IconArrow /> Default button with Icon</Button>
         </div>
     )),
 );

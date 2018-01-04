@@ -13,6 +13,8 @@
     $button-background-color-hover: rgba(47, 40, 51, .1) !default;
     $button-background-color-focus: rgba(47, 40, 51, .2) !default;
     $button-background-color-active: rgba(47, 40, 51, .4) !default;
+    $button-icon-width: $base-font-size + 4 !default;
+    $button-icon-height: $base-font-size + 4 !default;
 
     position: relative;
     box-sizing: border-box;
@@ -50,13 +52,11 @@
         background-color: $button-background-color-focus;
     }
 
-    &.uir-button--active {
+    &--active {
         color: $button-color-active;
         background-color: $button-background-color-active;
     }
 
-    /* Align vertically buttons with icons */
-    svg,
     &--content {
         display: inline-block;
         vertical-align: middle;
@@ -78,5 +78,11 @@
     // isActive prop
     &--active {
         font-weight: 600; /* Medium, not bold if available */
+    }
+
+    .uir-icon {
+        width: $button-icon-width;
+        height: $button-icon-height;
+        vertical-align: text-bottom;
     }
 }

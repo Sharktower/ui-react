@@ -49,11 +49,11 @@ stories.add(
 stories.add(
     'with icon',
     withInfo(`
-        Icons, or other elements passed as children might need small adjustments to centre them vertically
+        Icons can be used as children, their size will be adjusted to match text size
     `)(() => (
         <div>
-            <PrimaryButton isClear>Foo <IconArrow style={{ marginTop: '-3px', stroke: 'white' }} /></PrimaryButton>
-            <PrimaryButton><IconArrow style={{ marginTop: -3, stroke: 'white' }} />Bar</PrimaryButton>
+            <PrimaryButton isClear>Foo <IconArrow /></PrimaryButton>
+            <PrimaryButton><IconArrow /> Bar</PrimaryButton>
         </div>
     )),
 );
