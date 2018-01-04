@@ -47,10 +47,6 @@ class Button extends Component {
         propsOnClick(e);
     }
 
-    handleRef = (node) => {
-        this.innerRef = node;
-    }
-
     render() {
         const {
             className,
@@ -76,7 +72,6 @@ class Button extends Component {
                         'uir-button--disabled': isDisabled,
                     },
                 )}
-                ref={this.handleRef}
                 disabled={isDisabled}
                 onClick={this.handleClick}
             >

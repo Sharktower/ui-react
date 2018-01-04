@@ -37,23 +37,6 @@ describe('Button', () => {
         expect(wrapper.find(Button).length).to.equal(3);
     });
 
-    describe('handleRef', () => {
-        it('can set focus via a ref', () => {
-            const mountNode = document.createElement('div');
-            document.body.appendChild(mountNode);
-
-            const wrapper = mount(<Button>Foo</Button>, { attachTo: mountNode });
-            wrapper.instance().innerRef.focus();
-
-            const button = document.querySelector('button');
-
-            expect(document.activeElement).to.equal(button);
-
-            wrapper.detach();
-            document.body.removeChild(mountNode);
-        });
-    });
-
     describe('isDisabled', () => {
         it('does not add disabled attribute when not defined', () => {
             const wrapper = shallow(<Button>Foo</Button>);
