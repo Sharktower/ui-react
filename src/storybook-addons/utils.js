@@ -33,6 +33,7 @@ const tableStyle = {
 
 const trStyle = {
     padding: '0 0 6px',
+    textAlign: 'left',
 };
 
 // create map of available PropTypes
