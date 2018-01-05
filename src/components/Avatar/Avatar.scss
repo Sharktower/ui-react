@@ -137,8 +137,9 @@ $themes: (
                 z-index: -1;
                 display: block;
                 content: "";
-                background-image: radial-gradient(farthest-corner at 0 0, $purple 0%, $purple 75%, $pink 80%);
-                border-radius: 50%;
+                background-image: url("avatar-halo.png");
+                background-repeat: no-repeat;
+                background-size: contain;
                 animation-name: uir-spin-halo;
                 animation-duration: 3s;
                 animation-timing-function: linear;
