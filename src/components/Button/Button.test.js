@@ -7,9 +7,8 @@ import Button from './Button';
 describe('Button', () => {
     common.rendersChildren(Button);
     common.propKeyToClassName(Button, 'isActive', { requiredProps: { children: 'Foo' } });
-    common.propKeyToClassName(Button, 'isClear', { requiredProps: { children: 'Foo' } });
     common.propKeyToClassName(Button, 'isDisabled', { requiredProps: { children: 'Foo' } });
-    common.propKeyToClassName(Button, 'isFluid', { requiredProps: { children: 'Foo' } });
+    common.propKeyToClassName(Button, 'isFullWidth', { requiredProps: { children: 'Foo' } });
 
     it('renders an HTML tag button', () => {
         const wrapper = shallow((
@@ -87,5 +86,30 @@ describe('Button', () => {
             expect(onClick).not.to.have.been.called();
             expect(preventDefault).to.have.been.calledOnce();
         });
+    });
+
+    describe('type', () => {
+        // This could be extracted
+        // into a generic test for propKey+propValue that result in className
+        function testTypeProp(propValue) {
+            describe(propValue, () => {
+                const className = `uir-button--${propValue}`;
+
+                it(`does not add className ${className} when prop not defined`, () => {
+                    const wrapper = shallow(<Button>Foo</Button>);
+
+                    expect(wrapper).not.to.have.className(className);
+                });
+
+                it(`adds className ${className}`, () => {
+                    const wrapper = shallow(<Button type={propValue}>Foo</Button>);
+
+                    expect(wrapper).to.have.className(className);
+                });
+            });
+        }
+
+        testTypeProp('clear');
+        testTypeProp('primary');
     });
 });

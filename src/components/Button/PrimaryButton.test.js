@@ -1,7 +1,6 @@
 /* global describe, expect, it, shallow */
 import React from 'react';
 import * as common from '../../../test/unit/commonTests';
-import getClassNameFromBoolPropKey from '../../../test/unit/utils/getClassNameFromBoolPropKey';
 import Button from './Button';
 import PrimaryButton from './PrimaryButton';
 
@@ -35,16 +34,6 @@ describe('PrimaryButton', () => {
             const wrapper = shallow(<PrimaryButton className="foo-bar">Foo</PrimaryButton>);
 
             expect(wrapper).to.have.className('foo-bar');
-        });
-    });
-
-    describe('isClear', () => {
-        const isClearClassName = getClassNameFromBoolPropKey(Button, 'isClear');
-
-        it(`does not add class ${isClearClassName}`, () => {
-            const wrapper = shallow(<PrimaryButton isClear>Foo</PrimaryButton>);
-
-            expect(wrapper).not.to.have.className(isClearClassName);
         });
     });
 });

@@ -21,7 +21,7 @@ const IconButton = ({
     <Button
         {...extraProps}
         className={cx('uir-icon-button', className)}
-        isFluid={false}
+        isFullWidth={false}
     />
 );
 

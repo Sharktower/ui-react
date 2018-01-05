@@ -50,13 +50,13 @@ describe('IconButton', () => {
         });
     });
 
-    describe('isFluid', () => {
-        const isFluidClassName = getClassNameFromBoolPropKey(Button, 'isFluid');
+    describe('isFullWidth', () => {
+        const isFullWidthClassName = getClassNameFromBoolPropKey(Button, 'isFullWidth');
 
-        it(`does not add class ${isFluidClassName}`, () => {
-            const wrapper = shallow(<IconButton isFluid><IconArrow /></IconButton>).dive();
+        it(`does not add class ${isFullWidthClassName}`, () => {
+            const wrapper = shallow(<IconButton isFullWidth><IconArrow /></IconButton>).dive();
 
-            expect(wrapper).not.to.have.className(isFluidClassName);
+            expect(wrapper).not.to.have.className(isFullWidthClassName);
         });
     });
 

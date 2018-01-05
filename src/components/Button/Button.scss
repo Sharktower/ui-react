@@ -37,6 +37,7 @@
     outline: none;
     transition: all .3s;
 
+    // type=clear prop
     &--clear {
         color: $button-color-clear;
         background: $button-background-color-clear;
@@ -62,8 +63,8 @@
         vertical-align: middle;
     }
 
-    // isFluid prop
-    &--fluid {
+    // isFullWidth prop
+    &--full-width {
         width: 100%;
         margin-right: 0;
         margin-left: 0;
@@ -78,6 +79,28 @@
     // isActive prop
     &--active {
         font-weight: 600; /* Medium, not bold if available */
+    }
+
+    // type=primary prop
+    &--primary {
+        color: #fff;
+        background-image: linear-gradient(to bottom, #ff1966 0%, #fa439f 100%);
+
+        &:focus,
+        &:hover {
+            color: #fff;
+            background-image: linear-gradient(to bottom, #ff1966 100%, #fa439f 100%);
+            box-shadow: 0px 0px 3px 1px rgba(225, 25, 102, .4);
+        }
+
+        &.uir-button--active {
+            color: #fff;
+        }
+
+        .uir-icon {
+            stroke: #fff;
+            fill: #fff;
+        }
     }
 
     .uir-icon {

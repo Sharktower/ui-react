@@ -23,8 +23,7 @@ stories.add(
             onClick={action('clicked')}
             className={text('className', '')}
             isActive={boolean('isActive', false)}
-            isClear={boolean('isClear', false)}
-            isFluid={boolean('isFluid', false)}
+            isFullWidth={boolean('isFullWidth', false)}
             isDisabled={boolean('isDisabled', false)}
         >
             {text('label', 'Custom label')}

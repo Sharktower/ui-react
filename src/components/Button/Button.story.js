@@ -3,7 +3,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
-import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean, select } from '@storybook/addon-knobs';
 import Button from './Button';
 import IconArrow from '../Icon/IconArrow';
 
@@ -22,9 +22,9 @@ stories.add(
             onClick={action('clicked')}
             className={text('className', '')}
             isActive={boolean('isActive', false)}
-            isClear={boolean('isClear', false)}
-            isFluid={boolean('isFluid', false)}
+            isFullWidth={boolean('isFullWidth', false)}
             isDisabled={boolean('isDisabled', false)}
+            type={select('type', ['clear', 'default', 'primary'])}
         >
             {text('label', 'Custom label')}
         </Button>
@@ -41,12 +41,24 @@ stories.add(
 stories.add(
     'clear',
     withInfo(`
-        Clear buttons
+        Clear buttons, use type="clear"
     `)(() => (
         <div>
-            <Button isClear>Not active</Button>
-            <Button isClear>Not active</Button>
-            <Button isClear isActive>Active</Button>
+            <Button type="clear">Not active</Button>
+            <Button type="clear">Not active</Button>
+            <Button type="clear" isActive>Active</Button>
+        </div>
+    )),
+);
+
+stories.add(
+    'primary',
+    withInfo(`
+        Primary buttons, use type="primary"
+    `)(() => (
+        <div>
+            <Button type="primary">Not active</Button>
+            <Button type="primary" isActive>Active</Button>
         </div>
     )),
 );
@@ -57,8 +69,10 @@ stories.add(
         Icons can be used as children, their size will be adjusted to match text size
     `)(() => (
         <div>
-            <Button isClear>Clear button with Icon <IconArrow /></Button>
-            <Button><IconArrow /> Default button with Icon</Button>
+            <Button>Text with Icon <IconArrow /></Button>
+            <Button><IconArrow /> Icon with text</Button>
+            <Button type="clear">Clear button <IconArrow /></Button>
+            <Button type="primary">Primary button <IconArrow /></Button>
         </div>
     )),
 );
