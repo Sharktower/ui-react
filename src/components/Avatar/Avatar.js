@@ -59,9 +59,15 @@ class Avatar extends Component {
     shortenInitials = initials => initials.substr(0, 2);
 
     render() {
-        const imageOrInitials = this.props.src
-            ? <img src={this.props.src} alt={`${this.props.name} profile`} />
-            : this.shortenInitials(this.props.initials || this.calculateInitials(this.props.name));
+        const image = this.props.src
+            ? <span className="uir-avatar-inner-img" style={{ backgroundImage: `url(${this.props.src})` }} />
+            : null;
+        const initials = (
+            <span className="uir-avatar-inner-initials">
+                {this.shortenInitials(this.props.initials
+                    || this.calculateInitials(this.props.name))}
+            </span>
+        );
         const notificationSVG = this.props.hasNotification
             ? (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -96,7 +102,8 @@ class Avatar extends Component {
                 style={this.props.style}
             >
                 <span className="uir-avatar-inner">
-                    {imageOrInitials}
+                    {initials}
+                    {image}
                 </span>
                 {notificationOrStatus}
             </div>

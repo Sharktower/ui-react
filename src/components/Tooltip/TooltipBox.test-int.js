@@ -4,12 +4,11 @@ const KIND = 'Tooltip.TooltipBox';
 
 Feature('TooltipBox');
 
-Scenario('Standard', (I) => {
+Scenario('Storybook Documentation', (I) => {
     I.searchWithinIframe(KIND, 'Standard', () => {
         I.see('Tooltip: TooltipBox');
         I.see('Standard');
         I.see('Example');
-        I.seeElement('.uir-tooltip-box.uir-tooltip-box--default');
         I.see('Source Code');
         I.seeElement('code');
         I.see('Props');
@@ -22,14 +21,8 @@ Scenario('Standard', (I) => {
     });
 });
 
-// Scenario('Success', (I) => {
-//     I.searchWithinIframe(KIND, 'Success', () => {
-//         I.seeElement('.uir-tooltip-box.uir-tooltip-box--success');
-//     });
-// });
-//
-// Scenario('Error', (I) => {
-//     I.searchWithinIframe(KIND, 'Error', () => {
-//         I.seeElement('.uir-tooltip-box.uir-tooltip-box--error');
-//     });
-// });
+Scenario('TooltipBox', (I) => {
+    I.searchWithinIframe(KIND, 'Standard', () => {
+        I.seeElement('.uir-tooltip-box');
+    });
+});

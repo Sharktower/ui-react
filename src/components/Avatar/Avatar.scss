@@ -1,5 +1,10 @@
 @import "../variables";
 
+$inner-z-index: 0;
+$halo-z-index: -1;
+$initials-z-index: 2;
+$image-z-index: 3;
+
 @keyframes uir-spin-halo {
 
     from {
@@ -85,7 +90,7 @@ $themes: (
                 line-height: $statusSize;
             }
 
-            &.uir-avatar--halo .uir-avatar-inner::before {
+            &.uir-avatar--halo::before {
                 width: $avatarSize + 4px;
                 height: $avatarSize + 4px;
             }
@@ -125,30 +130,32 @@ $themes: (
             }
         }
 
+        &::before {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            z-index: $halo-z-index;
+            display: block;
+            content: "";
+            background-image: url("avatar-halo.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            animation-name: uir-spin-halo;
+            animation-duration: 3s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
         .uir-avatar-inner {
             border-color: #fff;
             border-style: solid;
             border-width: 2px;
-
-            &::before {
-                position: absolute;
-                top: -2px;
-                left: -2px;
-                z-index: -1;
-                display: block;
-                content: "";
-                background-image: url("avatar-halo.png");
-                background-repeat: no-repeat;
-                background-size: contain;
-                animation-name: uir-spin-halo;
-                animation-duration: 3s;
-                animation-timing-function: linear;
-                animation-iteration-count: infinite;
-            }
         }
     }
 
     .uir-avatar-inner {
+        position: relative;
+        z-index: $inner-z-index;
         box-sizing: border-box;
         display: block;
         width: 100%;
@@ -157,10 +164,21 @@ $themes: (
         background-color: $grey;
         border-radius: 50%;
 
-        img,
-        svg {
+        &-initials,
+        &-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: $initials-z-index;
+            display: inline-block;
             width: 100%;
             height: 100%;
+        }
+
+        &-img {
+            z-index: $image-z-index;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
     }
 
@@ -175,5 +193,10 @@ $themes: (
         animation-name: uir-status-icon-pop-in;
         animation-duration: .6s;
         animation-delay: .2s;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
     }
 }

@@ -74,16 +74,7 @@ describe('Avatar', () => {
             name={sampleData.name}
             src={sampleData.src}
         />);
-        expect(avatar.find('img').length).to.equal(1);
-        expect(avatar.find('img').props()).to.have.property('src', sampleData.src);
-    });
-
-    it('does NOT display initials if profile image is shown', () => {
-        const avatar = shallow(<Avatar
-            name={sampleData.name}
-            src={sampleData.src}
-        />);
-        expect(avatar).to.have.text('');
+        expect(avatar.find('.uir-avatar-inner-img').length).to.equal(1);
     });
 
     it('has ariaLabel with user name', () => {
@@ -149,7 +140,7 @@ describe('Avatar', () => {
             name={sampleData.name}
             hasNotification
         />);
-        expect(avatar.find('span').at(1)).to.have.className('uir-avatar-user-status');
+        expect(avatar.find('span').at(2)).to.have.className('uir-avatar-user-status');
         expect(avatar.find('svg').length).to.equal(1);
     });
 
@@ -158,7 +149,7 @@ describe('Avatar', () => {
             name={sampleData.name}
             status="🤓"
         />);
-        const span = avatar.find('span').at(1);
+        const span = avatar.find('span').at(2);
         expect(span).to.have.className('uir-avatar-user-status');
         expect(span).to.have.text('🤓');
     });
