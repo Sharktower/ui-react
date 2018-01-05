@@ -25,9 +25,7 @@ Scenario('AvatarTitle', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
         I.seeElement('.uir-avatar-title');
         I.seeElement('.uir-avatar');
-        I.seeElement('.uir-avatar-title-name');
-        I.see('Jane Smith');
-        I.seeElement('.uir-avatar-title-job-role');
-        I.see('Delivery Manager');
+        I.see('Jane Smith', '.uir-avatar-title-name');
+        I.see('Delivery Manager', '.uir-avatar-title-job-role');
     });
 });

@@ -24,7 +24,7 @@ Scenario('Storybook Documentation', (I) => {
 
 Scenario('Avatar', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.seeElement('.uir-avatar', 4);
+        I.seeNumberOfElements('.uir-avatar', 4);
         I.seeNumberOfElements('.uir-avatar--halo', 1);
         I.seeNumberOfElements('.uir-avatar-user-status svg', 1);
     });

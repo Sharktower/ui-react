@@ -25,11 +25,8 @@ Scenario('AvatarCard', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
         I.seeElement('.uir-avatar-card');
         I.seeElement('.uir-avatar');
-        I.seeElement('.uir-avatar-card-name');
-        I.see('David Smith');
-        I.seeElement('.uir-avatar-card-job-role');
-        I.see('Sales Manager');
-        I.seeElement('.uir-avatar-card-team');
-        I.see('Communication Team');
+        I.see('David Smith', '.uir-avatar-card-name');
+        I.see('Sales Manager', '.uir-avatar-card-job-role');
+        I.see('Communication Team', '.uir-avatar-card-team');
     });
 });
