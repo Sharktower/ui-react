@@ -38,9 +38,10 @@ function AvatarCard(props) {
         <div
             className={cx(
                 'uir-avatar-card',
-                { 'uir-avatar-card--has-role': jobRole },
-                { 'uir-avatar-card--has-team': team },
-                { 'uir-avatar-card--has-profile': profile },
+                {
+                    'uir-avatar-card--has-role': jobRole,
+                    'uir-avatar-card--has-team': team,
+                },
                 props.className,
             )}
             style={props.style}
