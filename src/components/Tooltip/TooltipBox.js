@@ -9,8 +9,8 @@ const propTypes = {
         PropTypes.element,
         PropTypes.string,
     ]).isRequired,
-    status: ListPropType(['default', 'success', 'error']),
     className: PropTypes.string,
+    status: ListPropType(['default', 'success', 'error']),
     style: PropTypes.objectOf(PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -18,8 +18,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-    status: 'default',
     className: null,
+    status: 'default',
     style: null,
 };
 
