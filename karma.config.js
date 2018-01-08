@@ -1,25 +1,8 @@
 // Karma configuration
 const path = require('path');
-const webpackConfig = require('./webpack.config.js');
+const webpackConfig = require('./webpack.karma.config.js');
 
 module.exports = (config) => {
-    // Required by the coverage reporter
-    webpackConfig.module.rules.push({
-        test: /\.js$/,
-        use: {
-            loader: 'istanbul-instrumenter-loader',
-            options: { esModules: true },
-        },
-        enforce: 'post',
-        exclude: [
-            /(test|node_modules)\//,
-            modulePath => modulePath.endsWith('.test.js') ||
-                          modulePath.endsWith('.test-int.js') ||
-                          modulePath.endsWith('.story.js'),
-        ],
-    });
-    webpackConfig.devtool = 'inline-source-map';
-
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
