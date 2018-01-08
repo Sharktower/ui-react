@@ -26,7 +26,9 @@ function prepareWrapper() {
 describe('storyWrapper', () => {
     it('renders our logo', () => {
         const wrapper = prepareWrapper();
-        expect(wrapper.find('svg').length).to.equal(1);
+        const svg = wrapper.find('svg');
+        expect(svg.length).to.equal(1);
+        expect(svg.props()).to.have.property('alt', 'Mudano Logo');
     });
 
     it('renders a heading', () => {
