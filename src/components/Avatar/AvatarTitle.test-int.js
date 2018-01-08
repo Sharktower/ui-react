@@ -26,6 +26,6 @@ Scenario('AvatarTitle', (I) => {
         I.seeElement('.uir-avatar-title');
         I.seeElement('.uir-avatar');
         I.see('Jane Smith', '.uir-avatar-title-name');
-        I.see('Delivery Manager', '.uir-avatar-title-job-role');
+        I.see('DELIVERY MANAGER', '.uir-avatar-title-job-role');
     });
 });

@@ -27,6 +27,6 @@ Scenario('AvatarCard', (I) => {
         I.seeElement('.uir-avatar');
         I.see('David Smith', '.uir-avatar-card-name');
         I.see('Sales Manager', '.uir-avatar-card-job-role');
-        I.see('Communication Team', '.uir-avatar-card-team');
+        I.see('COMMUNICATION TEAM', '.uir-avatar-card-team');
     });
 });
