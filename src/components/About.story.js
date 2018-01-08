@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import overviewWrapper from '../storybook-addons/overviewWrapper';
 
 const stories = storiesOf('About', module);

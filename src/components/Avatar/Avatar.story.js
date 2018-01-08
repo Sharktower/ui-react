@@ -1,6 +1,6 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs, text, boolean, select } from '@storybook/addon-knobs/react';
+import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
+import { withKnobs, text, boolean, select } from '@storybook/addon-knobs/react'; // eslint-disable-line import/no-extraneous-dependencies
 import Avatar from './Avatar';
 import Tooltip from '../Tooltip/Tooltip';
 import storyWrapper from '../../storybook-addons/storyWrapper';
