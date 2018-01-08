@@ -109,6 +109,22 @@ describe('Tooltip', () => {
         expect(tooltip.find(AvatarCard).length).to.equal(1);
     });
 
+    it('does not hide on blur if showTooltip true', () => {
+        const tooltip = shallow((
+            <Tooltip tooltip={exampleTooltip} showTooltip>{exampleAvatar}</Tooltip>
+        ));
+        tooltip.simulate('blur');
+        expect(tooltip.find(AvatarCard).length).to.equal(1);
+    });
+
+    it('will not show tooltip if showTooltip false', () => {
+        const tooltip = shallow((
+            <Tooltip tooltip={exampleTooltip} showTooltip={false}>{exampleAvatar}</Tooltip>
+        ));
+        tooltip.find('div').at(0).simulate('mouseEnter');
+        expect(tooltip.find(AvatarCard).length).to.equal(0);
+    });
+
     it('can take an element as a tooltip', () => {
         const tooltipWrapper = shallow((
             <Tooltip tooltip={<div className="test">example</div>} showTooltip>{exampleAvatar}</Tooltip>
