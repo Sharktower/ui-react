@@ -2,7 +2,7 @@
   "name": "@mudano/ui-react",
   "version": "0.0.1",
   "description": "Mudano UI React components",
-  "main": "dist/umd/ui-react.min.js",
+  "main": "src/index.js",
   "files": [
     "src"
   ],
