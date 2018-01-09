@@ -18,15 +18,15 @@ Scenario('Storybook Documentation', (I) => {
         I.see('value');
         I.see('required');
         I.see('default');
-        I.seeNumberOfElements('td', 12 * 4);
+        I.seeNumberOfElements('td', 10 * 4);
     });
 });
 
 Scenario('Avatar', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.seeNumberOfElements('.uir-avatar', 4);
+        I.seeNumberOfElements('.uir-avatar', 5);
         I.seeNumberOfElements('.uir-avatar--halo', 1);
-        I.seeNumberOfElements('.uir-avatar-user-status svg', 1);
+        I.seeNumberOfElements('.uir-avatar-icon svg', 1);
     });
 });
 

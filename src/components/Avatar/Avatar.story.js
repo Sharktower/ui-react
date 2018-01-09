@@ -4,6 +4,18 @@ import Avatar from './Avatar';
 import Tooltip from '../Tooltip/Tooltip';
 import storyWrapper from '../../storybook-addons/storyWrapper';
 
+// @NB: this will be replaced by a real Icon component soon
+function TempIcon() {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <g fill="none" transform="translate(3 3)">
+                <circle cx="9" cy="9" r="8" stroke="#F33061" />
+                <path fill="#F33061" d="M8 5h2v5H8zm0 6h2v2H8z" />
+            </g>
+        </svg>
+    );
+}
+
 const stories = storiesOf('Avatar.Avatar', module);
 
 stories.add(
@@ -33,7 +45,13 @@ stories.add(
                 name="Jane Smith"
                 src="https://randomuser.me/api/portraits/women/58.jpg"
                 hasHalo
-                hasNotification
+                style={{ marginRight: '30px' }}
+            />
+            <Avatar
+                name="Jane Doe"
+                initials="JD"
+                src="https://randomuser.me/api/portraits/women/44.jpg"
+                icon={<TempIcon />}
             />
         </div>,
     ),
@@ -204,129 +222,43 @@ stories.add(
 );
 
 stories.add(
-    'Theme',
+    'Icon',
     storyWrapper(
-        'Use the `theme` prop to set the status and notification icon background.',
-        <Avatar
-            name="David Smith"
-            initials="DS"
-            theme="dark"
-            size="lg"
-            src="https://randomuser.me/api/portraits/men/3.jpg"
-            status="😡"
-        />,
-        <div style={{ backgroundColor: '#3a333c', display: 'inline-block', padding: '30px' }}>
-            <Avatar
-                name="David Smith"
-                initials="DS"
-                theme="dark"
-                size="lg"
-                src="https://randomuser.me/api/portraits/men/3.jpg"
-                status="🐴"
-                style={{ marginRight: '30px' }}
-            />
-            <Avatar
-                name="David Smith"
-                initials="DS"
-                theme="dark"
-                size="lg"
-                src="https://randomuser.me/api/portraits/men/3.jpg"
-                status="🚀"
-                style={{ marginRight: '30px' }}
-            />
-            <Avatar
-                name="David Smith"
-                initials="DS"
-                theme="dark"
-                size="lg"
-                src="https://randomuser.me/api/portraits/men/3.jpg"
-                status="🏆"
-            />
-        </div>,
-    ),
-);
-
-stories.add(
-    'Status',
-    storyWrapper(
-        'Pass an emoji to the `status` prop to display a status icon.',
-        <Avatar
-            name="David Smith"
-            initials="DS"
-            size="lg"
-            src="https://randomuser.me/api/portraits/men/84.jpg"
-            status="🦄"
-        />,
-        <div>
-            <Avatar
-                name="David Smith"
-                initials="DS"
-                size="xs"
-                src="https://randomuser.me/api/portraits/men/84.jpg"
-                status="🌴"
-                style={{ marginRight: '30px' }}
-            />
-            <Avatar
-                name="David Smith"
-                initials="DS"
-                size="sm"
-                src="https://randomuser.me/api/portraits/men/84.jpg"
-                status="🤚"
-                style={{ marginRight: '30px' }}
-            />
-            <Avatar
-                name="David Smith"
-                initials="DS"
-                size="md"
-                src="https://randomuser.me/api/portraits/men/84.jpg"
-                status="🤕"
-            />
-        </div>,
-    ),
-);
-
-stories.add(
-    'Notification',
-    storyWrapper(
-        `
-Use the \`hasNotification\` prop to displays a notification icon.
-
-_NB: The warning icon overrides any status icon._
-`,
+        'Use the `icon` prop to display a SVG icon.',
         <Avatar
             name="Jane Smith"
             initials="JS"
             size="lg"
             src="https://randomuser.me/api/portraits/women/68.jpg"
-            hasNotification
+            icon={<TempIcon />}
         />,
         <div>
             <Avatar
                 name="Jane Smith"
                 initials="JS"
                 size="xs"
-                hasNotification
+                icon={<TempIcon />}
                 style={{ marginRight: '30px' }}
             />
             <Avatar
                 name="Jane Smith"
                 initials="JS"
                 size="sm"
-                hasNotification
+                icon={<TempIcon />}
                 style={{ marginRight: '30px' }}
             />
             <Avatar
                 name="Jane Smith"
                 initials="JS"
                 size="md"
-                hasNotification
+                icon={<TempIcon />}
                 style={{ marginRight: '30px' }}
             />
             <Avatar
                 name="Jane Smith"
                 initials="JS"
                 size="lg"
-                hasNotification
+                icon={<TempIcon />}
             />
         </div>,
     ),
