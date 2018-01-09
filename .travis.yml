@@ -1,7 +1,7 @@
 language: node_js
 node_js:
     - "8"
-sudo: false
+sudo: required
 dist: trusty
 addons:
     chrome: stable
@@ -9,6 +9,8 @@ cache: yarn
 install:
     - yarn install
 before_script:
+    - "sudo chown root /opt/google/chrome/chrome-sandbox"
+    - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
     - yarn test:int-setup &
     - sleep 3
 script:
