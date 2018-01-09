@@ -20,19 +20,19 @@ $tooltipPositions: (
     @keyframes uir-animate-tooltip-in--#{$label} {
 
         0% {
-            transform: $translation rotate(-2deg);
+            transform: $translation rotateX(-90deg);
         }
 
         40% {
-            transform: $translation rotate(3deg);
+            transform: $translation rotateX(-50deg);
         }
 
         60% {
-            transform: $translation rotate(-3deg);
+            transform: $translation rotateX(20deg);
         }
 
         100% {
-            transform: $translation rotate(0deg);
+            transform: $translation rotateX(0deg);
         }
     }
 }
@@ -68,5 +68,6 @@ $tooltipPositions: (
         position: absolute;
         z-index: 1000;
         animation-duration: .3s;
+        animation-timing-function: linear;
     }
 }
