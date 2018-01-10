@@ -3,7 +3,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
-import { withKnobs, text, number } from '@storybook/addon-knobs';
+import { withKnobs, text } from '@storybook/addon-knobs';
 import IconArrow from './IconArrow';
 
 const stories = storiesOf('IconArrow', module);
@@ -13,33 +13,42 @@ stories
     .addDecorator(story => <div id="uir-root-preview">{story()}</div>);
 
 stories.add(
-    '-demo-',
+    'Overview',
     withInfo(`
         Adjust props in the Knob panel of Storybook
     `)(() => (
         <IconArrow
             onClick={action('clicked')}
             className={text('className', '')}
-            width={number('width', 24)}
-            height={number('height', 24)}
         />
     )),
 );
 
 stories.add(
-    'bigger',
+    'Style',
     withInfo(`
-        Assign width and height
-    `)(() => <IconArrow width="100" height="100" />),
-);
-
-stories.add(
-    'white',
-    withInfo(`
-        Using style attribute
+        Use CSS to style the icon
     `)(() => (
-        <div style={{ background: '#333' }}>
-            <IconArrow width="100" height="100" style={{ marginTop: '-3px', fill: '#fff', stroke: '#fff' }} />
+        <div>
+            <style>
+                {
+                    `.demo-icon-arrow-bigger {
+                        width: 100px;
+                        height: 100px;
+                    }`
+                }
+            </style>
+            <IconArrow className="demo-icon-arrow-bigger" />
+            <style>
+                {
+                    `.demo-icon-arrow-light {
+                        fill: #fff;
+                    }`
+                }
+            </style>
+            <div style={{ width: 100, background: '#333' }}>
+                <IconArrow className="demo-icon-arrow-light demo-icon-arrow-bigger" />
+            </div>
         </div>
     )),
 );
