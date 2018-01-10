@@ -2,8 +2,10 @@
   "name": "@mudano/ui-react",
   "version": "0.0.1",
   "description": "Mudano UI React components",
-  "main": "src/index.js",
+  "main": "lib/index.js",
+  "modules.root": "lib",
   "files": [
+    "lib",
     "src"
   ],
   "repository": {
