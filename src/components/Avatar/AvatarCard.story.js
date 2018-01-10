@@ -32,7 +32,7 @@ const exampleAvatarLarge = (
 stories.add(
     'Overview',
     storyWrapper(
-        'The AvatarCard component is a user profile box that resizes depending on the content provided.',
+        'AvatarCard component is a user profile box that resizes depending on the content provided.',
         <AvatarCard
             name="David Smith"
             jobRole="Sales Manager"

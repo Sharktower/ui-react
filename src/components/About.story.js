@@ -29,19 +29,15 @@ You'll also need the prop-types package:
 
     yarn add prop-types
 
-If you are using the native ES6 modules, you'll need to compile your application, we recommend webpack.
+Each component is a native ES6 modules and as such you'll need to compile your application. (We recommend webpack.)
 
     yarn add babel-core babel-loader css-loader node-sass sass-loader style-loader webpack --dev
 
 ### Usage
 
-You can consume UI React in one of two ways, as a whole library or as individual components.
+You should consume UI React as individual components:
 
-    import { YourComponent } from '@mudano/ui-react'; // UMD Modules
-
-    import { YourComponent } from 'node_modules/@mudano/ui-react/es/index'; // Native ES6 Modules
-
-    import YourComponent from 'node_modules/@mudano/ui-react/es/components/YourComponent/YourComponent';
+    import YourComponent from '@mudano/ui-react/lib/YourComponent';
 
 ### Issues
 

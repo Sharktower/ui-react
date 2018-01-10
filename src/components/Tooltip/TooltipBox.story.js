@@ -9,9 +9,9 @@ stories.add(
     'Standard',
     storyWrapper(
         `
-The tooltip box component provides default tooltip styling.
+TooltipBox component provides default tooltip styling for use with Tooltip
 
-_NB: any element can be used as a tooltip._
+_NB: any component can be used as a tooltip, this is just a handy util component_
 `,
         <TooltipBox style={{ position: 'relative', transform: 'translate(0, 0)', animationName: 'none' }}>
             <div>My Tooltip Contents</div>

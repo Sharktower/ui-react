@@ -34,9 +34,9 @@ stories.add(
     'Overview',
     storyWrapper(
         `
-The AvatarTitle component displays a user's name and job role with a clear background.
+AvatarTitle component displays a user's name and job role with a clear background.
 
-The AvatarTitle resizes depending on the content provided.
+AvatarTitle resizes depending on the content provided.
         `,
         <AvatarTitle
             name="Jane Smith"

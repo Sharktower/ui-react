@@ -21,7 +21,11 @@ const stories = storiesOf('Avatar.Avatar', module);
 stories.add(
     'Overview',
     storyWrapper(
-        'The avatar is a round user profile icon. The avatar\'s primary role is as a button.',
+        `
+Avatar is a round user profile icon.
+
+Avatars will either display a user's profile image or their initials.
+        `,
         <Avatar
             name="David Smith"
             initials="DS"
@@ -61,9 +65,9 @@ stories.add(
     'Initials',
     storyWrapper(
         `
-The default avatar displays the user's initials.
+The default Avatar displays the user's initials.
 
-Initials is automatically calculated from the user's name.
+Initials are automatically calculated from the user's name.
 
 You can override this by setting the \`initials\` prop.
         `,
@@ -138,9 +142,9 @@ stories.add(
     'Size',
     storyWrapper(
         `
-Use the size prop to create a xs, sm, md or lg avatar.
+Use the \`size\` prop to create a xs, sm, md or lg Avatar.
 
-Remove the size prop for the default (md) size.
+Remove the \`size\` prop for the default (md) size.
         `,
         <Avatar
             name="Joe Bloggs"
@@ -178,7 +182,7 @@ Remove the size prop for the default (md) size.
 stories.add(
     'Halo',
     storyWrapper(
-        'Use the `hasHalo` prop to give the avatar a spinning halo border.',
+        'Use the `hasHalo` prop to give the Avatar a spinning halo border.',
         <Avatar
             name="Jane Doe"
             initials="JD"
@@ -224,7 +228,11 @@ stories.add(
 stories.add(
     'Icon',
     storyWrapper(
-        'Use the `icon` prop to display a SVG icon.',
+        `
+Use the \`icon\` prop to display a SVG icon.
+
+_NB: The \`icon\` prop expects an Icon component._
+        `,
         <Avatar
             name="Jane Smith"
             initials="JS"
@@ -270,7 +278,7 @@ stories.add(
         `
 Pass a function to the \`onClick\` prop to handle user interaction.
 
-_NB: when you add a click handler the avatar hover state changes._
+_NB: when you add a click handler the Avatar hover state changes._
 `,
         <Avatar
             name="Jane Smith"

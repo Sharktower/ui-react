@@ -29,7 +29,9 @@ stories.add(
     'Wrapper',
     storyWrapper(
         `
-To utilise a tooltip, wrap your trigger element in the Tooltip component.
+Tooltip wraps trigger elements and provides on hover tip functionality.
+
+Put your trigger element as the Tooltip's child.
 
 Then pass your tooltip element to the \`tooltip\` prop.
 
@@ -61,7 +63,7 @@ For example:
 stories.add(
     'Show',
     storyWrapper(
-        'Pass the `showTooltip` prop to force show a tooltip.',
+        'Pass the `showTooltip` prop to force show or hide a tooltip.',
         <Tooltip showTooltip tooltip={<TooltipBox>my tooltip</TooltipBox>}>
             {exampleAvatar}
         </Tooltip>,
