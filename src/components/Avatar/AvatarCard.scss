@@ -1,5 +1,8 @@
 @import "../variables";
 
+$avatarCardColor: $white !default;
+$avatarCardBgColor: $charcoal !default;
+
 .uir-avatar-card {
     box-sizing: border-box;
     display: inline-flex;
@@ -8,9 +11,9 @@
     padding: 12px;
     font-family: $font;
     font-size: 13px;
-    color: $white;
+    color: $avatarCardColor;
     white-space: nowrap;
-    background-color: $charcoal;
+    background-color: $avatarCardBgColor;
     border-radius: 3px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
     transition-timing-function: ease-in-out;
