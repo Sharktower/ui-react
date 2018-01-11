@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import ListPropType from '../../prop-types/list';
+import StyleObjectPropType from '../../prop-types/style';
 import './TooltipBox.scss';
 
 const propTypes = {
@@ -11,10 +12,7 @@ const propTypes = {
     ]).isRequired,
     className: PropTypes.string,
     status: ListPropType(['default', 'success', 'error']),
-    style: PropTypes.objectOf(PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-    ])),
+    style: StyleObjectPropType(),
 };
 
 const defaultProps = {

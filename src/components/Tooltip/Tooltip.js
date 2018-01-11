@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import ListPropType from '../../prop-types/list';
+import StyleObjectPropType from '../../prop-types/style';
 import TooltipBox from './TooltipBox';
 import './Tooltip.scss';
 
@@ -17,10 +18,7 @@ const propTypes = {
         'bottom-left',
     ]),
     showTooltip: PropTypes.bool,
-    style: PropTypes.objectOf(PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-    ])),
+    style: StyleObjectPropType(),
     tabIndex: PropTypes.number,
     tooltip: PropTypes.oneOfType([
         PropTypes.element,
