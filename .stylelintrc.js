@@ -218,7 +218,7 @@ module.exports = {
     ],
 
     // Sass rules
-    'max-nesting-depth': 2,
+    'max-nesting-depth': 3,
     'scss/dollar-variable-pattern': '^_?[a-z]+[\\w-]*$',
     'scss/at-extend-no-missing-placeholder': true,
     'order/order': [

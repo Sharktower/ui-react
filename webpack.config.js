@@ -40,6 +40,12 @@ const defaultConfig = {
                     jsx: true,
                 },
             }],
+        }, {
+            test: /\.(png|jpg|gif)$/,
+            exclude: /node_modules\//,
+            use: [{
+                loader: 'file-loader',
+            }],
         }],
     },
     externals: {
