@@ -1,3 +1,4 @@
+/* global Feature, Scenario, within */
 // eslint-disable-next-line spaced-comment
 /// path="../../../test/codecept/steps.d.ts"
 
@@ -11,5 +12,7 @@ Scenario('renders and is clickable', (I, mapper) => {
     within({ frame: '#storybook-preview-iframe' }, () => {
         I.seeElementInDOM(`${buttonContainer} ${arrowIcon}`);
         I.click(buttonContainer);
+        I.seeInPopup('it works!');
+        I.acceptPopup();
     });
 });
