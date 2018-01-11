@@ -1,0 +1,35 @@
+@import "../variables";
+
+$tooltipColor: $white !default;
+$tooltipDefaultBgColor: $charcoal !default;
+$tooltipSuccessBgColor: $teal !default;
+$tooltipErrorBgColor: $pink !default;
+
+.uir-tooltip-box {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    width: max-content;
+    padding: 12px;
+    font-family: $font;
+    font-size: 13px;
+    color: $tooltipColor;
+    white-space: nowrap;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
+    transition-timing-function: ease-in-out;
+    transition-duration: 1s;
+    transition-property: all;
+
+    &--default {
+        background-color: $tooltipDefaultBgColor;
+    }
+
+    &--success {
+        background-color: $tooltipSuccessBgColor;
+    }
+
+    &--error {
+        background-color: $tooltipErrorBgColor;
+    }
+}

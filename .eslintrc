@@ -17,8 +17,5 @@
         "react/jsx-filename-extension": [1, { "extensions": [".js"] }]
     },
     "globals": {
-        "Feature": true,
-        "Scenario": true,
-        "within": true
     }
 }

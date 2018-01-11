@@ -1,0 +1,191 @@
+@import "../variables";
+
+$avatarColor: $charcoal !default;
+$avatarBgColor: $white !default;
+$avatarInnerBgColor: $grey !default;
+$avatarInnerBorderColor: $white !default;
+
+$inner-z-index: 0;
+$halo-z-index: -1;
+$initials-z-index: 2;
+$image-z-index: 3;
+
+@keyframes uir-spin-halo {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes uir-icon-pop-in {
+
+    0% {
+        transform: scale(.75);
+    }
+
+    40% {
+        transform: scale(1.25);
+    }
+
+    60% {
+        transform: scale(.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+$sizes: (
+    xs: (
+        avatar: ( size: 24px, font: 12px ),
+        icon: ( size: 14px )
+    ),
+    sm: (
+        avatar: ( size: 36px, font: 16px ),
+        icon: ( size: 20px )
+    ),
+    md: (
+        avatar: ( size: 48px, font: 22px ),
+        icon: ( size: 26px )
+    ),
+    lg: (
+        avatar: ( size: 60px, font: 28px ),
+        icon: ( size: 32px )
+    ),
+);
+
+.uir-avatar {
+    position: relative;
+    box-sizing: border-box;
+    display: inline-block;
+    font-family: $font;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    outline: none;
+
+    @each $size, $details in $sizes {
+        $avatarDetails: map-get($details, "avatar");
+        $iconDetails: map-get($details, "icon");
+
+        &--#{$size} {
+            $avatarSize: map-get($avatarDetails, "size");
+            $avatarFont: map-get($avatarDetails, "font");
+            width: $avatarSize;
+            height: $avatarSize;
+            font-size: $avatarFont;
+            line-height: $avatarSize;
+
+            .uir-avatar-icon {
+                $iconSize: map-get($iconDetails, "size");
+                width: $iconSize;
+                height: $iconSize;
+                line-height: $iconSize;
+            }
+
+            &.uir-avatar--halo::before {
+                width: $avatarSize + 4;
+                height: $avatarSize + 4;
+            }
+        }
+    }
+
+    &--interactive {
+
+        &:hover {
+            cursor: pointer;
+            opacity: .8;
+        }
+
+        &:focus {
+            outline: none;
+            opacity: .8;
+        }
+    }
+
+    &--halo {
+
+        &:hover {
+
+            .uir-avatar-inner::before {
+                animation-play-state: paused;
+            }
+        }
+
+        &::before {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            z-index: $halo-z-index;
+            display: block;
+            content: "";
+            background-image: url("avatar-halo.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            animation-name: uir-spin-halo;
+            animation-duration: 3s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        .uir-avatar-inner {
+            border-color: $avatarInnerBorderColor;
+            border-style: solid;
+            border-width: 2px;
+        }
+    }
+
+    .uir-avatar-inner {
+        position: relative;
+        z-index: $inner-z-index;
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: $avatarInnerBgColor;
+        border-radius: 50%;
+
+        &-initials,
+        &-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: $initials-z-index;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
+
+        &-img {
+            z-index: $image-z-index;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+
+    .uir-avatar-icon {
+        position: absolute;
+        right: -18%;
+        bottom: 0%;
+        display: block;
+        font-family: Courier, monospace;
+        color: $avatarColor;
+        text-align: center;
+        background-color: $avatarBgColor;
+        border-radius: 50%;
+        animation-name: uir-icon-pop-in;
+        animation-duration: .6s;
+        animation-delay: .2s;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

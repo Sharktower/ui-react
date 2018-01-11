@@ -1,0 +1,51 @@
+@import "../variables";
+
+$avatarCardColor: $white !default;
+$avatarCardBgColor: $charcoal !default;
+
+.uir-avatar-card {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    width: max-content;
+    padding: 12px;
+    font-family: $font;
+    font-size: 13px;
+    color: $avatarCardColor;
+    white-space: nowrap;
+    background-color: $avatarCardBgColor;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
+    transition-timing-function: ease-in-out;
+    transition-duration: 1s;
+    transition-property: all;
+
+    .uir-avatar-card-profile {
+        padding-right: 12px;
+    }
+
+    &--has-role {
+
+        .uir-avatar-card-name {
+            font-size: 26px;
+        }
+
+        .uir-avatar-card-job-role {
+            font-size: 16px;
+        }
+    }
+
+    &--has-team {
+
+        .uir-avatar-card-name {
+            font-size: 26px;
+        }
+
+        .uir-avatar-card-team {
+            margin-top: 4px;
+            font-size: 11px;
+            text-transform: uppercase;
+            opacity: .6;
+        }
+    }
+}

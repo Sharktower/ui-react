@@ -15,8 +15,8 @@ module.exports = (config) => {
         // list of files / patterns to load in the browser
         files: [
             'test/unit/setupEnvironment.js',
-            'src/*.js',
             'src/**/*.test.js',
+            'src/**/*.js',
         ],
 
         // list of files to exclude

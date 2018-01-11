@@ -1,4 +1,11 @@
-# Mudano UI React
+import { storiesOf } from '@storybook/react';
+import overviewWrapper from '../storybook-addons/overviewWrapper';
+
+const stories = storiesOf('About', module);
+
+stories.add(
+    'Welcome',
+    overviewWrapper(`
 
 UI React is the Mudano component library.
 
@@ -62,3 +69,6 @@ To run integration tests first setup the test server:
 And then in a new terminal run:
 
     yarn test:int
+
+    `),
+);

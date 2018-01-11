@@ -1,0 +1,45 @@
+@import "../variables";
+
+$avatarTitleColor: $charcoal !default;
+
+.uir-avatar-title {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    font-family: $font;
+    color: $avatarTitleColor;
+    white-space: nowrap;
+    transition-timing-function: ease-in-out;
+    transition-duration: 1s;
+    transition-property: all;
+
+    .uir-avatar-title-profile {
+        padding-right: 12px;
+    }
+
+    .uir-avatar-title-job-role {
+        text-transform: uppercase;
+    }
+
+    &--sm {
+
+        .uir-avatar-title-name {
+            font-size: 16px;
+        }
+
+        .uir-avatar-title-job-role {
+            font-size: 9px;
+        }
+    }
+
+    &--lg {
+
+        .uir-avatar-title-name {
+            font-size: 26px;
+        }
+
+        .uir-avatar-title-job-role {
+            font-size: 11px;
+        }
+    }
+}
