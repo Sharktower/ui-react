@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import ListPropType from '../../prop-types/list';
+import StyleObjectPropType from '../../prop-types/style';
 import './AvatarTitle.scss';
 
 const propTypes = {
@@ -10,10 +11,7 @@ const propTypes = {
     jobRole: PropTypes.string,
     name: PropTypes.string.isRequired,
     size: ListPropType(['sm', 'lg']),
-    style: PropTypes.objectOf(PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-    ])),
+    style: StyleObjectPropType(),
 };
 
 const defaultProps = {

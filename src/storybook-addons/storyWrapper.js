@@ -47,7 +47,7 @@ export default function storyWrapper(summary, component, variants) {
     const variations = getVariations(variants);
     return context => (
         <div style={storyWrapperStyle}>
-            <Logo width="200px" style={{ float: 'right' }} />
+            <Logo width="200px" style={{ float: 'right' }} alt="Mudano Logo" />
             <h1>{getKind(context.kind)}</h1>
             <h2>{context.story}</h2>
             {markdown.convert(summary)}

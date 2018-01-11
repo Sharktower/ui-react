@@ -3,38 +3,32 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import InitialsPropType from '../../prop-types/initials';
 import ListPropType from '../../prop-types/list';
+import StyleObjectPropType from '../../prop-types/style';
 import './Avatar.scss';
 
 const propTypes = {
     className: PropTypes.string,
     hasHalo: PropTypes.bool,
-    hasNotification: PropTypes.bool,
+    icon: PropTypes.element,
     initials: InitialsPropType,
     name: PropTypes.string.isRequired,
     onClick: PropTypes.func,
     size: ListPropType(['xs', 'sm', 'md', 'lg']),
     src: PropTypes.string,
-    status: PropTypes.string,
-    style: PropTypes.objectOf(PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-    ])),
+    style: StyleObjectPropType(),
     tabIndex: PropTypes.number,
-    theme: ListPropType(['light', 'dark']),
 };
 
 const defaultProps = {
     className: null,
     hasHalo: false,
-    hasNotification: false,
     initials: null,
+    icon: null,
     onClick: null,
     size: 'md',
     src: null,
-    status: null,
     style: null,
     tabIndex: 0,
-    theme: 'light',
 };
 
 class Avatar extends Component {
@@ -68,19 +62,8 @@ class Avatar extends Component {
                     || this.calculateInitials(this.props.name))}
             </span>
         );
-        const notificationSVG = this.props.hasNotification
-            ? (
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <g fill="none" transform="translate(3 3)">
-                        <circle cx="9" cy="9" r="8" stroke="#F33061" />
-                        <path fill="#F33061" d="M8 5h2v5H8zm0 6h2v2H8z" />
-                    </g>
-                </svg>
-            )
-            : null;
-        const status = this.props.status || null;
-        const notificationOrStatus = notificationSVG || status
-            ? <span className="uir-avatar-user-status">{notificationSVG || status}</span>
+        const icon = this.props.icon
+            ? <span className="uir-avatar-icon">{this.props.icon}</span>
             : null;
         /* eslint-disable jsx-a11y/no-static-element-interactions */
         // disabling aria role lint rule to allow for ternary operator
@@ -88,7 +71,6 @@ class Avatar extends Component {
             <div
                 className={cx(
                     'uir-avatar',
-                    `uir-avatar--${this.props.theme}`,
                     `uir-avatar--${this.props.size}`,
                     { 'uir-avatar--interactive': this.props.onClick },
                     { 'uir-avatar--halo': this.props.hasHalo },
@@ -105,7 +87,7 @@ class Avatar extends Component {
                     {initials}
                     {image}
                 </span>
-                {notificationOrStatus}
+                {icon}
             </div>
         );
         /* eslint-enable */

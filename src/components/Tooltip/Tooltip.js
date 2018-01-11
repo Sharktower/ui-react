@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import ListPropType from '../../prop-types/list';
+import StyleObjectPropType from '../../prop-types/style';
 import TooltipBox from './TooltipBox';
 import './Tooltip.scss';
 
 const propTypes = {
     children: PropTypes.element.isRequired,
-    tooltip: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.string,
-    ]).isRequired,
+    className: PropTypes.string,
     position: ListPropType([
         'top-center',
         'top-left',
@@ -20,20 +18,20 @@ const propTypes = {
         'bottom-left',
     ]),
     showTooltip: PropTypes.bool,
+    style: StyleObjectPropType(),
     tabIndex: PropTypes.number,
-    className: PropTypes.string,
-    style: PropTypes.objectOf(PropTypes.oneOfType([
+    tooltip: PropTypes.oneOfType([
+        PropTypes.element,
         PropTypes.string,
-        PropTypes.number,
-    ])),
+    ]).isRequired,
 };
 
 const defaultProps = {
+    className: null,
     position: 'top-center',
     showTooltip: null,
-    tabIndex: 0,
-    className: null,
     style: null,
+    tabIndex: 0,
 };
 
 class Tooltip extends Component {

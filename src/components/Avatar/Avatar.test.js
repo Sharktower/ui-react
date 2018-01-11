@@ -92,26 +92,6 @@ describe('Avatar', () => {
         expect(avatar.find('div').at(0).props()).to.have.property('tabIndex', -1);
     });
 
-    it('render light theme by default', () => {
-        const avatar = shallow(<Avatar
-            name={sampleData.name}
-        />);
-        expect(avatar).to.have.className('uir-avatar--light');
-    });
-
-    function testComponentTheme(theme) {
-        it(`can render a ${theme} version`, () => {
-            const avatar = shallow(<Avatar
-                name={sampleData.name}
-                theme={theme}
-            />);
-            expect(avatar).to.have.className(`uir-avatar--${theme}`);
-        });
-    }
-
-    testComponentTheme('light');
-    testComponentTheme('dark');
-
     function testComponentSize(size, label) {
         it(`can render a ${size} version`, () => {
             const avatar = shallow(<Avatar
@@ -135,23 +115,24 @@ describe('Avatar', () => {
         expect(avatar).to.have.className('uir-avatar--halo');
     });
 
-    it('can display a notification icon', () => {
-        const avatar = shallow(<Avatar
-            name={sampleData.name}
-            hasNotification
-        />);
-        expect(avatar.find('span').at(2)).to.have.className('uir-avatar-user-status');
-        expect(avatar.find('svg').length).to.equal(1);
-    });
+    function MockIcon() {
+        return (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <g fill="none" transform="translate(3 3)">
+                    <circle cx="9" cy="9" r="8" stroke="#F33061" />
+                    <path fill="#F33061" d="M8 5h2v5H8zm0 6h2v2H8z" />
+                </g>
+            </svg>
+        );
+    }
 
-    it('can display a status icon', () => {
-        const avatar = shallow(<Avatar
+    it('can display a svg icon', () => {
+        const avatar = mount(<Avatar
             name={sampleData.name}
-            status="🤓"
+            icon={<MockIcon />}
         />);
-        const span = avatar.find('span').at(2);
-        expect(span).to.have.className('uir-avatar-user-status');
-        expect(span).to.have.text('🤓');
+        expect(avatar.find('span').at(2)).to.have.className('uir-avatar-icon');
+        expect(avatar.find('svg').length).to.equal(1);
     });
 
     it('can pass through style object', () => {

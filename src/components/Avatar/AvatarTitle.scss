@@ -1,11 +1,13 @@
 @import "../variables";
 
+$avatarTitleColor: $charcoal !default;
+
 .uir-avatar-title {
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
     font-family: $font;
-    color: $charcoal;
+    color: $avatarTitleColor;
     white-space: nowrap;
     transition-timing-function: ease-in-out;
     transition-duration: 1s;

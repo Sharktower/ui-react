@@ -1,3 +1,7 @@
+
+// tooltipTranslations, along with tooltipPositions below,
+// accurately position tooltips that can be a range of different sizes
+
 $tooltipTranslations: (
     top-center: translate(-50%, -100%),
     top-left: translate(-10%, -100%),
@@ -8,31 +12,66 @@ $tooltipTranslations: (
 );
 
 $tooltipPositions: (
-    top-center: (top: -4px, right: auto, bottom: auto, left: 50%),
-    top-left: (top: -4px, right: auto, bottom: auto, left: 0),
-    top-right: (top: -4px, right: 0, bottom: auto, left: auto),
-    bottom-center: (top: auto, right: auto, bottom: -4px, left: 50%),
-    bottom-right: (top: auto, right: 0, bottom: -4px, left: auto),
-    bottom-left: (top: auto, right: auto, bottom: -4px, left: 0),
+    top-center: (
+        top: -4px,
+        right: auto,
+        bottom: auto,
+        left: 50%,
+        animation-direction: "top"
+    ),
+    top-left: (
+        top: -4px,
+        right: auto,
+        bottom: auto,
+        left: 0,
+        animation-direction: "top"
+    ),
+    top-right: (
+        top: -4px,
+        right: 0,
+        bottom: auto,
+        left: auto,
+        animation-direction: "top"
+    ),
+    bottom-center: (
+        top: auto,
+        right: auto,
+        bottom: -4px,
+        left: 50%,
+        animation-direction: "bottom"
+    ),
+    bottom-right: (
+        top: auto,
+        right: 0,
+        bottom: -4px,
+        left: auto,
+        animation-direction: "bottom"
+    ),
+    bottom-left: (
+        top: auto,
+        right: auto,
+        bottom: -4px,
+        left: 0,
+        animation-direction: "bottom"
+    ),
 );
 
+// create the keyframe animation to slide in tooltips
+// animations can either run upwards (top) or downwards (bottom)
+
 @each $label, $translation in $tooltipTranslations {
-    @keyframes uir-animate-tooltip-in--#{$label} {
+    @each $direction in "top", "bottom" {
+        @keyframes uir-animate-tooltip-in-#{$direction}--#{$label} {
 
-        0% {
-            transform: $translation rotate(-2deg);
-        }
+            from {
+                margin-#{$direction}: 20px;
+                opacity: 0;
+            }
 
-        40% {
-            transform: $translation rotate(3deg);
-        }
-
-        60% {
-            transform: $translation rotate(-3deg);
-        }
-
-        100% {
-            transform: $translation rotate(0deg);
+            to {
+                margin-#{$direction}: 0;
+                opacity: 1;
+            }
         }
     }
 }
@@ -51,7 +90,7 @@ $tooltipPositions: (
                 bottom: map-get($positons, "bottom");
                 left: map-get($positons, "left");
                 transform: map-get($tooltipTranslations, $label);
-                animation-name: uir-animate-tooltip-in--#{$label};
+                animation-name: uir-animate-tooltip-in-#{map-get($positons, "animation-direction")}--#{$label};
             }
         }
     }
@@ -67,6 +106,7 @@ $tooltipPositions: (
     .uir-tooltip-contents {
         position: absolute;
         z-index: 1000;
-        animation-duration: .3s;
+        animation-duration: .2s;
+        animation-timing-function: ease;
     }
 }
