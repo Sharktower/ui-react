@@ -1,0 +1,112 @@
+
+// tooltipTranslations, along with tooltipPositions below,
+// accurately position tooltips that can be a range of different sizes
+
+$tooltipTranslations: (
+    top-center: translate(-50%, -100%),
+    top-left: translate(-10%, -100%),
+    top-right: translate(10%, -100%),
+    bottom-center: translate(-50%, 100%),
+    bottom-right: translate(10%, 100%),
+    bottom-left: translate(-10%, 100%),
+);
+
+$tooltipPositions: (
+    top-center: (
+        top: -4px,
+        right: auto,
+        bottom: auto,
+        left: 50%,
+        animation-direction: "top"
+    ),
+    top-left: (
+        top: -4px,
+        right: auto,
+        bottom: auto,
+        left: 0,
+        animation-direction: "top"
+    ),
+    top-right: (
+        top: -4px,
+        right: 0,
+        bottom: auto,
+        left: auto,
+        animation-direction: "top"
+    ),
+    bottom-center: (
+        top: auto,
+        right: auto,
+        bottom: -4px,
+        left: 50%,
+        animation-direction: "bottom"
+    ),
+    bottom-right: (
+        top: auto,
+        right: 0,
+        bottom: -4px,
+        left: auto,
+        animation-direction: "bottom"
+    ),
+    bottom-left: (
+        top: auto,
+        right: auto,
+        bottom: -4px,
+        left: 0,
+        animation-direction: "bottom"
+    ),
+);
+
+// create the keyframe animation to slide in tooltips
+// animations can either run upwards (top) or downwards (bottom)
+
+@each $label, $translation in $tooltipTranslations {
+    @each $direction in "top", "bottom" {
+        @keyframes uir-animate-tooltip-in-#{$direction}--#{$label} {
+
+            from {
+                margin-#{$direction}: 20px;
+                opacity: 0;
+            }
+
+            to {
+                margin-#{$direction}: 0;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.uir-tooltip {
+    position: relative;
+    display: inline-block;
+
+    @each $label, $positons in $tooltipPositions {
+
+        &--#{$label} {
+
+            .uir-tooltip-contents {
+                top: map-get($positons, "top");
+                right: map-get($positons, "right");
+                bottom: map-get($positons, "bottom");
+                left: map-get($positons, "left");
+                transform: map-get($tooltipTranslations, $label);
+                animation-name: uir-animate-tooltip-in-#{map-get($positons, "animation-direction")}--#{$label};
+            }
+        }
+    }
+
+    &:focus {
+        outline: none;
+
+        .uir-tooltip-inner {
+            opacity: .8;
+        }
+    }
+
+    .uir-tooltip-contents {
+        position: absolute;
+        z-index: 1000;
+        animation-duration: .2s;
+        animation-timing-function: ease;
+    }
+}

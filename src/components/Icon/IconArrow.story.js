@@ -1,34 +1,31 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { withInfo } from '@storybook/addon-info';
-import { withKnobs, text } from '@storybook/addon-knobs';
 import IconArrow from './IconArrow';
+import storyWrapper from '../../storybook-addons/storyWrapper';
 
 const stories = storiesOf('IconArrow', module);
 
 stories
-    .addDecorator(withKnobs)
     .addDecorator(story => <div id="uir-root-preview">{story()}</div>);
 
 stories.add(
     'Overview',
-    withInfo(`
-        Adjust props in the Knob panel of Storybook
-    `)(() => (
-        <IconArrow
-            onClick={action('clicked')}
-            className={text('className', '')}
-        />
-    )),
+    storyWrapper(
+        `
+Adjust props in the Knob panel of Storybook
+        `,
+        <IconArrow />,
+    ),
 );
 
 stories.add(
     'Style',
-    withInfo(`
-        Use CSS to style the icon
-    `)(() => (
+    storyWrapper(
+        `
+Use CSS to style the icon
+        `,
+        <IconArrow className="demo-icon-arrow-bigger" />,
         <div>
             <style>
                 {
@@ -49,6 +46,6 @@ stories.add(
             <div style={{ width: 100, background: '#333' }}>
                 <IconArrow className="demo-icon-arrow-light demo-icon-arrow-bigger" />
             </div>
-        </div>
-    )),
+        </div>,
+    ),
 );

@@ -33,7 +33,7 @@ const defaultProps = {
     isDisabled: false,
     isFullWidth: false,
     onClick: null,
-    style: {},
+    style: null,
     type: ButtonType.DEFAULT,
 };
 

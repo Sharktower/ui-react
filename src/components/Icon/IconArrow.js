@@ -28,7 +28,7 @@ const IconArrow = ({
 
 IconArrow.defaultProps = {
     className: '',
-    style: {},
+    style: null,
 };
 
 IconArrow.propTypes = {
