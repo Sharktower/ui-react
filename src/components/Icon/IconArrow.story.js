@@ -4,16 +4,13 @@ import { storiesOf } from '@storybook/react';
 import IconArrow from './IconArrow';
 import storyWrapper from '../../storybook-addons/storyWrapper';
 
-const stories = storiesOf('IconArrow', module);
-
-stories
-    .addDecorator(story => <div id="uir-root-preview">{story()}</div>);
+const stories = storiesOf('Icon.Arrow', module);
 
 stories.add(
     'Overview',
     storyWrapper(
         `
-Adjust props in the Knob panel of Storybook
+SVG arrow icon
         `,
         <IconArrow />,
     ),
@@ -23,28 +20,33 @@ stories.add(
     'Style',
     storyWrapper(
         `
-Use CSS to style the icon
+Use CSS to style the icon, we recommend using classes.
+
+It uses an SVG image.
+You can modify properties such as <code>width</code>, <code>height</code>, <code>fill</code> and <code>stroke</code>
         `,
         <IconArrow className="demo-icon-arrow-bigger" />,
         <div>
             <style>
                 {
-                    `.demo-icon-arrow-bigger {
-                        width: 100px;
-                        height: 100px;
-                    }`
+                    `
+.demo-icon-arrow-bigger {
+    width: 100px;
+    height: 100px;
+}
+.demo-icon-arrow-red {
+    stroke: #f00;
+    fill: #fff;
+}
+.demo-icon-arrow-inverted {
+    fill: #fff;
+}
+                    `
                 }
             </style>
-            <IconArrow className="demo-icon-arrow-bigger" />
-            <style>
-                {
-                    `.demo-icon-arrow-light {
-                        fill: #fff;
-                    }`
-                }
-            </style>
+            <IconArrow className="demo-icon-arrow-red demo-icon-arrow-bigger" />
             <div style={{ width: 100, background: '#333' }}>
-                <IconArrow className="demo-icon-arrow-light demo-icon-arrow-bigger" />
+                <IconArrow className="demo-icon-arrow-inverted demo-icon-arrow-bigger" />
             </div>
         </div>,
     ),
