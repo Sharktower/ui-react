@@ -28,7 +28,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    className: '',
+    className: null,
     isActive: false,
     isDisabled: false,
     isFullWidth: false,
