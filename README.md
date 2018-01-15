@@ -49,6 +49,10 @@ To get started run the following:
 
 You can then view the Storybook here: [http://localhost:6006/](http://localhost:6006/)
 
+#### Commit Template
+
+Use the commit template stored within the repo when commiting. Run the command `git config --local commit.template COMMIT_MSG` to use it.
+
 ### Testing
 
 To run unit tests use:
