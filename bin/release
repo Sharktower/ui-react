@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+const shell = require('shelljs'); // eslint-disable-line import/no-extraneous-dependencies
+
+if (shell.exec('git diff-index --quiet HEAD --')) {
+    console.log('You have untracked files! Cancelling release!');
+    return;
+}
+
+console.log('it works');
