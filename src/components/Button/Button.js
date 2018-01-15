@@ -5,17 +5,14 @@ import ButtonType from './ButtonType';
 import './Button.scss';
 
 const propTypes = {
-    /** Content of the button, e.g. a string label or more complex React components */
     children: PropTypes.node.isRequired,
-    /** Extra classes for the top-level wrapper */
     className: PropTypes.string,
-    /** for styling purposes */
+    icon: PropTypes.element,
+    iconPosition: PropTypes.oneOf(['left', 'right']),
     isActive: PropTypes.bool,
-    /** set disabled HTML attribute, custom styling and will prevent onClick from firing */
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
     onClick: PropTypes.func,
-    /** object with camelCased CSS rules, e.g.  style={{ marginTop: -1}} */
     style: PropTypes.objectOf(PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -29,6 +26,8 @@ const propTypes = {
 
 const defaultProps = {
     className: null,
+    icon: null,
+    iconPosition: 'left',
     isActive: false,
     isDisabled: false,
     isFullWidth: false,
@@ -54,6 +53,8 @@ class Button extends Component {
         const {
             children,
             className,
+            icon,
+            iconPosition,
             isActive,
             isDisabled,
             isFullWidth,
@@ -68,6 +69,7 @@ class Button extends Component {
                 className={cx(
                     'uir-button',
                     className,
+                    icon ? `uir-button-icon--${iconPosition}` : null,
                     {
                         'uir-button--active': isActive,
                         'uir-button--clear': type === ButtonType.CLEAR,
@@ -79,9 +81,11 @@ class Button extends Component {
                 disabled={isDisabled}
                 onClick={this.handleClick}
             >
+                {iconPosition === 'left' ? icon : null }
                 <span className="uir-button-content">
                     {children}
                 </span>
+                {iconPosition === 'right' ? icon : null }
             </button>
         );
     }

@@ -38,7 +38,7 @@ Button is a wrapper around the html <code><button></code> element
             <Button isActive>Active</Button>
             <Button type="clear">Clear</Button>
             <Button type="primary">Primary</Button>
-            <Button><IconArrow /> Icon</Button>
+            <Button icon={<IconArrow />}>Icon</Button>
         </div>,
     ),
 );
@@ -111,12 +111,13 @@ For example:
 
     <Button>Text with Icon <IconArrow /></Button>
         `,
-        <Button>Text with Icon <IconArrow /></Button>,
+        <Button icon={<IconArrow />}>Text with Icon</Button>,
         <div>
-            <Button><IconArrow /> Icon with text</Button>
-            <Button type="clear">Clear button <IconArrow /></Button>
-            <Button type="primary">Primary button <IconArrow /></Button>
-            <Button isFullWidth><IconArrow /> Full width</Button>
+            <Button icon={<IconArrow />}>Icon</Button>
+            <Button icon={<IconArrow />} iconPosition="right">Icon</Button>
+            <Button icon={<IconArrow />} iconPosition="right" type="clear" >Clear button</Button>
+            <Button icon={<IconArrow />} iconPosition="right" type="primary">Primary button</Button>
+            <Button icon={<IconArrow />} iconPosition="right" isFullWidth>Full width</Button>
         </div>,
     ),
 );

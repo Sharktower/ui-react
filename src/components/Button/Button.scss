@@ -19,7 +19,7 @@
     position: relative;
     box-sizing: border-box;
     min-width: 50px;
-    height: 36px;
+    min-height: 36px;
     padding: 9px 18px;
     margin: 8px 8px 8px 0;
     font-family: $button-font-family;
@@ -28,7 +28,6 @@
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
-    white-space: nowrap;
     vertical-align: middle;
     user-select: none;
     background-color: $button-background-color;
@@ -103,9 +102,24 @@
         }
     }
 
+    // icon prop
+    &-icon--left {
+
+        .uir-icon {
+            margin-right: 5px;
+        }
+    }
+
+    &-icon--right {
+
+        .uir-icon {
+            margin-left: 5px;
+        }
+    }
+
     .uir-icon {
         width: $button-icon-width;
         height: $button-icon-height;
-        vertical-align: text-bottom;
+        vertical-align: middle;
     }
 }
