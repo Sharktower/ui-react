@@ -1,0 +1,35 @@
+# :icon: [STORY-ID] (If applied, this commit will...) <subject>
+# |<------           Using a MAXIMUM Of 72 Characters           ------>|
+
+
+# If the subject doesn’t give the full story, explain why the change is being made
+# |<----   Try To Limit Each Line to a Maximum Of 72 Characters   ---->|
+
+
+# IDs of any relevant tickets or http links to relevant resources
+# Example: This fixes task FL1-987
+
+
+# --- COMMIT END ---
+# To apply this template run the following command: `git config --local commit.template COMMIT_MSG`
+# Icon can be ONE of the following (If in doubt choose the first item that is relevant in the list).
+# :star:              ⭐️ when developing new or existing features
+# :bug:               🐛 when fixing a bug
+# :art:               🎨 when refactoring
+# :racehorse:         🐎 when improving performance or memory
+# :memo:              📝 when writing docs
+# :green_heart:       💚 when fixing the CI build
+# :white_check_mark:  ✅ when adding tests
+# :lock:              🔒 when dealing with security
+# :books:             📚 when upgrading or downgrading dependencies
+# :shirt:             👕 when removing linter warnings
+# --------------------
+# Remember to
+#  - Include the story ID in the subject line
+#  - Capitalize the subject line
+#  - Use the imperative mood in the subject line
+#  - Do not end the subject line with a period
+#  - Separate subject from body with a blank line
+#  - Use the body to explain what and why vs. how
+#  - Can use multiple lines with "-" for bullet points in body
+# --------------------
