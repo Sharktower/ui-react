@@ -20,7 +20,7 @@ function createBranch(branch) {
 
 function deleteBranch(branch) {
     shell.exec(`git push -d origin ${branch}`, executeSilently);
-    shell.exec(`git branch -d ${branch}`, executeSilently);
+    shell.exec(`git branch -D ${branch}`, executeSilently);
 }
 
 function pushBranch(branch) {
