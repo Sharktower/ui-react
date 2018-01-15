@@ -25,6 +25,7 @@
     "start": "yarn storybook:watch",
     "dev": "yarn start",
     "watch": "yarn start",
+    "release": "node bin/release",
     "release:major": "node bin/release major",
     "release:minor": "node bin/release minor",
     "release:patch": "node bin/release patch",
