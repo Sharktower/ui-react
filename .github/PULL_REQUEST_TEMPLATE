@@ -1,26 +1,15 @@
-<!-- Remember to use a meaningful title that references the story ID (or story IDs) that this PR fixes. For example: [AB-123] Adds some cool new feature -->
+<!-- Remember to use a meaningful title which can be used in release notes. For example: Adds some cool new feature -->
 
-* **What kind of change does this PR introduce?**
-<!-- Bug fix, feature, docs update, fixing tests etc. Answer on the line below -->
-
-
-* **Briefly, what feature or bug did this fix?**
-<!-- e.g. 'This adds a new feature to some cool stuff'. Answer on the line below -->
+# Backwards Compatibility Implications    <!-- List backwards compatibility issues, or `None` if there are none. -->
 
 
-* **What technical changes were made?**
-<!-- e.g. Added a new set of front end components and an API endpoint to get some cool data. Answer on the line below -->
+# New Features    <!-- List new features, or `None` if there are none. -->
 
 
-* **Anything else that reviewers or your future self needs to be aware when looking at this PR?**
-<!-- Explain anything that would be useful to know if someone needs to debug this feature at a later date. Put 'None' if there is no useful extra information. Answer on the line below -->
+# Bug Fixes    <!-- List any bug fixes, or `None` if there are none. -->
 
 
-* **Confirm you have checked the following:**
-<!-- Tick each that applies once you have raised the PR or replace ‘[ ]’ with ‘[x]’ -->
-- [ ] Tests for the changes have been added (for bug fixes / features)
-- [ ] Docs have been added / updated (for bug fixes / features)
-- [ ] These changes touch core code
-- [ ] These changes require a database schema change
-- [ ] These changes require infrastructure changes
-- [ ] These changes require a manual step in the release process
+# Performance Improvements    <!-- List performance improvements, or `None` if there are none. -->
+
+
+# Miscellaneous    <!-- List anything else changed in this PR, for example 'Updated documentation', or `None` if there are none. -->
