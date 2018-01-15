@@ -59,6 +59,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "chai": "^4.1.2",
     "chai-enzyme": "^0.8.0@beta",
+    "chalk": "^2.3.0",
     "clone": "^2.1.1",
     "codeceptjs-webdriverio": "^1.1.0",
     "css-loader": "^0.28.7",
