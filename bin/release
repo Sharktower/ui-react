@@ -1,10 +1,91 @@
 #!/usr/bin/env node
 
-const shell = require('shelljs'); // eslint-disable-line import/no-extraneous-dependencies
+/* eslint-disable import/no-extraneous-dependencies, no-console */
 
-if (shell.exec('git diff-index --quiet HEAD --')) {
-    console.log('You have untracked files! Cancelling release!');
+const path = require('path');
+const shell = require('shelljs');
+const chalk = require('chalk');
+const moment = require('moment');
+
+const {
+    getCurrentBranch,
+    createBranch,
+    deleteBranch,
+    checkoutBranch,
+    pushBranch,
+    pushTag,
+} = require('../release-src/branch-and-tags');
+const {
+    bumpNpmVersion,
+} = require('../release-src/npm');
+const {
+    getPullRequests,
+    createPullRequest,
+    mergePullRequest,
+} = require('../release-src/pull-requests');
+const { generateChangelog } = require('../release-src/changelog');
+const executeSilently = require('../release-src/execute-silently');
+
+if (shell.exec('git diff-index --quiet HEAD --', executeSilently).code) {
+    const cancelMessage = chalk.bgRed('You have untracked files! Cancelling release!');
+    console.log(`😱  ${cancelMessage}`);
     return;
 }
 
-console.log('it works');
+// @TODO: dry run flag, silent flag, help flag
+
+const versionPart = process.argv[2];
+
+if (!versionPart) {
+    console.log(chalk.bgYellow.black('You need to specify the kind of release: major, minor or patch.'));
+}
+
+const todaysDate = moment().format('YYYY-MM-DD');
+const changeLogPath = path.resolve(__dirname, '../CHANGELOG.md');
+const releaseBranch = `release--${todaysDate}`;
+const currentBranch = getCurrentBranch();
+
+function userMessage(text, colour, icon) {
+    const message = chalk[colour](text);
+    console.log(`${message} ${icon || ''}`.trim());
+}
+
+async function release() {
+    userMessage('Releasing UI React', 'magenta', '🚀');
+
+    userMessage('Creating release branch from master...', 'yellow');
+    createBranch(releaseBranch);
+
+    userMessage('Bump NPM version...', 'yellow');
+    const newVersionName = bumpNpmVersion(versionPart);
+
+    userMessage('Writing changelog...', 'yellow');
+    const githubResponse = await getPullRequests();
+    generateChangelog(
+        githubResponse.data.repository.pullRequests.nodes,
+        changeLogPath,
+        newVersionName,
+    );
+
+    userMessage('Pushing branch...', 'yellow');
+    pushBranch(releaseBranch);
+
+    userMessage('Pushing new tag...', 'yellow');
+    // pushTag(newVersionName);
+
+    userMessage('Creating pull request...', 'yellow');
+    const newPullRequest = await createPullRequest(releaseBranch, newVersionName);
+
+    userMessage('Merging pull request...', 'yellow');
+    // await mergePullRequest(newPullRequest.data.number);
+
+    userMessage(`Checking out original branch (${currentBranch})...`, 'yellow');
+    checkoutBranch(currentBranch);
+
+    userMessage('Deleting release branch...', 'yellow');
+    deleteBranch(releaseBranch);
+
+    userMessage(`Successfully released ${newVersionName}`, 'green', '🎉');
+}
+
+release();
