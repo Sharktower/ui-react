@@ -26,7 +26,7 @@ function getPullRequests() {
                 first: 100,
                 states: [MERGED],
                 orderBy: {
-                    field: MERGED_AT,
+                    field: UPDATED_AT,
                     direction: DESC
                 }
             ) {
