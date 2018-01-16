@@ -105,11 +105,7 @@ stories.add(
     'With icon',
     storyWrapper(
         `
-Icons can be used as children, their size will be adjusted to match button text size
-
-For example:
-
-    <Button>Text with Icon <IconArrow /></Button>
+Use <code>icon</code> prop to add an icon. Use <code>iconPosition</code> to align icon left or right.
         `,
         <Button icon={<IconArrow />}>Text with Icon</Button>,
         <div>
@@ -118,6 +114,32 @@ For example:
             <Button icon={<IconArrow />} iconPosition="right" type="clear" >Clear button</Button>
             <Button icon={<IconArrow />} iconPosition="right" type="primary">Primary button</Button>
             <Button icon={<IconArrow />} iconPosition="right" isFullWidth>Full width</Button>
+        </div>,
+    ),
+);
+
+stories.add(
+    'With confirmation',
+    storyWrapper(
+        `
+Add an extra confirmation step with <code>hasConfirm</code>
+Use <code>confirmText</code> and <code>confirmedText</code> to customise the strings.
+        `,
+        <Button
+            hasConfirm
+            onClick={() => { console.log('Confirmed!'); }}  // eslint-disable-line
+        >
+            Click me
+        </Button>,
+        <div>
+            <Button
+                hasConfirm
+                confirmText="Sure?"
+                confirmedText="OK!"
+                onClick={() => { console.log('Confirmed!'); }}  // eslint-disable-line
+            >
+                Customised
+            </Button>
         </div>,
     ),
 );

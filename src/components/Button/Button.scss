@@ -1,5 +1,31 @@
 @import "../../_variables";
 
+@keyframes uir-button-confirmation-in {
+
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes uir-button-confirmation-out {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(100%);
+    }
+}
+
 .uir-button {
     $button-font-family: $font-family !default;
     $button-font-size: $base-font-size !default;
@@ -13,28 +39,40 @@
     $button-background-color-hover: rgba(47, 40, 51, .1) !default;
     $button-background-color-focus: rgba(47, 40, 51, .2) !default;
     $button-background-color-active: rgba(47, 40, 51, .4) !default;
+    $button-primary-background-top: #ff1966;
+    $button-primary-background-bottom: #fa439f;
     $button-icon-width: $base-font-size + 4 !default;
     $button-icon-height: $base-font-size + 4 !default;
 
     position: relative;
     box-sizing: border-box;
+    display: inline-block;
     min-width: 50px;
-    min-height: 36px;
+    min-height: 1em;
     padding: 9px 18px;
     margin: 8px 8px 8px 0;
+    overflow: hidden;
     font-family: $button-font-family;
     font-size: $button-font-size;
+    line-height: 1;
     color: $button-color;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
     vertical-align: middle;
+    cursor: pointer;
     user-select: none;
     background-color: $button-background-color;
     border: 0; /* override browser's default */
     border-radius: 2px;
     outline: none;
     transition: all .3s;
+
+    &-content {
+        display: inline-block;
+        line-height: 1.5;
+        vertical-align: middle;
+    }
 
     // type=clear prop
     &--clear {
@@ -55,11 +93,6 @@
     &--active {
         color: $button-color-active;
         background-color: $button-background-color-active;
-    }
-
-    &-content {
-        display: inline-block;
-        vertical-align: middle;
     }
 
     // isFullWidth prop
@@ -83,12 +116,12 @@
     // type=primary prop
     &--primary {
         color: #fff;
-        background-image: linear-gradient(to bottom, #ff1966 0%, #fa439f 100%);
+        background-image: linear-gradient(to bottom, $button-primary-background-top 0%, $button-primary-background-bottom 100%);
 
         &:focus,
         &:hover {
             color: #fff;
-            background-image: linear-gradient(to bottom, #ff1966 100%, #fa439f 100%);
+            background-image: linear-gradient(to bottom, $button-primary-background-top 100%, $button-primary-background-bottom 100%);
             box-shadow: 0px 0px 3px 1px rgba(225, 25, 102, .4);
         }
 
@@ -103,14 +136,14 @@
     }
 
     // icon prop
-    &-icon--left {
+    &--icon-left {
 
         .uir-icon {
             margin-right: 5px;
         }
     }
 
-    &-icon--right {
+    &--icon-right {
 
         .uir-icon {
             margin-left: 5px;
@@ -121,5 +154,41 @@
         width: $button-icon-width;
         height: $button-icon-height;
         vertical-align: middle;
+    }
+
+    &-confirmation {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: none;
+        margin: 0;
+        line-height: 1.5;
+        color: #fff;
+        background-image: linear-gradient(to bottom, $button-primary-background-top 0%, $button-primary-background-bottom 100%);
+
+        &:focus,
+        &:hover {
+            color: #fff;
+        }
+
+        &--confirming {
+            animation-name: uir-button-confirmation-in;
+            animation-duration: .3s;
+            animation-timing-function: ease-out;
+        }
+
+        &--confirmed {
+            transform: translateY(100%);
+            animation-name: uir-button-confirmation-out;
+            animation-duration: 1s;
+            animation-timing-function: ease-out;
+        }
+
+        &--confirming,
+        &--confirmed {
+            display: block;
+        }
     }
 }

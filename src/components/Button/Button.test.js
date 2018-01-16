@@ -1,8 +1,9 @@
-/* global describe, expect, it, shallow */
+/* global describe, expect, it, mount, shallow */
 import React from 'react';
 import * as common from '../../../test/unit/commonTests';
 import { sandbox } from '../../../test/unit/utils';
 import Button from './Button';
+import IconArrow from '../Icon/IconArrow';
 
 describe('Button', () => {
     common.rendersChildren(Button);
@@ -34,6 +35,218 @@ describe('Button', () => {
         ));
 
         expect(wrapper.find(Button).length).to.equal(3);
+    });
+
+    describe('hasConfirm', () => {
+        const defaultConfirmButton = (
+            <Button hasConfirm onClick={() => {}}>Foo</Button>
+        );
+
+        it('does not contain confirmation span by default', () => {
+            const wrapper = shallow((
+                <Button>Foo</Button>
+            ));
+
+            expect(wrapper).not.to.have.descendants('.uir-button-confirmation');
+        });
+
+        it('contains confirmation span', () => {
+            const wrapper = shallow((
+                <Button hasConfirm>Foo</Button>
+            ));
+
+            expect(wrapper).to.have.descendants('.uir-button-confirmation');
+        });
+
+        it('does not apply --confirming class by default', () => {
+            const wrapper = shallow(defaultConfirmButton);
+            const confirmation = wrapper.find('.uir-button-confirmation');
+
+            expect(confirmation).not.to.have.className('uir-button-confirmation--confirming');
+        });
+
+        it('does not apply --confirmed class by default', () => {
+            const wrapper = shallow(defaultConfirmButton);
+            const confirmation = wrapper.find('.uir-button-confirmation');
+
+            expect(confirmation).not.to.have.className('uir-button-confirmation--confirmed');
+        });
+
+        it('applies --confirming class after click', () => {
+            const wrapper = shallow(defaultConfirmButton);
+
+            wrapper.simulate('click');
+
+            const confirmation = wrapper.find('.uir-button-confirmation');
+
+            expect(confirmation).to.have.className('uir-button-confirmation--confirming');
+        });
+
+        it('removes --confirming class after second click', () => {
+            const wrapper = shallow(defaultConfirmButton);
+
+            wrapper.simulate('click');
+            wrapper.simulate('click');
+
+            const confirmation = wrapper.find('.uir-button-confirmation');
+
+            expect(confirmation).not.to.have.className('uir-button-confirmation--confirming');
+        });
+
+        it('applies --confirmed class after second click', () => {
+            const wrapper = shallow(defaultConfirmButton);
+
+            wrapper.simulate('click');
+            wrapper.simulate('click');
+
+            const confirmation = wrapper.find('.uir-button-confirmation');
+
+            expect(confirmation).to.have.className('uir-button-confirmation--confirmed');
+        });
+
+        describe('confirmText', () => {
+            it('shows default text', () => {
+                const wrapper = shallow(defaultConfirmButton);
+
+                wrapper.simulate('click');
+                expect(wrapper).to.contain.text('Confirm?');
+            });
+
+            it('shows custom text', () => {
+                const wrapper = mount((
+                    <Button hasConfirm confirmText="BarBaz?" onClick={() => {}}>Foo</Button>
+                ));
+
+                wrapper.simulate('click');
+                expect(wrapper).to.contain.text('BarBaz?');
+            });
+        });
+
+        describe('confirmedText', () => {
+            it('shows default text', () => {
+                const wrapper = mount(defaultConfirmButton);
+
+                wrapper.simulate('click');
+                wrapper.simulate('click');
+                expect(wrapper.update()).to.contain.text('Cool!');
+            });
+
+            it('shows custom text', () => {
+                const wrapper = shallow((
+                    <Button hasConfirm confirmedText="BarBaz!" onClick={() => {}}>Foo</Button>
+                ));
+
+                wrapper.simulate('click');
+                wrapper.simulate('click');
+                expect(wrapper).to.contain.text('BarBaz!');
+            });
+        });
+
+        describe('onBlur', () => {
+            it('cancels confirmation on loss of focus', () => {
+                const wrapper = shallow(defaultConfirmButton);
+
+                wrapper.simulate('click');
+                let confirmation = wrapper.find('.uir-button-confirmation');
+
+                expect(confirmation).to.have.className('uir-button-confirmation--confirming');
+
+                wrapper.simulate('blur');
+                confirmation = wrapper.find('.uir-button-confirmation');
+
+                expect(wrapper).not.to.contain.text('Confirm?');
+                expect(confirmation).not.to.have.className('uir-button-confirmation--confirming');
+            });
+
+            // This test is a bit redundant but required to achieve 100% coverage
+            it('does nothing on loss of focus after full interaction', () => {
+                const wrapper = shallow(defaultConfirmButton);
+
+                wrapper.simulate('click');
+                wrapper.simulate('click');
+                let confirmation = wrapper.find('.uir-button-confirmation');
+
+                expect(confirmation).not.to.have.className('uir-button-confirmation--confirming');
+
+                wrapper.simulate('blur');
+                confirmation = wrapper.find('.uir-button-confirmation');
+
+                expect(wrapper).not.to.contain.text('Confirm?');
+                expect(confirmation).not.to.have.className('uir-button-confirmation--confirming');
+            });
+        });
+    });
+
+    describe('icon', () => {
+        it('does not contain an icon by default', () => {
+            const wrapper = mount((
+                <Button>Foo</Button>
+            ));
+
+            expect(wrapper).not.to.contain(<IconArrow />);
+        });
+
+        it('contains an icon', () => {
+            const wrapper = mount((
+                <Button icon={<IconArrow />}>Foo</Button>
+            ));
+
+            expect(wrapper).to.contain(<IconArrow />);
+        });
+    });
+
+    describe('iconPosition', () => {
+        it('adds left position class by default', () => {
+            const wrapper = mount((
+                <Button icon={<IconArrow />}>Foo</Button>
+            ));
+
+            expect(wrapper).to.have.className('uir-button--icon-left');
+        });
+
+        it('renders icon before text by default', () => {
+            const wrapper = mount((
+                <Button icon={<IconArrow />}>Foo</Button>
+            ));
+
+            expect(wrapper).to.contain.html('</svg><span class="uir-button-content">Foo');
+        });
+
+        describe('left', () => {
+            it('adds left position class', () => {
+                const wrapper = mount((
+                    <Button icon={<IconArrow />} iconPosition="left">Foo</Button>
+                ));
+
+                expect(wrapper).to.have.className('uir-button--icon-left');
+            });
+
+            it('renders icon before text', () => {
+                const wrapper = mount((
+                    <Button icon={<IconArrow />} iconPosition="left">Foo</Button>
+                ));
+
+                expect(wrapper).to.contain.html('</svg><span class="uir-button-content">Foo');
+            });
+        });
+
+        describe('right', () => {
+            it('adds right position class', () => {
+                const wrapper = mount((
+                    <Button icon={<IconArrow />} iconPosition="right">Foo</Button>
+                ));
+
+                expect(wrapper).to.have.className('uir-button--icon-right');
+            });
+
+            it('renders icon after text', () => {
+                const wrapper = mount((
+                    <Button icon={<IconArrow />} iconPosition="right">Foo</Button>
+                ));
+
+                expect(wrapper).to.contain.html('<span class="uir-button-content">Foo</span><svg class="uir-icon');
+            });
+        });
     });
 
     describe('isDisabled', () => {
