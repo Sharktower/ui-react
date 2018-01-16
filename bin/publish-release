@@ -2,29 +2,50 @@
 
 /* eslint-disable import/no-extraneous-dependencies, no-console */
 
-const { userMessage } = require('../release-src/shell-utils');
+const npm = require('npm-utils');
+const shell = require('shelljs');
+const { userMessage, executeSilently } = require('../release-src/shell-utils');
 const { hasUntrackedFiles } = require('../release-src/untracked-files');
 
 /*
  * if we have untracked files OR
- * we do not have a GitHub token OR
- * we are not given a version part
+ * we do not have a NPM_TOKEN
  * cancel immediately!
  *
  */
 
 if (hasUntrackedFiles()) {
     userMessage(
-        'You have untracked files! Cancelling release!',
+        'You have untracked files! Cancelling publish!',
         'white',
         { bg: 'bgRed', iconLeft: '😱' },
     );
     return;
 }
 
-check for unstaged files
-checkout master
-get version from package.json
-checkout version tag
-npm authentication
-npm publish
+if (!process.env.NPM_TOKEN) {
+    userMessage(
+        'We cannot find a NPM_TOKEN environment variable',
+        'black',
+        { bg: 'bgYellow' },
+    );
+    userMessage(' To get a token, on your local machine, run:', 'reset', { flags: '-n' });
+    userMessage('npm login --scope=@Mudano', 'magenta');
+    userMessage(' And then find the token here:', 'reset', { flags: '-n' });
+    userMessage('~/.npmrc', 'magenta');
+    userMessage('Next save the token as an environment variable...\n', 'reset');
+    return;
+}
+
+
+const latestVersion = process.env.npm_package_version;
+
+userMessage(`Publishing UI React ${latestVersion} to NPM`, 'magenta', { iconRight: '🚀' });
+
+shell.exec('git fetch --all --tags', executeSilently);
+
+shell.exec(`git checkout tags/${latestVersion}`, executeSilently);
+
+npm.setAuthToken()
+    .then(npm.publish)
+    .catch(error => console.error(error));

@@ -13,7 +13,7 @@ const versionPart = process.argv[2];
 
 /*
  * if we have untracked files OR
- * we do not have a GitHub token OR
+ * we do not have a GITHUB_TOKEN OR
  * we are not given a version part
  * cancel immediately!
  *
@@ -30,7 +30,7 @@ if (hasUntrackedFiles()) {
 
 if (!process.env.GITHUB_TOKEN) {
     userMessage(
-        'You need to add a GITHUB_TOKEN environment variable to your .bashrc',
+        'You need to add a GITHUB_TOKEN environment variable',
         'black',
         { bg: 'bgYellow' },
     );
@@ -68,7 +68,7 @@ const releaseBranch = `release--${todaysDate}`;
 const currentBranch = getCurrentBranch();
 
 async function release() {
-    userMessage('Releasing UI React', 'magenta', { iconRight: '🚀' });
+    userMessage('Preparing to UI React', 'magenta', { iconRight: '🚀' });
 
     userMessage('Creating release branch from master...', 'yellow');
     createBranch(releaseBranch);
