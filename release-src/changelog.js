@@ -3,7 +3,8 @@ const fs = require('fs');
 const moment = require('moment');
 const chalk = require('chalk');
 const shell = require('shelljs');
-const executeSilently = require('./execute-silently');
+const { executeSilently } = require('./shell-utils');
+const { releaseRequestLabel } = require('./pull-requests');
 
 const changeLogDateFormat = 'YYYY-MM-DD';
 
@@ -28,7 +29,10 @@ function filterPullRequests(graphPullRequests, changelogLastUpdateDate) {
     let pullRequests = graphPullRequests;
     pullRequests = pullRequests.filter((pr) => {
         const hiddenFromChangelog = pr.labels.nodes
-            .filter(label => label.name === 'Hide From Changelog').length > 0;
+            .filter(label => (
+                label.name === 'Hide From Changelog' ||
+                label.name === releaseRequestLabel
+            )).length > 0;
         const mergedAfterLastUpdate = moment(pr.mergedAt)
             .isAfter(changelogLastUpdateDate.add(1, 'day'));
         return mergedAfterLastUpdate && hiddenFromChangelog === false;
@@ -66,7 +70,7 @@ function generateChangelog(graphPullRequests, changeLogFilePath, newVersionName)
             error => (error ? console.log(chalk.bgRed(error)) : null),
         );
         shell.exec('git add CHANGELOG.md', executeSilently);
-        shell.exec('git commit -m "update changelog"', executeSilently);
+        shell.exec(`git commit -m "update changelog for version ${newVersionName}"`, executeSilently);
     }
 }
 

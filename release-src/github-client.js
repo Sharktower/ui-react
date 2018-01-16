@@ -12,7 +12,6 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-    // @TODO: error checking if this isn't set
     const token = process.env.GITHUB_TOKEN;
     return {
         headers: {

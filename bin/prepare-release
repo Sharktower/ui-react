@@ -3,55 +3,72 @@
 /* eslint-disable import/no-extraneous-dependencies, no-console */
 
 const path = require('path');
-const shell = require('shelljs');
-const chalk = require('chalk');
 const moment = require('moment');
+const { userMessage } = require('../release-src/shell-utils');
+const { hasUntrackedFiles } = require('../release-src/untracked-files');
+
+const versionPart = process.argv[2];
+
+// @TODO: dry run flag, silent flag, help flag
+
+/*
+ * if we have untracked files OR
+ * we do not have a GitHub token OR
+ * we are not given a version part
+ * cancel immediately!
+ *
+ */
+
+if (hasUntrackedFiles()) {
+    userMessage(
+        'You have untracked files! Cancelling release!',
+        'white',
+        { bg: 'bgRed', iconLeft: '😱' },
+    );
+    return;
+}
+
+if (!process.env.GITHUB_TOKEN) {
+    userMessage(
+        'You need to add a GITHUB_TOKEN environment variable to your .bashrc',
+        'black',
+        { bg: 'bgYellow' },
+    );
+    return;
+}
+
+if (!versionPart) {
+    userMessage(
+        'You need to specify the kind of release: major, minor or patch.',
+        'black',
+        { bg: 'bgYellow' },
+    );
+    return;
+}
 
 const {
     getCurrentBranch,
     createBranch,
-    deleteBranch,
+    deleteLocalBranch,
     checkoutBranch,
     pushBranch,
     pushTag,
+    moveTagToHead,
 } = require('../release-src/branch-and-tags');
-const {
-    bumpNpmVersion,
-} = require('../release-src/npm');
 const {
     getPullRequests,
     createPullRequest,
-    mergePullRequest,
 } = require('../release-src/pull-requests');
+const { bumpNpmVersion } = require('../release-src/npm');
 const { generateChangelog } = require('../release-src/changelog');
-const executeSilently = require('../release-src/execute-silently');
-
-if (shell.exec('git diff-index --quiet HEAD --', executeSilently).code) {
-    const cancelMessage = chalk.bgRed('You have untracked files! Cancelling release!');
-    console.log(`😱  ${cancelMessage}`);
-    return;
-}
-
-// @TODO: dry run flag, silent flag, help flag
-
-const versionPart = process.argv[2];
-
-if (!versionPart) {
-    console.log(chalk.bgYellow.black('You need to specify the kind of release: major, minor or patch.'));
-}
 
 const todaysDate = moment().format('YYYY-MM-DD');
 const changeLogPath = path.resolve(__dirname, '../CHANGELOG.md');
 const releaseBranch = `release--${todaysDate}`;
 const currentBranch = getCurrentBranch();
 
-function userMessage(text, colour, icon) {
-    const message = chalk[colour](text);
-    console.log(`${message} ${icon || ''}`.trim());
-}
-
 async function release() {
-    userMessage('Releasing UI React', 'magenta', '🚀');
+    userMessage('Releasing UI React', 'magenta', { iconRight: '🚀' });
 
     userMessage('Creating release branch from master...', 'yellow');
     createBranch(releaseBranch);
@@ -67,6 +84,8 @@ async function release() {
         newVersionName,
     );
 
+    moveTagToHead();
+
     userMessage('Pushing branch...', 'yellow');
     pushBranch(releaseBranch);
 
@@ -76,16 +95,23 @@ async function release() {
     userMessage('Creating pull request...', 'yellow');
     const newPullRequest = await createPullRequest(releaseBranch, newVersionName);
 
-    userMessage('Merging pull request...', 'yellow');
-    await mergePullRequest(newPullRequest.data.number);
-
     userMessage(`Checking out original branch (${currentBranch})...`, 'yellow');
     checkoutBranch(currentBranch);
 
     userMessage('Deleting release branch...', 'yellow');
-    deleteBranch(releaseBranch);
+    deleteLocalBranch(releaseBranch);
 
-    userMessage(`Successfully released ${newVersionName}`, 'green', '🎉');
+    userMessage(
+        `Successfully created release pull request for ${newVersionName}`,
+        'green',
+        { iconRight: '🎉' },
+    );
+    userMessage(
+        ' Another developer must review the pull request to publish\n view the pull request here:',
+        'reset',
+        { flags: '-n' },
+    );
+    userMessage(`https://github.com/Mudano/ui-react/pull/${newPullRequest.data.number}`, 'cyan');
 }
 
 release();

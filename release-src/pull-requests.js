@@ -1,11 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies, no-console */
 
-const chalk = require('chalk');
 const gql = require('graphql-tag');
 const githubClient = require('./github-client');
-const GithubClientOld = require('github');
+const GithubRestApi = require('github');
 
-const githubClientOld = new GithubClientOld({
+const githubRestApi = new GithubRestApi({
     host: 'api.github.com',
     protocol: 'https',
     headers: {
@@ -13,7 +12,7 @@ const githubClientOld = new GithubClientOld({
     },
 });
 
-githubClientOld.authenticate({
+githubRestApi.authenticate({
     type: 'token',
     token: process.env.GITHUB_TOKEN,
 });
@@ -27,7 +26,7 @@ function getPullRequests() {
                 first: 100,
                 states: [MERGED],
                 orderBy: {
-                    field: UPDATED_AT,
+                    field: MERGED_AT,
                     direction: DESC
                 }
             ) {
@@ -48,32 +47,22 @@ function getPullRequests() {
     });
 }
 
+const releaseRequestLabel = 'Release Request';
+
 function createPullRequest(releaseBranch, newVersionName) {
-    return githubClientOld.pullRequests.create({
+    return githubRestApi.pullRequests.create({
         owner: 'Mudano',
         repo: 'ui-react',
         title: `Release ${newVersionName}`,
         body: `Automatic release of ${newVersionName}`,
         head: releaseBranch,
         base: 'master',
-    });
-}
-
-function mergePullRequest(pullRequestNumber) {
-    githubClientOld.pullRequests.merge({
-        owner: 'Mudano',
-        repo: 'ui-react',
-        number: pullRequestNumber,
-    }, (error) => {
-        if (error) {
-            console.error(error.message);
-            console.log(chalk.bgRed('Unable to create pull request!'));
-        }
+        labels: [releaseRequestLabel],
     });
 }
 
 module.exports = {
     getPullRequests,
     createPullRequest,
-    mergePullRequest,
+    releaseRequestLabel,
 };

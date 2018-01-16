@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies, no-console */
 
 const shell = require('shelljs');
-const executeSilently = require('./execute-silently');
+const { executeSilently } = require('./shell-utils');
 
 function getCurrentBranch() {
     return shell.exec('git rev-parse --abbrev-ref HEAD', executeSilently).stdout.trim();
@@ -13,29 +13,37 @@ function checkoutBranch(branch, newBranch) {
 }
 
 function createBranch(branch) {
-    shell.exec('git checkout master', executeSilently);
+    checkoutBranch('master');
     shell.exec('git pull', executeSilently);
     checkoutBranch(branch, true);
 }
 
-function deleteBranch(branch) {
-    shell.exec(`git push -d origin ${branch}`, executeSilently);
+function deleteLocalBranch(branch) {
     shell.exec(`git branch -D ${branch}`, executeSilently);
 }
 
 function pushBranch(branch) {
-    shell.exec(`git push -u origin ${branch}`, executeSilently);
+    shell.exec(`git push --set-upstream origin ${branch}`, executeSilently);
 }
 
 function pushTag(tag) {
     shell.exec(`git push origin ${tag}`, executeSilently);
 }
 
+function moveTagToHead() {
+    const tag = process.env.npm_package_version;
+    shell.exec(
+        `git tag --force --annotate ${tag} -m "release version ${tag}" HEAD`,
+        executeSilently,
+    );
+}
+
 module.exports = {
     getCurrentBranch,
     createBranch,
-    deleteBranch,
+    deleteLocalBranch,
     checkoutBranch,
     pushBranch,
     pushTag,
+    moveTagToHead,
 };

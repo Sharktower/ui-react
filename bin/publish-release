@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+
+/* eslint-disable import/no-extraneous-dependencies, no-console */
+
+const { userMessage } = require('../release-src/shell-utils');
+const { hasUntrackedFiles } = require('../release-src/untracked-files');
+
+/*
+ * if we have untracked files OR
+ * we do not have a GitHub token OR
+ * we are not given a version part
+ * cancel immediately!
+ *
+ */
+
+if (hasUntrackedFiles()) {
+    userMessage(
+        'You have untracked files! Cancelling release!',
+        'white',
+        { bg: 'bgRed', iconLeft: '😱' },
+    );
+    return;
+}
+
+check for unstaged files
+checkout master
+get version from package.json
+checkout version tag
+npm authentication
+npm publish
