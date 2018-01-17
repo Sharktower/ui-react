@@ -1,6 +1,6 @@
 {
   "name": "@mudano/ui-react",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Mudano UI React components",
   "main": "dist/umd/ui-react.min.js",
   "jsnext:main": "dist/es/index.js",
