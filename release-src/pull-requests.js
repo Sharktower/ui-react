@@ -48,8 +48,12 @@ function createPullRequest(releaseBranch, newVersionName) {
             repo: githubVariables.repo,
             number: pullRequest.data.number,
             labels: [githubVariables.releaseRequestLabel],
+        }).error((error) => {
+            console.log(error);
         });
         return pullRequest;
+    }).error((error) => {
+        console.log(error);
     });
 }
 

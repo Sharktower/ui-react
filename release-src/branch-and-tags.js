@@ -52,7 +52,11 @@ function addReleaseNotesToTag(tag, releaseNotes) {
             tag_name: tag,
             name: `Release ${tag}`,
             body: releaseNotes,
+        }).error((error) => {
+            console.log(error);
         });
+    }).error((error) => {
+        console.log(error);
     });
 }
 
