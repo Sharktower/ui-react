@@ -34,11 +34,11 @@ Button is a wrapper around the html <code><button></code> element
                     Default
                 </Button>
             </Tooltip>
-            <Button isDisabled>Disabled</Button>
-            <Button isActive>Active</Button>
-            <Button type="clear">Clear</Button>
-            <Button type="primary">Primary</Button>
-            <Button icon={<IconArrow />}>Icon</Button>
+            <Button isDisabled onClick={() => {}}>Disabled</Button>
+            <Button isActive onClick={() => {}}>Active</Button>
+            <Button type="clear" onClick={() => {}}>Clear</Button>
+            <Button type="primary" onClick={() => {}}>Primary</Button>
+            <Button icon={<IconArrow />} onClick={() => {}}>Icon</Button>
         </div>,
     ),
 );
@@ -50,10 +50,10 @@ stories.add(
 Active buttons can be used to indicate button selection, for example as part of the Tabs component.
 Use <code>isActive</code>
         `,
-        <Button isActive>Active</Button>,
+        <Button isActive onClick={() => {}}>Active</Button>,
         <div>
-            <Button isActive>Active</Button>
-            <Button>Not active</Button>
+            <Button isActive onClick={() => {}}>Active</Button>
+            <Button onClick={() => {}}>Not active</Button>
         </div>,
     ),
 );
@@ -64,10 +64,10 @@ stories.add(
         `
 Clear buttons, use type="clear"
         `,
-        <Button type="clear">Not active</Button>,
+        <Button type="clear" onClick={() => {}}>Not active</Button>,
         <div>
-            <Button type="clear">Clear not active</Button>
-            <Button type="clear" isActive>Clear active</Button>
+            <Button type="clear" onClick={() => {}}>Clear not active</Button>
+            <Button type="clear" isActive onClick={() => {}}>Clear active</Button>
         </div>,
     ),
 );
@@ -78,10 +78,10 @@ stories.add(
         `
 Primary buttons should be used for main calls to action, use <code>type="primary"</code>
         `,
-        <Button type="primary">Not active</Button>,
+        <Button type="primary" onClick={() => {}}>Not active</Button>,
         <div>
-            <Button type="primary">Not active</Button>
-            <Button type="primary" isActive>Active</Button>
+            <Button type="primary" onClick={() => {}}>Not active</Button>
+            <Button type="primary" isActive onClick={() => {}}>Active</Button>
         </div>,
     ),
 );
@@ -92,11 +92,11 @@ stories.add(
         `
 Full width buttons, use <code>isFullWidth</code>
         `,
-        <Button isFullWidth>Full width button</Button>,
+        <Button isFullWidth onClick={() => {}}>Full width button</Button>,
         <div>
-            <Button isFullWidth type="clear">Clear</Button>
-            <Button isFullWidth type="primary">Primary</Button>
-            <Button isFullWidth isActive>Active</Button>
+            <Button isFullWidth type="clear" onClick={() => {}}>Clear</Button>
+            <Button isFullWidth type="primary" onClick={() => {}}>Primary</Button>
+            <Button isFullWidth isActive onClick={() => {}}>Active</Button>
         </div>,
     ),
 );
@@ -107,13 +107,13 @@ stories.add(
         `
 Use <code>icon</code> prop to add an icon. Use <code>iconPosition</code> to align icon left or right.
         `,
-        <Button icon={<IconArrow />}>Text with Icon</Button>,
+        <Button icon={<IconArrow />} onClick={() => {}}>Text with Icon</Button>,
         <div>
-            <Button icon={<IconArrow />}>Icon</Button>
-            <Button icon={<IconArrow />} iconPosition="right">Icon</Button>
-            <Button icon={<IconArrow />} iconPosition="right" type="clear" >Clear button</Button>
-            <Button icon={<IconArrow />} iconPosition="right" type="primary">Primary button</Button>
-            <Button icon={<IconArrow />} iconPosition="right" isFullWidth>Full width</Button>
+            <Button icon={<IconArrow />} onClick={() => {}}>Icon</Button>
+            <Button icon={<IconArrow />} iconPosition="right" onClick={() => {}}>Icon</Button>
+            <Button icon={<IconArrow />} iconPosition="right" type="clear" onClick={() => {}}>Clear button</Button>
+            <Button icon={<IconArrow />} iconPosition="right" type="primary" onClick={() => {}}>Primary button</Button>
+            <Button icon={<IconArrow />} iconPosition="right" isFullWidth onClick={() => {}}>Full width</Button>
         </div>,
     ),
 );
