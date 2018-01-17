@@ -69,7 +69,7 @@ const releaseBranch = `release--${todaysDate}`;
 const currentBranch = getCurrentBranch();
 
 async function release() {
-    userMessage('Preparing to UI React', 'magenta', { iconRight: '🚀' });
+    userMessage('Preparing UI React release', 'magenta', { iconRight: '🚀' });
 
     userMessage('Creating release branch from master...', 'yellow');
     createBranch(releaseBranch);
