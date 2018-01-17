@@ -6,7 +6,7 @@ import IconArrow from '../Icon/IconArrow';
 import Tooltip from '../Tooltip/Tooltip';
 import storyWrapper from '../../storybook-addons/storyWrapper';
 
-const stories = storiesOf('Button.Button', module);
+const stories = storiesOf('Button', module);
 
 stories
     .addDecorator(story => <div id="uir-root-preview">{story()}</div>);

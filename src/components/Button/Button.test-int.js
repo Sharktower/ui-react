@@ -2,13 +2,13 @@
 // eslint-disable-next-line spaced-comment
 /// path="../../../test/codecept/steps.d.ts"
 
-const KIND = 'Button.Button';
+const KIND = 'Button';
 
 Feature('Button');
 
 Scenario('Storybook Documentation', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.see('Button: Button');
+        I.see('Button', 'h1');
         I.see('Overview', 'h2');
         I.see('Example', 'h3');
         I.see('Source Code', 'h3');
