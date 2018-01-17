@@ -7,6 +7,8 @@ const shell = require('shelljs');
 const { userMessage, executeSilently } = require('../release-src/shell-utils');
 const { hasUntrackedFiles } = require('../release-src/untracked-files');
 
+// @TODO: dry run flag, silent flag, help flag
+
 /*
  * if we have untracked files OR
  * we do not have a NPM_TOKEN
@@ -20,7 +22,7 @@ if (hasUntrackedFiles()) {
         'white',
         { bg: 'bgRed', iconLeft: '😱' },
     );
-    return;
+    return 1;
 }
 
 if (!process.env.NPM_TOKEN) {
@@ -34,18 +36,32 @@ if (!process.env.NPM_TOKEN) {
     userMessage(' And then find the token here:', 'reset', { flags: '-n' });
     userMessage('~/.npmrc', 'magenta');
     userMessage('Next save the token as an environment variable...\n', 'reset');
-    return;
+    return 1;
 }
 
+const { getCurrentBranch, checkoutBranch } = require('../release-src/branch-and-tags');
 
-const latestVersion = process.env.npm_package_version;
+const currentBranch = getCurrentBranch();
+
+checkoutBranch('master');
+
+// @NB: to ensure latest version we need to get package version
+//      from master branch, unless overridden with CLI argument
+const latestVersion = process.argv[2] || `v${process.env.npm_package_version}`;
 
 userMessage(`Publishing UI React ${latestVersion} to NPM`, 'magenta', { iconRight: '🚀' });
 
 shell.exec('git fetch --all --tags', executeSilently);
 
-shell.exec(`git checkout tags/${latestVersion}`, executeSilently);
+userMessage(`Checking out tag ${latestVersion}...`, 'yellow');
+shell.exec(`git checkout tags/${latestVersion}`);
 
+userMessage('Publishing to NPM...', 'yellow');
 npm.setAuthToken()
     .then(npm.publish)
     .catch(error => console.error(error));
+
+userMessage(`Checking out original branch (${currentBranch})...`, 'yellow');
+checkoutBranch(currentBranch);
+
+return 0;
