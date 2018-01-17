@@ -18,7 +18,7 @@ const propTypes = {
     isActive: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
-    onClick: PropTypes.func,
+    onClick: PropTypes.func.isRequired,
     style: PropTypes.objectOf(PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -40,7 +40,6 @@ const defaultProps = {
     isActive: false,
     isDisabled: false,
     isFullWidth: false,
-    onClick: null,
     style: null,
     type: ButtonType.DEFAULT,
 };
@@ -61,7 +60,6 @@ class Button extends Component {
 
     handleClick = (e) => {
         const propsOnClick = this.props.onClick;
-        if (!propsOnClick) { return; }
 
         if (this.props.isDisabled) {
             e.preventDefault();

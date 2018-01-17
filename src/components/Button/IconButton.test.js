@@ -11,17 +11,17 @@ describe('IconButton', () => {
     const buttonActiveClassName = getClassNameFromBoolPropKey(Button, 'isActive');
     common.propKeyToClassName(IconButton, 'isActive', {
         className: buttonActiveClassName,
-        requiredProps: { children: 'Foo' },
+        requiredProps: { children: 'Foo', onClick: () => {} },
     });
     const buttonDisabledClassName = getClassNameFromBoolPropKey(Button, 'isDisabled');
     common.propKeyToClassName(IconButton, 'isDisabled', {
         className: buttonDisabledClassName,
-        requiredProps: { children: 'Foo' },
+        requiredProps: { children: 'Foo', onClick: () => {} },
     });
 
     it('renders an HTML tag button', () => {
         const wrapper = shallow((
-            <IconButton><IconArrow /></IconButton>
+            <IconButton onClick={() => {}}><IconArrow /></IconButton>
         ));
 
         expect(wrapper).to.have.tagName('button');
@@ -29,21 +29,21 @@ describe('IconButton', () => {
 
     it('wraps a Button component', () => {
         const wrapper = shallow((
-            <IconButton>Foo</IconButton>
+            <IconButton onClick={() => {}}>Foo</IconButton>
         ));
 
         expect(wrapper).to.have.exactly(1).descendants(Button);
     });
 
     it('adds class .uir-icon-button', () => {
-        const wrapper = shallow(<IconButton><IconArrow /></IconButton>);
+        const wrapper = shallow(<IconButton onClick={() => {}}><IconArrow /></IconButton>);
         expect(wrapper).to.have.className('uir-icon-button');
     });
 
     describe('className', () => {
         it('adds user provided class .custom-class', () => {
             const wrapper = shallow((
-                <IconButton className="custom-class"><IconArrow /></IconButton>
+                <IconButton className="custom-class" onClick={() => {}}><IconArrow /></IconButton>
             ));
 
             expect(wrapper).to.have.className('custom-class');
@@ -54,7 +54,7 @@ describe('IconButton', () => {
         const isFullWidthClassName = getClassNameFromBoolPropKey(Button, 'isFullWidth');
 
         it(`does not add class ${isFullWidthClassName}`, () => {
-            const wrapper = shallow(<IconButton isFullWidth><IconArrow /></IconButton>).dive();
+            const wrapper = shallow(<IconButton isFullWidth onClick={() => {}}><IconArrow /></IconButton>).dive();
 
             expect(wrapper).not.to.have.className(isFullWidthClassName);
         });
@@ -64,7 +64,7 @@ describe('IconButton', () => {
         it('default does not throw when clicked', () => {
             const syntheticEvent = { preventDefault: () => undefined };
             const wrapper = shallow((
-                <IconButton><IconArrow /></IconButton>
+                <IconButton onClick={() => {}}><IconArrow /></IconButton>
             )).dive();
             const clickComponent = () => {
                 wrapper.simulate('click', syntheticEvent);

@@ -6,21 +6,21 @@ import Button from './Button';
 import IconArrow from '../Icon/IconArrow';
 
 describe('Button', () => {
-    common.rendersChildren(Button);
-    common.propKeyToClassName(Button, 'isActive', { requiredProps: { children: 'Foo' } });
-    common.propKeyToClassName(Button, 'isDisabled', { requiredProps: { children: 'Foo' } });
-    common.propKeyToClassName(Button, 'isFullWidth', { requiredProps: { children: 'Foo' } });
+    common.rendersChildren(Button, { requiredProps: { onClick: () => {} } });
+    common.propKeyToClassName(Button, 'isActive', { requiredProps: { children: 'Foo', onClick: () => {} } });
+    common.propKeyToClassName(Button, 'isDisabled', { requiredProps: { children: 'Foo', onClick: () => {} } });
+    common.propKeyToClassName(Button, 'isFullWidth', { requiredProps: { children: 'Foo', onClick: () => {} } });
 
     it('renders an HTML tag button', () => {
         const wrapper = shallow((
-            <Button>Foo</Button>
+            <Button onClick={() => {}}>Foo</Button>
         ));
 
         expect(wrapper).to.have.tagName('button');
     });
 
     it('renders with class .uir-button', () => {
-        const wrapper = shallow(<Button>Foo</Button>);
+        const wrapper = shallow(<Button onClick={() => {}}>Foo</Button>);
 
         expect(wrapper).to.have.className('uir-button');
     });
@@ -28,9 +28,9 @@ describe('Button', () => {
     it('renders three Button components', () => {
         const wrapper = shallow((
             <div>
-                <Button isActive>Foo</Button>
-                <Button>Foo</Button>
-                <Button isDisabled>Foo</Button>
+                <Button isActive onClick={() => {}}>Foo</Button>
+                <Button onClick={() => {}}>Foo</Button>
+                <Button isDisabled onClick={() => {}}>Foo</Button>
             </div>
         ));
 
@@ -44,16 +44,14 @@ describe('Button', () => {
 
         it('does not contain confirmation span by default', () => {
             const wrapper = shallow((
-                <Button>Foo</Button>
+                <Button onClick={() => {}}>Foo</Button>
             ));
 
             expect(wrapper).not.to.have.descendants('.uir-button-confirmation');
         });
 
         it('contains confirmation span', () => {
-            const wrapper = shallow((
-                <Button hasConfirm>Foo</Button>
-            ));
+            const wrapper = shallow(defaultConfirmButton);
 
             expect(wrapper).to.have.descendants('.uir-button-confirmation');
         });
@@ -180,7 +178,7 @@ describe('Button', () => {
     describe('icon', () => {
         it('does not contain an icon by default', () => {
             const wrapper = mount((
-                <Button>Foo</Button>
+                <Button onClick={() => {}}>Foo</Button>
             ));
 
             expect(wrapper).not.to.contain(<IconArrow />);
@@ -188,7 +186,7 @@ describe('Button', () => {
 
         it('contains an icon', () => {
             const wrapper = mount((
-                <Button icon={<IconArrow />}>Foo</Button>
+                <Button icon={<IconArrow />} onClick={() => {}}>Foo</Button>
             ));
 
             expect(wrapper).to.contain(<IconArrow />);
@@ -198,7 +196,7 @@ describe('Button', () => {
     describe('iconPosition', () => {
         it('adds left position class by default', () => {
             const wrapper = mount((
-                <Button icon={<IconArrow />}>Foo</Button>
+                <Button icon={<IconArrow />} onClick={() => {}}>Foo</Button>
             ));
 
             expect(wrapper).to.have.className('uir-button--icon-left');
@@ -206,7 +204,7 @@ describe('Button', () => {
 
         it('renders icon before text by default', () => {
             const wrapper = mount((
-                <Button icon={<IconArrow />}>Foo</Button>
+                <Button icon={<IconArrow />} onClick={() => {}}>Foo</Button>
             ));
 
             expect(wrapper).to.contain.html('</svg><span class="uir-button-content">Foo');
@@ -215,7 +213,7 @@ describe('Button', () => {
         describe('left', () => {
             it('adds left position class', () => {
                 const wrapper = mount((
-                    <Button icon={<IconArrow />} iconPosition="left">Foo</Button>
+                    <Button icon={<IconArrow />} iconPosition="left" onClick={() => {}}>Foo</Button>
                 ));
 
                 expect(wrapper).to.have.className('uir-button--icon-left');
@@ -223,7 +221,7 @@ describe('Button', () => {
 
             it('renders icon before text', () => {
                 const wrapper = mount((
-                    <Button icon={<IconArrow />} iconPosition="left">Foo</Button>
+                    <Button icon={<IconArrow />} iconPosition="left" onClick={() => {}}>Foo</Button>
                 ));
 
                 expect(wrapper).to.contain.html('</svg><span class="uir-button-content">Foo');
@@ -233,7 +231,7 @@ describe('Button', () => {
         describe('right', () => {
             it('adds right position class', () => {
                 const wrapper = mount((
-                    <Button icon={<IconArrow />} iconPosition="right">Foo</Button>
+                    <Button icon={<IconArrow />} iconPosition="right" onClick={() => {}}>Foo</Button>
                 ));
 
                 expect(wrapper).to.have.className('uir-button--icon-right');
@@ -241,7 +239,7 @@ describe('Button', () => {
 
             it('renders icon after text', () => {
                 const wrapper = mount((
-                    <Button icon={<IconArrow />} iconPosition="right">Foo</Button>
+                    <Button icon={<IconArrow />} iconPosition="right" onClick={() => {}}>Foo</Button>
                 ));
 
                 expect(wrapper).to.contain.html('<span class="uir-button-content">Foo</span><svg class="uir-icon');
@@ -251,13 +249,13 @@ describe('Button', () => {
 
     describe('isDisabled', () => {
         it('does not add disabled attribute when not defined', () => {
-            const wrapper = shallow(<Button>Foo</Button>);
+            const wrapper = shallow(<Button onClick={() => {}}>Foo</Button>);
 
             expect(wrapper).not.to.have.attr('disabled');
         });
 
         it('adds disabled attribute', () => {
-            const wrapper = shallow(<Button isDisabled>Foo</Button>);
+            const wrapper = shallow(<Button isDisabled onClick={() => {}}>Foo</Button>);
 
             expect(wrapper).to.have.attr('disabled');
         });
@@ -267,7 +265,7 @@ describe('Button', () => {
         it('default does not throw when clicked', () => {
             const syntheticEvent = { preventDefault: () => undefined };
             const wrapper = shallow((
-                <Button>Foo</Button>
+                <Button onClick={() => {}}>Foo</Button>
             ));
             const clickComponent = () => {
                 wrapper.simulate('click', syntheticEvent);
@@ -309,13 +307,15 @@ describe('Button', () => {
                 const className = `uir-button--${propValue}`;
 
                 it(`does not add className ${className} when prop not defined`, () => {
-                    const wrapper = shallow(<Button>Foo</Button>);
+                    const wrapper = shallow(<Button onClick={() => {}}>Foo</Button>);
 
                     expect(wrapper).not.to.have.className(className);
                 });
 
                 it(`adds className ${className}`, () => {
-                    const wrapper = shallow(<Button type={propValue}>Foo</Button>);
+                    const wrapper = shallow((
+                        <Button type={propValue} onClick={() => {}}>Foo</Button>
+                    ));
 
                     expect(wrapper).to.have.className(className);
                 });
