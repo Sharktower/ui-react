@@ -40,18 +40,27 @@ function moveTagToHead(tag) {
 }
 
 function addReleaseNotesToTag(tag, releaseNotes) {
-    const release = githubRestApi.repos.getReleaseByTag({
+    return githubRestApi.repos.getReleaseByTag({
         owner: githubVariables.owner,
         repo: githubVariables.repo,
         tag,
-    });
-    githubRestApi.repos.editRelease({
-        owner: githubVariables.owner,
-        repo: githubVariables.repo,
-        id: release.data.id,
-        tag_name: tag,
-        name: `Release ${tag}`,
-        body: releaseNotes,
+    }, (error) => {
+        if (error) {
+            console.log(error);
+        }
+    }).then((release) => {
+        githubRestApi.repos.editRelease({
+            owner: githubVariables.owner,
+            repo: githubVariables.repo,
+            id: release.data.id,
+            tag_name: tag,
+            name: `Release ${tag}`,
+            body: releaseNotes,
+        }, (error) => {
+            if (error) {
+                console.log(error);
+            }
+        });
     });
 }
 

@@ -93,10 +93,10 @@ async function release() {
     userMessage('Pushing new tag...', 'yellow');
     pushTag(newVersionName);
 
-    addReleaseNotesToTag(newVersionName, releaseNotes);
+    await addReleaseNotesToTag(newVersionName, releaseNotes);
 
     userMessage('Creating pull request...', 'yellow');
-    const newPullRequest = createPullRequest(releaseBranch, newVersionName);
+    const newPullRequest = await createPullRequest(releaseBranch, newVersionName);
 
     userMessage(`Checking out original branch (${currentBranch})...`, 'yellow');
     checkoutBranch(currentBranch);
