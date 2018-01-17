@@ -28,13 +28,14 @@ Scenario('Button', (I) => {
     const buttonSelector = '.uir-button';
 
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.seeNumberOfElements(buttonSelector, 7);
+        I.seeNumberOfElements(buttonSelector, 8);
         I.see('CUSTOM LABEL', buttonSelector);
         I.seeNumberOfElements('.uir-button--disabled', 1);
         I.seeNumberOfElements('.uir-button--active', 1);
         I.seeNumberOfElements('.uir-button--clear', 1);
         I.seeNumberOfElements('.uir-button--primary', 1);
-        I.seeNumberOfElements('.uir-button--icon-left', 1);
+        I.seeNumberOfElements('.uir-button--icon-left', 2);
+        I.seeNumberOfElements('.uir-button--round', 1);
     });
 });
 

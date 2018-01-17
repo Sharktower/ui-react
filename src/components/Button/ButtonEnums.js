@@ -3,6 +3,7 @@ export const ButtonType = Object.freeze({
     DEFAULT: 'default',
     CLEAR: 'clear',
     PRIMARY: 'primary',
+    ROUND: 'round',
 });
 
 // ButtonIconPosition enum used by the Button iconPosition prop

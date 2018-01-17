@@ -39,6 +39,7 @@ Button is a wrapper around the html <code><button></code> element
             <Button type="clear" onClick={() => {}}>Clear</Button>
             <Button type="primary" onClick={() => {}}>Primary</Button>
             <Button icon={<IconArrow />} onClick={() => {}}>Icon</Button>
+            <Button type="round" icon={<IconArrow />} onClick={() => {}} />
         </div>,
     ),
 );
@@ -82,6 +83,23 @@ Primary buttons should be used for main calls to action, use <code>type="primary
         <div>
             <Button type="primary" onClick={() => {}}>Not active</Button>
             <Button type="primary" isActive onClick={() => {}}>Active</Button>
+        </div>,
+    ),
+);
+
+stories.add(
+    'Round',
+    storyWrapper(
+        `
+Use <code>type="round"</code> and <code>icon={}</code> for buttons with an icon and no text
+        `,
+        <Button type="round" icon={<IconArrow />} onClick={() => {}} />,
+        <div>
+            <Button type="round" icon={<IconArrow />} onClick={() => {}} /> Default
+            <br />
+            <Button type="round" icon={<IconArrow />} isActive onClick={() => {}} /> Active
+            <br />
+            <Button type="round" icon={<IconArrow />} isDisabled onClick={() => {}} /> Disabled
         </div>,
     ),
 );

@@ -5,7 +5,7 @@ import { ButtonType, ButtonIconPosition } from './ButtonEnums';
 import './Button.scss';
 
 const propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     className: PropTypes.string,
     confirmText: PropTypes.string,
     confirmedText: PropTypes.string,
@@ -27,10 +27,12 @@ const propTypes = {
         ButtonType.CLEAR,
         ButtonType.DEFAULT,
         ButtonType.PRIMARY,
+        ButtonType.ROUND,
     ]),
 };
 
 const defaultProps = {
+    children: null,
     className: null,
     confirmText: 'Confirm?',
     confirmedText: 'Cool!',
@@ -115,6 +117,7 @@ class Button extends Component {
                         'uir-button--disabled': isDisabled,
                         'uir-button--full-width': isFullWidth,
                         'uir-button--primary': type === ButtonType.PRIMARY,
+                        'uir-button--round': type === ButtonType.ROUND,
                     },
                 )}
                 disabled={isDisabled}

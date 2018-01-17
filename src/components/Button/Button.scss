@@ -74,6 +74,13 @@
         vertical-align: middle;
     }
 
+    .uir-icon {
+        width: $button-icon-width;
+        height: $button-icon-height;
+        vertical-align: middle;
+        fill: $button-color;
+    }
+
     // type=clear prop
     &--clear {
         color: $button-color-clear;
@@ -130,8 +137,27 @@
         }
 
         .uir-icon {
-            stroke: #fff;
+            stroke: transparent;
             fill: #fff;
+        }
+    }
+
+    // type=round prop
+    &--round {
+        width: auto;
+        min-width: 24px;
+        height: auto;
+        min-height: 24px;
+        padding: 12px;
+        border-radius: 50%;
+
+        &,
+        &.uir-button--icon-left,
+        &.uir-button--icon-right {
+
+            .uir-icon {
+                margin: 0;
+            }
         }
     }
 
@@ -148,12 +174,6 @@
         .uir-icon {
             margin-left: 5px;
         }
-    }
-
-    .uir-icon {
-        width: $button-icon-width;
-        height: $button-icon-height;
-        vertical-align: middle;
     }
 
     &-confirmation {

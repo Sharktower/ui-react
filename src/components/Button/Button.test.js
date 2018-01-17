@@ -324,5 +324,6 @@ describe('Button', () => {
 
         testTypeProp('clear');
         testTypeProp('primary');
+        testTypeProp('round');
     });
 });
