@@ -9,7 +9,7 @@
 **Bug Fixes** <!-- List any bug fixes, or `None` if there are none. -->
 
 
-**Performance Improvements** <!-- List performance improvements, or `None` if there are none. -->
+**Performance Improvements** <!-- List performance improvements, or remove section if there are none. -->
 
 
-**Miscellaneous** <!-- List anything else changed in this PR, for example 'Updated documentation', or `None` if there are none. -->
+**Miscellaneous** <!-- List anything else changed in this PR, for example 'Updated documentation', or remove section if there are none. -->
