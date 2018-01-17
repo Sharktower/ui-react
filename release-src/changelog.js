@@ -4,7 +4,7 @@ const moment = require('moment');
 const chalk = require('chalk');
 const shell = require('shelljs');
 const { executeSilently } = require('./shell-utils');
-const { releaseRequestLabel } = require('./pull-requests');
+const githubVariables = require('./github-variables');
 
 const changeLogDateFormat = 'YYYY-MM-DD';
 
@@ -31,7 +31,7 @@ function filterPullRequests(graphPullRequests, changelogLastUpdateDate) {
         const hiddenFromChangelog = pr.labels.nodes
             .filter(label => (
                 label.name === 'Hide From Changelog' ||
-                label.name === releaseRequestLabel
+                label.name === githubVariables.releaseRequestLabel
             )).length > 0;
         const mergedAfterLastUpdate = moment(pr.mergedAt)
             .isAfter(changelogLastUpdateDate.add(1, 'day'));
@@ -54,16 +54,20 @@ function generateChangelog(graphPullRequests, changeLogFilePath, newVersionName)
     const changelogLastUpdateDate = getChangelogLastUpdateDate(oldChangelogBuffer);
     const newPullRequests = filterPullRequests(graphPullRequests, changelogLastUpdateDate);
     if (newPullRequests.length > 0) {
+        // create array of new release changelog parts
         let updatedChangelogParts = [];
         updatedChangelogParts.push(`# UI React ${newVersionName} (${todaysDate})`);
         newPullRequests.forEach((pullRequest) => {
             updatedChangelogParts.push(`## ${pullRequest.title}`);
             updatedChangelogParts.push(`${pullRequest.body}`);
         });
+        // add old changelog to array
         updatedChangelogParts.push(oldChangelogBuffer.toString());
         updatedChangelogParts = updatedChangelogParts.map(part => stripComments(part));
+        // add last updated date to array
         updatedChangelogParts.unshift(formatLastUpdatedDate(todaysDate));
         const updatedChangelog = updatedChangelogParts.join('\n\n').trim();
+        // concat array and write to file, then commit
         fs.writeFileSync(
             changeLogFilePath,
             updatedChangelog,
@@ -71,7 +75,12 @@ function generateChangelog(graphPullRequests, changeLogFilePath, newVersionName)
         );
         shell.exec('git add CHANGELOG.md', executeSilently);
         shell.exec(`git commit -m "update changelog for version ${newVersionName}"`, executeSilently);
+        // get new release changelog parts and return release notes
+        updatedChangelogParts.shift();
+        updatedChangelogParts.pop();
+        return updatedChangelogParts.join('\n\n').trim();
     }
+    return '';
 }
 
 module.exports = { generateChangelog };

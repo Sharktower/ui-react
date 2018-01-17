@@ -54,6 +54,7 @@ const {
     pushBranch,
     pushTag,
     moveTagToHead,
+    addReleaseNotesToTag,
 } = require('../release-src/branch-and-tags');
 const {
     getPullRequests,
@@ -78,19 +79,21 @@ async function release() {
 
     userMessage('Writing changelog...', 'yellow');
     const githubResponse = await getPullRequests();
-    generateChangelog(
+    const releaseNotes = generateChangelog(
         githubResponse.data.repository.pullRequests.nodes,
         changeLogPath,
         newVersionName,
     );
 
-    moveTagToHead();
+    moveTagToHead(newVersionName);
 
     userMessage('Pushing branch...', 'yellow');
     pushBranch(releaseBranch);
 
     userMessage('Pushing new tag...', 'yellow');
     pushTag(newVersionName);
+
+    await addReleaseNotesToTag(newVersionName, releaseNotes);
 
     userMessage('Creating pull request...', 'yellow');
     const newPullRequest = await createPullRequest(releaseBranch, newVersionName);

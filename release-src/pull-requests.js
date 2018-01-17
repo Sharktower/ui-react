@@ -1,24 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies, no-console */
 
 const gql = require('graphql-tag');
-const githubClient = require('./github-client');
-const GithubRestApi = require('github');
-
-const githubRestApi = new GithubRestApi({
-    host: 'api.github.com',
-    protocol: 'https',
-    headers: {
-        Accept: 'application/vnd.github.v3+json',
-    },
-});
-
-githubRestApi.authenticate({
-    type: 'token',
-    token: process.env.GITHUB_TOKEN,
-});
+const { githubGraphQLClient, githubRestApi } = require('./github-client');
+const githubVariables = require('./github-variables');
 
 function getPullRequests() {
-    return githubClient.query({
+    return githubGraphQLClient.query({
         query: gql`
         {
           repository(owner: "Mudano", name: "ui-react") {
@@ -47,22 +34,26 @@ function getPullRequests() {
     });
 }
 
-const releaseRequestLabel = 'Release Request';
-
 function createPullRequest(releaseBranch, newVersionName) {
     return githubRestApi.pullRequests.create({
-        owner: 'Mudano',
-        repo: 'ui-react',
+        owner: githubVariables.owner,
+        repo: githubVariables.repo,
         title: `Release ${newVersionName}`,
         body: `Automatic release of ${newVersionName}`,
         head: releaseBranch,
         base: 'master',
-        labels: [releaseRequestLabel],
+    }).then((pullRequest) => {
+        githubRestApi.issues.addLabels({
+            owner: githubVariables.owner,
+            repo: githubVariables.repo,
+            number: pullRequest.data.number,
+            labels: [githubVariables.releaseRequestLabel],
+        });
+        return pullRequest;
     });
 }
 
 module.exports = {
     getPullRequests,
     createPullRequest,
-    releaseRequestLabel,
 };

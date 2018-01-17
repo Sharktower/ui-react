@@ -2,6 +2,8 @@
 
 const shell = require('shelljs');
 const { executeSilently } = require('./shell-utils');
+const { githubRestApi } = require('./github-client');
+const githubVariables = require('./github-variables');
 
 function getCurrentBranch() {
     return shell.exec('git rev-parse --abbrev-ref HEAD', executeSilently).stdout.trim();
@@ -30,12 +32,28 @@ function pushTag(tag) {
     shell.exec(`git push origin ${tag}`, executeSilently);
 }
 
-function moveTagToHead() {
-    const tag = process.env.npm_package_version;
+function moveTagToHead(tag) {
     shell.exec(
         `git tag --force --annotate ${tag} -m "release version ${tag}" HEAD`,
         executeSilently,
     );
+}
+
+function addReleaseNotesToTag(tag, releaseNotes) {
+    githubRestApi.repos.getReleaseByTag({
+        owner: githubVariables.owner,
+        repo: githubVariables.repo,
+        tag,
+    }).then((release) => {
+        githubRestApi.repos.editRelease({
+            owner: githubVariables.owner,
+            repo: githubVariables.repo,
+            id: release.data.id,
+            tag_name: tag,
+            name: `Release ${tag}`,
+            body: releaseNotes,
+        });
+    });
 }
 
 module.exports = {
@@ -46,4 +64,5 @@ module.exports = {
     pushBranch,
     pushTag,
     moveTagToHead,
+    addReleaseNotesToTag,
 };
