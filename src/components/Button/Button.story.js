@@ -8,9 +8,6 @@ import storyWrapper from '../../storybook-addons/storyWrapper';
 
 const stories = storiesOf('Button', module);
 
-stories
-    .addDecorator(story => <div id="uir-root-preview">{story()}</div>);
-
 stories.add(
     'Overview',
     storyWrapper(
