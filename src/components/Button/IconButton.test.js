@@ -54,7 +54,9 @@ describe('IconButton', () => {
         const isFullWidthClassName = getClassNameFromBoolPropKey(Button, 'isFullWidth');
 
         it(`does not add class ${isFullWidthClassName}`, () => {
-            const wrapper = shallow(<IconButton isFullWidth onClick={() => {}}><IconArrow /></IconButton>).dive();
+            const wrapper = shallow((
+                <IconButton isFullWidth onClick={() => {}}><IconArrow /></IconButton>
+            )).dive();
 
             expect(wrapper).not.to.have.className(isFullWidthClassName);
         });
