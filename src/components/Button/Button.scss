@@ -39,8 +39,10 @@
     $button-background-color-hover: rgba(47, 40, 51, .1) !default;
     $button-background-color-focus: rgba(47, 40, 51, .2) !default;
     $button-background-color-active: rgba(47, 40, 51, .4) !default;
-    $button-primary-background-top: #ff1966;
-    $button-primary-background-bottom: #fa439f;
+    $button-primary-background-top: #ff1966 !default;
+    $button-primary-background-bottom: #fa439f !default;
+    $button-primary-background-top-focus: darken($button-primary-background-top, 10%) !default;
+    $button-primary-background-bottom-focus: darken($button-primary-background-top, 10%) !default;
     $button-icon-width: $base-font-size + 4 !default;
     $button-icon-height: $base-font-size + 4 !default;
 
@@ -125,10 +127,15 @@
         color: #fff;
         background-image: linear-gradient(to bottom, $button-primary-background-top 0%, $button-primary-background-bottom 100%);
 
-        &:focus,
         &:hover {
             color: #fff;
-            background-image: linear-gradient(to bottom, $button-primary-background-top 100%, $button-primary-background-bottom 100%);
+            background-image: linear-gradient(to bottom, $button-primary-background-top 0%, $button-primary-background-top 100%);
+            box-shadow: 0px 0px 3px 1px rgba(225, 25, 102, .4);
+        }
+
+        &:focus {
+            color: #fff;
+            background-image: linear-gradient(to bottom, $button-primary-background-top-focus 0%, $button-primary-background-bottom-focus 100%);
             box-shadow: 0px 0px 3px 1px rgba(225, 25, 102, .4);
         }
 
