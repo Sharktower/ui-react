@@ -54,7 +54,7 @@ const {
     pushBranch,
     pushTag,
     moveTagToHead,
-    addReleaseNotesToTag,
+    createGitHubRelease,
 } = require('../release-src/branch-and-tags');
 const {
     getPullRequests,
@@ -93,11 +93,11 @@ async function release() {
     userMessage('Pushing new tag...', 'yellow');
     pushTag(newVersionName);
 
+    userMessage('Create GitHub release...', 'yellow');
+    await createGitHubRelease(newVersionName, releaseNotes);
+
     userMessage('Creating pull request...', 'yellow');
     const newPullRequest = await createPullRequest(releaseBranch, newVersionName);
-
-    // @NB: do this last to give GitHub time to created the release
-    await addReleaseNotesToTag(newVersionName, releaseNotes);
 
     userMessage(`Checking out original branch (${currentBranch})...`, 'yellow');
     checkoutBranch(currentBranch);
@@ -120,4 +120,9 @@ async function release() {
     return 0;
 }
 
-return release();
+try {
+    return release();
+} catch (error) {
+    console.error(error);
+    return 1;
+}

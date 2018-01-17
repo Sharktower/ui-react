@@ -39,28 +39,13 @@ function moveTagToHead(tag) {
     );
 }
 
-function addReleaseNotesToTag(tag, releaseNotes) {
-    return githubRestApi.repos.getReleaseByTag({
+function createGitHubRelease(tag, releaseNotes) {
+    return githubRestApi.repos.createRelease({
         owner: githubVariables.owner,
         repo: githubVariables.repo,
-        tag,
-    }, (error) => {
-        if (error) {
-            console.log(error);
-        }
-    }).then((release) => {
-        githubRestApi.repos.editRelease({
-            owner: githubVariables.owner,
-            repo: githubVariables.repo,
-            id: release.data.id,
-            tag_name: tag,
-            name: `Release ${tag}`,
-            body: releaseNotes,
-        }, (error) => {
-            if (error) {
-                console.log(error);
-            }
-        });
+        tag_name: tag,
+        name: tag,
+        body: releaseNotes,
     });
 }
 
@@ -72,5 +57,5 @@ module.exports = {
     pushBranch,
     pushTag,
     moveTagToHead,
-    addReleaseNotesToTag,
+    createGitHubRelease,
 };

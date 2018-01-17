@@ -55,12 +55,11 @@ function generateChangelog(graphPullRequests, changeLogFilePath, newVersionName)
     const newPullRequests = filterPullRequests(graphPullRequests, changelogLastUpdateDate);
     if (newPullRequests.length > 0) {
         // create array of new release changelog parts
-        let updatedChangelogParts = [];
-        updatedChangelogParts.push(`# UI React ${newVersionName} (${todaysDate})`);
-        newPullRequests.forEach((pullRequest) => {
-            updatedChangelogParts.push(`## ${pullRequest.title}`);
-            updatedChangelogParts.push(`${pullRequest.body}`);
-        });
+        const newChangelogParts = newPullRequests.reduce(
+            (carry, pullRequest) => [...carry, `## ${pullRequest.title}`, `${pullRequest.body}`],
+            [`# UI React ${newVersionName} (${todaysDate})`],
+        );
+        let updatedChangelogParts = [...newChangelogParts];
         // add old changelog to array
         updatedChangelogParts.push(oldChangelogBuffer.toString());
         updatedChangelogParts = updatedChangelogParts.map(part => stripComments(part));
@@ -75,10 +74,8 @@ function generateChangelog(graphPullRequests, changeLogFilePath, newVersionName)
         );
         shell.exec('git add CHANGELOG.md', executeSilently);
         shell.exec(`git commit -m "update changelog for version ${newVersionName}"`, executeSilently);
-        // get new release changelog parts and return release notes
-        updatedChangelogParts.shift();
-        updatedChangelogParts.pop();
-        return updatedChangelogParts.join('\n\n').trim();
+        // return release notes from new changelog only
+        return newChangelogParts.join('\n\n').trim();
     }
     return '';
 }

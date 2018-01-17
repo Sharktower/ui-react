@@ -42,21 +42,14 @@ function createPullRequest(releaseBranch, newVersionName) {
         body: `Automatic release of ${newVersionName}`,
         head: releaseBranch,
         base: 'master',
-    }, (error) => {
-        if (error) {
-            console.log(error);
-        }
     }).then((pullRequest) => {
         githubRestApi.issues.addLabels({
             owner: githubVariables.owner,
             repo: githubVariables.repo,
             number: pullRequest.data.number,
             labels: [githubVariables.releaseRequestLabel],
-        }, (error) => {
-            if (error) {
-                console.log(error);
-            }
         });
+        return pullRequest;
     });
 }
 
