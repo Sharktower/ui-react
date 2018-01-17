@@ -191,6 +191,7 @@
         left: 0;
         display: none;
         margin: 0;
+        overflow: visible;
         line-height: 1.5;
         color: #fff;
         background-image: linear-gradient(to bottom, $button-primary-background-top 0%, $button-primary-background-bottom 100%);

@@ -52,7 +52,31 @@ class Button extends Component {
         confirming: false,
     };
 
-    handleBlur = () => {
+    handleClick = (event) => {
+        const propsOnClick = this.props.onClick;
+
+        if (this.props.isDisabled) {
+            event.preventDefault();
+            return;
+        }
+
+        if (this.props.hasConfirm) {
+            this.setState({
+                confirmed: false,
+                confirming: true,
+            }, () => {
+                this.confirmRef.focus();
+            });
+        } else {
+            propsOnClick(event);
+        }
+    }
+
+    handleRef = (ref) => {
+        this.componentRef = ref;
+    }
+
+    handleConfirmBlur = () => {
         if (this.state.confirming) {
             this.setState({
                 confirming: false,
@@ -60,31 +84,26 @@ class Button extends Component {
         }
     }
 
-    handleClick = (e) => {
-        const propsOnClick = this.props.onClick;
+    handleConfirmClick = (event) => {
+        event.stopPropagation();
+        this.setState({
+            confirmed: true,
+            confirming: false,
+        }, () => {
+            this.componentRef.focus();
+            this.props.onClick(event);
+        });
+    }
 
-        if (this.props.isDisabled) {
-            e.preventDefault();
-            return;
+    handleConfirmKeyDown = (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            this.handleConfirmClick(event);
         }
+    }
 
-        if (this.props.hasConfirm) {
-            if (!this.state.confirming) {
-                this.setState({
-                    confirmed: false,
-                    confirming: true,
-                });
-            } else {
-                this.setState({
-                    confirmed: true,
-                    confirming: false,
-                }, () => {
-                    propsOnClick(e);
-                });
-            }
-        } else {
-            propsOnClick(e);
-        }
+    handleConfirmRef = (ref) => {
+        this.confirmRef = ref;
     }
 
     render() {
@@ -121,8 +140,8 @@ class Button extends Component {
                     },
                 )}
                 disabled={isDisabled}
-                onBlur={this.handleBlur}
                 onClick={this.handleClick}
+                ref={this.handleRef}
             >
                 {iconPosition === ButtonIconPosition.LEFT ? icon : null }
                 <span className="uir-button-content">
@@ -139,8 +158,13 @@ class Button extends Component {
                                 'uir-button-confirmation--confirmed': this.state.confirmed,
                             },
                         )}
+                        onBlur={this.handleConfirmBlur}
+                        onClick={this.handleConfirmClick}
+                        onKeyDown={this.handleConfirmKeyDown}
+                        ref={this.handleConfirmRef}
+                        role="button"
+                        tabIndex="-1"
                     >
-                        {/* {this.state.confirmed ? confirmedText : confirmText} */}
                         {this.state.confirmed ? confirmedText : null}
                         {this.state.confirming ? confirmText : null}
                     </span>
