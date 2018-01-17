@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import storyWrapper from '../../storybook-addons/storyWrapper';
 import AvatarTitle from './AvatarTitle';
 import Avatar from './Avatar';
