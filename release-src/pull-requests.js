@@ -35,26 +35,21 @@ function getPullRequests() {
 }
 
 function createPullRequest(releaseBranch, newVersionName) {
-    return githubRestApi.pullRequests.create({
+    const pullRequest = githubRestApi.pullRequests.create({
         owner: githubVariables.owner,
         repo: githubVariables.repo,
         title: `Release ${newVersionName}`,
         body: `Automatic release of ${newVersionName}`,
         head: releaseBranch,
         base: 'master',
-    }).then((pullRequest) => {
-        githubRestApi.issues.addLabels({
-            owner: githubVariables.owner,
-            repo: githubVariables.repo,
-            number: pullRequest.data.number,
-            labels: [githubVariables.releaseRequestLabel],
-        }).error((error) => {
-            console.log(error);
-        });
-        return pullRequest;
-    }).error((error) => {
-        console.log(error);
     });
+    githubRestApi.issues.addLabels({
+        owner: githubVariables.owner,
+        repo: githubVariables.repo,
+        number: pullRequest.data.number,
+        labels: [githubVariables.releaseRequestLabel],
+    });
+    return pullRequest;
 }
 
 module.exports = {
