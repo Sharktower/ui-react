@@ -52,6 +52,10 @@ class Button extends Component {
         confirming: false,
     };
 
+    componentWillUnmount() {
+        clearTimeout(this.confirmedTimeout);
+    }
+
     handleClick = (event) => {
         const propsOnClick = this.props.onClick;
 
@@ -90,6 +94,12 @@ class Button extends Component {
             confirmed: true,
             confirming: false,
         }, () => {
+            // Wait 1s for animation to finish
+            this.confirmedTimeout = setTimeout(() => {
+                this.setState({
+                    confirmed: false,
+                });
+            }, 1000);
             this.componentRef.focus();
             this.props.onClick(event);
         });
@@ -150,6 +160,7 @@ class Button extends Component {
                 {iconPosition === ButtonIconPosition.RIGHT ? icon : null }
                 {hasConfirm ?
                     <span
+                        aria-hidden={!this.state.confirming && !this.state.confirmed}
                         className={cx(
                             'uir-button',
                             'uir-button-confirmation',

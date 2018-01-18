@@ -99,7 +99,39 @@ describe('Button', () => {
             expect(confirmation).to.have.className('uir-button-confirmation--confirmed');
         });
 
-        it('onClick is called when confirmed', () => {
+        it('removes --confirmed class after animation finished', (done) => {
+            const wrapper = mount(defaultConfirmButton);
+            const confirmation = wrapper.find('.uir-button-confirmation');
+
+            wrapper.simulate('click');
+            confirmation.simulate('click');
+
+            setTimeout(() => {
+                expect(confirmation).not.to.have.className('uir-button-confirmation--confirmed');
+                done();
+            }, 1100);
+        });
+
+        it('does not call setState after unmount', (done) => {
+            const wrapper = mount(defaultConfirmButton);
+            const confirmation = wrapper.find('.uir-button-confirmation');
+
+            sandbox.stub(console, 'error');
+
+            wrapper.simulate('click');
+            confirmation.simulate('click');
+            wrapper.unmount();
+
+            setTimeout(() => {
+                // eslint-disable-next-line no-console
+                expect(console.error).not.to.have.been.calledWithMatch('you called setState() on an unmounted component');
+                // eslint-disable-next-line no-console
+                expect(console.error).not.to.have.been.called();
+                done();
+            }, 1100);
+        });
+
+        it('calls onClick when confirmed', () => {
             const onClick = sandbox.spy();
             const wrapper = mount((
                 <Button hasConfirm onClick={onClick}>Foo</Button>

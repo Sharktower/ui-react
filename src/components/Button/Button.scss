@@ -201,17 +201,17 @@
             color: #fff;
         }
 
-        &--confirming {
+        &--confirming:focus {
             animation-name: uir-button-confirmation-in;
             animation-duration: .3s;
-            animation-timing-function: ease-out;
+            animation-timing-function: cubic-bezier(0,0,.31,1);
         }
 
         &--confirmed {
             transform: translateY(100%);
             animation-name: uir-button-confirmation-out;
             animation-duration: 1s;
-            animation-timing-function: ease-out;
+            animation-timing-function: cubic-bezier(0,0,.31,1);
         }
 
         &--confirming,
