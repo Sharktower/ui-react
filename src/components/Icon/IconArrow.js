@@ -1,10 +1,22 @@
-/* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import './Icon.scss';
 
 let lastInstanceId = 0;
+
+const propTypes = {
+    className: PropTypes.string,
+    style: PropTypes.objectOf(PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+    ])),
+};
+
+const defaultProps = {
+    className: '',
+    style: null,
+};
 
 const IconArrow = ({
     className,
@@ -26,17 +38,7 @@ const IconArrow = ({
     );
 };
 
-IconArrow.defaultProps = {
-    className: '',
-    style: null,
-};
-
-IconArrow.propTypes = {
-    className: PropTypes.string,
-    style: PropTypes.objectOf(PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-    ])),
-};
+IconArrow.propTypes = propTypes;
+IconArrow.defaultProps = defaultProps;
 
 export default IconArrow;
