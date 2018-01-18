@@ -1,10 +1,11 @@
 {
   "name": "@mudano/ui-react",
   "version": "1.0.0",
-  "description": "Mudano UI React components",
-  "main": "lib/index.js",
+  "description": "Mudano UI React Component Library",
+  "main": "dist/ui-react.min.js",
   "modules.root": "lib",
   "files": [
+    "dist",
     "lib",
     "src"
   ],
@@ -13,6 +14,14 @@
     "url": "git+https://github.com/Mudano/ui-react.git"
   },
   "author": "Mudano Ltd. (http://mudano.com)",
+  "contributors": [
+    "Andy Berry <andy.berry@mudano.com",
+    "Antoine Fromentin <antoine.fromentin@mudano.com>",
+    "David Corbacho <david.corbacho@mudano.com>",
+    "Jakub Frej <jakub.frej@mudano.com",
+    "Makis Spyratos <makis.spyratos@mudano.com>",
+    "Matt Davies <matt.davies@mudano.com>"
+  ],
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/Mudano/ui-react/issues"
@@ -25,8 +34,12 @@
     "start": "yarn storybook:watch",
     "dev": "yarn start",
     "watch": "yarn start",
+    "clean": "rimraf dist",
+    "build": "npm-run-all -s lint clean build:umd build:commonjs",
+    "build:umd": "webpack",
+    "build:commonjs": "babel src/components --out-dir dist --ignore *.story.js,*.test* && node-sass src/components -o dist",
     "release:prepare": "node bin/prepare-release",
-    "release:publish": "node bin/publish-release",
+    "release:publish": "yarn build && node bin/publish-release",
     "storybook:clean": "rimraf ./storybook-static",
     "storybook:build": "yarn lint && build-storybook -o ./storybook-static",
     "storybook:deploy": "storybook-to-ghpages",
@@ -60,6 +73,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "base64-inline-loader": "^1.1.0",
     "chai": "^4.1.2",
     "chai-enzyme": "^0.8.0@beta",
     "chalk": "^2.3.0",
