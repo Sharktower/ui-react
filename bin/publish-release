@@ -2,10 +2,15 @@
 
 /* eslint-disable import/no-extraneous-dependencies, no-console */
 
-const npm = require('npm-utils');
+const fs = require('fs');
+const path = require('path');
 const shell = require('shelljs');
 const { userMessage, executeSilently } = require('../release-src/shell-utils');
 const { hasUntrackedFiles } = require('../release-src/untracked-files');
+
+const homeDir = require('os').homedir();
+
+const hasNpmRc = fs.existsSync(path.resolve(homeDir, '.npmrc'));
 
 // @TODO: dry run flag, silent flag, help flag
 
@@ -25,7 +30,7 @@ if (hasUntrackedFiles()) {
     return 1;
 }
 
-if (!process.env.NPM_TOKEN) {
+if (!process.env.NPM_TOKEN && !hasNpmRc) {
     userMessage(
         'We cannot find a NPM_TOKEN environment variable',
         'black',
@@ -39,27 +44,34 @@ if (!process.env.NPM_TOKEN) {
     return 1;
 }
 
-const { getCurrentBranch, checkoutBranch } = require('../release-src/branch-and-tags');
+const { getCurrentBranch, pullLatest, checkoutBranch } = require('../release-src/branch-and-tags');
 
 const currentBranch = getCurrentBranch();
 
 checkoutBranch('master');
+pullLatest();
 
-// @NB: to ensure latest version we need to get package version
-//      from master branch, unless overridden with CLI argument
-const latestVersion = process.argv[2] || `v${process.env.npm_package_version}`;
+// @NB: to ensure latest version we need to get package.json version from master
+const packageJson = require('../package.json');
+
+const latestVersion = `v${packageJson.version}`;
 
 userMessage(`Publishing UI React ${latestVersion} to NPM`, 'magenta', { iconRight: '🚀' });
 
 shell.exec('git fetch --all --tags', executeSilently);
 
 userMessage(`Checking out tag ${latestVersion}...`, 'yellow');
-shell.exec(`git checkout tags/${latestVersion}`);
+shell.exec(`git checkout tags/${latestVersion}`, executeSilently);
 
 userMessage('Publishing to NPM...', 'yellow');
-npm.setAuthToken()
-    .then(npm.publish)
-    .catch(error => console.error(error));
+
+if (hasNpmRc) {
+    npm.publish();
+} else {
+    npm.setAuthToken()
+        .then(npm.publish)
+        .catch(error => console.error(error));
+}
 
 userMessage(`Checking out original branch (${currentBranch})...`, 'yellow');
 checkoutBranch(currentBranch);
