@@ -23,6 +23,7 @@ const propTypes = {
         PropTypes.string,
         PropTypes.number,
     ])),
+    tabIndex: PropTypes.number,
     type: PropTypes.oneOf([
         ButtonType.CLEAR,
         ButtonType.DEFAULT,
@@ -43,6 +44,7 @@ const defaultProps = {
     isDisabled: false,
     isFullWidth: false,
     style: null,
+    tabIndex: null,
     type: ButtonType.DEFAULT,
 };
 
@@ -129,6 +131,7 @@ class Button extends Component {
             isDisabled,
             isFullWidth,
             style,
+            tabIndex,
             type,
         } = this.props;
 
@@ -152,6 +155,7 @@ class Button extends Component {
                 disabled={isDisabled}
                 onClick={this.handleClick}
                 ref={this.handleRef}
+                tabIndex={tabIndex}
             >
                 {iconPosition === ButtonIconPosition.LEFT ? icon : null }
                 <span className="uir-button-content">

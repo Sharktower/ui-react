@@ -6,21 +6,21 @@ import Button from './Button';
 import IconArrow from '../Icon/IconArrow';
 
 describe('Button', () => {
+    const defaultButton = (<Button onClick={() => {}}>Foo</Button>);
+
     common.rendersChildren(Button, { requiredProps: { onClick: () => {} } });
     common.propKeyToClassName(Button, 'isActive', { requiredProps: { children: 'Foo', onClick: () => {} } });
     common.propKeyToClassName(Button, 'isDisabled', { requiredProps: { children: 'Foo', onClick: () => {} } });
     common.propKeyToClassName(Button, 'isFullWidth', { requiredProps: { children: 'Foo', onClick: () => {} } });
 
     it('renders an HTML tag button', () => {
-        const wrapper = shallow((
-            <Button onClick={() => {}}>Foo</Button>
-        ));
+        const wrapper = shallow(defaultButton);
 
         expect(wrapper).to.have.tagName('button');
     });
 
     it('renders with class .uir-button', () => {
-        const wrapper = shallow(<Button onClick={() => {}}>Foo</Button>);
+        const wrapper = shallow(defaultButton);
 
         expect(wrapper).to.have.className('uir-button');
     });
@@ -43,9 +43,7 @@ describe('Button', () => {
         );
 
         it('does not contain confirmation span by default', () => {
-            const wrapper = shallow((
-                <Button onClick={() => {}}>Foo</Button>
-            ));
+            const wrapper = shallow(defaultButton);
 
             expect(wrapper).not.to.have.descendants('.uir-button-confirmation');
         });
@@ -282,9 +280,7 @@ describe('Button', () => {
 
     describe('icon', () => {
         it('does not contain an icon by default', () => {
-            const wrapper = mount((
-                <Button onClick={() => {}}>Foo</Button>
-            ));
+            const wrapper = mount(defaultButton);
 
             expect(wrapper).not.to.contain(<IconArrow />);
         });
@@ -353,13 +349,13 @@ describe('Button', () => {
     });
 
     describe('isDisabled', () => {
-        it('does not add disabled attribute when not defined', () => {
-            const wrapper = shallow(<Button onClick={() => {}}>Foo</Button>);
+        it('does not set disabled attribute by default', () => {
+            const wrapper = shallow(defaultButton);
 
             expect(wrapper).not.to.have.attr('disabled');
         });
 
-        it('adds disabled attribute', () => {
+        it('sets disabled attribute', () => {
             const wrapper = shallow(<Button isDisabled onClick={() => {}}>Foo</Button>);
 
             expect(wrapper).to.have.attr('disabled');
@@ -389,6 +385,20 @@ describe('Button', () => {
             wrapper.simulate('click', { preventDefault });
             expect(onClick).not.to.have.been.called();
             expect(preventDefault).to.have.been.calledOnce();
+        });
+    });
+
+    describe('tabIndex', () => {
+        it('does not set tabindex by default', () => {
+            const wrapper = shallow(defaultButton);
+
+            expect(wrapper).not.to.have.attr('tabindex');
+        });
+
+        it('sets tabindex', () => {
+            const wrapper = shallow(<Button tabIndex={-1} onClick={() => {}}>Foo</Button>);
+
+            expect(wrapper).to.have.attr('tabindex', '-1');
         });
     });
 
