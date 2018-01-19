@@ -3,6 +3,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import ListPropType from '../../prop-types/list';
 import StyleObjectPropType from '../../prop-types/style';
+import { TooltipBoxStatus } from './TooltipEnums';
 import './TooltipBox.scss';
 
 const propTypes = {
@@ -11,13 +12,17 @@ const propTypes = {
         PropTypes.string,
     ]).isRequired,
     className: PropTypes.string,
-    status: ListPropType(['default', 'success', 'error']),
+    status: ListPropType([
+        TooltipBoxStatus.DEFAULT,
+        TooltipBoxStatus.SUCCESS,
+        TooltipBoxStatus.ERROR,
+    ]),
     style: StyleObjectPropType(),
 };
 
 const defaultProps = {
     className: null,
-    status: 'default',
+    status: TooltipBoxStatus.DEFAULT,
     style: null,
 };
 
