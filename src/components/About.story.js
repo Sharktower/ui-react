@@ -35,12 +35,6 @@ _NB: the main UI React library is a UMD bundle, we recommend tree shaking when y
 
 If you're looking for a more custom installation you also have the option of using [CommonJS](/?selectedKind=About&selectedStory=CommonJS) or [ES6 Native](/?selectedKind=About&selectedStory=CommonJS) modules.
 
-### Issues
-
-Spotted an issue?
-
-Please report it at [https://github.com/Mudano/ui-react/issues](https://github.com/Mudano/ui-react/issues)
-
 ### Development
 
 To help with development, clone the repository from here: [https://github.com/Mudano/ui-react](https://github.com/Mudano/ui-react)

@@ -16,25 +16,15 @@ UI React components are only compatible with a React application and require the
     react >=0.14.0 <= 15
     react-dom >=0.14.0 <= 15
 
-You'll also need the prop-types package:
-
-    yarn add prop-types
-
-Each component is a native ES6 modules and as such you'll need to compile your application. (We recommend webpack.)
-
-    yarn add babel-core babel-loader css-loader node-sass sass-loader style-loader webpack --dev
-
 ### Usage
 
-You should consume UI React as individual components:
+Consuming UI React is really easy, simply import your chosen component and away you go!
 
-    import YourComponent from '@mudano/ui-react/lib/YourComponent';
+    import React from 'react';
+    import { YourComponent } from '@mudano/ui-react';
+    ...
 
-### Issues
-
-Spotted an issue?
-
-Please report it at [https://github.com/Mudano/ui-react/issues](https://github.com/Mudano/ui-react/issues)
+_NB: the main UI React library is a UMD bundle, we recommend tree shaking when you bundle assets for production_
 
 ### Development
 
