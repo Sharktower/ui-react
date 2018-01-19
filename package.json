@@ -61,7 +61,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "chai": "^4.1.2",
-    "chai-enzyme": "^0.8.0@beta",
+    "chai-enzyme": "^1.0.0-beta.0",
     "chalk": "^2.3.0",
     "clone": "^2.1.1",
     "codeceptjs-webdriverio": "^1.1.0",

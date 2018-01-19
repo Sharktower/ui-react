@@ -1,5 +1,5 @@
 // Based on https://github.com/Semantic-Org/Semantic-UI-React/blob/master/test/specs/commonTests/implementsClassNameProps.js
-/* global describe, expect, it, shallow */
+/* global describe, expect, it, mount */
 import { createElement } from 'react';
 import assertRequiredHelpers from './assertRequiredHelpers';
 import getClassNameFromBoolPropKey from '../utils/getClassNameFromBoolPropKey';
@@ -27,7 +27,7 @@ export default (Component, propKey, options = {}) => {
         noClassNameFromUndefinedProp(Component, propKey, [], options);
 
         it(`adds prop key derived className ${className}`, () => {
-            const wrapper = shallow((
+            const wrapper = mount((
                 createElement(Component, { ...requiredProps, [propKey]: true })
             ));
 
