@@ -3,6 +3,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import ListPropType from '../../prop-types/list';
 import StyleObjectPropType from '../../prop-types/style';
+import { AvatarTitleSize } from './AvatarEnums';
 import './AvatarTitle.scss';
 
 const propTypes = {
@@ -10,7 +11,10 @@ const propTypes = {
     className: PropTypes.string,
     jobRole: PropTypes.string,
     name: PropTypes.string.isRequired,
-    size: ListPropType(['sm', 'lg']),
+    size: ListPropType([
+        AvatarTitleSize.SM,
+        AvatarTitleSize.LG,
+    ]),
     style: StyleObjectPropType(),
 };
 
@@ -18,7 +22,7 @@ const defaultProps = {
     avatar: null,
     className: null,
     jobRole: null,
-    size: 'sm',
+    size: AvatarTitleSize.SM,
     style: null,
 };
 
