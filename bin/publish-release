@@ -67,7 +67,8 @@ shell.exec(`git checkout tags/${latestVersion}`, executeSilently);
 userMessage('Publishing to NPM...', 'yellow');
 
 if (hasNpmRc) {
-    npm.publish();
+    npm.publish()
+        .catch(error => console.error(error));
 } else {
     npm.setAuthToken()
         .then(npm.publish)
@@ -76,5 +77,11 @@ if (hasNpmRc) {
 
 userMessage(`Checking out original branch (${currentBranch})...`, 'yellow');
 checkoutBranch(currentBranch);
+
+userMessage(
+    `Successfully released version ${latestVersion}`,
+    'green',
+    { iconRight: '🎉' },
+);
 
 return 0;
