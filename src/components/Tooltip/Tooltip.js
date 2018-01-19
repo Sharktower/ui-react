@@ -4,18 +4,19 @@ import PropTypes from 'prop-types';
 import ListPropType from '../../prop-types/list';
 import StyleObjectPropType from '../../prop-types/style';
 import TooltipBox from './TooltipBox';
+import { TooltipPosition } from './TooltipEnums';
 import './Tooltip.scss';
 
 const propTypes = {
     children: PropTypes.element.isRequired,
     className: PropTypes.string,
     position: ListPropType([
-        'top-center',
-        'top-left',
-        'top-right',
-        'bottom-center',
-        'bottom-right',
-        'bottom-left',
+        TooltipPosition.TOP_CENTER,
+        TooltipPosition.TOP_LEFT,
+        TooltipPosition.TOP_RIGHT,
+        TooltipPosition.BOTTOM_CENTER,
+        TooltipPosition.BOTTOM_RIGHT,
+        TooltipPosition.BOTTOM_LEFT,
     ]),
     showTooltip: PropTypes.bool,
     style: StyleObjectPropType(),
@@ -28,7 +29,7 @@ const propTypes = {
 
 const defaultProps = {
     className: null,
-    position: 'top-center',
+    position: TooltipPosition.TOP_CENTER,
     showTooltip: null,
     style: null,
     tabIndex: 0,

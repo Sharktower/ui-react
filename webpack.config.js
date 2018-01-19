@@ -1,13 +1,13 @@
-const path = require('path');
 const clone = require('clone');
+const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const libraryName = 'ui-react';
 
-const defaultConfig = {
-    entry: path.resolve(__dirname, './src/index.js'),
+const umdConfig = {
+    entry: path.resolve(__dirname, './lib/index.js'),
     output: {
-        path: path.resolve(__dirname, './dist/umd'),
+        path: path.resolve(__dirname, './dist/'),
         filename: `${libraryName}.js`,
         library: libraryName,
         libraryTarget: 'umd',
@@ -44,7 +44,7 @@ const defaultConfig = {
             test: /\.(png|jpg|gif)$/,
             exclude: /node_modules\//,
             use: [{
-                loader: 'file-loader',
+                loader: 'base64-inline-loader?limit=2000&name=[name].[ext]',
             }],
         }],
     },
@@ -63,21 +63,16 @@ const defaultConfig = {
             commonjs: 'react-dom',
             amd: 'react-dom',
         },
-        'prop-types': {
-            root: 'PropTypes',
-            umd: 'prop-types',
-            commonjs2: 'prop-types',
-            commonjs: 'prop-types',
-            amd: 'prop-types',
-        },
     },
 };
 
-const minifiedBundleConfig = clone(defaultConfig);
-minifiedBundleConfig.output.filename = `${libraryName}.min.js`;
-minifiedBundleConfig.plugins = [new UglifyJsPlugin({ sourceMap: false })];
+const minifiedUmdConfig = clone(umdConfig);
+minifiedUmdConfig.output.filename = `${libraryName}.min.js`;
+minifiedUmdConfig.plugins = [
+    new UglifyJsPlugin({ sourceMap: false }),
+];
 
 module.exports = [
-    defaultConfig,
-    minifiedBundleConfig,
+    umdConfig,
+    minifiedUmdConfig,
 ];

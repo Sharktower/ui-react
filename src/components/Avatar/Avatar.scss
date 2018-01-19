@@ -63,7 +63,7 @@ $sizes: (
     position: relative;
     box-sizing: border-box;
     display: inline-block;
-    font-family: $font;
+    font-family: $font-family;
     text-align: center;
     text-transform: uppercase;
     vertical-align: middle;
@@ -124,7 +124,7 @@ $sizes: (
             z-index: $halo-z-index;
             display: block;
             content: "";
-            background-image: url("avatar-halo.png");
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAE30lEQVR42uWbP28aZxzH63dhyTsYx+DwzysTkhdehwfeQEGOTCJFatUoVhFYhsaiaWRT5ZwCRVmShSxd0qVZKkQywECHRMIy3Rh+/d7dc/zun3HqcPY9l+G7WObgo+/v73N33xDRVyXPLnyQ/n0NykEFqAH1oAE0gWZCE/G3nvifgvjMmr+BGTIE5SEFGkN0TY0hRVwr5B9gBs1CFWgI0ZI1FNfO3h4wg2agOnQBkce6EN+VuTlgBl2FStAIohvWSHz3qrfADLsDdSG6ZXWhHW+AGXYX6kPkE/Wh3eUBM+gKVISm//9HdbyGnorftvLlwAxbgsjnKjH0lwEXIZJExesDc85OJQKeXpXTC6sxFyip1F9UvRf12S5EkqqrMnw28JVFalsK6NLVwDwujiCSWYIh8znAdYgCoro7MMNm3RYB70O74+XCkV0EXIHoRrR9Y9eoOIF5eR9CFDCBqRNyA87LAHDNKMm7ASsQBVQKA/OB2zjAwGOV0QycgyjI+jHVyZmBC7YWESiVwVRNtwpm4EbQIBm2TZXUb3SUOmuYgXu3+8M6nlwDzuqwyRf0JKn0zMCDBReSNWepmmrB2Rd0nHpOPyeaAzPwxAf9dImwCGMdFs4CNvkrnSROJmbgWYCqMVXSahifzWFP4yf0PP7LLHDA5ZRRoARsoglnNVhqxxsW4EkQWo+ARc4qRhiTAtjW3Qa9vPvEEtID2Z2tmnL2qQm2rcPS61htcHlb2pYoZ+GsFbZJpxrsMx12S4U9ol7ssCfx4NHhCQphrMGmdNgTtUBxGAvYKv0RLTcco6VMKhvOJkXr0Z1l2C0LLL3dPChIuzygz7KznLNWZ7dqc9g/Nx/TX3ce5aRbDxm2JVqPQk8TDNuOu8EeqLDjvze+W5PuAKCctk9QRp99Nod95YD9gQCryHTEwxOUlrNnjtbTMmBjR26w9H7jYV6iQzwuUDVRoGxh7HQ2aoKNPByOIg9CC45pfd1nGZarsTOMNwF7R3OWhpH7lSUdxHu/TnKfPZvDnsZ5gtJgY7ZqzGEM2AcX48h+dkm3WjrehrG29bQYNtl0rcZvYodzZ99xGBPCmABbl+BmGu+zNd5nXcLYWqDebeqwHzRnAbu+P/q0vpdZxu1Sz52tpo2cVQDL4yLPxjUb7CPkrAqrO/vP+j59DO+VfH1DnFc8PYyPjZxVnU04x0UOYxX2e/qghfF9DfZTeK97Hi6s+vmRB1RjbVzk2djSegSspfUI2A2rswjj/iRc2PH1Qy1lPnATsE3bPvuTgD3k1uMCC2engN319WNLZdVZUaCOxQR1KmDZWQ5jhtWr8ZCdpfNQsejXB9M4jN1ydu6sLWejRusROatXYzh7j87DxdK/oW9XPHj0cMnjonOCAqyLs9HH89bz3gjjiObsFLBFhvXg4VIvx8W2yz771h7GnLP9c+Ssfx8fZtiFy/srM6wYF9F64CzDfly/1+Vq7L8HxLlA2e8IxF2cjV4yG/MEVeI+69NXAJxhLO4I8OmitfVEBSzn7AVytg5nM35/yYNbT1KtxootjLkav4keGs7yUKHvsxXAZv3/Gg8vAnxSkWjC2UtylmHHmI0VDBV5hHFImhe14GwOsAWMiw302R7CeABnJxgqZgjjGcJ4gjAeALYH2AZgC1jec4CV4EUtSfQfolAK55qycakAAAAASUVORK5CYII=");
             background-repeat: no-repeat;
             background-size: contain;
             animation-name: uir-spin-halo;

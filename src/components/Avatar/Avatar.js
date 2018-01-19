@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import InitialsPropType from '../../prop-types/initials';
 import ListPropType from '../../prop-types/list';
 import StyleObjectPropType from '../../prop-types/style';
+import { AvatarSize } from './AvatarEnums';
 import './Avatar.scss';
 
 const propTypes = {
@@ -13,7 +14,12 @@ const propTypes = {
     initials: InitialsPropType,
     name: PropTypes.string.isRequired,
     onClick: PropTypes.func,
-    size: ListPropType(['xs', 'sm', 'md', 'lg']),
+    size: ListPropType([
+        AvatarSize.XS,
+        AvatarSize.SM,
+        AvatarSize.MD,
+        AvatarSize.LG,
+    ]),
     src: PropTypes.string,
     style: StyleObjectPropType(),
     tabIndex: PropTypes.number,
@@ -25,7 +31,7 @@ const defaultProps = {
     initials: null,
     icon: null,
     onClick: null,
-    size: 'md',
+    size: AvatarSize.MD,
     src: null,
     style: null,
     tabIndex: 0,

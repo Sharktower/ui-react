@@ -1,5 +1,5 @@
 import React from 'react';
-import { Converter } from 'react-showdown';
+import { Converter } from 'react-showdown'; // eslint-disable-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import Logo from './logo.svg';
 
@@ -22,6 +22,8 @@ const codeStyle = {
     display: 'inline-block',
     borderRadius: '4px',
     whiteSpace: 'pre-wrap',
+    fontSize: '15px',
+    lineHeight: '150%',
 };
 
 const tableStyle = {
