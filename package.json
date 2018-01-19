@@ -14,14 +14,6 @@
     "url": "git+https://github.com/Mudano/ui-react.git"
   },
   "author": "Mudano Ltd. (http://mudano.com)",
-  "contributors": [
-    "Andy Berry <andy.berry@mudano.com",
-    "Antoine Fromentin <antoine.fromentin@mudano.com>",
-    "David Corbacho <david.corbacho@mudano.com>",
-    "Jakub Frej <jakub.frej@mudano.com",
-    "Makis Spyratos <makis.spyratos@mudano.com>",
-    "Matt Davies <matt.davies@mudano.com>"
-  ],
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/Mudano/ui-react/issues"
