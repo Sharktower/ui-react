@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
-import { ButtonType, ButtonIconPosition } from './ButtonEnums';
+import PropTypes from 'prop-types';
+import ListPropType from '../../prop-types/list';
+import { ButtonIconPosition, ButtonType, ButtonVariant } from './ButtonEnums';
 import './Button.scss';
 
 const propTypes = {
@@ -11,7 +12,7 @@ const propTypes = {
     confirmedText: PropTypes.string,
     hasConfirm: PropTypes.bool,
     icon: PropTypes.element,
-    iconPosition: PropTypes.oneOf([
+    iconPosition: ListPropType([
         ButtonIconPosition.LEFT,
         ButtonIconPosition.RIGHT,
     ]),
@@ -24,11 +25,16 @@ const propTypes = {
         PropTypes.number,
     ])),
     tabIndex: PropTypes.number,
-    type: PropTypes.oneOf([
-        ButtonType.CLEAR,
-        ButtonType.DEFAULT,
-        ButtonType.PRIMARY,
-        ButtonType.ROUND,
+    type: ListPropType([
+        ButtonType.BUTTON,
+        ButtonType.RESET,
+        ButtonType.SUBMIT,
+    ]),
+    variant: ListPropType([
+        ButtonVariant.CLEAR,
+        ButtonVariant.DEFAULT,
+        ButtonVariant.PRIMARY,
+        ButtonVariant.ROUND,
     ]),
 };
 
@@ -45,7 +51,8 @@ const defaultProps = {
     isFullWidth: false,
     style: null,
     tabIndex: null,
-    type: ButtonType.DEFAULT,
+    type: ButtonType.BUTTON,
+    variant: ButtonVariant.DEFAULT,
 };
 
 class Button extends Component {
@@ -133,11 +140,12 @@ class Button extends Component {
             style,
             tabIndex,
             type,
+            variant,
         } = this.props;
 
         return (
             <button
-                type="button"
+                type={type}
                 style={style}
                 className={cx(
                     'uir-button',
@@ -145,11 +153,11 @@ class Button extends Component {
                     icon ? `uir-button--icon-${iconPosition}` : null,
                     {
                         'uir-button--active': isActive,
-                        'uir-button--clear': type === ButtonType.CLEAR,
+                        'uir-button--clear': variant === ButtonVariant.CLEAR,
                         'uir-button--disabled': isDisabled,
                         'uir-button--full-width': isFullWidth,
-                        'uir-button--primary': type === ButtonType.PRIMARY,
-                        'uir-button--round': type === ButtonType.ROUND,
+                        'uir-button--primary': variant === ButtonVariant.PRIMARY,
+                        'uir-button--round': variant === ButtonVariant.ROUND,
                     },
                 )}
                 disabled={isDisabled}

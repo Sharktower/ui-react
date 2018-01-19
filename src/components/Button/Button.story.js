@@ -16,10 +16,7 @@ Button is a wrapper around the html <code><button></code> element
         `,
         <Button
             onClick={() => { alert('it works!'); }} // eslint-disable-line
-            className="className"
-            isActive={false}
-            isFullWidth={false}
-            isDisabled={false}
+            className="class-name"
         >
             Custom label
         </Button>,
@@ -33,10 +30,10 @@ Button is a wrapper around the html <code><button></code> element
             </Tooltip>
             <Button isDisabled onClick={() => {}}>Disabled</Button>
             <Button isActive onClick={() => {}}>Active</Button>
-            <Button type="clear" onClick={() => {}}>Clear</Button>
-            <Button type="primary" onClick={() => {}}>Primary</Button>
+            <Button variant="clear" onClick={() => {}}>Clear</Button>
+            <Button variant="primary" onClick={() => {}}>Primary</Button>
             <Button icon={<IconArrow />} onClick={() => {}}>Icon</Button>
-            <Button type="round" icon={<IconArrow />} onClick={() => {}} />
+            <Button variant="round" icon={<IconArrow />} onClick={() => {}} />
         </div>,
     ),
 );
@@ -60,12 +57,12 @@ stories.add(
     'Clear',
     storyWrapper(
         `
-Clear buttons, use type="clear"
+Clear buttons, use variant="clear"
         `,
-        <Button type="clear" onClick={() => {}}>Not active</Button>,
+        <Button variant="clear" onClick={() => {}}>Not active</Button>,
         <div>
-            <Button type="clear" onClick={() => {}}>Clear not active</Button>
-            <Button type="clear" isActive onClick={() => {}}>Clear active</Button>
+            <Button variant="clear" onClick={() => {}}>Clear not active</Button>
+            <Button variant="clear" isActive onClick={() => {}}>Clear active</Button>
         </div>,
     ),
 );
@@ -74,12 +71,12 @@ stories.add(
     'Primary',
     storyWrapper(
         `
-Primary buttons should be used for main calls to action, use <code>type="primary"</code>
+Primary buttons should be used for main calls to action, use <code>variant="primary"</code>
         `,
-        <Button type="primary" onClick={() => {}}>Not active</Button>,
+        <Button variant="primary" onClick={() => {}}>Not active</Button>,
         <div>
-            <Button type="primary" onClick={() => {}}>Not active</Button>
-            <Button type="primary" isActive onClick={() => {}}>Active</Button>
+            <Button variant="primary" onClick={() => {}}>Not active</Button>
+            <Button variant="primary" isActive onClick={() => {}}>Active</Button>
         </div>,
     ),
 );
@@ -88,15 +85,15 @@ stories.add(
     'Round',
     storyWrapper(
         `
-Use <code>type="round"</code> and <code>icon={}</code> for buttons with an icon and no text
+Use <code>variant="round"</code> and <code>icon={}</code> for buttons with an icon and no text
         `,
-        <Button type="round" icon={<IconArrow />} onClick={() => {}} />,
+        <Button variant="round" icon={<IconArrow />} onClick={() => {}} />,
         <div>
-            <Button type="round" icon={<IconArrow />} onClick={() => {}} /> Default
+            <Button variant="round" icon={<IconArrow />} onClick={() => {}} /> Default
             <br />
-            <Button type="round" icon={<IconArrow />} isActive onClick={() => {}} /> Active
+            <Button variant="round" icon={<IconArrow />} isActive onClick={() => {}} /> Active
             <br />
-            <Button type="round" icon={<IconArrow />} isDisabled onClick={() => {}} /> Disabled
+            <Button variant="round" icon={<IconArrow />} isDisabled onClick={() => {}} /> Disabled
         </div>,
     ),
 );
@@ -109,8 +106,8 @@ Full width buttons, use <code>isFullWidth</code>
         `,
         <Button isFullWidth onClick={() => {}}>Full width button</Button>,
         <div>
-            <Button isFullWidth type="clear" onClick={() => {}}>Clear</Button>
-            <Button isFullWidth type="primary" onClick={() => {}}>Primary</Button>
+            <Button isFullWidth variant="clear" onClick={() => {}}>Clear</Button>
+            <Button isFullWidth variant="primary" onClick={() => {}}>Primary</Button>
             <Button isFullWidth isActive onClick={() => {}}>Active</Button>
         </div>,
     ),
@@ -126,8 +123,8 @@ Use <code>icon</code> prop to add an icon. Use <code>iconPosition</code> to alig
         <div>
             <Button icon={<IconArrow />} onClick={() => {}}>Icon</Button>
             <Button icon={<IconArrow />} iconPosition="right" onClick={() => {}}>Icon</Button>
-            <Button icon={<IconArrow />} iconPosition="right" type="clear" onClick={() => {}}>Clear button</Button>
-            <Button icon={<IconArrow />} iconPosition="right" type="primary" onClick={() => {}}>Primary button</Button>
+            <Button icon={<IconArrow />} iconPosition="right" variant="clear" onClick={() => {}}>Clear button</Button>
+            <Button icon={<IconArrow />} iconPosition="right" variant="primary" onClick={() => {}}>Primary button</Button>
             <Button icon={<IconArrow />} iconPosition="right" isFullWidth onClick={() => {}}>Full width</Button>
         </div>,
     ),

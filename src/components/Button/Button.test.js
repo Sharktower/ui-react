@@ -403,9 +403,33 @@ describe('Button', () => {
     });
 
     describe('type', () => {
+        function testTypeProp(propValue) {
+            describe(propValue, () => {
+                it(`sets type to ${propValue}`, () => {
+                    const wrapper = shallow((
+                        <Button type={propValue} onClick={() => {}}>Foo</Button>
+                    ));
+
+                    expect(wrapper).to.have.attr('type', propValue);
+                });
+            });
+        }
+
+        it('sets type to button by default', () => {
+            const wrapper = shallow(defaultButton);
+
+            expect(wrapper).to.have.attr('type', 'button');
+        });
+
+        testTypeProp('button');
+        testTypeProp('reset');
+        testTypeProp('submit');
+    });
+
+    describe('variant', () => {
         // This could be extracted
         // into a generic test for propKey+propValue that result in className
-        function testTypeProp(propValue) {
+        function testVariantProp(propValue) {
             describe(propValue, () => {
                 const className = `uir-button--${propValue}`;
 
@@ -417,7 +441,7 @@ describe('Button', () => {
 
                 it(`adds className ${className}`, () => {
                     const wrapper = shallow((
-                        <Button type={propValue} onClick={() => {}}>Foo</Button>
+                        <Button variant={propValue} onClick={() => {}}>Foo</Button>
                     ));
 
                     expect(wrapper).to.have.className(className);
@@ -425,8 +449,8 @@ describe('Button', () => {
             });
         }
 
-        testTypeProp('clear');
-        testTypeProp('primary');
-        testTypeProp('round');
+        testVariantProp('clear');
+        testVariantProp('primary');
+        testVariantProp('round');
     });
 });
