@@ -2,7 +2,9 @@
 
 module.exports = {
 
-    demoComponent: {
-        default: '/?selectedKind=DemoComponent&selectedStory=default',
+    buttonComponent: {
+        buttonDemo: '/?selectedKind=Button.Button&selectedStory=-demo-',
+        iconButtonDemo: '/?selectedKind=Button.IconButton&selectedStory=-demo',
     },
+
 };

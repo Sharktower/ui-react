@@ -1,8 +1,13 @@
-$font: "DINOT", sans-serif;
+// Default global variables
 
+// --- TYPOGRAPHY ---
+$base-font-size: 12px !default;
+$font-family: "DINOT", sans-serif !default;
+
+// --- COLOURS ---
 $white: #fff;
-$grey: #ccc;
-$charcoal: #3a333c;
-$purple: #9a3cbb;
-$pink: #fd2a7d;
-$teal: #46bead;
+$grey: #ccc !default;
+$charcoal: #3a333c !default;
+$purple: #9a3cbb !default;
+$pink: #fd2a7d !default;
+$teal: #46bead !default;
