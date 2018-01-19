@@ -14,9 +14,13 @@ function checkoutBranch(branch, newBranch) {
     shell.exec(`git checkout ${newBranchFlag} ${branch}`, executeSilently);
 }
 
+function pullLatest() {
+    shell.exec('git pull', executeSilently);
+}
+
 function createBranch(branch) {
     checkoutBranch('master');
-    shell.exec('git pull', executeSilently);
+    pullLatest();
     checkoutBranch(branch, true);
 }
 
@@ -51,6 +55,7 @@ function createGitHubRelease(tag, releaseNotes) {
 
 module.exports = {
     getCurrentBranch,
+    pullLatest,
     createBranch,
     deleteLocalBranch,
     checkoutBranch,

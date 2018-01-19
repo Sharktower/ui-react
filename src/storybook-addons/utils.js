@@ -22,6 +22,8 @@ const codeStyle = {
     display: 'inline-block',
     borderRadius: '4px',
     whiteSpace: 'pre-wrap',
+    fontSize: '15px',
+    lineHeight: '150%',
 };
 
 const tableStyle = {
