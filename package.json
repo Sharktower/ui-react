@@ -15,9 +15,6 @@
   },
   "author": "Mudano Ltd. (http://mudano.com)",
   "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/Mudano/ui-react/issues"
-  },
   "homepage": "https://mudano.github.io/ui-react/",
   "engines": {
     "node": ">=8.5.0"
