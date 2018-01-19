@@ -1,4 +1,43 @@
-<!-- Last Updated: 2018-01-17 -->
+<!-- Last Updated: 2018-01-19 -->
+
+# UI React v1.0.1 (2018-01-19)
+
+## UMD Bundle and CommonJS Modules
+
+**Backwards Compatibility Implications**
+
+_none_
+
+**New Features**
+
+ - Adds UMD bundle, accessible as the primary entry point for the package
+ - Adds CommonJS modules with individual CSS as a third option (keeps ES6 native modules)
+
+**Bug Fixes**
+
+- Fixes bug that prevented access to Avatar and Tooltip components
+
+**Miscellaneous** 
+
+- Updated usage documentation
+
+
+## Button Component
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+- `Button` component
+- `IconArrow` component
+
+**Bug Fixes** 
+
+_None_
+
+
 
 # UI React v1.0.0 (2018-01-17)
 
