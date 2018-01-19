@@ -8,8 +8,6 @@ If you have questions ask the development team via [GitHub Issues](https://githu
 
     yarn add @mudano/ui-react
 
-_NB: installation from NPM is not yet available_
-
 ### Requirements
 
 UI React components are only compatible with a React application and require the following:
@@ -48,6 +46,10 @@ To get started run the following:
     yarn start
 
 You can then view the Storybook here: [http://localhost:6006/](http://localhost:6006/)
+
+#### Commit Template
+
+Use the commit template stored within the repo when commiting. Run the command `git config --local commit.template COMMIT_MSG` to use it.
 
 ### Testing
 

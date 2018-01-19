@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import StyleObjectPropType from '../../prop-types/style';
 import './AvatarCard.scss';
 
 const propTypes = {
@@ -8,10 +9,7 @@ const propTypes = {
     className: PropTypes.string,
     jobRole: PropTypes.string,
     name: PropTypes.string.isRequired,
-    style: PropTypes.objectOf(PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-    ])),
+    style: StyleObjectPropType(),
     team: PropTypes.string,
 };
 

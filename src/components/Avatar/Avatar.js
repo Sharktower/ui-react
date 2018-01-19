@@ -3,6 +3,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import InitialsPropType from '../../prop-types/initials';
 import ListPropType from '../../prop-types/list';
+import StyleObjectPropType from '../../prop-types/style';
 import './Avatar.scss';
 
 const propTypes = {
@@ -14,10 +15,7 @@ const propTypes = {
     onClick: PropTypes.func,
     size: ListPropType(['xs', 'sm', 'md', 'lg']),
     src: PropTypes.string,
-    style: PropTypes.objectOf(PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-    ])),
+    style: StyleObjectPropType(),
     tabIndex: PropTypes.number,
 };
 

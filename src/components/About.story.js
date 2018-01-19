@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import overviewWrapper from '../storybook-addons/overviewWrapper';
 
 const stories = storiesOf('About', module);
@@ -14,8 +14,6 @@ If you have questions ask the development team via [GitHub Issues](https://githu
 ### Installation
 
     yarn add @mudano/ui-react
-
-_NB: installation from NPM is not yet available_
 
 ### Requirements
 

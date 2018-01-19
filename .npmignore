@@ -1,0 +1,4 @@
+/src/storybook-addons
+/src/**/*.story.js
+/src/**/*.test.js
+/src/**/*.test-int.js

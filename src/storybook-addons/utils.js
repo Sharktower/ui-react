@@ -1,5 +1,5 @@
 import React from 'react';
-import { Converter } from 'react-showdown';
+import { Converter } from 'react-showdown'; // eslint-disable-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import Logo from './logo.svg';
 
