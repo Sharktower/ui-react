@@ -4,8 +4,8 @@ import { setOptions } from '@storybook/addon-options';
 setOptions({
     name: 'UI React',
     url: 'https://github.com/Mudano/ui-react',
-    showDownPanel: false,
-    downPanelInRight: true,
+    showAddonPanel: false,
+    addonPanelInRight: true,
     hierarchySeparator: /\./,
 });
 
