@@ -32,7 +32,7 @@ const defaultProps = {
     position: TooltipPosition.TOP_CENTER,
     showTooltip: null,
     style: null,
-    tabIndex: 0,
+    tabIndex: -1,
 };
 
 class Tooltip extends Component {
