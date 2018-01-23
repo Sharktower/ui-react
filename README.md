@@ -26,6 +26,16 @@ Consuming UI React is really easy, simply import your chosen component and away 
 
 _NB: the main UI React library is a UMD bundle, we recommend tree shaking when you bundle assets for production_
 
+### Issues
+
+If you are a Mudano developer and you spot an issue with any of the UI React components please [raise an issue on JIRA](https://mdshowto.atlassian.net/projects/UR/issues).
+
+If you're using this platform outside of Mudano please feel free to email [techops@mudano.com](mailto:techops@mudano.com).
+
+### Contribution
+
+If you spot an issue, and can help resolve the problem, or you have thought of an improvement to a component - awesome! - please create a pull request for your fix / suggestion.
+
 ### Development
 
 To help with development, clone the repository from here: [https://github.com/Mudano/ui-react](https://github.com/Mudano/ui-react)
