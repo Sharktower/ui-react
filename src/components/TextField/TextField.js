@@ -7,7 +7,15 @@ const propTypes = {
     className: PropTypes.string,
     componentRef: PropTypes.func,
     label: PropTypes.string,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    onEnterKey: PropTypes.func,
+    onFocus: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    onKeyPress: PropTypes.func,
+    onKeyUp: PropTypes.func,
     placeholder: PropTypes.string,
+    type: PropTypes.string,
     value: PropTypes.string,
 };
 
@@ -15,7 +23,15 @@ const defaultProps = {
     className: null,
     componentRef: null,
     label: null,
+    onBlur: null,
+    onChange: null,
+    onEnterKey: null,
+    onFocus: null,
+    onKeyDown: null,
+    onKeyPress: null,
+    onKeyUp: null,
     placeholder: null,
+    type: 'text',
     value: '',
 };
 
@@ -28,28 +44,67 @@ class TextField extends Component {
     uid = 'textfield'
 
     handleInputRef = (ref) => {
-        if (this.props.componentRef) {
-            this.props.componentRef(ref);
-        }
+        const { componentRef } = this.props;
         this.inputRef = ref;
+        if (componentRef) {
+            componentRef(ref);
+        }
     }
 
-    handleInputChange = () => {
-        this.setState({
-            value: this.inputRef.value,
-        });
-    }
-
-    handleInputFocus = () => {
-        this.setState({
-            hasFocus: true,
-        });
-    }
-
-    handleInputBlur = () => {
+    handleInputBlur = (event) => {
+        const { onBlur } = this.props;
         this.setState({
             hasFocus: false,
         });
+        if (onBlur) {
+            onBlur(event);
+        }
+    }
+
+    handleInputChange = (event) => {
+        const { value } = this.inputRef;
+        const { onChange } = this.props;
+        if (typeof value !== 'undefined') {
+            this.setState({ value });
+        }
+        if (onChange) {
+            onChange(value, event);
+        }
+    }
+
+    handleInputFocus = (event) => {
+        const { onFocus } = this.props;
+        this.setState({
+            hasFocus: true,
+        });
+        if (onFocus) {
+            onFocus(event);
+        }
+    }
+
+    handleInputKeyDown = (event) => {
+        const { onKeyDown } = this.props;
+        const { onEnterKey } = this.props;
+        if (onKeyDown) {
+            onKeyDown(event.key, event);
+        }
+        if (onEnterKey && event.key === 'Enter') {
+            onEnterKey(event);
+        }
+    }
+
+    handleInputKeyPress = (event) => {
+        const { onKeyPress } = this.props;
+        if (onKeyPress) {
+            onKeyPress(event.key, event);
+        }
+    }
+
+    handleInputKeyUp = (event) => {
+        const { onKeyUp } = this.props;
+        if (onKeyUp) {
+            onKeyUp(event.key, event);
+        }
     }
 
     render() {
@@ -70,14 +125,18 @@ class TextField extends Component {
             >
                 {label}
                 <input
-                    id={this.uid}
-                    ref={this.handleInputRef}
                     className="uir-textfield-input"
-                    placeholder={this.state.hasFocus ? this.props.placeholder : null}
-                    value={this.state.value}
+                    id={this.uid}
                     onChange={this.handleInputChange}
-                    onFocus={this.handleInputFocus}
                     onBlur={this.handleInputBlur}
+                    onFocus={this.handleInputFocus}
+                    onKeyDown={this.handleInputKeyDown}
+                    onKeyUp={this.handleInputKeyUp}
+                    onKeyPress={this.handleInputKeyPress}
+                    placeholder={this.state.hasFocus ? this.props.placeholder : null}
+                    ref={this.handleInputRef}
+                    type={this.props.type}
+                    value={this.state.value}
                 />
             </div>
         );

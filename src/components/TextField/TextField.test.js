@@ -76,6 +76,7 @@ describe('TextField', () => {
     it('updates the component state when changing the input value', () => {
         const textField = mount(<TextField />);
         const instance = textField.instance();
+        instance.inputRef = { value: 'test' };
         const mock = sinon.mock(instance);
         const expectation = mock.expects('setState');
         textField.find('input').simulate('change');
@@ -83,9 +84,71 @@ describe('TextField', () => {
         mock.restore();
     });
 
+    it('does not update the component state if input value is undefined', () => {
+        const textField = mount(<TextField />);
+        const instance = textField.instance();
+        instance.inputRef = { value: undefined };
+        const mock = sinon.mock(instance);
+        const expectation = mock.expects('setState');
+        textField.find('input').simulate('change');
+        expect(expectation).to.not.be.called();
+        mock.restore();
+    });
+
     it('can expose the input ref', () => {
         mount(<TextField
             componentRef={ref => expect(ref).to.not.be.undefined}
         />);
+    });
+
+    it('assigns type to the default text', () => {
+        const textField = createTextfield();
+        expect(textField.find('input').prop('type')).to.equal('text');
+    });
+
+    it('allows type to be overridden', () => {
+        const textField = shallow(<TextField label="My Input" type="email" />);
+        expect(textField.find('input').prop('type')).to.equal('email');
+    });
+
+    it('allows type to be overridden', () => {
+        const textField = shallow(<TextField label="My Input" type="email" />);
+        expect(textField.find('input').prop('type')).to.equal('email');
+    });
+
+    ['blur', 'change', 'focus', 'keyDown', 'keyPress', 'keyUp'].forEach((event) => {
+        it(`triggers handler on input ${event}`, () => {
+            const spy = sinon.spy();
+            const textField = shallow(<TextField
+                onBlur={spy}
+                onChange={spy}
+                onFocus={spy}
+                onKeyDown={spy}
+                onKeyPress={spy}
+                onKeyUp={spy}
+            />);
+            const instance = textField.instance();
+            instance.inputRef = { value: 'test' };
+            textField.find('input').simulate(event, { key: 'x' });
+            expect(spy).to.be.calledOnce();
+        });
+
+        it(`does nothing on ${event} if handler is not defined`, () => {
+            const spy = sinon.spy();
+            const textField = createTextfield();
+            const instance = textField.instance();
+            instance.inputRef = { value: 'test' };
+            textField.find('input').simulate(event);
+            expect(spy).to.not.be.called();
+        });
+    });
+
+    it('triggers handler on input enter key press', () => {
+        const spy = sinon.spy();
+        const textField = shallow(<TextField onEnterKey={spy} />);
+        const instance = textField.instance();
+        instance.inputRef = { value: 'test' };
+        textField.find('input').simulate('keyDown', { key: 'Enter' });
+        expect(spy).to.be.calledOnce();
     });
 });
