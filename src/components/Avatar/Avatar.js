@@ -39,9 +39,9 @@ const defaultProps = {
 
 class Avatar extends Component {
     handleClick = (event) => {
-        const propsOnClick = this.props.onClick;
-        if (propsOnClick) {
-            propsOnClick(event);
+        const { onClick } = this.props;
+        if (onClick) {
+            onClick(event);
         }
     }
 
