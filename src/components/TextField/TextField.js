@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import Tooltip from '../Tooltip/Tooltip';
+import TooltipBox from '../Tooltip/TooltipBox';
+import { TooltipBoxStatus } from '../Tooltip/TooltipEnums';
 import './TextField.scss';
 
 const propTypes = {
+    autoComplete: PropTypes.string,
     className: PropTypes.string,
     componentRef: PropTypes.func,
+    isDisabled: PropTypes.bool,
+    isFullWidth: PropTypes.bool,
+    isReadOnly: PropTypes.bool,
+    isRequired: PropTypes.bool,
+    isValid: PropTypes.bool,
     label: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
@@ -15,13 +24,27 @@ const propTypes = {
     onKeyPress: PropTypes.func,
     onKeyUp: PropTypes.func,
     placeholder: PropTypes.string,
+    tooltipHint: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+    ]),
+    tooltipError: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+    ]),
     type: PropTypes.string,
     value: PropTypes.string,
 };
 
 const defaultProps = {
+    autoComplete: 'on',
     className: null,
     componentRef: null,
+    isDisabled: false,
+    isFullWidth: false,
+    isReadOnly: false,
+    isRequired: false,
+    isValid: null,
     label: null,
     onBlur: null,
     onChange: null,
@@ -31,6 +54,8 @@ const defaultProps = {
     onKeyPress: null,
     onKeyUp: null,
     placeholder: null,
+    tooltipHint: null,
+    tooltipError: null,
     type: 'text',
     value: '',
 };
@@ -38,6 +63,7 @@ const defaultProps = {
 class TextField extends Component {
     state = {
         hasFocus: false,
+        showTooltip: false,
         value: this.props.value,
     }
 
@@ -55,6 +81,7 @@ class TextField extends Component {
         const { onBlur } = this.props;
         this.setState({
             hasFocus: false,
+            showTooltip: false,
         });
         if (onBlur) {
             onBlur(event);
@@ -76,6 +103,7 @@ class TextField extends Component {
         const { onFocus } = this.props;
         this.setState({
             hasFocus: true,
+            showTooltip: true,
         });
         if (onFocus) {
             onFocus(event);
@@ -107,6 +135,28 @@ class TextField extends Component {
         }
     }
 
+    wrapInputWithTooltip = (input, tooltip) => {
+        // @NB: if you provide a tooltipError or tooltipHint string a tooltip wrapper
+        //      will be created for you, the error tooltipBox is used for tooltipError
+        const { DEFAULT, ERROR } = TooltipBoxStatus;
+        return (
+            tooltip ?
+                <Tooltip
+                    tooltip={
+                        <TooltipBox
+                            status={this.props.tooltipError ? ERROR : DEFAULT}
+                        >
+                            {tooltip}
+                        </TooltipBox>
+                    }
+                    showTooltip={this.state.showTooltip}
+                >
+                    {input}
+                </Tooltip> :
+                input
+        );
+    }
+
     render() {
         /* eslint-disable jsx-a11y/label-has-for */
         // @NB: jsx-a11y/label-has-for fails with UID as id
@@ -119,25 +169,35 @@ class TextField extends Component {
                     'uir-textfield',
                     {
                         'uir-textfield--focus': this.state.hasFocus,
+                        'uir-textfield--full-width': this.props.isFullWidth,
+                        'uir-textfield--invalid': this.props.isValid === false,
+                        'uir-textfield--valid': this.props.isValid,
                     },
                     this.props.className,
                 )}
             >
                 {label}
-                <input
-                    className="uir-textfield-input"
-                    id={this.uid}
-                    onChange={this.handleInputChange}
-                    onBlur={this.handleInputBlur}
-                    onFocus={this.handleInputFocus}
-                    onKeyDown={this.handleInputKeyDown}
-                    onKeyUp={this.handleInputKeyUp}
-                    onKeyPress={this.handleInputKeyPress}
-                    placeholder={this.state.hasFocus ? this.props.placeholder : null}
-                    ref={this.handleInputRef}
-                    type={this.props.type}
-                    value={this.state.value}
-                />
+                {this.wrapInputWithTooltip(
+                    <input
+                        autoComplete={this.props.autoComplete}
+                        className="uir-textfield-input"
+                        disabled={this.props.isDisabled}
+                        id={this.uid}
+                        onChange={this.handleInputChange}
+                        onBlur={this.handleInputBlur}
+                        onFocus={this.handleInputFocus}
+                        onKeyDown={this.handleInputKeyDown}
+                        onKeyUp={this.handleInputKeyUp}
+                        onKeyPress={this.handleInputKeyPress}
+                        placeholder={this.state.hasFocus ? this.props.placeholder : null}
+                        readOnly={this.props.isReadOnly}
+                        required={this.props.isRequired}
+                        ref={this.handleInputRef}
+                        type={this.props.type}
+                        value={this.state.value}
+                    />,
+                    this.props.tooltipError || this.props.tooltipHint,
+                )}
             </div>
         );
         /* eslint-enable */

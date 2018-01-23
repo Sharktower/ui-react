@@ -2,6 +2,9 @@
 import React from 'react';
 import sinon from 'sinon';
 import TextField from './TextField';
+import Tooltip from '../Tooltip/Tooltip';
+import TooltipBox from '../Tooltip/TooltipBox';
+import { TooltipBoxStatus } from '../Tooltip/TooltipEnums';
 
 function createTextfield() {
     return shallow(<TextField label="My Input" />);
@@ -150,5 +153,64 @@ describe('TextField', () => {
         instance.inputRef = { value: 'test' };
         textField.find('input').simulate('keyDown', { key: 'Enter' });
         expect(spy).to.be.calledOnce();
+    });
+
+    it('allows input to be disabled', () => {
+        const textField = shallow(<TextField isDisabled />);
+        expect(textField.find('input').prop('disabled')).to.equal(true);
+    });
+
+    it('allows input to be read only', () => {
+        const textField = shallow(<TextField isReadOnly />);
+        expect(textField.find('input').prop('readOnly')).to.equal(true);
+    });
+
+    it('allows input to be marked as required', () => {
+        const textField = shallow(<TextField isRequired />);
+        expect(textField.find('input').prop('required')).to.equal(true);
+    });
+
+    it('allows input autocomplete to be set', () => {
+        const exampleAutoComplete = 'on';
+        const textField = shallow(<TextField autoComplete={exampleAutoComplete} />);
+        expect(textField.find('input').prop('autoComplete')).to.equal(exampleAutoComplete);
+    });
+
+    it('has no validation classes by default', () => {
+        const textField = shallow(<TextField />);
+        expect(textField).to.not.have.className('uir-textfield--valid');
+        expect(textField).to.not.have.className('uir-textfield--invalid');
+    });
+
+    it('has no validation classes if isValid is null', () => {
+        const textField = shallow(<TextField isValid={null} />);
+        expect(textField).to.not.have.className('uir-textfield--valid');
+        expect(textField).to.not.have.className('uir-textfield--invalid');
+    });
+
+    it('adds valid class if isValid is true', () => {
+        const textField = shallow(<TextField isValid />);
+        expect(textField).to.have.className('uir-textfield--valid');
+    });
+
+    it('adds invalid class if isValid is false', () => {
+        const textField = shallow(<TextField isValid={false} />);
+        expect(textField).to.have.className('uir-textfield--invalid');
+    });
+
+    it('wraps input in a tooltip if tooltipError is given', () => {
+        const textField = shallow(<TextField tooltipError="error" />);
+        expect(textField.find(Tooltip).length).to.equal(1);
+    });
+
+    it('wraps input in a tooltip if tooltipHint is given', () => {
+        const textField = shallow(<TextField tooltipHint="hint" />);
+        expect(textField.find(Tooltip).length).to.equal(1);
+    });
+
+    it('gives precedence to tooltipError over tooltipHint', () => {
+        const textField = mount(<TextField tooltipHint="hint" tooltipError="error" />);
+        textField.find('input').simulate('focus');
+        expect(textField.find(TooltipBox).prop('status')).to.equal(TooltipBoxStatus.ERROR);
     });
 });
