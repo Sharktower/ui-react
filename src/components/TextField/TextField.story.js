@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import storyWrapper from '../../storybook-addons/storyWrapper';
 import TextField from './TextField';
+import IconSearch from '../Icon/IconSearch';
 
 const stories = storiesOf('TextField.TextField', module);
 
@@ -127,5 +128,21 @@ stories.add(
             <TextField tooltipError="My Example Error" />
             <TextField tooltipHint="My Example Hint" />
         </div>,
+    ),
+);
+
+stories.add(
+    'Clearable',
+    storyWrapper(
+        'isClearable displays an icon that allows the user to clear a field.',
+        <TextField label="Add content and clear me" isClearable />,
+    ),
+);
+
+stories.add(
+    'Icon',
+    storyWrapper(
+        'iocn prop allows you to display an icon on the left of the input field.',
+        <TextField icon={IconSearch} />,
     ),
 );

@@ -5,6 +5,8 @@ import TextField from './TextField';
 import Tooltip from '../Tooltip/Tooltip';
 import TooltipBox from '../Tooltip/TooltipBox';
 import { TooltipBoxStatus } from '../Tooltip/TooltipEnums';
+import IconClear from '../Icon/IconClear';
+import IconSearch from '../Icon/IconSearch';
 
 function createTextfield() {
     return shallow(<TextField label="My Input" />);
@@ -212,5 +214,21 @@ describe('TextField', () => {
         const textField = mount(<TextField tooltipHint="hint" tooltipError="error" />);
         textField.find('input').simulate('focus');
         expect(textField.find(TooltipBox).prop('status')).to.equal(TooltipBoxStatus.ERROR);
+    });
+
+    it('displays a clear icon if isClearable is given', () => {
+        const textField = shallow(<TextField isClearable />);
+        expect(textField.find(IconClear).length).to.equal(1);
+    });
+
+    it('clears value when clear icon is clicked', () => {
+        const textField = shallow(<TextField value="an example value" isClearable />);
+        textField.find(IconClear).simulate('click');
+        expect(textField.state('value')).to.equal('');
+    });
+
+    it('displays an icon if provided', () => {
+        const textField = shallow(<TextField icon={IconSearch} />);
+        expect(textField.find(IconSearch).length).to.equal(1);
     });
 });
