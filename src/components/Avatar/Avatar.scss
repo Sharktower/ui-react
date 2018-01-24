@@ -43,7 +43,7 @@ $image-z-index: 3;
 $sizes: (
     xs: (
         avatar: ( size: 24px, font: 12px ),
-        icon: ( size: 14px )
+        icon: ( size: 16px )
     ),
     sm: (
         avatar: ( size: 36px, font: 16px ),
@@ -83,8 +83,10 @@ $sizes: (
 
             .uir-avatar-icon {
                 $iconSize: map-get($iconDetails, "size");
+                box-sizing: border-box;
                 width: $iconSize;
                 height: $iconSize;
+                padding: 2px;
                 line-height: $iconSize;
             }
 
