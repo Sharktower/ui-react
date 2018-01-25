@@ -30,7 +30,7 @@ _NB: the main UI React library is a UMD bundle, we recommend tree shaking when y
 
 If you are a Mudano developer and you spot an issue with any of the UI React components please [raise an issue on JIRA](https://mdshowto.atlassian.net/projects/UR/issues).
 
-If you're using this platform outside of Mudano please feel free to email [techops@mudano.com](mailto:techops@mudano.com).
+If you're using this platform outside of Mudano please feel free to email [ui-react@mudano.com](mailto:ui-react@mudano.com).
 
 ### Contribution
 
