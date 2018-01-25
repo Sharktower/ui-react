@@ -1,0 +1,26 @@
+.uir-tabs-nav-dropdown {
+    position: relative;
+    display: inline-block;
+
+    &-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 100;
+        display: none;
+        background: #fff;
+        border: 1px solid rgba(0,0,0,.05);
+        box-shadow: 0 0 4px #ccc;
+
+        .uir-tabs-tab {
+            white-space: nowrap;
+        }
+    }
+
+    &--open {
+
+        .uir-tabs-nav-dropdown-menu {
+            display: inline-block;
+        }
+    }
+}
