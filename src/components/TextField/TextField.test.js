@@ -7,6 +7,8 @@ import TooltipBox from '../Tooltip/TooltipBox';
 import { TooltipBoxStatus } from '../Tooltip/TooltipEnums';
 import IconClear from '../Icon/IconClear';
 import IconSearch from '../Icon/IconSearch';
+import IconRequired from '../Icon/IconRequired';
+import Button from '../Button/Button';
 
 function createTextfield() {
     return shallow(<TextField label="My Input" />);
@@ -172,12 +174,6 @@ describe('TextField', () => {
         expect(textField.find('input').prop('required')).to.equal(true);
     });
 
-    it('allows input autocomplete to be set', () => {
-        const exampleAutoComplete = 'on';
-        const textField = shallow(<TextField autoComplete={exampleAutoComplete} />);
-        expect(textField.find('input').prop('autoComplete')).to.equal(exampleAutoComplete);
-    });
-
     it('has no validation classes by default', () => {
         const textField = shallow(<TextField />);
         expect(textField).to.not.have.className('uir-textfield--valid');
@@ -216,19 +212,46 @@ describe('TextField', () => {
         expect(textField.find(TooltipBox).prop('status')).to.equal(TooltipBoxStatus.ERROR);
     });
 
-    it('displays a clear icon if isClearable is given', () => {
-        const textField = shallow(<TextField isClearable />);
+    it('displays a clear icon if isClearable is given and textfield has a value', () => {
+        const textField = shallow(<TextField value="an example value" isClearable />);
         expect(textField.find(IconClear).length).to.equal(1);
+    });
+
+    it('does not display a clear icon if isClearable is given but the textfield has no value', () => {
+        const textField = shallow(<TextField isClearable />);
+        expect(textField.find(IconClear).length).to.equal(0);
+    });
+
+    it('displays a required icon if isRequired is given', () => {
+        const textField = shallow(<TextField value="an example value" isRequired />);
+        expect(textField.find(IconRequired).length).to.equal(1);
+    });
+
+    it('does not display a required icon if clear icon is present', () => {
+        const textField = shallow(<TextField value="an example value" isClearable isRequired />);
+        expect(textField.find(IconRequired).length).to.equal(0);
+    });
+
+    it('shows a tooltip when hovering over required icon', () => {
+        const textField = shallow(<TextField isRequired />);
+        textField.find(IconRequired).simulate('hover');
+        expect(textField.find(Tooltip).length).to.equal(1);
     });
 
     it('clears value when clear icon is clicked', () => {
         const textField = shallow(<TextField value="an example value" isClearable />);
-        textField.find(IconClear).simulate('click');
+        textField.find(Button).simulate('click');
         expect(textField.state('value')).to.equal('');
     });
 
     it('displays an icon if provided', () => {
-        const textField = shallow(<TextField icon={IconSearch} />);
+        const textField = shallow(<TextField icon={<IconSearch />} />);
         expect(textField.find(IconSearch).length).to.equal(1);
+    });
+
+    it('adds style to wrapper if style provided', () => {
+        const exampleStyle = { marginTop: '20px' };
+        const textField = shallow(<TextField style={exampleStyle} />);
+        expect(textField.prop('style')).to.equal(exampleStyle);
     });
 });

@@ -10,15 +10,16 @@ stories.add(
     'Overview',
     storyWrapper(
         'TextField is text input field.',
-        <TextField label="TextField" />,
+        <TextField label="Text field label" />,
     ),
 );
 
 stories.add(
-    'Placholder',
+    'Placeholder',
     storyWrapper(
-        'Placholder will appear when the input has focus.',
-        <TextField label="TextField" placeholder="your placeholder here" />,
+        'Placeholder appears when the input has focus or if no label is provided.',
+        <TextField label="With placeholder" placeholder="your placeholder here" />,
+        <TextField placeholder="no label here" />,
     ),
 );
 
@@ -27,9 +28,20 @@ stories.add(
     storyWrapper(
         'Value allows you to set an initial value.',
         <TextField
-            label="TextField"
+            label="With value"
             placeholder="your placeholder here"
             value="Hello, Friend"
+        />,
+    ),
+);
+
+stories.add(
+    'Type',
+    storyWrapper(
+        'Type allows you to set the HTML input type.',
+        <TextField
+            label="With input type"
+            type="email"
         />,
     ),
 );
@@ -38,7 +50,7 @@ stories.add(
     'Full Width',
     storyWrapper(
         'isFullWidth makes an input fill the full width of it\'s container.',
-        <TextField isFullWidth />,
+        <TextField label="Full width input" isFullWidth />,
     ),
 );
 
@@ -47,13 +59,13 @@ stories.add(
     storyWrapper(
         'isDisabled allows you to disable the input.',
         <TextField
-            label="TextField"
+            label="Disabled input"
             value="Hello, Friend"
             isDisabled
         />,
         <div>
             <TextField
-                label="TextField"
+                label="Disabled input (no value)"
                 isDisabled
             />
         </div>,
@@ -65,13 +77,13 @@ stories.add(
     storyWrapper(
         'isReadOnly allows you to make an input read only.',
         <TextField
-            label="TextField"
+            label="Read only input"
             value="Hello, Friend"
             isReadOnly
         />,
         <div>
             <TextField
-                label="TextField"
+                label="Read only input (no value)"
                 isReadOnly
             />
         </div>,
@@ -81,26 +93,19 @@ stories.add(
 stories.add(
     'Required',
     storyWrapper(
-        'isRequired allows you to mark an input as required.',
+        'isRequired allows you to mark an input as required. And adds required icon with tooltip.',
         <TextField
-            label="TextField"
+            label="Required input"
             value="Hello, Friend"
             isRequired
         />,
         <div>
             <TextField
-                label="TextField"
+                label="Custom tooltip message"
                 isRequired
+                tooltipRequired="this field must be completed"
             />
         </div>,
-    ),
-);
-
-stories.add(
-    'Auto Complete',
-    storyWrapper(
-        'autoComplete allows you to control browser auto completion.',
-        <TextField autoComplete="off" />,
     ),
 );
 
@@ -108,10 +113,10 @@ stories.add(
     'Validation',
     storyWrapper(
         'isValid allows you to control input validation state.',
-        <TextField isValid />,
+        <TextField label="Valid input" isValid />,
         <div>
-            <TextField isValid={false} />
-            <TextField isValid={null} />
+            <TextField label="Invalid input" isValid={false} />
+            <TextField label="Not yet validated" isValid={null} />
         </div>,
     ),
 );
@@ -121,12 +126,13 @@ stories.add(
     storyWrapper(
         'tooltipHint and tooltipError allow you to display tooltips to users on input focus. Error takes precedence over hint.',
         <TextField
+            label="Input with a tooltip"
             tooltipHint="My Example Hint"
             tooltipError="My Example Error"
         />,
         <div>
-            <TextField tooltipError="My Example Error" />
-            <TextField tooltipHint="My Example Hint" />
+            <TextField label="Input with an error" tooltipError="My Example Error" />
+            <TextField label="Input with a hint" tooltipHint="My Example Hint" />
         </div>,
     ),
 );
@@ -135,14 +141,24 @@ stories.add(
     'Clearable',
     storyWrapper(
         'isClearable displays an icon that allows the user to clear a field.',
-        <TextField label="Add content and clear me" isClearable />,
+        <TextField
+            label="Clearable input"
+            value="clear me"
+            isClearable
+        />,
+        <TextField
+            label="Clearable required input"
+            isClearable
+            isRequired
+            tooltipHint="clearable required field"
+        />,
     ),
 );
 
 stories.add(
     'Icon',
     storyWrapper(
-        'iocn prop allows you to display an icon on the left of the input field.',
-        <TextField icon={IconSearch} />,
+        'icon prop allows you to display an icon on the left of the input field.',
+        <TextField label="Input with icon" icon={<IconSearch />} />,
     ),
 );

@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
+import StyleObjectPropType from '../../prop-types/style';
 import Tooltip from '../Tooltip/Tooltip';
 import TooltipBox from '../Tooltip/TooltipBox';
 import { TooltipBoxStatus } from '../Tooltip/TooltipEnums';
 import IconClear from '../Icon/IconClear';
+import IconRequired from '../Icon/IconRequired';
+import Button from '../Button/Button';
+import { ButtonVariant } from '../Button/ButtonEnums';
 import './TextField.scss';
 
 const propTypes = {
-    autoComplete: PropTypes.string,
     className: PropTypes.string,
     componentRef: PropTypes.func,
-    icon: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.func,
-    ]),
+    icon: PropTypes.element,
     isClearable: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
@@ -30,11 +30,16 @@ const propTypes = {
     onKeyPress: PropTypes.func,
     onKeyUp: PropTypes.func,
     placeholder: PropTypes.string,
+    style: StyleObjectPropType(),
+    tooltipError: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+    ]),
     tooltipHint: PropTypes.oneOfType([
         PropTypes.element,
         PropTypes.string,
     ]),
-    tooltipError: PropTypes.oneOfType([
+    tooltipRequired: PropTypes.oneOfType([
         PropTypes.element,
         PropTypes.string,
     ]),
@@ -43,7 +48,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-    autoComplete: 'on',
     className: null,
     componentRef: null,
     icon: null,
@@ -62,20 +66,38 @@ const defaultProps = {
     onKeyPress: null,
     onKeyUp: null,
     placeholder: null,
-    tooltipHint: null,
+    style: null,
     tooltipError: null,
+    tooltipHint: null,
+    tooltipRequired: 'required',
     type: 'text',
     value: '',
 };
 
+let lastInstanceId = 0;
+
 class TextField extends Component {
-    state = {
-        hasFocus: false,
-        showTooltip: false,
-        value: this.props.value,
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            hasFocus: false,
+            hasMouseOver: false,
+            showTooltip: false,
+            value: this.props.value,
+        };
+
+        lastInstanceId += 1;
+        this.uid = `textfield-${lastInstanceId}`;
     }
 
-    uid = 'textfield'
+    handleMouseEnter = () => {
+        this.setState({ hasMouseOver: true });
+    }
+
+    handleMouseLeave = () => {
+        this.setState({ hasMouseOver: false });
+    }
 
     handleInputRef = (ref) => {
         const { componentRef } = this.props;
@@ -148,8 +170,8 @@ class TextField extends Component {
     }
 
     wrapInputWithTooltip = (input, tooltip) => {
-        // @NB: if you provide a tooltipError or tooltipHint string a tooltip wrapper
-        //      will be created for you, the error tooltipBox is used for tooltipError
+        // @NB: if you provide a string to either tooltipError or tooltipHint a wrapper
+        //      will be created for you (an error tooltip box is used for tooltipError)
         const { DEFAULT, ERROR } = TooltipBoxStatus;
         return (
             tooltip ?
@@ -172,14 +194,25 @@ class TextField extends Component {
     render() {
         /* eslint-disable jsx-a11y/label-has-for */
         // @NB: jsx-a11y/label-has-for fails with UID as id
-        const label = this.props.label ?
+        const showLabel = (this.state.hasFocus || this.state.hasMouseOver || !this.state.value);
+        const label = this.props.label && showLabel ?
             <label htmlFor={this.uid} className="uir-textfield-label">{this.props.label}</label> :
             null;
         const icon = this.props.icon ?
-            <span aria-hidden="true">{this.props.icon}</span> :
+            this.props.icon :
             null;
-        const clearIcon = this.props.isClearable ?
-            <IconClear onClick={this.handleClearIconClick} /> :
+        const clearIcon = this.props.isClearable && this.state.value ?
+            (
+                <Button
+                    onClick={this.handleClearIconClick}
+                    variant={ButtonVariant.CLEAR}
+                >
+                    <IconClear />
+                </Button>
+            ) :
+            null;
+        const requiredIcon = this.props.isRequired ?
+            <Tooltip tooltip={this.props.tooltipRequired}><IconRequired /></Tooltip> :
             null;
         return (
             <div
@@ -190,16 +223,21 @@ class TextField extends Component {
                         'uir-textfield--full-width': this.props.isFullWidth,
                         'uir-textfield--invalid': this.props.isValid === false,
                         'uir-textfield--valid': this.props.isValid,
+                        'uir-textfield--has-value': this.state.value,
                     },
                     this.props.className,
                 )}
+                onMouseEnter={this.handleMouseEnter}
+                onMouseLeave={this.handleMouseLeave}
+                style={this.props.style}
             >
                 {icon}
                 <div className="uir-textfield-inner">
-                    {label}
+                    <div className="uir-textfield-label-wrapper">
+                        {label}
+                    </div>
                     {this.wrapInputWithTooltip(
                         <input
-                            autoComplete={this.props.autoComplete}
                             className="uir-textfield-input"
                             disabled={this.props.isDisabled}
                             id={this.uid}
@@ -209,7 +247,9 @@ class TextField extends Component {
                             onKeyDown={this.handleInputKeyDown}
                             onKeyUp={this.handleInputKeyUp}
                             onKeyPress={this.handleInputKeyPress}
-                            placeholder={this.state.hasFocus ? this.props.placeholder : null}
+                            placeholder={!this.props.label || this.state.hasFocus ?
+                                this.props.placeholder :
+                                null}
                             readOnly={this.props.isReadOnly}
                             required={this.props.isRequired}
                             ref={this.handleInputRef}
@@ -219,7 +259,7 @@ class TextField extends Component {
                         this.props.tooltipError || this.props.tooltipHint,
                     )}
                 </div>
-                {clearIcon}
+                {clearIcon || requiredIcon}
             </div>
         );
         /* eslint-enable */
