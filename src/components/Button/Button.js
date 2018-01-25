@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import ListPropType from '../../prop-types/list';
+import StyleObjectPropType from '../../prop-types/style';
 import { ButtonIconPosition, ButtonType, ButtonVariant } from './ButtonEnums';
 import './Button.scss';
 
@@ -20,10 +21,7 @@ const propTypes = {
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
-    style: PropTypes.objectOf(PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-    ])),
+    style: StyleObjectPropType(),
     tabIndex: PropTypes.number,
     type: ListPropType([
         ButtonType.BUTTON,
