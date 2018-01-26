@@ -84,7 +84,7 @@ class TextField extends Component {
             hasFocus: false,
             hasMouseOver: false,
             showTooltip: false,
-            value: this.props.value,
+            value: props.value,
         };
 
         lastInstanceId += 1;
