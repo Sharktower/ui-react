@@ -1,4 +1,15 @@
+@import "../variables";
+
 .uir-icon {
     width: 24px;
     height: 24px;
+    fill: $charcoal;
+}
+
+.uir-icon-notification {
+    fill: $pink;
+}
+
+.uir-icon-required {
+    fill: $grey;
 }
