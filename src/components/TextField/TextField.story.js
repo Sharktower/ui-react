@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-e
 import storyWrapper from '../../storybook-addons/storyWrapper';
 import TextField from './TextField';
 import IconSearch from '../Icon/IconSearch';
+import IconNotification from '../Icon/IconNotification';
 
 const stories = storiesOf('TextField.TextField', module);
 
@@ -91,25 +92,6 @@ stories.add(
 );
 
 stories.add(
-    'Required',
-    storyWrapper(
-        'isRequired allows you to mark an input as required. And adds required icon with tooltip.',
-        <TextField
-            label="Required input"
-            value="Hello, Friend"
-            isRequired
-        />,
-        <div>
-            <TextField
-                label="Custom tooltip message"
-                isRequired
-                tooltipRequired="this field must be completed"
-            />
-        </div>,
-    ),
-);
-
-stories.add(
     'Validation',
     storyWrapper(
         'isValid allows you to control input validation state.',
@@ -138,6 +120,30 @@ stories.add(
 );
 
 stories.add(
+    'Required',
+    storyWrapper(
+        'isRequired allows you to mark an input as required. And adds required icon with tooltip.',
+        <TextField
+            label="Required input"
+            value="Hello, Friend"
+            isRequired
+        />,
+        <div>
+            <TextField
+                label="Custom tooltip message"
+                isRequired
+                tooltipRequired="this field must be completed"
+            />
+            <TextField
+                label="Full width required"
+                isRequired
+                isFullWidth
+            />
+        </div>,
+    ),
+);
+
+stories.add(
     'Clearable',
     storyWrapper(
         'isClearable displays an icon that allows the user to clear a field.',
@@ -150,7 +156,6 @@ stories.add(
             label="Clearable required input"
             isClearable
             isRequired
-            tooltipHint="clearable required field"
         />,
     ),
 );
@@ -160,5 +165,6 @@ stories.add(
     storyWrapper(
         'icon prop allows you to display an icon on the left of the input field.',
         <TextField label="Input with icon" icon={<IconSearch />} />,
+        <TextField label="Full width with icon" isFullWidth icon={<IconNotification />} />,
     ),
 );

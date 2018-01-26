@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import StyleObjectPropType from '../../prop-types/style';
 import Tooltip from '../Tooltip/Tooltip';
 import TooltipBox from '../Tooltip/TooltipBox';
-import { TooltipBoxStatus } from '../Tooltip/TooltipEnums';
+import { TooltipBoxStatus, TooltipPosition } from '../Tooltip/TooltipEnums';
 import IconClear from '../Icon/IconClear';
 import IconRequired from '../Icon/IconRequired';
 import Button from '../Button/Button';
@@ -176,6 +176,8 @@ class TextField extends Component {
         return (
             tooltip ?
                 <Tooltip
+                    position={TooltipPosition.BOTTOM_CENTER}
+                    showTooltip={this.state.showTooltip}
                     tooltip={
                         <TooltipBox
                             status={this.props.tooltipError ? ERROR : DEFAULT}
@@ -183,7 +185,6 @@ class TextField extends Component {
                             {tooltip}
                         </TooltipBox>
                     }
-                    showTooltip={this.state.showTooltip}
                 >
                     {input}
                 </Tooltip> :
@@ -224,6 +225,8 @@ class TextField extends Component {
                         'uir-textfield--invalid': this.props.isValid === false,
                         'uir-textfield--valid': this.props.isValid,
                         'uir-textfield--has-value': this.state.value,
+                        'uir-textfield--has-right-icon': this.props.isRequired || this.props.isClearable,
+                        'uir-textfield--has-left-icon': this.props.icon,
                     },
                     this.props.className,
                 )}
@@ -231,13 +234,17 @@ class TextField extends Component {
                 onMouseLeave={this.handleMouseLeave}
                 style={this.props.style}
             >
-                {icon}
+                <span className="uir-textfield-left-icon">
+                    {icon}
+                </span>
                 <div className="uir-textfield-inner">
                     <div className="uir-textfield-label-wrapper">
                         {label}
                     </div>
                     {this.wrapInputWithTooltip(
                         <input
+                            aria-invalid={this.props.isValid === false}
+                            aria-required={this.props.isRequired}
                             className="uir-textfield-input"
                             disabled={this.props.isDisabled}
                             id={this.uid}
@@ -259,7 +266,9 @@ class TextField extends Component {
                         this.props.tooltipError || this.props.tooltipHint,
                     )}
                 </div>
-                {clearIcon || requiredIcon}
+                <span className="uir-textfield-right-icon">
+                    {clearIcon || requiredIcon}
+                </span>
             </div>
         );
         /* eslint-enable */
