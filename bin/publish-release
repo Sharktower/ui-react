@@ -64,6 +64,10 @@ shell.exec('git fetch --all --tags', executeSilently);
 userMessage(`Checking out tag ${latestVersion}...`, 'yellow');
 shell.exec(`git checkout tags/${latestVersion}`, executeSilently);
 
+userMessage('Run build script...', 'yellow');
+
+shell.exec('yarn build', executeSilently);
+
 userMessage('Publishing to NPM...', 'yellow');
 
 if (hasNpmRc) {

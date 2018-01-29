@@ -32,7 +32,7 @@
     "build:umd": "webpack",
     "build:commonjs": "babel src --out-dir dist --ignore storybook-addons/*,*.story.js,*.test* --plugins=remove-sass && node-sass src -o dist",
     "release:prepare": "node bin/prepare-release",
-    "release:publish": "yarn build && node bin/publish-release",
+    "release:publish": "node bin/publish-release",
     "storybook:clean": "rimraf ./storybook-static",
     "storybook:build": "yarn lint && build-storybook -o ./storybook-static",
     "storybook:deploy": "storybook-to-ghpages",
