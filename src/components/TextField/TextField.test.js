@@ -97,6 +97,11 @@ describe('TextField', () => {
         expect(textField).to.have.className(exampleClass);
     });
 
+    it('has a full width class if isFullWidth is passed', () => {
+        const textField = shallow(<TextField isFullWidth />);
+        expect(textField).to.have.className('uir-textfield--full-width');
+    });
+
     it('shows a placeholder when input has focus', () => {
         const examplePlaceholder = 'example placeholder';
         const textField = shallow(<TextField placeholder={examplePlaceholder} />);
@@ -142,11 +147,6 @@ describe('TextField', () => {
     it('assigns type to the default text', () => {
         const textField = createTextfield();
         expect(textField.find('input').prop('type')).to.equal('text');
-    });
-
-    it('allows type to be overridden', () => {
-        const textField = shallow(<TextField label="My Input" type="email" />);
-        expect(textField.find('input').prop('type')).to.equal('email');
     });
 
     it('allows type to be overridden', () => {

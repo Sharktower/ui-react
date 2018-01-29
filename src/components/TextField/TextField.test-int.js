@@ -11,7 +11,6 @@ Scenario('Storybook Documentation', (I) => {
         I.see('Example', 'h3');
         I.see('Source Code', 'h3');
         I.seeElement('code');
-        // I.see('Variations', 'h3');
         I.see('Props', 'h3');
         I.seeElement('table');
         I.see('property');
