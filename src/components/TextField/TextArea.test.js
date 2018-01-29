@@ -144,6 +144,10 @@ describe('TextArea', () => {
         />);
     });
 
+    it('does nothing if no component ref fn is provided', () => {
+        mount(<TextArea componentRef={false} />);
+    });
+
     ['blur', 'change', 'focus', 'keyDown', 'keyPress', 'keyUp'].forEach((event) => {
         it(`triggers handler on textarea ${event}`, () => {
             const spy = sinon.spy();
