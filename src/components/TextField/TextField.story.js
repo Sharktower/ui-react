@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import storyWrapper from '../../storybook-addons/storyWrapper';
 import TextField from './TextField';
+import { TextFieldVariant } from './TextFieldEnums';
 import IconSearch from '../Icon/IconSearch';
 import IconNotification from '../Icon/IconNotification';
 
@@ -12,6 +13,46 @@ stories.add(
     storyWrapper(
         'TextField is text input field.',
         <TextField label="Text field label" />,
+    ),
+);
+
+stories.add(
+    'Title',
+    storyWrapper(
+        'The variant prop allows you to choose a larger title input, which has no visible label.',
+        <TextField
+            label="Label for screenreaders"
+            placeholder="My Title Element"
+            variant={TextFieldVariant.TITLE}
+        />,
+        <div>
+            <TextField
+                placeholder="My Placeholder"
+                variant={TextFieldVariant.TITLE}
+                value="A Given Value"
+            />
+            <br />
+            <TextField
+                placeholder="A Required Field"
+                variant={TextFieldVariant.TITLE}
+                isRequired
+                isValid={false}
+                tooltipError="this field is required"
+            />
+            <br />
+            <TextField
+                placeholder="An Example Field"
+                value="I Am Clearable"
+                variant={TextFieldVariant.TITLE}
+                isClearable
+            />
+            <br />
+            <TextField
+                placeholder="Title Field with Icon"
+                variant={TextFieldVariant.TITLE}
+                icon={<IconNotification />}
+            />
+        </div>,
     ),
 );
 

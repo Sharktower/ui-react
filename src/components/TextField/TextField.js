@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import StyleObjectPropType from '../../prop-types/style';
+import ListPropType from '../../prop-types/list';
 import Tooltip from '../Tooltip/Tooltip';
 import TooltipBox from '../Tooltip/TooltipBox';
 import { TooltipBoxStatus, TooltipPosition } from '../Tooltip/TooltipEnums';
@@ -9,6 +10,7 @@ import IconClear from '../Icon/IconClear';
 import IconRequired from '../Icon/IconRequired';
 import Button from '../Button/Button';
 import { ButtonVariant } from '../Button/ButtonEnums';
+import { TextFieldVariant } from './TextFieldEnums';
 import './TextField.scss';
 
 const propTypes = {
@@ -45,6 +47,10 @@ const propTypes = {
     ]),
     type: PropTypes.string,
     value: PropTypes.string,
+    variant: ListPropType([
+        TextFieldVariant.DEFAULT,
+        TextFieldVariant.TITLE,
+    ]),
 };
 
 const defaultProps = {
@@ -72,6 +78,7 @@ const defaultProps = {
     tooltipRequired: 'required',
     type: 'text',
     value: '',
+    variant: TextFieldVariant.DEFAULT,
 };
 
 let lastInstanceId = 0;
@@ -197,8 +204,25 @@ class TextField extends Component {
         // @NB: jsx-a11y/label-has-for fails with UID as id
         const showLabel = (this.state.hasFocus || this.state.hasMouseOver || !this.state.value);
         const label = this.props.label && showLabel ?
-            <label htmlFor={this.uid} className="uir-textfield-label">{this.props.label}</label> :
+            (
+                <label
+                    htmlFor={this.uid}
+                    className={cx(
+                        'uir-textfield-label',
+                        {
+                            'uir-textfield-label--visually-hidden': this.props.variant === TextFieldVariant.TITLE,
+                        },
+                    )}
+                >
+                    {this.props.label}
+                </label>
+            ) :
             null;
+        const showPlaceholder = (
+            !this.props.label ||
+            this.state.hasFocus ||
+            this.props.variant === TextFieldVariant.TITLE
+        );
         const icon = this.props.icon ?
             this.props.icon :
             null;
@@ -222,11 +246,12 @@ class TextField extends Component {
                     {
                         'uir-textfield--focus': this.state.hasFocus,
                         'uir-textfield--full-width': this.props.isFullWidth,
-                        'uir-textfield--invalid': this.props.isValid === false,
-                        'uir-textfield--valid': this.props.isValid,
-                        'uir-textfield--has-value': this.state.value,
-                        'uir-textfield--has-right-icon': this.props.isRequired || this.props.isClearable,
                         'uir-textfield--has-left-icon': this.props.icon,
+                        'uir-textfield--has-right-icon': this.props.isRequired || this.props.isClearable,
+                        'uir-textfield--has-value': this.state.value,
+                        'uir-textfield--invalid': this.props.isValid === false,
+                        'uir-textfield--title': this.props.variant === TextFieldVariant.TITLE,
+                        'uir-textfield--valid': this.props.isValid,
                     },
                     this.props.className,
                 )}
@@ -254,9 +279,7 @@ class TextField extends Component {
                             onKeyDown={this.handleInputKeyDown}
                             onKeyUp={this.handleInputKeyUp}
                             onKeyPress={this.handleInputKeyPress}
-                            placeholder={!this.props.label || this.state.hasFocus ?
-                                this.props.placeholder :
-                                null}
+                            placeholder={showPlaceholder ? this.props.placeholder : null}
                             readOnly={this.props.isReadOnly}
                             required={this.props.isRequired}
                             ref={this.handleInputRef}
