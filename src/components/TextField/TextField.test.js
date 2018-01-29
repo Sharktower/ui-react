@@ -20,7 +20,7 @@ describe('TextField', () => {
         expect(textField).to.have.tagName('div');
     });
 
-    it('renders an label element', () => {
+    it('renders a label element', () => {
         const textField = createTextfield();
         expect(textField.find('label').length).to.equal(1);
     });
@@ -30,16 +30,47 @@ describe('TextField', () => {
         expect(textField.find('label').length).to.equal(0);
     });
 
+    it('does not render a label element if label provided put value is defined', () => {
+        const textField = shallow(<TextField label="test" value="example" />);
+        expect(textField.find('label').length).to.equal(0);
+    });
+
+    it('renders a label element when there is value and input has focus', () => {
+        const textField = shallow(<TextField label="test" value="example" />);
+        textField.find('input').simulate('focus');
+        expect(textField.find('label').length).to.equal(1);
+    });
+
+    it('renders a label element when there is value and TextField has mouse over', () => {
+        const textField = shallow(<TextField label="test" value="example" />);
+        textField.simulate('mouseEnter');
+        expect(textField.find('label').length).to.equal(1);
+    });
+
     it('sets state hasFocus to true when input focuses', () => {
         const textField = createTextfield();
         textField.find('input').simulate('focus');
-        expect(textField.state()).to.have.property('hasFocus', true);
+        expect(textField.state('hasFocus')).equal(true);
     });
 
     it('sets state hasFocus to false when input blurs', () => {
         const textField = createTextfield();
         textField.find('input').simulate('blur');
-        expect(textField.state()).to.have.property('hasFocus', false);
+        expect(textField.state('hasFocus')).equal(false);
+    });
+
+    it('sets state hasMouseOver to true when textfield sees mouseEnter', () => {
+        const textField = createTextfield();
+        textField.simulate('mouseEnter');
+        expect(textField.state('hasMouseOver')).equal(true);
+    });
+
+    it('sets state hasMouseOver to false when textfield sees mouseLeave', () => {
+        const textField = createTextfield();
+        textField.simulate('mouseEnter');
+        expect(textField.state('hasMouseOver')).equal(true);
+        textField.simulate('mouseLeave');
+        expect(textField.state('hasMouseOver')).equal(false);
     });
 
     it('gives parent div focus class when input has focus ', () => {
