@@ -17,6 +17,7 @@ const propTypes = {
     className: PropTypes.string,
     componentRef: PropTypes.func,
     icon: PropTypes.element,
+    id: PropTypes.string,
     isClearable: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
@@ -57,6 +58,7 @@ const defaultProps = {
     className: null,
     componentRef: null,
     icon: null,
+    id: null,
     isClearable: false,
     isDisabled: false,
     isFullWidth: false,
@@ -255,6 +257,7 @@ class TextField extends Component {
                     },
                     this.props.className,
                 )}
+                id={this.props.id}
                 onMouseEnter={this.handleMouseEnter}
                 onMouseLeave={this.handleMouseLeave}
                 style={this.props.style}
