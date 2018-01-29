@@ -128,7 +128,9 @@
     "react-dom": ">=0.14.0 <= 15"
   },
   "dependencies": {
+    "autosize": "^4.0.0",
     "classnames": "^2.2.5",
+    "install": "^0.10.4",
     "prop-types": "15.6.0"
   }
 }
