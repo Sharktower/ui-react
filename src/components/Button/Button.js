@@ -17,6 +17,7 @@ const propTypes = {
         ButtonIconPosition.LEFT,
         ButtonIconPosition.RIGHT,
     ]),
+    id: PropTypes.string,
     isActive: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
@@ -44,6 +45,7 @@ const defaultProps = {
     hasConfirm: false,
     icon: null,
     iconPosition: ButtonIconPosition.LEFT,
+    id: null,
     isActive: false,
     isDisabled: false,
     isFullWidth: false,
@@ -132,6 +134,7 @@ class Button extends Component {
             hasConfirm,
             icon,
             iconPosition,
+            id,
             isActive,
             isDisabled,
             isFullWidth,
@@ -143,6 +146,7 @@ class Button extends Component {
 
         return (
             <button
+                id={id}
                 type={type}
                 style={style}
                 className={cx(

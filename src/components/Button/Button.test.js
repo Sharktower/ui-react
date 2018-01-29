@@ -348,6 +348,20 @@ describe('Button', () => {
         });
     });
 
+    describe('id', () => {
+        it('does not set id attribute by default', () => {
+            const wrapper = shallow(defaultButton);
+
+            expect(wrapper).not.to.have.attr('id');
+        });
+
+        it('sets id attribute', () => {
+            const wrapper = shallow(<Button id="test-id-123" onClick={() => {}}>Foo</Button>);
+
+            expect(wrapper).to.have.attr('id', 'test-id-123');
+        });
+    });
+
     describe('isDisabled', () => {
         it('does not set disabled attribute by default', () => {
             const wrapper = shallow(defaultButton);

@@ -1,4 +1,23 @@
-<!-- Last Updated: 2018-01-19 -->
+<!-- Last Updated: 2018-01-29 -->
+
+# UI React v1.1.0 (2018-01-29)
+
+## Button id prop
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features** 
+
+- Added `id` prop to the Button component
+
+**Bug Fixes** 
+
+_None_
+
+
+
 
 # UI React v1.0.1 (2018-01-19)
 

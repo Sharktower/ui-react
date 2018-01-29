@@ -15,8 +15,9 @@ stories.add(
 Button is a wrapper around the html <code><button></code> element
         `,
         <Button
-            onClick={() => { alert('it works!'); }} // eslint-disable-line
             className="class-name"
+            id="some-id"
+            onClick={() => { alert('it works!'); }} // eslint-disable-line
         >
             Custom label
         </Button>,
