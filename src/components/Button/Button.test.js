@@ -231,51 +231,6 @@ describe('Button', () => {
                 expect(confirmation).not.to.have.className('uir-button-confirmation--confirming');
             });
         });
-
-        describe('onKeyDown', () => {
-            it('confirms using Enter key', () => {
-                const wrapper = mount(defaultConfirmButton);
-                const confirmation = wrapper.find('.uir-button-confirmation');
-
-                wrapper.simulate('click');
-                confirmation.simulate('keyDown', { key: 'Enter' });
-
-                expect(wrapper.update()).to.contain.text('Cool!');
-            });
-
-            it('confirms by pressing Space key', () => {
-                const wrapper = mount(defaultConfirmButton);
-                const confirmation = wrapper.find('.uir-button-confirmation');
-
-                wrapper.simulate('click');
-                confirmation.simulate('keyDown', { key: ' ' });
-
-                expect(wrapper.update()).to.contain.text('Cool!');
-                expect(confirmation).to.have.className('uir-button-confirmation--confirmed');
-            });
-
-            it('confirms by pressing Space key', () => {
-                const wrapper = mount(defaultConfirmButton);
-                const confirmation = wrapper.find('.uir-button-confirmation');
-
-                wrapper.simulate('click');
-                confirmation.simulate('keyDown', { key: ' ' });
-
-                expect(wrapper.update()).to.contain.text('Cool!');
-                expect(confirmation).to.have.className('uir-button-confirmation--confirmed');
-            });
-
-            it('does not confirm by pressing other keys', () => {
-                const wrapper = mount(defaultConfirmButton);
-                const confirmation = wrapper.find('.uir-button-confirmation');
-
-                wrapper.simulate('click');
-                confirmation.simulate('keyDown', { key: 'a' });
-
-                expect(wrapper.update()).to.contain.text('Confirm?');
-                expect(confirmation).to.have.className('uir-button-confirmation--confirming');
-            });
-        });
     });
 
     describe('icon', () => {
