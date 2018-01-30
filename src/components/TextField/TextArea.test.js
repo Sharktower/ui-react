@@ -25,6 +25,11 @@ describe('TextArea', () => {
         expect(textArea.find('label').length).to.equal(0);
     });
 
+    it('always renders a label element if hasLabelAlways is true', () => {
+        const textField = shallow(<TextArea label="foo" value="bar" hasLabelAlways />);
+        expect(textField.find('label').length).to.equal(1);
+    });
+
     it('does not render a label element if label provided put value is defined', () => {
         const textArea = shallow(<TextArea label="test" value="example" />);
         expect(textArea.find('label').length).to.equal(0);
@@ -232,12 +237,12 @@ describe('TextArea', () => {
     });
 
     it('displays a required icon if isRequired is given', () => {
-        const textArea = shallow(<TextArea value="an example value" isRequired />);
+        const textArea = shallow(<TextArea label="my label" hasLabelAlways isRequired />);
         expect(textArea.find(IconRequired).length).to.equal(1);
     });
 
     it('shows a tooltip when hovering over required icon', () => {
-        const textArea = shallow(<TextArea isRequired />);
+        const textArea = shallow(<TextArea label="my label" hasLabelAlways isRequired />);
         textArea.find(IconRequired).simulate('hover');
         expect(textArea.find(Tooltip).length).to.equal(1);
     });

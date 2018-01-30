@@ -30,20 +30,22 @@ $textFieldLabelColor: $charcoal !default;
         background: linear-gradient(to right, $pink 0%, transparent 100%);
     }
 
-    &--valid:after {
-        background: linear-gradient(to right, $teal 0%, transparent 100%);
+    // @NB: removed at Antoine's request, this may be restored later
+    // &--valid:after {
+    //     background: linear-gradient(to right, $teal 0%, transparent 100%);
+    // }
+
+    &--full-width {
+        display: block;
+        width: 100%;
     }
 
+    &--full-width,
     &--has-auto-height {
 
         .uir-textarea-input {
             resize: none;
         }
-    }
-
-    &--full-width {
-        display: block;
-        width: 100%;
     }
 
     &--focus,
@@ -55,8 +57,9 @@ $textFieldLabelColor: $charcoal !default;
         }
     }
 
-    &--has-right-icon {
-        padding-right: 20px;
+    &--disabled:after,
+    &--readonly:after {
+        background: none;
     }
 
     &-label-wrapper {
@@ -87,32 +90,20 @@ $textFieldLabelColor: $charcoal !default;
         font-size: inherit;
         border: 0;
         outline: none;
+        box-shadow: none !important;
+
+        &:invalid {
+            box-shadow: none;
+        }
     }
 
     &-inner > .uir-tooltip {
         width: 100%;
     }
 
-    .uir-icon {
-        width: 13px;
-        height: 13px;
-    }
-
-    .uir-textarea-right-icon {
-        position: absolute;
-        top: 21px;
-        right: 2px;
-        line-height: 1em;
-
-        .uir-tooltip-contents {
-            line-height: normal;
-        }
-
-        .uir-icon-required {
-            width: 10px;
-            height: 10px;
-            margin-top: 4px;
-            margin-right: 3px;
-        }
+    .uir-icon-required {
+        width: 10px;
+        height: 10px;
+        margin-left: 5px;
     }
 }

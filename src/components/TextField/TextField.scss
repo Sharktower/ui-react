@@ -30,9 +30,10 @@ $textFieldLabelColor: $charcoal !default;
         background: linear-gradient(to right, $pink 0%, transparent 100%);
     }
 
-    &--valid:after {
-        background: linear-gradient(to right, $teal 0%, transparent 100%);
-    }
+    // @NB: removed at Antoine's request, this may be restored later
+    // &--valid:after {
+    //     background: linear-gradient(to right, $teal 0%, transparent 100%);
+    // }
 
     &--full-width {
         display: block;
@@ -54,6 +55,11 @@ $textFieldLabelColor: $charcoal !default;
 
     &--has-left-icon {
         padding-left: 20px;
+    }
+
+    &--disabled:after,
+    &--readonly:after {
+        background: none;
     }
 
     &.uir-textfield--title {
@@ -99,7 +105,10 @@ $textFieldLabelColor: $charcoal !default;
         font-family: inherit;
         font-size: inherit;
         border: 0;
-        outline: none;
+
+        &:invalid {
+            box-shadow: none;
+        }
     }
 
     &-inner > .uir-tooltip {
@@ -109,6 +118,12 @@ $textFieldLabelColor: $charcoal !default;
     .uir-icon {
         width: 13px;
         height: 13px;
+    }
+
+    .uir-icon-required {
+        width: 10px;
+        height: 10px;
+        margin-left: 5px;
     }
 
     .uir-textfield-left-icon {
@@ -126,13 +141,6 @@ $textFieldLabelColor: $charcoal !default;
 
         .uir-tooltip-contents {
             line-height: normal;
-        }
-
-        .uir-icon-required {
-            width: 10px;
-            height: 10px;
-            margin-top: 4px;
-            margin-right: 3px;
         }
 
         .uir-button {

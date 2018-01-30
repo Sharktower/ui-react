@@ -33,6 +33,18 @@ stories.add(
     ),
 );
 
+stories.add(
+    'Label Always',
+    storyWrapper(
+        'Label can be forced to always appear with the hasLabelAlways prop.',
+        <TextArea
+            label="Always has a label"
+            value="my example value"
+            hasLabelAlways
+        />,
+    ),
+);
+
 const multilineText = `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 
 Velit ipsam, nesciunt doloribus, aspernatur a itaque assumenda odit alias rem dignissimos culpa error magnam veniam cupiditate repellendus nam id perferendis sit.
@@ -63,7 +75,7 @@ stories.add(
 stories.add(
     'Disabled',
     storyWrapper(
-        'isDisabled allows you to disable the input.',
+        'isDisabled allows you to disable the input. Disabled mode removes the line at the bottom of the input.',
         <TextArea
             label="Disabled input"
             isDisabled
@@ -78,7 +90,7 @@ stories.add(
 stories.add(
     'Read Only',
     storyWrapper(
-        'isReadOnly allows you to make an input read only.',
+        'isReadOnly allows you to make an input read only. Read only mode removes the line at the bottom of the input.',
         <TextArea
             label="Read only input"
             isReadOnly
@@ -94,9 +106,9 @@ stories.add(
     'Validation',
     storyWrapper(
         'isValid allows you to control input validation state.',
-        <TextArea label="Valid input" isValid />,
+        <TextArea label="Invalid input" isValid={false} />,
         <div>
-            <TextArea label="Invalid input" isValid={false} />
+            <TextArea label="Valid input" isValid />
             <TextArea label="Not yet validated" isValid={null} />
         </div>,
     ),

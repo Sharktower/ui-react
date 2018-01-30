@@ -60,7 +60,7 @@ stories.add(
     'Placeholder',
     storyWrapper(
         'Placeholder appears when the input has focus or if no label is provided.',
-        <TextField label="With placeholder" placeholder="your placeholder here" />,
+        <TextField label="Label with placeholder" placeholder="your placeholder here" />,
         <TextField placeholder="no label here" />,
     ),
 );
@@ -73,6 +73,18 @@ stories.add(
             label="With value"
             placeholder="your placeholder here"
             value="Hello, Friend"
+        />,
+    ),
+);
+
+stories.add(
+    'Label Always',
+    storyWrapper(
+        'Label can be forced to always appear with the hasLabelAlways prop.',
+        <TextField
+            label="Always has a label"
+            value="my example value"
+            hasLabelAlways
         />,
     ),
 );
@@ -99,7 +111,7 @@ stories.add(
 stories.add(
     'Disabled',
     storyWrapper(
-        'isDisabled allows you to disable the input.',
+        'isDisabled allows you to disable the input. Disabled mode removes the line at the bottom of the input.',
         <TextField
             label="Disabled input"
             value="Hello, Friend"
@@ -117,7 +129,7 @@ stories.add(
 stories.add(
     'Read Only',
     storyWrapper(
-        'isReadOnly allows you to make an input read only.',
+        'isReadOnly allows you to make an input read only. Read only mode removes the line at the bottom of the input.',
         <TextField
             label="Read only input"
             value="Hello, Friend"
@@ -136,9 +148,9 @@ stories.add(
     'Validation',
     storyWrapper(
         'isValid allows you to control input validation state.',
-        <TextField label="Valid input" isValid />,
+        <TextField label="Invalid input" isValid={false} />,
         <div>
-            <TextField label="Invalid input" isValid={false} />
+            <TextField label="Valid input" isValid />
             <TextField label="Not yet validated" isValid={null} />
         </div>,
     ),
@@ -205,7 +217,7 @@ stories.add(
     'Icon',
     storyWrapper(
         'icon prop allows you to display an icon on the left of the input field.',
-        <TextField label="Input with icon" icon={<IconSearch />} />,
+        <TextField placeholder="search" icon={<IconSearch />} />,
         <TextField label="Full width with icon" isFullWidth icon={<IconNotification />} />,
     ),
 );

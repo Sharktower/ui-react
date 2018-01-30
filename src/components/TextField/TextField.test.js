@@ -30,6 +30,11 @@ describe('TextField', () => {
         expect(textField.find('label').length).to.equal(0);
     });
 
+    it('always renders a label element if hasLabelAlways is true', () => {
+        const textField = shallow(<TextField label="foo" value="bar" hasLabelAlways />);
+        expect(textField.find('label').length).to.equal(1);
+    });
+
     it('does not render a label element if label provided put value is defined', () => {
         const textField = shallow(<TextField label="test" value="example" />);
         expect(textField.find('label').length).to.equal(0);
@@ -254,17 +259,12 @@ describe('TextField', () => {
     });
 
     it('displays a required icon if isRequired is given', () => {
-        const textField = shallow(<TextField value="an example value" isRequired />);
+        const textField = shallow(<TextField label="my label" hasLabelAlways isRequired />);
         expect(textField.find(IconRequired).length).to.equal(1);
     });
 
-    it('does not display a required icon if clear icon is present', () => {
-        const textField = shallow(<TextField value="an example value" isClearable isRequired />);
-        expect(textField.find(IconRequired).length).to.equal(0);
-    });
-
     it('shows a tooltip when hovering over required icon', () => {
-        const textField = shallow(<TextField isRequired />);
+        const textField = shallow(<TextField label="my label" hasLabelAlways isRequired />);
         textField.find(IconRequired).simulate('hover');
         expect(textField.find(Tooltip).length).to.equal(1);
     });

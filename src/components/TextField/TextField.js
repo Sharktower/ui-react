@@ -16,6 +16,7 @@ import './TextField.scss';
 const propTypes = {
     className: PropTypes.string,
     componentRef: PropTypes.func,
+    hasLabelAlways: PropTypes.bool,
     icon: PropTypes.element,
     id: PropTypes.string,
     isClearable: PropTypes.bool,
@@ -57,6 +58,7 @@ const propTypes = {
 const defaultProps = {
     className: null,
     componentRef: null,
+    hasLabelAlways: false,
     icon: null,
     id: null,
     isClearable: false,
@@ -204,7 +206,15 @@ class TextField extends Component {
     render() {
         /* eslint-disable jsx-a11y/label-has-for */
         // @NB: jsx-a11y/label-has-for fails with UID as id
-        const showLabel = (this.state.hasFocus || this.state.hasMouseOver || !this.state.value);
+        const showLabel = (
+            this.props.hasLabelAlways ||
+            this.state.hasFocus ||
+            this.state.hasMouseOver ||
+            !this.state.value
+        );
+        const requiredIcon = this.props.isRequired ?
+            <Tooltip tooltip={this.props.tooltipRequired}><IconRequired /></Tooltip> :
+            null;
         const label = this.props.label && showLabel ?
             (
                 <label
@@ -217,6 +227,7 @@ class TextField extends Component {
                     )}
                 >
                     {this.props.label}
+                    {requiredIcon}
                 </label>
             ) :
             null;
@@ -238,20 +249,19 @@ class TextField extends Component {
                 </Button>
             ) :
             null;
-        const requiredIcon = this.props.isRequired ?
-            <Tooltip tooltip={this.props.tooltipRequired}><IconRequired /></Tooltip> :
-            null;
         return (
             <div
                 className={cx(
                     'uir-textfield',
                     {
+                        'uir-textfield--disabled': this.props.isDisabled,
                         'uir-textfield--focus': this.state.hasFocus,
                         'uir-textfield--full-width': this.props.isFullWidth,
                         'uir-textfield--has-left-icon': this.props.icon,
                         'uir-textfield--has-right-icon': this.props.isRequired || this.props.isClearable,
                         'uir-textfield--has-value': this.state.value,
                         'uir-textfield--invalid': this.props.isValid === false,
+                        'uir-textfield--readonly': this.props.isReadOnly,
                         'uir-textfield--title': this.props.variant === TextFieldVariant.TITLE,
                         'uir-textfield--valid': this.props.isValid,
                     },
@@ -293,7 +303,7 @@ class TextField extends Component {
                     )}
                 </div>
                 <span className="uir-textfield-right-icon">
-                    {clearIcon || requiredIcon}
+                    {clearIcon}
                 </span>
             </div>
         );

@@ -18,6 +18,7 @@ const propTypes = {
         TextAreaAutoHeight.ENABLED,
         TextAreaAutoHeight.DISABLED,
     ]),
+    hasLabelAlways: PropTypes.bool,
     id: PropTypes.string,
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
@@ -33,6 +34,7 @@ const propTypes = {
     onKeyPress: PropTypes.func,
     onKeyUp: PropTypes.func,
     placeholder: PropTypes.string,
+    rows: PropTypes.number,
     style: StyleObjectPropType(),
     tooltipError: PropTypes.oneOfType([
         PropTypes.element,
@@ -53,6 +55,7 @@ const defaultProps = {
     className: null,
     componentRef: null,
     hasAutoHeight: TextAreaAutoHeight.DISABLED,
+    hasLabelAlways: false,
     id: null,
     isDisabled: false,
     isFullWidth: false,
@@ -68,6 +71,7 @@ const defaultProps = {
     onKeyPress: null,
     onKeyUp: null,
     placeholder: null,
+    rows: 1,
     style: null,
     tooltipError: null,
     tooltipHint: null,
@@ -196,25 +200,37 @@ class textarea extends Component {
     render() {
         /* eslint-disable jsx-a11y/label-has-for */
         // @NB: jsx-a11y/label-has-for fails with UID as id
-        const showLabel = (this.state.hasFocus || this.state.hasMouseOver || !this.state.value);
-        const label = this.props.label && showLabel ?
-            <label htmlFor={this.uid} className="uir-textarea-label">{this.props.label}</label> :
-            null;
-        const showPlaceholder = (!this.props.label || this.state.hasFocus);
+        const showLabel = (
+            this.props.hasLabelAlways ||
+            this.state.hasFocus ||
+            this.state.hasMouseOver ||
+            !this.state.value
+        );
         const requiredIcon = this.props.isRequired ?
             <Tooltip tooltip={this.props.tooltipRequired}><IconRequired /></Tooltip> :
             null;
+        const label = this.props.label && showLabel ?
+            (
+                <label htmlFor={this.uid} className="uir-textarea-label">
+                    {this.props.label}
+                    {requiredIcon}
+                </label>
+            ) :
+            null;
+        const showPlaceholder = (!this.props.label || this.state.hasFocus);
         return (
             <div
                 className={cx(
                     'uir-textarea',
                     {
+                        'uir-textarea--disabled': this.props.isDisabled,
                         'uir-textarea--focus': this.state.hasFocus,
                         'uir-textarea--full-width': this.props.isFullWidth,
                         'uir-textarea--has-auto-height': this.props.hasAutoHeight,
                         'uir-textarea--has-right-icon': this.props.isRequired,
                         'uir-textarea--has-value': this.state.value,
                         'uir-textarea--invalid': this.props.isValid === false,
+                        'uir-textarea--readonly': this.props.isReadOnly,
                         'uir-textarea--valid': this.props.isValid,
                     },
                     this.props.className,
@@ -245,14 +261,12 @@ class textarea extends Component {
                             readOnly={this.props.isReadOnly}
                             required={this.props.isRequired}
                             ref={this.handleInputRef}
+                            rows={this.props.rows}
                             value={this.state.value}
                         />,
                         this.props.tooltipError || this.props.tooltipHint,
                     )}
                 </div>
-                <span className="uir-textarea-right-icon">
-                    {requiredIcon}
-                </span>
             </div>
         );
         /* eslint-enable */
