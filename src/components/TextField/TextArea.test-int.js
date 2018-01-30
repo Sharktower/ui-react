@@ -17,7 +17,7 @@ Scenario('Storybook Documentation', (I) => {
         I.see('value');
         I.see('required');
         I.see('default');
-        I.seeNumberOfElements('td', 23 * 4);
+        I.seeNumberOfElements('td', 25 * 4);
     });
 });
 
