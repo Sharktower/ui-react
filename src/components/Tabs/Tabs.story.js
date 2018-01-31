@@ -10,10 +10,10 @@ stories.add(
     'Overview',
     storyWrapper(
         `
-Tabs component
+Tabs component allows toggling between multiple content panes.
 
     <Tabs>
-        <Tabs.Nav tabsVisible={2}>
+        <Tabs.Nav>
             <Tabs.Tab>Tab one</Tabs.Tab>
             <Tabs.Tab>Tab two</Tabs.Tab>
             <Tabs.Tab>Tab three</Tabs.Tab>
@@ -32,6 +32,91 @@ Tabs component
     </Tabs>
         `,
         <Tabs>
+            <Tabs.Nav>
+                <Tabs.Tab>Tab one</Tabs.Tab>
+                <Tabs.Tab>Tab two</Tabs.Tab>
+                <Tabs.Tab>Tab three</Tabs.Tab>
+            </Tabs.Nav>
+            <Tabs.Panes>
+                <Tabs.Pane>
+                    Content 1
+                </Tabs.Pane>
+                <Tabs.Pane>
+                    Content 2
+                    <br />And more content
+                </Tabs.Pane>
+                <Tabs.Pane>
+                    Content 3
+                </Tabs.Pane>
+            </Tabs.Panes>
+        </Tabs>,
+    ),
+);
+
+stories.add(
+    'Preselected',
+    storyWrapper(
+        `
+Use the (zero-based) <code>selectedIndex</code> prop to preselect a tab on load.
+
+    <Tabs selectedIndex={1}>
+        <Tabs.Nav>
+            <Tabs.Tab>Tab one</Tabs.Tab>
+            <Tabs.Tab>Tab two</Tabs.Tab>
+            <Tabs.Tab>Tab three</Tabs.Tab>
+        </Tabs.Nav>
+        <Tabs.Panes>
+            <Tabs.Pane>
+                Content 1
+            </Tabs.Pane>
+            <Tabs.Pane>
+                Content 2
+            </Tabs.Pane>
+            <Tabs.Pane>
+                Content 3
+            </Tabs.Pane>
+        </Tabs.Panes>
+    </Tabs>
+        `,
+        <Tabs selectedIndex={1}>
+            <Tabs.Nav>
+                <Tabs.Tab>Tab one</Tabs.Tab>
+                <Tabs.Tab>Tab two</Tabs.Tab>
+                <Tabs.Tab>Tab three</Tabs.Tab>
+            </Tabs.Nav>
+            <Tabs.Panes>
+                <Tabs.Pane>
+                    Content 1
+                </Tabs.Pane>
+                <Tabs.Pane>
+                    Content 2
+                </Tabs.Pane>
+                <Tabs.Pane>
+                    Content 3
+                </Tabs.Pane>
+            </Tabs.Panes>
+        </Tabs>,
+    ),
+);
+
+stories.add(
+    'With dropdown',
+    storyWrapper(
+        `
+Use the <code>tabsVisible</code> prop on the <code>Tabs.Nav</code> component to add a dropdown containing extra tabs or tabs that wouldn't otherwise fit within the available space.
+
+    <Tabs>
+        <Tabs.Nav tabsVisible={2}>
+            <Tabs.Tab>Tab one</Tabs.Tab>
+            <Tabs.Tab>Tab two</Tabs.Tab>
+            <Tabs.Tab>Tab three</Tabs.Tab>
+        </Tabs.Nav>
+        <Tabs.Panes>
+            ...
+        </Tabs.Panes>
+    </Tabs>
+        `,
+        <Tabs>
             <Tabs.Nav tabsVisible={2}>
                 <Tabs.Tab>Tab one</Tabs.Tab>
                 <Tabs.Tab>Tab two</Tabs.Tab>
@@ -41,9 +126,8 @@ Tabs component
                 <Tabs.Pane>
                     Content 1
                 </Tabs.Pane>
-                <Tabs.Pane className="test123">
+                <Tabs.Pane>
                     Content 2
-                    <br />And more content
                 </Tabs.Pane>
                 <Tabs.Pane>
                     Content 3
@@ -52,33 +136,11 @@ Tabs component
         </Tabs>,
         <div>
             <Tabs>
-                <Tabs.Nav tabsVisible={3}>
-                    <Tabs.Tab>Item one</Tabs.Tab>
-                    <Tabs.Tab>Item two</Tabs.Tab>
-                    <Tabs.Tab>Item three</Tabs.Tab>
-                    <Tabs.Tab>Item four</Tabs.Tab>
-                </Tabs.Nav>
-                <Tabs.Panes>
-                    <Tabs.Pane>
-                        Content 1
-                    </Tabs.Pane>
-                    <Tabs.Pane>
-                        Content 2
-                    </Tabs.Pane>
-                    <Tabs.Pane>
-                        Content 3
-                    </Tabs.Pane>
-                    <Tabs.Pane>
-                        Content 4
-                    </Tabs.Pane>
-                </Tabs.Panes>
-            </Tabs>
-            <Tabs selectedIndex={1}>
-                <Tabs.Nav tabsVisible={2}>
-                    <Tabs.Tab>Item one</Tabs.Tab>
-                    <Tabs.Tab>Item two</Tabs.Tab>
-                    <Tabs.Tab>Item three</Tabs.Tab>
-                    <Tabs.Tab>Item four</Tabs.Tab>
+                <Tabs.Nav tabsVisible={1}>
+                    <Tabs.Tab>Tab one</Tabs.Tab>
+                    <Tabs.Tab>Tab two</Tabs.Tab>
+                    <Tabs.Tab>Tab three</Tabs.Tab>
+                    <Tabs.Tab>Tab four</Tabs.Tab>
                 </Tabs.Nav>
                 <Tabs.Panes>
                     <Tabs.Pane>
