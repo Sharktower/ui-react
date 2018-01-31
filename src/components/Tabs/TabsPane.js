@@ -6,14 +6,40 @@ import './TabsPane.scss';
 const propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    isSelected: PropTypes.bool,
 };
 
 const defaultProps = {
     children: null,
     className: null,
+    isSelected: false,
 };
 
-class Tab extends Component {
+class TabsPane extends Component {
+    state = {
+        isDeselecting: false,
+        isSelecting: false,
+    };
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.isSelected && !nextProps.isSelected) {
+            this.setState({
+                isDeselecting: true,
+                isSelecting: false,
+            });
+        } else if (!this.props.isSelected && nextProps.isSelected) {
+            this.setState({
+                isDeselecting: false,
+                isSelecting: true,
+            });
+        } else {
+            this.setState({
+                isDeselecting: false,
+                isSelecting: false,
+            });
+        }
+    }
+
     focusPane() {
         if (!this.componentRef) { return; }
 
@@ -35,6 +61,11 @@ class Tab extends Component {
             <section
                 className={cx(
                     'uir-tabs-pane',
+                    {
+                        'uir-tabs-pane--selected': this.props.isSelected && !this.state.isSelecting,
+                        'uir-tabs-pane--selecting': this.state.isSelecting,
+                        'uir-tabs-pane--deselecting': this.state.isDeselecting,
+                    },
                     this.props.className,
                 )}
                 ref={this.handleRef}
@@ -46,7 +77,7 @@ class Tab extends Component {
     }
 }
 
-Tab.propTypes = propTypes;
-Tab.defaultProps = defaultProps;
+TabsPane.propTypes = propTypes;
+TabsPane.defaultProps = defaultProps;
 
-export default Tab;
+export default TabsPane;

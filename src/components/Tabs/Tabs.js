@@ -8,14 +8,14 @@ import TabsPane from './TabsPane';
 import TabsTab from './TabsTab';
 
 const propTypes = {
-    activeIndex: PropTypes.number,
+    selectedIndex: PropTypes.number,
     children: PropTypes.node,
     className: PropTypes.string,
     style: StyleObjectPropType(),
 };
 
 const defaultProps = {
-    activeIndex: 0,
+    selectedIndex: 0,
     children: null,
     className: null,
     style: null,
@@ -23,21 +23,21 @@ const defaultProps = {
 
 class Tabs extends Component {
     state = {
-        activeIndex: this.props.activeIndex,
+        selectedIndex: this.props.selectedIndex,
     };
 
     render() {
         const children = React.Children.map(this.props.children, (child) => {
             if (child.type === TabsNav) {
                 return React.cloneElement(child, {
-                    activeIndex: this.state.activeIndex,
-                    onActivateTab: (activeIndex) => {
-                        this.setState({ activeIndex });
+                    selectedIndex: this.state.selectedIndex,
+                    onActivateTab: (selectedIndex) => {
+                        this.setState({ selectedIndex });
                     },
                 });
             } else if (child.type === TabsPanes) {
                 return React.cloneElement(child, {
-                    activeIndex: this.state.activeIndex,
+                    selectedIndex: this.state.selectedIndex,
                 });
             }
 

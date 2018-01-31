@@ -12,7 +12,7 @@ const storyWrapperStyle = {
 };
 
 const componentWrapperStyle = {
-    padding: '10px 20px',
+    padding: '10px 20px 10px 0',
 };
 
 const codeStyle = {

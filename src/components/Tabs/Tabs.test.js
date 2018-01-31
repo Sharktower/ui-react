@@ -13,10 +13,12 @@ describe('Tabs', () => {
             <Tabs.Nav>
                 <Tabs.Tab>Item one</Tabs.Tab>
                 <Tabs.Tab>Item two</Tabs.Tab>
+                <Tabs.Tab>Item three</Tabs.Tab>
             </Tabs.Nav>
             <Tabs.Panes>
                 <Tabs.Pane>Content one</Tabs.Pane>
                 <Tabs.Pane>Content two</Tabs.Pane>
+                <Tabs.Pane>Content three</Tabs.Pane>
             </Tabs.Panes>
         </Tabs>
     );
@@ -37,14 +39,14 @@ describe('Tabs', () => {
         const wrapper = mount(defaultTabs);
         const tabs = wrapper.find(TabsTab);
 
-        expect(tabs).to.have.length(2);
+        expect(tabs).to.have.length(3);
     });
 
-    it('contains a single pane', () => {
+    it('contains correct number of panes', () => {
         const wrapper = mount(defaultTabs);
         const panes = wrapper.find(TabsPane);
 
-        expect(panes).to.have.length(1);
+        expect(panes).to.have.length(3);
     });
 
     it('renders additional elements', () => {
@@ -65,32 +67,32 @@ describe('Tabs', () => {
 
     it('select first tab by default', () => {
         const wrapper = mount(defaultTabs);
-        const pane = wrapper.find(TabsPane);
-        const activeTab = wrapper.find(TabsTab).filter('[isActive=true]');
+        const activePane = wrapper.find('.uir-tabs-pane--selected');
+        const activeTab = wrapper.find(TabsTab).filter('[isSelected=true]');
 
         expect(activeTab).to.have.length(1);
         expect(activeTab).to.have.text('Item one');
-        expect(pane).to.have.text('Content one');
+        expect(activePane).to.have.text('Content one');
     });
 
     describe('onActivateTab', () => {
         it('changes active tab on click', () => {
             const wrapper = mount(defaultTabs);
             const tab2 = wrapper.find(TabsTab).at(1);
-            const pane = wrapper.find(TabsPane);
 
             tab2.simulate('click');
 
-            const activeTab = wrapper.find(TabsTab).filter('[isActive=true]');
+            const activePane = wrapper.find('.uir-tabs-pane--selecting');
+            const activeTab = wrapper.find(TabsTab).filter('[isSelected=true]');
             expect(activeTab).to.have.text('Item two');
-            expect(pane).to.have.text('Content two');
+            expect(activePane).to.have.text('Content two');
         });
 
         it('focuses on content', (done) => {
             const wrapper = mount(defaultTabs);
             const tab2 = wrapper.find(TabsTab).at(1);
-            const pane = wrapper.find(TabsPane);
-            const focusSpy = sinon.spy(pane.instance(), 'focusPane');
+            const pane2 = wrapper.find(TabsPane).at(1);
+            const focusSpy = sinon.spy(pane2.instance(), 'focusPane');
 
             tab2.simulate('click');
 
@@ -162,7 +164,7 @@ describe('Tabs', () => {
 
         it('opens dropdown on click', () => {
             const wrapper = mount(dropdownTabsTemplate);
-            const trigger = wrapper.find('.uir-tabs-nav-dropdown-trigger');
+            const trigger = wrapper.find('Button.uir-tabs-nav-dropdown-trigger');
 
             trigger.simulate('click');
             const dropdown = wrapper.find('.uir-tabs-nav-dropdown');
@@ -171,7 +173,7 @@ describe('Tabs', () => {
 
         it('hides dropdown on interaction outside', () => {
             const wrapper = mount(dropdownTabsTemplate);
-            const trigger = wrapper.find('.uir-tabs-nav-dropdown-trigger');
+            const trigger = wrapper.find('Button.uir-tabs-nav-dropdown-trigger');
             const dropdown = wrapper.find('.uir-tabs-nav-dropdown');
             const outsideTab = wrapper.find(TabsTab).at(0);
             // eslint-disable-next-line react/no-find-dom-node
@@ -185,12 +187,12 @@ describe('Tabs', () => {
 
         it('does not hide dropdown on interaction inside', () => {
             const wrapper = mount(dropdownTabsTemplate);
-            const trigger = wrapper.find('.uir-tabs-nav-dropdown-trigger');
+            const trigger = wrapper.find('Button.uir-tabs-nav-dropdown-trigger');
             const dropdown = wrapper.find('.uir-tabs-nav-dropdown');
-            const tab = dropdown.find(TabsTab).at(0);
+            const dropdownTab = dropdown.find(TabsTab).at(0);
             // eslint-disable-next-line react/no-find-dom-node
-            const tabNode = ReactDOM.findDOMNode(tab.instance());
-            const syntheticEvent = { relatedTarget: tabNode };
+            const dropdownTabNode = ReactDOM.findDOMNode(dropdownTab.instance());
+            const syntheticEvent = { relatedTarget: dropdownTabNode };
 
             trigger.simulate('click');
             dropdown.simulate('blur', syntheticEvent);

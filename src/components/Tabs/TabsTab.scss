@@ -1,0 +1,16 @@
+.uir-tabs-tab {
+    padding: 8px;
+    margin: 0;
+
+    &.uir-button--active {
+        background: transparent;
+
+        &:hover {
+            background: rgba(47, 40, 51, .1);
+        }
+
+        &:focus {
+            background: rgba(47, 40, 51, .2);
+        }
+    }
+}

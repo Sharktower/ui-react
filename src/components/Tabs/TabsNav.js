@@ -2,19 +2,21 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import TabsTab from './TabsTab';
+import Button from './../Button/Button';
+import IconMore from './../Icon/IconMore';
 import './TabsNav.scss';
 
 let lastInstanceId = 0;
 
 const propTypes = {
-    activeIndex: PropTypes.number,
+    selectedIndex: PropTypes.number,
     children: PropTypes.node,
     onActivateTab: PropTypes.func,
     tabsVisible: PropTypes.number,
 };
 
 const defaultProps = {
-    activeIndex: null,
+    selectedIndex: null,
     children: null,
     onActivateTab: null,
     tabsVisible: null,
@@ -46,7 +48,12 @@ class TabsNav extends Component {
                 )}
                 onBlur={this.handleDropdownBlur}
             >
-                <button className="uir-tabs-nav-dropdown-trigger" onClick={this.handleDropdownTriggerClick}>...</button>
+                <Button
+                    className="uir-tabs-nav-dropdown-trigger"
+                    icon={<IconMore />}
+                    onClick={this.handleDropdownTriggerClick}
+                    variant="clear"
+                />
                 <div className="uir-tabs-nav-dropdown-menu">
                     {dropdownTabs}
                 </div>
@@ -79,7 +86,8 @@ class TabsNav extends Component {
         let children = React.Children.map(this.props.children, (child, index) => {
             if (child.type === TabsTab) {
                 return React.cloneElement(child, {
-                    isActive: index === this.props.activeIndex,
+                    id: `uir-tab-${lastInstanceId}-${index}`,
+                    isSelected: index === this.props.selectedIndex,
                     onActivate: () => {
                         this.props.onActivateTab(index);
                     },

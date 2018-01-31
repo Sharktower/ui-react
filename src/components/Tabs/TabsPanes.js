@@ -2,23 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-    activeIndex: PropTypes.number,
+    selectedIndex: PropTypes.number,
     children: PropTypes.node,
 };
 
 const defaultProps = {
-    activeIndex: null,
+    selectedIndex: null,
     children: null,
 };
 
 const TabsPanes = ({
-    activeIndex,
+    selectedIndex,
     children,
-}) => (
-    <div className="uir-tabs-panes">
-        {children[activeIndex]}
-    </div>
-);
+}) => {
+    const newChildren = React.Children.map(children, (child, index) =>
+        React.cloneElement(child, {
+            isSelected: index === selectedIndex,
+        }));
+
+    return (
+        <div className="uir-tabs-panes">
+            {newChildren}
+        </div>
+    );
+};
 
 TabsPanes.propTypes = propTypes;
 TabsPanes.defaultProps = defaultProps;

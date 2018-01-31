@@ -2,17 +2,34 @@
     position: relative;
     display: inline-block;
 
+    &-trigger {
+        min-width: auto;
+        padding: 8px;
+        margin: 0;
+    }
+
+    .uir-icon-more {
+        width: 14px;
+        height: 14px;
+        margin: 0;
+        fill: #3a333c;
+    }
+
     &-menu {
         position: absolute;
-        top: 100%;
+        top: calc(100% + 4px);
         left: 0;
         z-index: 100;
         display: none;
         background: #fff;
         border: 1px solid rgba(0,0,0,.05);
-        box-shadow: 0 0 4px #ccc;
+        border-radius: 2px;
+        box-shadow: 0 0 34px 0 rgba(#2f2833,.3);
 
         .uir-tabs-tab {
+            width: 100%;
+            padding: 11px 20px;
+            text-align: left;
             white-space: nowrap;
         }
     }
