@@ -13,6 +13,13 @@ const homeDir = require('os').homedir();
 
 const hasNpmRc = fs.existsSync(path.resolve(homeDir, '.npmrc'));
 
+function publishToNPM() {
+    const npmPromise = hasNpmRc ?
+        npm.publish() :
+        npm.setAuthToken().then(npm.publish);
+    return npmPromise.catch(error => console.error(error));
+}
+
 // @TODO: dry run flag, silent flag, help flag
 
 /*
@@ -49,43 +56,45 @@ const { getCurrentBranch, pullLatest, checkoutBranch } = require('../release-src
 
 const currentBranch = getCurrentBranch();
 
-checkoutBranch('master');
-pullLatest();
+async function publish() {
+    checkoutBranch('master');
+    pullLatest();
 
-// @NB: to ensure latest version we need to get package.json version from master
-const packageJson = require('../package.json');
+    // @NB: to ensure latest version we need to get package.json version from master
+    const packageJson = require('../package.json'); // eslint-disable-line global-require
 
-const latestVersion = `v${packageJson.version}`;
+    const latestVersion = `v${packageJson.version}`;
 
-userMessage(`Publishing UI React ${latestVersion} to NPM`, 'magenta', { iconRight: '🚀' });
+    userMessage(`Publishing UI React ${latestVersion} to NPM`, 'magenta', { iconRight: '🚀' });
 
-shell.exec('git fetch --all --tags', executeSilently);
+    shell.exec('git fetch --all --tags', executeSilently);
 
-userMessage(`Checking out tag ${latestVersion}...`, 'yellow');
-shell.exec(`git checkout tags/${latestVersion}`, executeSilently);
+    userMessage(`Checking out tag ${latestVersion}...`, 'yellow');
+    shell.exec(`git checkout tags/${latestVersion}`, executeSilently);
 
-userMessage('Run build script...', 'yellow');
+    userMessage('Run build script...', 'yellow');
 
-shell.exec('yarn build', executeSilently);
+    shell.exec('yarn build', executeSilently);
 
-userMessage('Publishing to NPM...', 'yellow');
+    userMessage('Publishing to NPM...', 'yellow');
 
-if (hasNpmRc) {
-    npm.publish()
-        .catch(error => console.error(error));
-} else {
-    npm.setAuthToken()
-        .then(npm.publish)
-        .catch(error => console.error(error));
+    await publishToNPM();
+
+    userMessage(`Checking out original branch (${currentBranch})...`, 'yellow');
+    checkoutBranch(currentBranch);
+
+    userMessage(
+        `Successfully released version ${latestVersion}`,
+        'green',
+        { iconRight: '🎉' },
+    );
+
+    return 0;
 }
 
-userMessage(`Checking out original branch (${currentBranch})...`, 'yellow');
-checkoutBranch(currentBranch);
-
-userMessage(
-    `Successfully released version ${latestVersion}`,
-    'green',
-    { iconRight: '🎉' },
-);
-
-return 0;
+try {
+    return publish();
+} catch (error) {
+    console.error(error);
+    return 1;
+}
