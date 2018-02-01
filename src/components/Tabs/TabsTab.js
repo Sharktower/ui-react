@@ -9,7 +9,7 @@ const propTypes = {
     className: PropTypes.string,
     id: PropTypes.string,
     isSelected: PropTypes.bool,
-    onActivate: PropTypes.func,
+    onSelect: PropTypes.func,
 };
 
 const defaultProps = {
@@ -17,7 +17,7 @@ const defaultProps = {
     className: null,
     id: null,
     isSelected: false,
-    onActivate: null,
+    onSelect: null,
 };
 
 const TabsTab = ({
@@ -25,7 +25,7 @@ const TabsTab = ({
     className,
     id,
     isSelected,
-    onActivate,
+    onSelect,
 }) => (
     <Button
         className={cx(
@@ -34,7 +34,7 @@ const TabsTab = ({
         )}
         id={id}
         isActive={isSelected}
-        onClick={onActivate}
+        onClick={onSelect}
         variant="clear"
     >
         {children}

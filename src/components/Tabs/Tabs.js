@@ -31,7 +31,7 @@ class Tabs extends Component {
             if (child.type === TabsNav) {
                 return React.cloneElement(child, {
                     selectedIndex: this.state.selectedIndex,
-                    onActivateTab: (selectedIndex) => {
+                    onSelectTab: (selectedIndex) => {
                         this.setState({ selectedIndex });
                     },
                 });

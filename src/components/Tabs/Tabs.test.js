@@ -67,25 +67,25 @@ describe('Tabs', () => {
 
     it('select first tab by default', () => {
         const wrapper = mount(defaultTabs);
-        const activePane = wrapper.find('.uir-tabs-pane--selected');
-        const activeTab = wrapper.find(TabsTab).filter('[isSelected=true]');
+        const selectedPane = wrapper.find('.uir-tabs-pane--selected');
+        const selectedTab = wrapper.find(TabsTab).filter('[isSelected=true]');
 
-        expect(activeTab).to.have.length(1);
-        expect(activeTab).to.have.text('Item one');
-        expect(activePane).to.have.text('Content one');
+        expect(selectedTab).to.have.length(1);
+        expect(selectedTab).to.have.text('Item one');
+        expect(selectedPane).to.have.text('Content one');
     });
 
-    describe('onActivateTab', () => {
-        it('changes active tab on click', () => {
+    describe('onSelectTab', () => {
+        it('changes selected tab on click', () => {
             const wrapper = mount(defaultTabs);
             const tab2 = wrapper.find(TabsTab).at(1);
 
             tab2.simulate('click');
 
-            const activePane = wrapper.find('.uir-tabs-pane--selecting');
-            const activeTab = wrapper.find(TabsTab).filter('[isSelected=true]');
-            expect(activeTab).to.have.text('Item two');
-            expect(activePane).to.have.text('Content two');
+            const selectedPane = wrapper.find('.uir-tabs-pane--selecting');
+            const selectedTab = wrapper.find(TabsTab).filter('[isSelected=true]');
+            expect(selectedTab).to.have.text('Item two');
+            expect(selectedPane).to.have.text('Content two');
         });
 
         it('focuses on content', (done) => {

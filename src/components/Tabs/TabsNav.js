@@ -11,14 +11,14 @@ let lastInstanceId = 0;
 const propTypes = {
     selectedIndex: PropTypes.number,
     children: PropTypes.node,
-    onActivateTab: PropTypes.func,
+    onSelectTab: PropTypes.func,
     tabsVisible: PropTypes.number,
 };
 
 const defaultProps = {
     selectedIndex: null,
     children: null,
-    onActivateTab: null,
+    onSelectTab: null,
     tabsVisible: null,
 };
 
@@ -88,8 +88,8 @@ class TabsNav extends Component {
                 return React.cloneElement(child, {
                     id: `uir-tab-${lastInstanceId}-${index}`,
                     isSelected: index === this.props.selectedIndex,
-                    onActivate: () => {
-                        this.props.onActivateTab(index);
+                    onSelect: () => {
+                        this.props.onSelectTab(index);
                     },
                 });
             }
