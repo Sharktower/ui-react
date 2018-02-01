@@ -7,6 +7,8 @@ import TabsPanes from './TabsPanes';
 import TabsPane from './TabsPane';
 import TabsTab from './TabsTab';
 
+let lastInstanceId = 0;
+
 const propTypes = {
     selectedIndex: PropTypes.number,
     children: PropTypes.node,
@@ -22,9 +24,15 @@ const defaultProps = {
 };
 
 class Tabs extends Component {
-    state = {
-        selectedIndex: this.props.selectedIndex,
-    };
+    constructor(props) {
+        super(props);
+
+        lastInstanceId += 1;
+
+        this.state = {
+            selectedIndex: this.props.selectedIndex,
+        };
+    }
 
     render() {
         const children = React.Children.map(this.props.children, (child) => {
@@ -34,10 +42,12 @@ class Tabs extends Component {
                     onSelectTab: (selectedIndex) => {
                         this.setState({ selectedIndex });
                     },
+                    tabsInstanceId: lastInstanceId,
                 });
             } else if (child.type === TabsPanes) {
                 return React.cloneElement(child, {
                     selectedIndex: this.state.selectedIndex,
+                    tabsInstanceId: lastInstanceId,
                 });
             }
 

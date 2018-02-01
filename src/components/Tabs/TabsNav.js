@@ -6,12 +6,11 @@ import Button from './../Button/Button';
 import IconMore from './../Icon/IconMore';
 import './TabsNav.scss';
 
-let lastInstanceId = 0;
-
 const propTypes = {
     selectedIndex: PropTypes.number,
     children: PropTypes.node,
     onSelectTab: PropTypes.func,
+    tabsInstanceId: PropTypes.number,
     tabsVisible: PropTypes.number,
 };
 
@@ -19,16 +18,11 @@ const defaultProps = {
     selectedIndex: null,
     children: null,
     onSelectTab: null,
+    tabsInstanceId: null,
     tabsVisible: null,
 };
 
 class TabsNav extends Component {
-    constructor(props) {
-        super(props);
-
-        lastInstanceId += 1;
-    }
-
     state = {
         isDropdownOpen: false,
     }
@@ -41,7 +35,7 @@ class TabsNav extends Component {
 
         newChildren.push((
             <div
-                key={`tabs-nav-dropdown-${lastInstanceId}`}
+                key={`uir-tabs-nav-dropdown-${this.props.tabsInstanceId}`}
                 className={cx(
                     'uir-tabs-nav-dropdown',
                     { 'uir-tabs-nav-dropdown--open': this.state.isDropdownOpen },
@@ -86,7 +80,7 @@ class TabsNav extends Component {
         let children = React.Children.map(this.props.children, (child, index) => {
             if (child.type === TabsTab) {
                 return React.cloneElement(child, {
-                    id: `uir-tab-${lastInstanceId}-${index}`,
+                    id: `uir-tabs-tab-${this.props.tabsInstanceId}-${index}`,
                     isSelected: index === this.props.selectedIndex,
                     onSelect: () => {
                         this.props.onSelectTab(index);

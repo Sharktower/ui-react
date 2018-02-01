@@ -7,12 +7,14 @@ const propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     isSelected: PropTypes.bool,
+    relatedTabId: PropTypes.string,
 };
 
 const defaultProps = {
     children: null,
     className: null,
     isSelected: false,
+    relatedTabId: null,
 };
 
 class TabsPane extends Component {
@@ -59,6 +61,8 @@ class TabsPane extends Component {
 
         return (
             <section
+                aria-hidden={!this.props.isSelected}
+                aria-labelledby={this.props.relatedTabId}
                 className={cx(
                     'uir-tabs-pane',
                     {
