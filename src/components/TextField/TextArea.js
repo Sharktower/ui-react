@@ -81,7 +81,7 @@ const defaultProps = {
 
 let lastInstanceId = 0;
 
-class textarea extends Component {
+class TextArea extends Component {
     constructor(props) {
         super(props);
 
@@ -273,7 +273,7 @@ class textarea extends Component {
     }
 }
 
-textarea.propTypes = propTypes;
-textarea.defaultProps = defaultProps;
+TextArea.propTypes = propTypes;
+TextArea.defaultProps = defaultProps;
 
-export default textarea;
+export default TextArea;
