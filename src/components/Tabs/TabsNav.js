@@ -83,7 +83,11 @@ class TabsNav extends Component {
                     id: `uir-tabs-tab-${this.props.tabsInstanceId}-${index}`,
                     isSelected: index === this.props.selectedIndex,
                     onSelect: () => {
-                        this.props.onSelectTab(index);
+                        this.setState({
+                            isDropdownOpen: false,
+                        }, () => {
+                            this.props.onSelectTab(index);
+                        });
                     },
                 });
             }
