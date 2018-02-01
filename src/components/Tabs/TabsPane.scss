@@ -1,7 +1,3 @@
-.uir-tabs-panes {
-    position: relative;
-}
-
 .uir-tabs-pane {
     position: absolute;
     top: 0;
@@ -45,22 +41,16 @@
         position: static;
         animation-name: uir-tabs-pane-in;
         animation-duration: .3s;
-        animation-play-state: running;
         animation-timing-function: cubic-bezier(0,0,.31,1);
         animation-delay: .1s;
-        animation-iteration-count: 1;
-        animation-direction: normal;
         animation-fill-mode: forwards;
     }
 
     &--deselecting {
         animation-name: uir-tabs-pane-out;
         animation-duration: .2s;
-        animation-play-state: running;
         animation-timing-function: cubic-bezier(0,0,.31,1);
         animation-delay: 0s;
-        animation-iteration-count: 1;
-        animation-direction: normal;
         animation-fill-mode: forwards;
     }
 }

@@ -1,4 +1,9 @@
+@import "../_variables";
+
 .uir-tabs-tab {
+    $tab-background-color-hover: rgba($slate, .1) !default;
+    $tab-background-color-focus: rgba($slate, .2) !default;
+
     padding: 8px;
     margin: 0;
 
@@ -6,11 +11,11 @@
         background: transparent;
 
         &:hover {
-            background: rgba(47, 40, 51, .1);
+            background: $tab-background-color-hover;
         }
 
         &:focus {
-            background: rgba(47, 40, 51, .2);
+            background: $tab-background-color-focus;
         }
     }
 }

@@ -55,15 +55,15 @@ Scenario('With dropdown', (I) => {
         I.seeNumberOfElements('.uir-tabs', 2);
         I.seeElement('.uir-tabs-nav-dropdown');
         I.seeElement('.uir-tabs-nav-dropdown-trigger');
-        I.dontSeeElement('.uir-tabs-nav-dropdown-menu');
+        I.dontSeeElement('.uir-tabs-nav-dropdown-panel');
         I.see('TAB TWO', '.uir-tabs-tab');
         I.dontSee('TAB THREE', '.uir-tabs-tab');
 
         I.click('.uir-tabs-nav-dropdown-trigger');
-        I.seeElement('.uir-tabs-nav-dropdown-menu');
+        I.seeElement('.uir-tabs-nav-dropdown-panel');
         I.see('TAB THREE', '.uir-tabs-tab');
 
-        I.click('.uir-tabs-nav-dropdown-menu .uir-tabs-tab');
+        I.click('.uir-tabs-nav-dropdown-panel .uir-tabs-tab');
         I.wait(0.5);
         I.see('Content 3', '.uir-tabs-pane');
     });

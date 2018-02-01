@@ -1,3 +1,5 @@
+@import "../_variables";
+
 .uir-tabs-nav-dropdown {
     position: relative;
     display: inline-block;
@@ -15,7 +17,7 @@
         fill: #3a333c;
     }
 
-    &-menu {
+    &-panel {
         position: absolute;
         top: calc(100% + 4px);
         left: 0;
@@ -24,7 +26,7 @@
         background: #fff;
         border: 1px solid rgba(0,0,0,.05);
         border-radius: 2px;
-        box-shadow: 0 0 34px 0 rgba(#2f2833,.3);
+        box-shadow: 0 0 34px 0 rgba($slate,.3);
 
         .uir-tabs-tab {
             width: 100%;
@@ -36,7 +38,7 @@
 
     &--open {
 
-        .uir-tabs-nav-dropdown-menu {
+        .uir-tabs-nav-dropdown-panel {
             display: inline-block;
         }
     }

@@ -54,7 +54,7 @@ class TabsNav extends Component {
                     onClick={this.handleDropdownTriggerClick}
                     variant="clear"
                 />
-                <div className="uir-tabs-nav-dropdown-menu">
+                <div className="uir-tabs-nav-dropdown-panel">
                     {dropdownTabs}
                 </div>
             </div>
