@@ -7,17 +7,17 @@ import IconMore from './../Icon/IconMore';
 import './TabsNav.scss';
 
 const propTypes = {
-    selectedIndex: PropTypes.number,
     children: PropTypes.node,
     onSelectTab: PropTypes.func,
+    selectedIndex: PropTypes.number,
     tabsInstanceId: PropTypes.number,
     tabsVisible: PropTypes.number,
 };
 
 const defaultProps = {
-    selectedIndex: null,
     children: null,
     onSelectTab: null,
+    selectedIndex: null,
     tabsInstanceId: null,
     tabsVisible: null,
 };

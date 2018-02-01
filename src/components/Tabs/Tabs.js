@@ -10,16 +10,16 @@ import TabsTab from './TabsTab';
 let lastInstanceId = 0;
 
 const propTypes = {
-    selectedIndex: PropTypes.number,
     children: PropTypes.node,
     className: PropTypes.string,
+    selectedIndex: PropTypes.number,
     style: StyleObjectPropType(),
 };
 
 const defaultProps = {
-    selectedIndex: 0,
     children: null,
     className: null,
+    selectedIndex: 0,
     style: null,
 };
 
