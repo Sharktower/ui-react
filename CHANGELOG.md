@@ -1,4 +1,43 @@
-<!-- Last Updated: 2018-01-19 -->
+<!-- Last Updated: 2018-01-30 -->
+
+# UI React v1.1.1 (2018-01-30)
+
+## Fix Button confirmation state
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- Fixes Button confirmation state in Firefox and Internet Explorer
+
+
+
+
+
+# UI React v1.1.0 (2018-01-29)
+
+## Button id prop
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features** 
+
+- Added `id` prop to the Button component
+
+**Bug Fixes** 
+
+_None_
+
+
+
 
 # UI React v1.0.1 (2018-01-19)
 

@@ -231,51 +231,6 @@ describe('Button', () => {
                 expect(confirmation).not.to.have.className('uir-button-confirmation--confirming');
             });
         });
-
-        describe('onKeyDown', () => {
-            it('confirms using Enter key', () => {
-                const wrapper = mount(defaultConfirmButton);
-                const confirmation = wrapper.find('.uir-button-confirmation');
-
-                wrapper.simulate('click');
-                confirmation.simulate('keyDown', { key: 'Enter' });
-
-                expect(wrapper.update()).to.contain.text('Cool!');
-            });
-
-            it('confirms by pressing Space key', () => {
-                const wrapper = mount(defaultConfirmButton);
-                const confirmation = wrapper.find('.uir-button-confirmation');
-
-                wrapper.simulate('click');
-                confirmation.simulate('keyDown', { key: ' ' });
-
-                expect(wrapper.update()).to.contain.text('Cool!');
-                expect(confirmation).to.have.className('uir-button-confirmation--confirmed');
-            });
-
-            it('confirms by pressing Space key', () => {
-                const wrapper = mount(defaultConfirmButton);
-                const confirmation = wrapper.find('.uir-button-confirmation');
-
-                wrapper.simulate('click');
-                confirmation.simulate('keyDown', { key: ' ' });
-
-                expect(wrapper.update()).to.contain.text('Cool!');
-                expect(confirmation).to.have.className('uir-button-confirmation--confirmed');
-            });
-
-            it('does not confirm by pressing other keys', () => {
-                const wrapper = mount(defaultConfirmButton);
-                const confirmation = wrapper.find('.uir-button-confirmation');
-
-                wrapper.simulate('click');
-                confirmation.simulate('keyDown', { key: 'a' });
-
-                expect(wrapper.update()).to.contain.text('Confirm?');
-                expect(confirmation).to.have.className('uir-button-confirmation--confirming');
-            });
-        });
     });
 
     describe('icon', () => {
@@ -345,6 +300,20 @@ describe('Button', () => {
 
                 expect(wrapper).to.contain.html('<span class="uir-button-content">Foo</span><svg class="uir-icon');
             });
+        });
+    });
+
+    describe('id', () => {
+        it('does not set id attribute by default', () => {
+            const wrapper = shallow(defaultButton);
+
+            expect(wrapper).not.to.have.attr('id');
+        });
+
+        it('sets id attribute', () => {
+            const wrapper = shallow(<Button id="test-id-123" onClick={() => {}}>Foo</Button>);
+
+            expect(wrapper).to.have.attr('id', 'test-id-123');
         });
     });
 

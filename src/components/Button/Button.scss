@@ -201,7 +201,7 @@
             color: #fff;
         }
 
-        &--confirming:focus {
+        &--confirming {
             animation-name: uir-button-confirmation-in;
             animation-duration: .3s;
             animation-timing-function: cubic-bezier(0,0,.31,1);
