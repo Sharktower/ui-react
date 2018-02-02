@@ -100,13 +100,13 @@ Use the (zero-based) <code>selectedIndex</code> prop to preselect a tab on load.
 );
 
 stories.add(
-    'With dropdown',
+    'With a dropdown',
     storyWrapper(
         `
-Use the <code>tabsVisible</code> prop on the <code>Tabs.Nav</code> component to add a dropdown containing extra tabs or tabs that wouldn't otherwise fit within the available space.
+<code>tabsVisible</code> prop controls which tabs are always visible and which should be moved into a dropdown.
 
-    <Tabs>
-        <Tabs.Nav tabsVisible={2}>
+    <Tabs tabsVisible={2}>
+        <Tabs.Nav>
             <Tabs.Tab>Tab one</Tabs.Tab>
             <Tabs.Tab>Tab two</Tabs.Tab>
             <Tabs.Tab>Tab three</Tabs.Tab>
@@ -116,8 +116,8 @@ Use the <code>tabsVisible</code> prop on the <code>Tabs.Nav</code> component to 
         </Tabs.Panes>
     </Tabs>
         `,
-        <Tabs>
-            <Tabs.Nav tabsVisible={2}>
+        <Tabs tabsVisible={2}>
+            <Tabs.Nav>
                 <Tabs.Tab>Tab one</Tabs.Tab>
                 <Tabs.Tab>Tab two</Tabs.Tab>
                 <Tabs.Tab>Tab three</Tabs.Tab>
@@ -135,8 +135,8 @@ Use the <code>tabsVisible</code> prop on the <code>Tabs.Nav</code> component to 
             </Tabs.Panes>
         </Tabs>,
         <div>
-            <Tabs>
-                <Tabs.Nav tabsVisible={1}>
+            <Tabs tabsVisible={1}>
+                <Tabs.Nav>
                     <Tabs.Tab>Tab one</Tabs.Tab>
                     <Tabs.Tab>Tab two</Tabs.Tab>
                     <Tabs.Tab>Tab three</Tabs.Tab>

@@ -17,7 +17,7 @@ Scenario('Storybook Documentation', (I) => {
         I.see('value');
         I.see('required');
         I.see('default');
-        I.seeNumberOfElements('td', 4 * 4);
+        I.seeNumberOfElements('td', 5 * 4);
     });
 });
 
@@ -50,7 +50,7 @@ Scenario('Preselected', (I) => {
 });
 
 Scenario('With dropdown', (I) => {
-    I.searchWithinIframe(KIND, 'With dropdown', () => {
+    I.searchWithinIframe(KIND, 'With a dropdown', () => {
         I.seeElement('.uir-tabs');
         I.seeNumberOfElements('.uir-tabs', 2);
         I.seeElement('.uir-tabs-nav-dropdown');

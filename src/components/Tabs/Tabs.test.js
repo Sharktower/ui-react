@@ -126,8 +126,8 @@ describe('Tabs', () => {
 
     describe('tabsVisible', () => {
         const dropdownTabsTemplate = (
-            <Tabs>
-                <Tabs.Nav tabsVisible={2}>
+            <Tabs tabsVisible={2}>
+                <Tabs.Nav>
                     <Tabs.Tab>Item one</Tabs.Tab>
                     <Tabs.Tab>Item two</Tabs.Tab>
                     <Tabs.Tab>Item three</Tabs.Tab>

@@ -14,6 +14,7 @@ const propTypes = {
     className: PropTypes.string,
     selectedIndex: PropTypes.number,
     style: StyleObjectPropType(),
+    tabsVisible: PropTypes.number,
 };
 
 const defaultProps = {
@@ -21,6 +22,7 @@ const defaultProps = {
     className: null,
     selectedIndex: 0,
     style: null,
+    tabsVisible: null,
 };
 
 class Tabs extends Component {
@@ -43,6 +45,7 @@ class Tabs extends Component {
                         this.setState({ selectedIndex });
                     },
                     tabsInstanceId: lastInstanceId,
+                    tabsVisible: this.props.tabsVisible,
                 });
             } else if (child.type === TabsPanes) {
                 return React.cloneElement(child, {
