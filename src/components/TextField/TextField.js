@@ -18,7 +18,6 @@ const propTypes = {
     componentRef: PropTypes.func,
     hasLabelAlways: PropTypes.bool,
     icon: PropTypes.element,
-    id: PropTypes.string,
     isClearable: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
@@ -26,6 +25,7 @@ const propTypes = {
     isRequired: PropTypes.bool,
     isValid: PropTypes.bool,
     label: PropTypes.string,
+    name: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onEnterKey: PropTypes.func,
@@ -60,7 +60,6 @@ const defaultProps = {
     componentRef: null,
     hasLabelAlways: false,
     icon: null,
-    id: null,
     isClearable: false,
     isDisabled: false,
     isFullWidth: false,
@@ -68,6 +67,7 @@ const defaultProps = {
     isRequired: false,
     isValid: null,
     label: null,
+    name: null,
     onBlur: null,
     onChange: null,
     onEnterKey: null,
@@ -267,7 +267,6 @@ class TextField extends Component {
                     },
                     this.props.className,
                 )}
-                id={this.props.id}
                 onMouseEnter={this.handleMouseEnter}
                 onMouseLeave={this.handleMouseLeave}
                 style={this.props.style}
@@ -286,6 +285,7 @@ class TextField extends Component {
                             className="uir-textfield-input"
                             disabled={this.props.isDisabled}
                             id={this.uid}
+                            name={this.props.name}
                             onChange={this.handleInputChange}
                             onBlur={this.handleInputBlur}
                             onFocus={this.handleInputFocus}

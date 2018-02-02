@@ -280,9 +280,15 @@ describe('TextField', () => {
         expect(textField.find(IconSearch).length).to.equal(1);
     });
 
-    it('adds style to wrapper if style provided', () => {
+    it('adds style to wrapper if provided', () => {
         const exampleStyle = { marginTop: '20px' };
         const textField = shallow(<TextField style={exampleStyle} />);
         expect(textField.prop('style')).to.equal(exampleStyle);
+    });
+
+    it('adds name to input if provided', () => {
+        const exampleName = 'example';
+        const textField = shallow(<TextField name={exampleName} />);
+        expect(textField.find('input').prop('name')).to.equal(exampleName);
     });
 });
