@@ -25,7 +25,7 @@
         display: none;
         background: #fff;
         border-radius: 2px;
-        box-shadow: 0 0 34px 0 rgba($slate,.3);
+        box-shadow: 0 0 34px 0 rgba($charcoal,.3);
 
         &::before {
             position: absolute;
@@ -36,7 +36,7 @@
             z-index: -2;
             display: block;
             content: "";
-            background: linear-gradient(to bottom, #fff 0%, rgba($slate,.15) 100%);
+            background: linear-gradient(to bottom, #fff 0%, rgba($charcoal,.15) 100%);
             border-radius: 2px;
         }
 
@@ -64,7 +64,7 @@
     &--open {
 
         .uir-tabs-nav-dropdown-trigger {
-            background-color: rgba($slate, .05);
+            background-color: rgba($charcoal, .05);
         }
 
         .uir-tabs-nav-dropdown-panel {
