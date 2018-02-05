@@ -19,13 +19,13 @@ const propTypes = {
         TextAreaAutoHeight.DISABLED,
     ]),
     hasLabelAlways: PropTypes.bool,
-    id: PropTypes.string,
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
     isReadOnly: PropTypes.bool,
     isRequired: PropTypes.bool,
     isValid: PropTypes.bool,
     label: PropTypes.string,
+    name: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onEnterKey: PropTypes.func,
@@ -56,13 +56,13 @@ const defaultProps = {
     componentRef: null,
     hasAutoHeight: TextAreaAutoHeight.DISABLED,
     hasLabelAlways: false,
-    id: null,
     isDisabled: false,
     isFullWidth: false,
     isReadOnly: false,
     isRequired: false,
     isValid: null,
     label: null,
+    name: null,
     onBlur: null,
     onChange: null,
     onEnterKey: null,
@@ -235,7 +235,6 @@ class TextArea extends Component {
                     },
                     this.props.className,
                 )}
-                id={this.props.id}
                 onMouseEnter={this.handleMouseEnter}
                 onMouseLeave={this.handleMouseLeave}
                 style={this.props.style}
@@ -251,6 +250,7 @@ class TextArea extends Component {
                             className="uir-textarea-input"
                             disabled={this.props.isDisabled}
                             id={this.uid}
+                            name={this.props.name}
                             onChange={this.handleInputChange}
                             onBlur={this.handleInputBlur}
                             onFocus={this.handleInputFocus}
