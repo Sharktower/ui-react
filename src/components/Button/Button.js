@@ -65,6 +65,14 @@ class Button extends Component {
         clearTimeout(this.confirmedTimeout);
     }
 
+    handleBlur = () => {
+        if (this.state.confirming) {
+            this.setState({
+                confirming: false,
+            });
+        }
+    }
+
     handleClick = (event) => {
         const propsOnClick = this.props.onClick;
 
@@ -74,12 +82,25 @@ class Button extends Component {
         }
 
         if (this.props.hasConfirm) {
-            this.setState({
-                confirmed: false,
-                confirming: true,
-            }, () => {
-                this.confirmRef.focus();
-            });
+            if (!this.state.confirming) {
+                this.setState({
+                    confirmed: false,
+                    confirming: true,
+                });
+            } else {
+                this.setState({
+                    confirmed: true,
+                    confirming: false,
+                }, () => {
+                    // Wait 1s for animation to finish
+                    this.confirmedTimeout = setTimeout(() => {
+                        this.setState({
+                            confirmed: false,
+                        });
+                    }, 1000);
+                    this.props.onClick(event);
+                });
+            }
         } else {
             propsOnClick(event);
         }
@@ -87,42 +108,6 @@ class Button extends Component {
 
     handleRef = (ref) => {
         this.componentRef = ref;
-    }
-
-    handleConfirmBlur = () => {
-        if (this.state.confirming) {
-            this.setState({
-                confirming: false,
-            });
-        }
-    }
-
-    handleConfirmClick = (event) => {
-        event.stopPropagation();
-        this.setState({
-            confirmed: true,
-            confirming: false,
-        }, () => {
-            // Wait 1s for animation to finish
-            this.confirmedTimeout = setTimeout(() => {
-                this.setState({
-                    confirmed: false,
-                });
-            }, 1000);
-            this.componentRef.focus();
-            this.props.onClick(event);
-        });
-    }
-
-    handleConfirmKeyDown = (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            this.handleConfirmClick(event);
-        }
-    }
-
-    handleConfirmRef = (ref) => {
-        this.confirmRef = ref;
     }
 
     render() {
@@ -163,6 +148,7 @@ class Button extends Component {
                     },
                 )}
                 disabled={isDisabled}
+                onBlur={this.handleBlur}
                 onClick={this.handleClick}
                 ref={this.handleRef}
                 tabIndex={tabIndex}
@@ -183,12 +169,6 @@ class Button extends Component {
                                 'uir-button-confirmation--confirmed': this.state.confirmed,
                             },
                         )}
-                        onBlur={this.handleConfirmBlur}
-                        onClick={this.handleConfirmClick}
-                        onKeyDown={this.handleConfirmKeyDown}
-                        ref={this.handleConfirmRef}
-                        role="button"
-                        tabIndex="-1"
                     >
                         {this.state.confirmed ? confirmedText : null}
                         {this.state.confirming ? confirmText : null}
