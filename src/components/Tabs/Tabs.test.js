@@ -185,6 +185,20 @@ describe('Tabs', () => {
             expect(dropdown).not.to.have.className('uir-tabs-nav-dropdown--open');
         });
 
+        it('hides dropdown on interaction outside - IE11', () => {
+            const wrapper = mount(dropdownTabsTemplate);
+            const trigger = wrapper.find('Button.uir-tabs-nav-dropdown-trigger');
+            const dropdown = wrapper.find('.uir-tabs-nav-dropdown');
+            const syntheticEvent = { relatedTarget: null };
+
+            trigger.simulate('click');
+            // IE11 relies on document.activeElement and we're not able to control that from here.
+            // So just test the blur event with relatedTarget as null
+            // (the default document.activeElement is the <body>, so the dropdown should hide)
+            dropdown.simulate('blur', syntheticEvent);
+            expect(dropdown).not.to.have.className('uir-tabs-nav-dropdown--open');
+        });
+
         it('does not hide dropdown on interaction inside', () => {
             const wrapper = mount(dropdownTabsTemplate);
             const trigger = wrapper.find('Button.uir-tabs-nav-dropdown-trigger');

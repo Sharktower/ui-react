@@ -1,3 +1,4 @@
+/* global document */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
@@ -58,12 +59,15 @@ class TabsNav extends Component {
     }
 
     handleDropdownBlur = (event) => {
+        const { currentTarget, relatedTarget } = event;
         // Taken from: https://stackoverflow.com/a/44378829
         // currentTarget refers to this component.
         // relatedTarget refers to the element where the user clicked (or focused) which
         // triggered this event.
+        // In IE11 relatedTarget can be null so use document.activeElement (focused element).
         // So in effect, this condition checks if the user clicked outside the component.
-        if (!event.currentTarget.contains(event.relatedTarget)) {
+        if ((relatedTarget !== null && !currentTarget.contains(relatedTarget)) ||
+            (relatedTarget === null && !currentTarget.contains(document.activeElement))) {
             this.setState({
                 isDropdownOpen: false,
             });
