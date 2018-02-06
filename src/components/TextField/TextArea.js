@@ -112,41 +112,39 @@ class TextArea extends Component {
     }
 
     handleInputBlur = (event) => {
-        const { onBlur } = this.props;
+        const onBlur = this.props.onBlur || (() => {});
         this.setState({
             hasFocus: false,
             showTooltip: false,
-        });
-        if (onBlur) {
+        }, () => {
             onBlur(event);
-        }
+        });
     }
 
     handleInputChange = (event) => {
         const { value } = this.inputRef;
-        const { onChange } = this.props;
+        const onChange = this.props.onChange || (() => {});
         if (typeof value !== 'undefined') {
-            this.setState({ value });
-        }
-        if (onChange) {
+            this.setState({ value }, () => {
+                onChange(value, event);
+            });
+        } else {
             onChange(value, event);
         }
     }
 
     handleInputFocus = (event) => {
-        const { onFocus } = this.props;
+        const onFocus = this.props.onFocus || (() => {});
         this.setState({
             hasFocus: true,
             showTooltip: true,
-        });
-        if (onFocus) {
+        }, () => {
             onFocus(event);
-        }
+        });
     }
 
     handleInputKeyDown = (event) => {
-        const { onKeyDown } = this.props;
-        const { onEnterKey } = this.props;
+        const { onKeyDown, onEnterKey } = this.props;
         if (onKeyDown) {
             onKeyDown(event.key, event);
         }
