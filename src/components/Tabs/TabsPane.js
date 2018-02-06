@@ -24,22 +24,10 @@ class TabsPane extends Component {
     };
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.isSelected && !nextProps.isSelected) {
-            this.setState({
-                isDeselecting: true,
-                isSelecting: false,
-            });
-        } else if (!this.props.isSelected && nextProps.isSelected) {
-            this.setState({
-                isDeselecting: false,
-                isSelecting: true,
-            });
-        } else {
-            this.setState({
-                isDeselecting: false,
-                isSelecting: false,
-            });
-        }
+        this.setState({
+            isDeselecting: this.props.isSelected && !nextProps.isSelected,
+            isSelecting: !this.props.isSelected && nextProps.isSelected,
+        });
     }
 
     focusPane() {
