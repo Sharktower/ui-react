@@ -2,22 +2,17 @@ import React, { Component } from 'react';
 import autosize from 'autosize';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import ListPropType from '../../prop-types/list';
 import StyleObjectPropType from '../../prop-types/style';
 import Tooltip from '../Tooltip/Tooltip';
 import TooltipBox from '../Tooltip/TooltipBox';
 import { TooltipBoxStatus, TooltipPosition } from '../Tooltip/TooltipEnums';
 import IconRequired from '../Icon/IconRequired';
-import { TextAreaAutoHeight } from './TextFieldEnums';
 import './TextArea.scss';
 
 const propTypes = {
     className: PropTypes.string,
     componentRef: PropTypes.func,
-    hasAutoHeight: ListPropType([
-        TextAreaAutoHeight.ENABLED,
-        TextAreaAutoHeight.DISABLED,
-    ]),
+    hasAutoHeight: PropTypes.bool,
     hasLabelAlways: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
@@ -54,7 +49,7 @@ const propTypes = {
 const defaultProps = {
     className: null,
     componentRef: null,
-    hasAutoHeight: TextAreaAutoHeight.DISABLED,
+    hasAutoHeight: false,
     hasLabelAlways: false,
     isDisabled: false,
     isFullWidth: false,
@@ -174,9 +169,14 @@ class TextArea extends Component {
         }
     }
 
-    wrapInputWithTooltip = (input, tooltip) => {
-        // @NB: if you provide a string to either tooltipError or tooltipHint a wrapper
-        //      will be created for you (an error tooltip box is used for tooltipError)
+    /**
+     * wrapInputWithTooltip
+     * provide a string or component to tooltipError or tooltipHint and this
+     * wrapper will be used to create a tooltipBox (an error box is used for tooltipError)
+     * @param {Element} textarea - the textarea field
+     * @param {Component|string} tooltip - the error or hint tooltip
+     */
+    wrapInputWithTooltip = (textarea, tooltip) => {
         const { DEFAULT, ERROR } = TooltipBoxStatus;
         return (
             tooltip ?
@@ -191,9 +191,9 @@ class TextArea extends Component {
                         </TooltipBox>
                     }
                 >
-                    {input}
+                    {textarea}
                 </Tooltip> :
-                input
+                textarea
         );
     }
 

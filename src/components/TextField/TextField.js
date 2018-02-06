@@ -180,9 +180,14 @@ class TextField extends Component {
         this.setState({ value: '' });
     }
 
+    /**
+     * wrapInputWithTooltip
+     * provide a string or component to tooltipError or tooltipHint and this
+     * wrapper will be used to create a tooltipBox (an error box is used for tooltipError)
+     * @param {Element} input - the input field
+     * @param {Component|string} tooltip - the error or hint tooltip
+     */
     wrapInputWithTooltip = (input, tooltip) => {
-        // @NB: if you provide a string to either tooltipError or tooltipHint a wrapper
-        //      will be created for you (an error tooltip box is used for tooltipError)
         const { DEFAULT, ERROR } = TooltipBoxStatus;
         return (
             tooltip ?
