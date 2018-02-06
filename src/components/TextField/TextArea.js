@@ -196,8 +196,6 @@ class TextArea extends Component {
     }
 
     render() {
-        /* eslint-disable jsx-a11y/label-has-for */
-        // @NB: jsx-a11y/label-has-for fails with UID as id
         const showLabel = (
             this.props.hasLabelAlways ||
             this.state.hasFocus ||
@@ -207,6 +205,8 @@ class TextArea extends Component {
         const requiredIcon = this.props.isRequired ?
             <Tooltip tooltip={this.props.tooltipRequired}><IconRequired /></Tooltip> :
             null;
+        /* eslint-disable jsx-a11y/label-has-for */
+        // @NB: jsx-a11y/label-has-for fails with UID as id
         const label = this.props.label && showLabel ?
             (
                 <label htmlFor={this.uid} className="uir-textarea-label">
@@ -215,6 +215,7 @@ class TextArea extends Component {
                 </label>
             ) :
             null;
+        /* eslint-enable */
         const showPlaceholder = (!this.props.label || this.state.hasFocus);
         return (
             <div
@@ -266,7 +267,6 @@ class TextArea extends Component {
                 </div>
             </div>
         );
-        /* eslint-enable */
     }
 }
 
