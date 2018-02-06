@@ -284,7 +284,6 @@ class TextField extends Component {
                     {this.wrapInputWithTooltip(
                         <input
                             aria-invalid={this.props.isValid === false}
-                            aria-required={this.props.isRequired}
                             className="uir-textfield-input"
                             disabled={this.props.isDisabled}
                             id={this.uid}

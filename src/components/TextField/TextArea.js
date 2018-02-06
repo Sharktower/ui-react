@@ -244,7 +244,6 @@ class TextArea extends Component {
                     {this.wrapInputWithTooltip(
                         <textarea
                             aria-invalid={this.props.isValid === false}
-                            aria-required={this.props.isRequired}
                             className="uir-textarea-input"
                             disabled={this.props.isDisabled}
                             id={this.uid}
