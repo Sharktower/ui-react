@@ -105,7 +105,7 @@ module.exports = (config) => {
             // with an exit code of 1 if not running in watch mode
             thresholds: {
                 // Set to `true` to not fail the test command when thresholds are not met
-                emitWarning: true,
+                emitWarning: false,
                 // Thresholds for all files
                 global: {
                     statements: 100,
