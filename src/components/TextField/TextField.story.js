@@ -11,7 +11,7 @@ const stories = storiesOf('TextField.TextField', module);
 stories.add(
     'Overview',
     storyWrapper(
-        'TextField is text input field.',
+        'TextField is a text input field.',
         <TextField label="Text field label" />,
     ),
 );
