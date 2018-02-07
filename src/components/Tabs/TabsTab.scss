@@ -1,32 +1,6 @@
 @import "../_variables";
 
 .uir-tabs-tab {
-    $tab-background-color-hover: rgba($charcoal, .1) !default;
-    $tab-background-color-focus: rgba($charcoal, .15) !default;
-    $tab-background-color-selected: rgba($charcoal, .1) !default;
-    $tab-background-color-selected-hover: rgba($charcoal, .05) !default;
-    $tab-background-color-selected-focus: rgba($charcoal, .15) !default;
-
     padding: 6px 8px;
     margin: 0;
-
-    &:hover {
-        background: $tab-background-color-hover;
-    }
-
-    &:focus {
-        background: $tab-background-color-focus;
-    }
-
-    &.uir-button--active {
-        background: $tab-background-color-selected;
-
-        &:hover {
-            background: $tab-background-color-selected-hover;
-        }
-
-        &:focus {
-            background: $tab-background-color-selected-focus;
-        }
-    }
 }

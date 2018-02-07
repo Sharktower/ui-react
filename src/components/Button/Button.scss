@@ -4,7 +4,7 @@
     $button-font-family: $font-family !default;
     $button-font-size: $base-font-size !default;
     $button-color: rgba(47,40,51,.6) !default;
-    $button-color-clear: #000 !default;
+    $button-color-clear: rgba($charcoal, .8) !default;
     $button-color-hover: $charcoal !default;
     $button-color-focus: $charcoal !default;
     $button-color-active: $charcoal !default;
@@ -12,7 +12,8 @@
     $button-background-color-clear: transparent !default;
     $button-background-color-hover: rgba($charcoal, .1) !default;
     $button-background-color-focus: rgba($charcoal, .2) !default;
-    $button-background-color-active: rgba($charcoal, .4) !default;
+    $button-background-color-active: rgba($charcoal, .1) !default;
+    $button-background-color-active-hover: rgba($charcoal, .05) !default;
     $button-primary-background-top: #ff1966 !default;
     $button-primary-background-bottom: #fa439f !default;
     $button-primary-background-top-focus: darken($button-primary-background-top, 10%) !default;
@@ -86,7 +87,7 @@
     // type=clear prop
     &--clear {
         color: $button-color-clear;
-        background: $button-background-color-clear;
+        background-color: $button-background-color-clear;
     }
 
     &:hover {
@@ -99,9 +100,15 @@
         background-color: $button-background-color-focus;
     }
 
+    // isActive prop
     &--active {
+        font-weight: 600; /* Medium, not bold if available */
         color: $button-color-active;
         background-color: $button-background-color-active;
+
+        &:hover {
+            background-color: $button-background-color-active-hover;
+        }
     }
 
     // isFullWidth prop
@@ -115,11 +122,6 @@
     &--disabled {
         pointer-events: none;
         opacity: .5;
-    }
-
-    // isActive prop
-    &--active {
-        font-weight: 600; /* Medium, not bold if available */
     }
 
     // type=primary prop
