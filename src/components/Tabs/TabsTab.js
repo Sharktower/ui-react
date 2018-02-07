@@ -8,6 +8,7 @@ const propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     id: PropTypes.string,
+    isDisabled: PropTypes.bool,
     isSelected: PropTypes.bool,
     onSelect: PropTypes.func,
 };
@@ -16,6 +17,7 @@ const defaultProps = {
     children: null,
     className: null,
     id: null,
+    isDisabled: null,
     isSelected: false,
     onSelect: null,
 };
@@ -24,6 +26,7 @@ const TabsTab = ({
     children,
     className,
     id,
+    isDisabled,
     isSelected,
     onSelect,
 }) => (
@@ -34,6 +37,7 @@ const TabsTab = ({
         )}
         id={id}
         isActive={isSelected}
+        isDisabled={isDisabled}
         onClick={onSelect}
         variant="clear"
     >

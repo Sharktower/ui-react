@@ -29,7 +29,7 @@ describe('Tabs', () => {
         expect(wrapper).to.have.tagName('div');
     });
 
-    it('renders with class .uir-button', () => {
+    it('renders with class .uir-tabs', () => {
         const wrapper = shallow(defaultTabs);
 
         expect(wrapper).to.have.className('uir-tabs');
@@ -211,6 +211,35 @@ describe('Tabs', () => {
             trigger.simulate('click');
             dropdown.simulate('blur', syntheticEvent);
             expect(dropdown).to.have.className('uir-tabs-nav-dropdown--open');
+        });
+    });
+
+    describe('Tab isDisabled', () => {
+        it('does not make tab button disabled by default', () => {
+            const wrapper = mount(defaultTabs);
+            const tab2 = wrapper.find(TabsTab).at(1);
+            const button = tab2.find('Button');
+
+            expect(button).not.to.have.prop('isDisabled', true);
+        });
+
+        it('makes tab button disabled', () => {
+            const wrapper = mount((
+                <Tabs>
+                    <Tabs.Nav>
+                        <Tabs.Tab>Item one</Tabs.Tab>
+                        <Tabs.Tab isDisabled>Item two</Tabs.Tab>
+                    </Tabs.Nav>
+                    <Tabs.Panes>
+                        <Tabs.Pane>Content one</Tabs.Pane>
+                        <Tabs.Pane>Content two</Tabs.Pane>
+                    </Tabs.Panes>
+                </Tabs>
+            ));
+            const tab2 = wrapper.find(TabsTab).at(1);
+            const button = tab2.find('Button');
+
+            expect(button).to.have.prop('isDisabled', true);
         });
     });
 });

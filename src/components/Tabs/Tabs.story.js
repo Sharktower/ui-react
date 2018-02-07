@@ -54,6 +54,52 @@ Tabs component allows toggling between multiple content panes.
 );
 
 stories.add(
+    'Disabled',
+    storyWrapper(
+        `
+To disable a tab, add <code>isDisabled</code> prop to the <code><Tabs.Tab></code> component.
+
+    <Tabs>
+        <Tabs.Nav>
+            <Tabs.Tab>Tab one</Tabs.Tab>
+            <Tabs.Tab isDisabled>Tab two</Tabs.Tab>
+            <Tabs.Tab>Tab three</Tabs.Tab>
+        </Tabs.Nav>
+        <Tabs.Panes>
+            <Tabs.Pane>
+                Content 1
+            </Tabs.Pane>
+            <Tabs.Pane>
+                Content 2
+            </Tabs.Pane>
+            <Tabs.Pane>
+                Content 3
+            </Tabs.Pane>
+        </Tabs.Panes>
+    </Tabs>
+        `,
+        <Tabs>
+            <Tabs.Nav>
+                <Tabs.Tab>Tab one</Tabs.Tab>
+                <Tabs.Tab isDisabled>Tab two</Tabs.Tab>
+                <Tabs.Tab>Tab three</Tabs.Tab>
+            </Tabs.Nav>
+            <Tabs.Panes>
+                <Tabs.Pane>
+                    Content 1
+                </Tabs.Pane>
+                <Tabs.Pane>
+                    Content 2
+                </Tabs.Pane>
+                <Tabs.Pane>
+                    Content 3
+                </Tabs.Pane>
+            </Tabs.Panes>
+        </Tabs>,
+    ),
+);
+
+stories.add(
     'Preselected',
     storyWrapper(
         `
