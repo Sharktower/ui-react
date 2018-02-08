@@ -44,6 +44,7 @@ class TabsNav extends Component {
                 onBlur={this.handleDropdownBlur}
             >
                 <Button
+                    aria-expanded={this.state.isDropdownOpen}
                     className="uir-tabs-nav-dropdown-trigger"
                     icon={<IconMore />}
                     onClick={this.handleDropdownTriggerClick}
