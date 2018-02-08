@@ -6,6 +6,7 @@ import { ButtonIconPosition, ButtonType, ButtonVariant } from './ButtonEnums';
 import './Button.scss';
 
 const propTypes = {
+    'aria-expanded': PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
     confirmText: PropTypes.string,
@@ -40,6 +41,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    'aria-expanded': null,
     children: null,
     className: null,
     confirmText: 'Confirm?',
@@ -114,6 +116,7 @@ class Button extends Component {
 
     render() {
         const {
+            'aria-expanded': ariaExpanded,
             children,
             className,
             confirmText,
@@ -149,6 +152,7 @@ class Button extends Component {
                         'uir-button--round': variant === ButtonVariant.ROUND,
                     },
                 )}
+                aria-expanded={ariaExpanded}
                 disabled={isDisabled}
                 onBlur={this.handleBlur}
                 onClick={this.handleClick}
