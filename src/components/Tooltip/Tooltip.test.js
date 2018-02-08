@@ -36,16 +36,15 @@ describe('Tooltip', () => {
     });
 
     common.rendersTag(Tooltip, 'div', { requiredProps: { children: exampleAvatar, tooltip: <span /> } });
+    common.addsComponentClassName(
+        Tooltip,
+        { requiredProps: { children: exampleAvatar, tooltip: <span /> } },
+    );
 
     it('complains if tooltip is not provided', () => {
         shallow(<Tooltip>contents</Tooltip>);
         // eslint-disable-next-line no-console
         expect(console.error).to.be.calledWithMatch('The prop `tooltip` is marked as required in `Tooltip`');
-    });
-
-    it('has correct class', () => {
-        const tooltip = shallow(<Tooltip tooltip={<div />}>{exampleAvatar}</Tooltip>);
-        expect(tooltip).to.have.className('uir-tooltip');
     });
 
     it('has correct inner class', () => {

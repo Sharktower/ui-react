@@ -17,16 +17,12 @@ describe('TooltipBox', () => {
     });
 
     common.rendersTag(TooltipBox, 'div', { requiredProps: { children: 'Foo' } });
+    common.addsComponentClassName(TooltipBox, { requiredProps: { children: 'Foo' } });
 
     it('complains if children not provided', () => {
         shallow(<TooltipBox />);
         // eslint-disable-next-line no-console
         expect(console.error).to.be.calledWithMatch('The prop `children` is marked as required in `TooltipBox`');
-    });
-
-    it('has correct parent class', () => {
-        const tooltipBox = shallow(<TooltipBox>contents</TooltipBox>);
-        expect(tooltipBox).to.have.className('uir-tooltip-box');
     });
 
     it('has default theme class as standard', () => {

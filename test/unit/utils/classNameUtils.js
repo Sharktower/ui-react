@@ -8,14 +8,25 @@ function convertCamelCaseToDash(text) {
 }
 
 /**
+ * Get className derived from Component name
+ * @param {React.Component|Function} Component The component to test.
+ */
+export const getClassNameFromComponentName = (Component) => {
+    const className = convertCamelCaseToDash(Component.name);
+
+    return `uir-${className}`;
+};
+
+/**
  * Get className derived from Component name and a boolean prop key name
  * @param {React.Component|Function} Component The component to test.
  * @param {String} propKey A props key.
  */
-export default (Component, propKey) => {
+export const getClassNameFromBoolPropKey = (Component, propKey) => {
     const nameFromPropKey = propKey.indexOf('is') === 0 ?
         convertCamelCaseToDash(propKey.replace('is', '')) :
         propKey;
+    const componentClassName = getClassNameFromComponentName(Component);
 
-    return `uir-${convertCamelCaseToDash(Component.name)}--${nameFromPropKey}`;
+    return `${componentClassName}--${nameFromPropKey}`;
 };

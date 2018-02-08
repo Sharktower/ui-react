@@ -1,7 +1,7 @@
 // Based on https://github.com/Semantic-Org/Semantic-UI-React/blob/master/test/specs/commonTests/classNameHelpers.js
 /* global expect, it, shallow */
 import React from 'react';
-import getClassNameFromBoolPropKey from '../utils/getClassNameFromBoolPropKey';
+import { getClassNameFromBoolPropKey } from '../utils';
 
 /**
  * Assert that a Component prop's name is not converted to className when prop is not defined.

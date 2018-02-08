@@ -1,3 +1,5 @@
+export { default as addsClassName } from './addsClassName';
+export { default as addsComponentClassName } from './addsComponentClassName';
 export { default as assertRequiredHelpers } from './assertRequiredHelpers';
 export { default as noClassNameFromUndefinedProp } from './noClassNameFromUndefinedProp';
 export { default as propKeyToClassName } from './propKeyToClassName';

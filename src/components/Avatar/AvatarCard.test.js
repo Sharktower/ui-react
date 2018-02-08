@@ -1,6 +1,7 @@
 /* global describe, expect, it, shallow, beforeEach, afterEach  */
 import React from 'react';
 import sinon from 'sinon';
+import * as common from '../../../test/unit/commonTests';
 import Avatar from './Avatar';
 import AvatarCard from './AvatarCard';
 
@@ -29,20 +30,13 @@ describe('AvatarCard', () => {
         sandbox.restore();
     });
 
+    common.rendersTag(AvatarCard, 'div', { requiredProps: { name: exampleUser.name } });
+    common.addsComponentClassName(AvatarCard, { requiredProps: { name: exampleUser.name } });
+
     it('complains if user name is not provided', () => {
         shallow(<AvatarCard />);
         // eslint-disable-next-line no-console
         expect(console.error).to.be.calledWithMatch('The prop `name` is marked as required in `AvatarCard`');
-    });
-
-    it('renders div elements', () => {
-        const avatarCard = shallow(<AvatarCard />);
-        expect(avatarCard.find('div').length).to.equal(3);
-    });
-
-    it('has correct class', () => {
-        const avatarCard = shallow(<AvatarCard />);
-        expect(avatarCard).to.have.className('uir-avatar-card');
     });
 
     it('can pass through class', () => {

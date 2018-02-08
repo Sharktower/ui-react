@@ -2,8 +2,8 @@
 /* global describe, expect, it, mount */
 import { createElement } from 'react';
 import assertRequiredHelpers from './assertRequiredHelpers';
-import getClassNameFromBoolPropKey from '../utils/getClassNameFromBoolPropKey';
-import { noClassNameFromUndefinedProp } from '../../../test/unit/commonTests';
+import noClassNameFromUndefinedProp from './noClassNameFromUndefinedProp';
+import { getClassNameFromBoolPropKey } from '../utils';
 
 /**
  * Assert that only a Component prop's name is converted to className.
@@ -18,7 +18,7 @@ export default (Component, propKey, options = {}) => {
         className = getClassNameFromBoolPropKey(Component, propKey),
         requiredProps = {},
     } = options;
-    const { assertRequired } = assertRequiredHelpers('rendersChildren', Component);
+    const { assertRequired } = assertRequiredHelpers('propKeyToClassName', Component);
 
     describe(`${propKey} (common)`, () => {
         assertRequired(Component, 'a `Component`');

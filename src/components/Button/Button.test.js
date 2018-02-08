@@ -10,15 +10,10 @@ describe('Button', () => {
 
     common.rendersChildren(Button, { requiredProps: { onClick: () => {} } });
     common.rendersTag(Button, 'button', { requiredProps: { onClick: () => {} } });
+    common.addsComponentClassName(Button, { requiredProps: { onClick: () => {} } });
     common.propKeyToClassName(Button, 'isActive', { requiredProps: { children: 'Foo', onClick: () => {} } });
     common.propKeyToClassName(Button, 'isDisabled', { requiredProps: { children: 'Foo', onClick: () => {} } });
     common.propKeyToClassName(Button, 'isFullWidth', { requiredProps: { children: 'Foo', onClick: () => {} } });
-
-    it('renders with class .uir-button', () => {
-        const wrapper = shallow(defaultButton);
-
-        expect(wrapper).to.have.className('uir-button');
-    });
 
     it('renders three Button components', () => {
         const wrapper = shallow((
