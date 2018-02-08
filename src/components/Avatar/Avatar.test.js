@@ -1,6 +1,7 @@
 /* global describe, expect, it, shallow, mount, beforeEach, afterEach  */
 import React from 'react';
 import sinon from 'sinon';
+import * as common from '../../../test/unit/commonTests';
 import Avatar from './Avatar';
 
 describe('Avatar', () => {
@@ -19,6 +20,8 @@ describe('Avatar', () => {
         sandbox.restore();
     });
 
+    common.rendersTag(Avatar, 'div', { requiredProps: { name: sampleData.name } });
+
     it('complains if name is not provided', () => {
         shallow(<Avatar />);
         // eslint-disable-next-line no-console
@@ -29,11 +32,6 @@ describe('Avatar', () => {
         shallow(<Avatar name={sampleData.name} initials="MPD" />);
         // eslint-disable-next-line no-console
         expect(console.error).to.be.calledWithMatch('Initials supplied to `Avatar` should be 1 or 2 characters');
-    });
-
-    it('renders a div element', () => {
-        const avatar = shallow(<Avatar name={sampleData.name} />);
-        expect(avatar).to.have.tagName('div');
     });
 
     it('has correct class', () => {

@@ -1,6 +1,7 @@
 /* global describe, expect, it, shallow, beforeEach, afterEach */
 import React from 'react';
 import sinon from 'sinon';
+import * as common from '../../../test/unit/commonTests';
 import TooltipBox from './TooltipBox';
 import Avatar from '../Avatar/Avatar';
 
@@ -15,15 +16,12 @@ describe('TooltipBox', () => {
         sandbox.restore();
     });
 
+    common.rendersTag(TooltipBox, 'div', { requiredProps: { children: 'Foo' } });
+
     it('complains if children not provided', () => {
         shallow(<TooltipBox />);
         // eslint-disable-next-line no-console
         expect(console.error).to.be.calledWithMatch('The prop `children` is marked as required in `TooltipBox`');
-    });
-
-    it('renders a div element', () => {
-        const tooltipBox = shallow(<TooltipBox>contents</TooltipBox>);
-        expect(tooltipBox).to.have.tagName('div');
     });
 
     it('has correct parent class', () => {

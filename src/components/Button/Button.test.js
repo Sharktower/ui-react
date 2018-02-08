@@ -9,15 +9,10 @@ describe('Button', () => {
     const defaultButton = (<Button onClick={() => {}}>Foo</Button>);
 
     common.rendersChildren(Button, { requiredProps: { onClick: () => {} } });
+    common.rendersTag(Button, 'button', { requiredProps: { onClick: () => {} } });
     common.propKeyToClassName(Button, 'isActive', { requiredProps: { children: 'Foo', onClick: () => {} } });
     common.propKeyToClassName(Button, 'isDisabled', { requiredProps: { children: 'Foo', onClick: () => {} } });
     common.propKeyToClassName(Button, 'isFullWidth', { requiredProps: { children: 'Foo', onClick: () => {} } });
-
-    it('renders an HTML tag button', () => {
-        const wrapper = shallow(defaultButton);
-
-        expect(wrapper).to.have.tagName('button');
-    });
 
     it('renders with class .uir-button', () => {
         const wrapper = shallow(defaultButton);
