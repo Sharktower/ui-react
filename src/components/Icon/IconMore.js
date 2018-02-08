@@ -1,20 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
+import StyleObjectPropType from '../../prop-types/style';
 import './Icon.scss';
 
 let lastInstanceId = 0;
 
 const propTypes = {
     className: PropTypes.string,
-    style: PropTypes.objectOf(PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-    ])),
+    style: StyleObjectPropType(),
 };
 
 const defaultProps = {
-    className: '',
+    className: null,
     style: null,
 };
 
