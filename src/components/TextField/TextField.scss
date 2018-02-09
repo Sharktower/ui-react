@@ -100,6 +100,7 @@ $textFieldLabelColor: $charcoal !default;
         font-family: inherit;
         font-size: inherit;
         border: 0;
+        outline: none;
 
         &:invalid {
             box-shadow: none; // hide Firefox invalid shadow
