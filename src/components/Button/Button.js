@@ -98,7 +98,7 @@ class Button extends Component {
                             confirmed: false,
                         });
                     }, 1000);
-                    this.props.onClick(event);
+                    propsOnClick(event);
                 });
             }
         } else {
