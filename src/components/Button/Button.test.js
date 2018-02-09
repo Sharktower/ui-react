@@ -30,6 +30,26 @@ describe('Button', () => {
         expect(wrapper.find(Button).length).to.equal(3);
     });
 
+    describe('aria-expanded', () => {
+        it('does not set aria-expanded attribute by default', () => {
+            const wrapper = shallow(defaultButton);
+
+            expect(wrapper).not.to.have.attr('aria-expanded');
+        });
+
+        it('sets aria-expanded attribute to true', () => {
+            const wrapper = shallow(<Button aria-expanded="true" onClick={() => {}}>Foo</Button>);
+
+            expect(wrapper).to.have.attr('aria-expanded', 'true');
+        });
+
+        it('sets aria-expanded attribute to false', () => {
+            const wrapper = shallow(<Button aria-expanded="false" onClick={() => {}}>Foo</Button>);
+
+            expect(wrapper).to.have.attr('aria-expanded', 'false');
+        });
+    });
+
     describe('hasConfirm', () => {
         const defaultConfirmButton = (
             <Button hasConfirm onClick={() => {}}>Foo</Button>
