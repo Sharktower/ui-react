@@ -30,22 +30,12 @@ describe('AvatarTitle', () => {
         sandbox.restore();
     });
 
-    common.rendersTag(AvatarTitle, 'div', { requiredProps: { name: exampleUser.name } });
-    common.addsComponentClassName(AvatarTitle, { requiredProps: { name: exampleUser.name } });
+    common.isConformant(AvatarTitle, { requiredProps: { name: exampleUser.name } });
 
     it('complains if user name is not provided', () => {
         shallow(<AvatarTitle />);
         // eslint-disable-next-line no-console
         expect(console.error).to.be.called();
-    });
-
-    it('can pass through class', () => {
-        const exampleClassName = 'example-class';
-        const avatarTitle = shallow(<AvatarTitle
-            name={exampleUser.name}
-            className={exampleClassName}
-        />);
-        expect(avatarTitle).to.have.className(exampleClassName);
     });
 
     it('can display name', () => {

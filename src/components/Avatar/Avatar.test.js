@@ -20,8 +20,7 @@ describe('Avatar', () => {
         sandbox.restore();
     });
 
-    common.rendersTag(Avatar, 'div', { requiredProps: { name: sampleData.name } });
-    common.addsComponentClassName(Avatar, { requiredProps: { name: sampleData.name } });
+    common.isConformant(Avatar, { requiredProps: { name: sampleData.name } });
 
     it('complains if name is not provided', () => {
         shallow(<Avatar />);
@@ -33,12 +32,6 @@ describe('Avatar', () => {
         shallow(<Avatar name={sampleData.name} initials="MPD" />);
         // eslint-disable-next-line no-console
         expect(console.error).to.be.calledWithMatch('Initials supplied to `Avatar` should be 1 or 2 characters');
-    });
-
-    it('can pass through class', () => {
-        const exampleClassName = 'example-class';
-        const avatar = shallow(<Avatar name={sampleData.name} className={exampleClassName} />);
-        expect(avatar).to.have.className(exampleClassName);
     });
 
     it('calculates initials from name', () => {

@@ -35,11 +35,7 @@ describe('Tooltip', () => {
         sandbox.restore();
     });
 
-    common.rendersTag(Tooltip, 'div', { requiredProps: { children: exampleAvatar, tooltip: <span /> } });
-    common.addsComponentClassName(
-        Tooltip,
-        { requiredProps: { children: exampleAvatar, tooltip: <span /> } },
-    );
+    common.isConformant(Tooltip, { requiredProps: { children: exampleAvatar, tooltip: <span /> } });
 
     it('complains if tooltip is not provided', () => {
         shallow(<Tooltip>contents</Tooltip>);
@@ -76,12 +72,6 @@ describe('Tooltip', () => {
             ));
             expect(tooltip).to.have.className(`uir-tooltip--${position}`);
         });
-    });
-
-    it('can pass through class', () => {
-        const exampleClassName = 'example-class';
-        const tooltip = shallow(<Tooltip tooltip={<div />} className={exampleClassName} />);
-        expect(tooltip).to.have.className(exampleClassName);
     });
 
     it('can pass in children props', () => {

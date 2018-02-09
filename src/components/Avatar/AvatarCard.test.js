@@ -30,22 +30,12 @@ describe('AvatarCard', () => {
         sandbox.restore();
     });
 
-    common.rendersTag(AvatarCard, 'div', { requiredProps: { name: exampleUser.name } });
-    common.addsComponentClassName(AvatarCard, { requiredProps: { name: exampleUser.name } });
+    common.isConformant(AvatarCard, { requiredProps: { name: exampleUser.name } });
 
     it('complains if user name is not provided', () => {
         shallow(<AvatarCard />);
         // eslint-disable-next-line no-console
         expect(console.error).to.be.calledWithMatch('The prop `name` is marked as required in `AvatarCard`');
-    });
-
-    it('can pass through class', () => {
-        const exampleClassName = 'example-class';
-        const avatarCard = shallow(<AvatarCard
-            name={exampleUser.name}
-            className={exampleClassName}
-        />);
-        expect(avatarCard).to.have.className(exampleClassName);
     });
 
     it('can display name', () => {

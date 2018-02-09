@@ -11,7 +11,7 @@ import { getClassNameFromBoolPropKey } from '../utils';
  * @param {String} propKey A props key.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object} [options.className=propKey] The className to assert exists.
+ * @param {String} [options.className=propKey] The className to assert exists.
  */
 export default (Component, propKey, options = {}) => {
     const {

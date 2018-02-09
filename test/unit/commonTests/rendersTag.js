@@ -5,7 +5,7 @@ import assertRequiredHelpers from './assertRequiredHelpers';
 /**
  * Assert a component renders the provided tag.
  * @param {React.Component|Function} Component A component to test.
- * @param {String} tagName
+ * @param {String} tagName HTML tag name that should be rendered by the component.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  */

@@ -16,8 +16,7 @@ describe('TooltipBox', () => {
         sandbox.restore();
     });
 
-    common.rendersTag(TooltipBox, 'div', { requiredProps: { children: 'Foo' } });
-    common.addsComponentClassName(TooltipBox, { requiredProps: { children: 'Foo' } });
+    common.isConformant(TooltipBox, { requiredProps: { children: 'Foo' } });
 
     it('complains if children not provided', () => {
         shallow(<TooltipBox />);

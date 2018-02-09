@@ -7,13 +7,16 @@ import IconArrow from '../Icon/IconArrow';
 
 describe('Button', () => {
     const defaultButton = (<Button onClick={() => {}}>Foo</Button>);
+    const commonTestsOptions = {
+        requiredProps: { onClick: () => {} },
+        rendersChildren: true,
+        tagName: 'button',
+    };
 
-    common.rendersChildren(Button, { requiredProps: { onClick: () => {} } });
-    common.rendersTag(Button, 'button', { requiredProps: { onClick: () => {} } });
-    common.addsComponentClassName(Button, { requiredProps: { onClick: () => {} } });
-    common.propKeyToClassName(Button, 'isActive', { requiredProps: { children: 'Foo', onClick: () => {} } });
-    common.propKeyToClassName(Button, 'isDisabled', { requiredProps: { children: 'Foo', onClick: () => {} } });
-    common.propKeyToClassName(Button, 'isFullWidth', { requiredProps: { children: 'Foo', onClick: () => {} } });
+    common.isConformant(Button, commonTestsOptions);
+    common.propKeyToClassName(Button, 'isActive', commonTestsOptions);
+    common.propKeyToClassName(Button, 'isDisabled', commonTestsOptions);
+    common.propKeyToClassName(Button, 'isFullWidth', commonTestsOptions);
 
     it('renders three Button components', () => {
         const wrapper = shallow((
