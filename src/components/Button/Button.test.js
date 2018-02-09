@@ -38,13 +38,22 @@ describe('Button', () => {
         });
 
         it('sets aria-expanded attribute to true', () => {
-            const wrapper = shallow(<Button aria-expanded="true" onClick={() => {}}>Foo</Button>);
+            // `aria-expanded` accepts booleans to make it easy to integrate
+            // with variables controlling dropdown state.
+            // So use a variable to immitate that use case
+            const ariaExpanded = true;
+            const wrapper = shallow((
+                <Button aria-expanded={ariaExpanded} onClick={() => {}}>Foo</Button>
+            ));
 
             expect(wrapper).to.have.attr('aria-expanded', 'true');
         });
 
         it('sets aria-expanded attribute to false', () => {
-            const wrapper = shallow(<Button aria-expanded="false" onClick={() => {}}>Foo</Button>);
+            const ariaExpanded = false;
+            const wrapper = shallow((
+                <Button aria-expanded={ariaExpanded} onClick={() => {}}>Foo</Button>
+            ));
 
             expect(wrapper).to.have.attr('aria-expanded', 'false');
         });
