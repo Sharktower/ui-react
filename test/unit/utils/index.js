@@ -1,2 +1,2 @@
-export { default as getClassNameFromBoolPropKey } from './getClassNameFromBoolPropKey';
+export * from './classNameUtils';
 export { default as sandbox } from './sandbox';
