@@ -1,0 +1,24 @@
+/* global expect, it, shallow */
+import { createElement } from 'react';
+import assertRequiredHelpers from './assertRequiredHelpers';
+
+/**
+ * Assert a component renders the provided tag.
+ * @param {React.Component|Function} Component A component to test.
+ * @param {String} tagName HTML tag name that should be rendered by the component.
+ * @param {Object} [options={}]
+ * @param {Object} [options.requiredProps={}] Props required to render the component.
+ */
+export default (Component, tagName, options = {}) => {
+    const { requiredProps = {} } = options;
+    const { assertRequired } = assertRequiredHelpers('rendersTag', Component);
+
+    assertRequired(Component, 'a `Component`');
+    assertRequired(tagName, 'a `String`');
+
+    it(`renders an HTML tag: ${tagName} (common)`, () => {
+        const wrapper = shallow(createElement(Component, requiredProps));
+
+        expect(wrapper).to.have.tagName(tagName);
+    });
+};

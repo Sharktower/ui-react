@@ -7,6 +7,7 @@ import { ButtonIconPosition, ButtonType, ButtonVariant } from './ButtonEnums';
 import './Button.scss';
 
 const propTypes = {
+    'aria-expanded': PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
     confirmText: PropTypes.string,
@@ -38,6 +39,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    'aria-expanded': null,
     children: null,
     className: null,
     confirmText: 'Confirm?',
@@ -111,54 +113,37 @@ class Button extends Component {
     }
 
     render() {
-        const {
-            children,
-            className,
-            confirmText,
-            confirmedText,
-            hasConfirm,
-            icon,
-            iconPosition,
-            id,
-            isActive,
-            isDisabled,
-            isFullWidth,
-            style,
-            tabIndex,
-            type,
-            variant,
-        } = this.props;
-
         return (
             <button
-                id={id}
-                type={type}
-                style={style}
+                id={this.props.id}
+                type={this.props.type}
+                style={this.props.style}
                 className={cx(
                     'uir-button',
-                    className,
-                    icon ? `uir-button--icon-${iconPosition}` : null,
+                    this.props.className,
+                    this.props.icon ? `uir-button--icon-${this.props.iconPosition}` : null,
                     {
-                        'uir-button--active': isActive,
-                        'uir-button--clear': variant === ButtonVariant.CLEAR,
-                        'uir-button--disabled': isDisabled,
-                        'uir-button--full-width': isFullWidth,
-                        'uir-button--primary': variant === ButtonVariant.PRIMARY,
-                        'uir-button--round': variant === ButtonVariant.ROUND,
+                        'uir-button--active': this.props.isActive,
+                        'uir-button--clear': this.props.variant === ButtonVariant.CLEAR,
+                        'uir-button--disabled': this.props.isDisabled,
+                        'uir-button--full-width': this.props.isFullWidth,
+                        'uir-button--primary': this.props.variant === ButtonVariant.PRIMARY,
+                        'uir-button--round': this.props.variant === ButtonVariant.ROUND,
                     },
                 )}
-                disabled={isDisabled}
+                aria-expanded={this.props['aria-expanded']}
+                disabled={this.props.isDisabled}
                 onBlur={this.handleBlur}
                 onClick={this.handleClick}
                 ref={this.handleRef}
-                tabIndex={tabIndex}
+                tabIndex={this.props.tabIndex}
             >
-                {iconPosition === ButtonIconPosition.LEFT ? icon : null }
+                {this.props.iconPosition === ButtonIconPosition.LEFT ? this.props.icon : null }
                 <span className="uir-button-content">
-                    {children}
+                    {this.props.children}
                 </span>
-                {iconPosition === ButtonIconPosition.RIGHT ? icon : null }
-                {hasConfirm ?
+                {this.props.iconPosition === ButtonIconPosition.RIGHT ? this.props.icon : null }
+                {this.props.hasConfirm ?
                     <span
                         aria-hidden={!this.state.confirming && !this.state.confirmed}
                         className={cx(
@@ -170,8 +155,8 @@ class Button extends Component {
                             },
                         )}
                     >
-                        {this.state.confirmed ? confirmedText : null}
-                        {this.state.confirming ? confirmText : null}
+                        {this.state.confirmed ? this.props.confirmedText : null}
+                        {this.state.confirming ? this.props.confirmText : null}
                     </span>
                     : null
                 }
