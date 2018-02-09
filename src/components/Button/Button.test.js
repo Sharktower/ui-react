@@ -7,23 +7,16 @@ import IconArrow from '../Icon/IconArrow';
 
 describe('Button', () => {
     const defaultButton = (<Button onClick={() => {}}>Foo</Button>);
+    const commonTestsOptions = {
+        requiredProps: { onClick: () => {} },
+        rendersChildren: true,
+        tagName: 'button',
+    };
 
-    common.rendersChildren(Button, { requiredProps: { onClick: () => {} } });
-    common.propKeyToClassName(Button, 'isActive', { requiredProps: { children: 'Foo', onClick: () => {} } });
-    common.propKeyToClassName(Button, 'isDisabled', { requiredProps: { children: 'Foo', onClick: () => {} } });
-    common.propKeyToClassName(Button, 'isFullWidth', { requiredProps: { children: 'Foo', onClick: () => {} } });
-
-    it('renders an HTML tag button', () => {
-        const wrapper = shallow(defaultButton);
-
-        expect(wrapper).to.have.tagName('button');
-    });
-
-    it('renders with class .uir-button', () => {
-        const wrapper = shallow(defaultButton);
-
-        expect(wrapper).to.have.className('uir-button');
-    });
+    common.isConformant(Button, commonTestsOptions);
+    common.propKeyToClassName(Button, 'isActive', commonTestsOptions);
+    common.propKeyToClassName(Button, 'isDisabled', commonTestsOptions);
+    common.propKeyToClassName(Button, 'isFullWidth', commonTestsOptions);
 
     it('renders three Button components', () => {
         const wrapper = shallow((
@@ -45,13 +38,22 @@ describe('Button', () => {
         });
 
         it('sets aria-expanded attribute to true', () => {
-            const wrapper = shallow(<Button aria-expanded="true" onClick={() => {}}>Foo</Button>);
+            // `aria-expanded` accepts booleans to make it easy to integrate
+            // with variables controlling dropdown state.
+            // So use a variable to immitate that use case
+            const ariaExpanded = true;
+            const wrapper = shallow((
+                <Button aria-expanded={ariaExpanded} onClick={() => {}}>Foo</Button>
+            ));
 
             expect(wrapper).to.have.attr('aria-expanded', 'true');
         });
 
         it('sets aria-expanded attribute to false', () => {
-            const wrapper = shallow(<Button aria-expanded="false" onClick={() => {}}>Foo</Button>);
+            const ariaExpanded = false;
+            const wrapper = shallow((
+                <Button aria-expanded={ariaExpanded} onClick={() => {}}>Foo</Button>
+            ));
 
             expect(wrapper).to.have.attr('aria-expanded', 'false');
         });

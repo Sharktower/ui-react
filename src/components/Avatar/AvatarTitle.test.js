@@ -1,6 +1,7 @@
 /* global describe, expect, it, shallow, beforeEach, afterEach  */
 import React from 'react';
 import sinon from 'sinon';
+import * as common from '../../../test/unit/commonTests';
 import Avatar from './Avatar';
 import AvatarTitle from './AvatarTitle';
 
@@ -29,29 +30,12 @@ describe('AvatarTitle', () => {
         sandbox.restore();
     });
 
+    common.isConformant(AvatarTitle, { requiredProps: { name: exampleUser.name } });
+
     it('complains if user name is not provided', () => {
         shallow(<AvatarTitle />);
         // eslint-disable-next-line no-console
         expect(console.error).to.be.called();
-    });
-
-    it('renders div elements', () => {
-        const avatarTitle = shallow(<AvatarTitle />);
-        expect(avatarTitle.find('div').length).to.equal(3);
-    });
-
-    it('has correct class', () => {
-        const avatarTitle = shallow(<AvatarTitle />);
-        expect(avatarTitle).to.have.className('uir-avatar-title');
-    });
-
-    it('can pass through class', () => {
-        const exampleClassName = 'example-class';
-        const avatarTitle = shallow(<AvatarTitle
-            name={exampleUser.name}
-            className={exampleClassName}
-        />);
-        expect(avatarTitle).to.have.className(exampleClassName);
     });
 
     it('can display name', () => {
