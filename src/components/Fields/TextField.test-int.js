@@ -1,12 +1,12 @@
 /* global Feature, Scenario */
 
-const KIND = 'TextField.TextField';
+const KIND = 'Fields.TextField';
 
 Feature('TextField');
 
 Scenario('Storybook Documentation', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.see('TextField: TextField');
+        I.see('Fields: TextField');
         I.see('Overview', 'h2');
         I.see('Example', 'h3');
         I.see('Source Code', 'h3');
