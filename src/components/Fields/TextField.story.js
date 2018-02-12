@@ -6,7 +6,7 @@ import { TextFieldVariant } from './TextFieldEnums';
 import IconSearch from '../Icon/IconSearch';
 import IconNotification from '../Icon/IconNotification';
 
-const stories = storiesOf('TextField.TextField', module);
+const stories = storiesOf('Fields.TextField', module);
 
 stories.add(
     'Overview',

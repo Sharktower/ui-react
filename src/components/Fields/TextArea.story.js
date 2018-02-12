@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-e
 import storyWrapper from '../../storybook-addons/storyWrapper';
 import TextArea from './TextArea';
 
-const stories = storiesOf('TextField.TextArea', module);
+const stories = storiesOf('Fields.TextArea', module);
 
 stories.add(
     'Overview',
