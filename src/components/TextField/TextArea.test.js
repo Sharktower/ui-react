@@ -148,7 +148,7 @@ describe('TextArea', () => {
     });
 
     it('does nothing if no component ref fn is provided', () => {
-        mount(<TextArea componentRef={false} />);
+        mount(<TextArea />);
     });
 
     ['blur', 'change', 'focus', 'keyDown', 'keyPress', 'keyUp'].forEach((event) => {

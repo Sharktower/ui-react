@@ -275,6 +275,20 @@ describe('TextField', () => {
         expect(textField.state('value')).to.equal('');
     });
 
+    it('input regains focus after clear icon is clicked', () => {
+        const focusSpy = sinon.spy();
+        const textField = mount(<TextField
+            value="an example value"
+            isClearable
+            onFocus={focusSpy}
+        />);
+        textField.instance().inputRef = {
+            focus: sinon.spy(),
+        };
+        textField.find(Button).simulate('click');
+        expect(textField.instance().inputRef.focus).to.be.called();
+    });
+
     it('displays an icon if provided', () => {
         const textField = shallow(<TextField icon={<IconSearch />} />);
         expect(textField.find(IconSearch).length).to.equal(1);

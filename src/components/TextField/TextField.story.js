@@ -27,6 +27,11 @@ stories.add(
         />,
         <div>
             <TextField
+                label="Title with label"
+                variant={TextFieldVariant.TITLE}
+            />
+            <br />
+            <TextField
                 placeholder="My Placeholder"
                 variant={TextFieldVariant.TITLE}
                 value="A Given Value"
@@ -36,7 +41,6 @@ stories.add(
                 placeholder="A Required Field"
                 variant={TextFieldVariant.TITLE}
                 isRequired
-                isValid={false}
                 tooltipError="this field is required"
             />
             <br />

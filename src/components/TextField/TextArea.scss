@@ -52,6 +52,13 @@ $textFieldLabelColor: $charcoal !default;
         }
     }
 
+    &--clearable {
+
+        input::-ms-clear {
+            display: none; // hide IE clear icon
+        }
+    }
+
     &--disabled:after,
     &--readonly:after {
         background: none;

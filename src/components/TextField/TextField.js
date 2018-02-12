@@ -175,7 +175,11 @@ class TextField extends Component {
     }
 
     handleClearIconClick = () => {
-        this.setState({ value: '' });
+        this.setState({ value: '' }, () => {
+            if (this.inputRef) {
+                this.inputRef.focus();
+            }
+        });
     }
 
     /**
@@ -258,6 +262,7 @@ class TextField extends Component {
                 className={cx(
                     'uir-textfield',
                     {
+                        'uir-textfield--clearable': this.props.isClearable,
                         'uir-textfield--disabled': this.props.isDisabled,
                         'uir-textfield--focus': this.state.hasFocus,
                         'uir-textfield--full-width': this.props.isFullWidth,

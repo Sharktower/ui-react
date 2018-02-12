@@ -44,6 +44,13 @@ $textFieldLabelColor: $charcoal !default;
         }
     }
 
+    &--clearable {
+
+        input::-ms-clear {
+            display: none; // hide IE clear icon
+        }
+    }
+
     &--has-right-icon {
         padding-right: 20px;
     }
@@ -104,10 +111,6 @@ $textFieldLabelColor: $charcoal !default;
 
         &:invalid {
             box-shadow: none; // hide Firefox invalid shadow
-        }
-
-        &::-ms-clear {
-            display: none; // hide IE clear icon
         }
     }
 
