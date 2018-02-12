@@ -1,0 +1,74 @@
+@import "../_variables";
+
+.uir-tabs-nav-dropdown {
+    position: relative;
+    display: inline-block;
+
+    &-trigger {
+        min-width: auto;
+        padding: 8px;
+        margin: 0;
+    }
+
+    .uir-icon-more {
+        width: 14px;
+        height: 14px;
+        margin: 0;
+        fill: #3a333c;
+    }
+
+    &-panel {
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        z-index: 100;
+        display: none;
+        background: #fff;
+        border-radius: 2px;
+        box-shadow: 0 0 34px 0 rgba($charcoal,.3);
+
+        &::before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -2;
+            display: block;
+            content: "";
+            background: linear-gradient(to bottom, #fff 0%, rgba($charcoal,.15) 100%);
+            border-radius: 2px;
+        }
+
+        &::after {
+            position: absolute;
+            top: 1px;
+            right: 1px;
+            bottom: 1px;
+            left: 1px;
+            z-index: -1;
+            display: block;
+            content: "";
+            background: #fff;
+            border-radius: 2px;
+        }
+
+        .uir-tabs-nav-item {
+            width: 100%;
+            padding: 11px 20px;
+            text-align: left;
+            white-space: nowrap;
+        }
+    }
+
+    &--open {
+
+        .uir-tabs-nav-dropdown-trigger {
+            background-color: rgba($charcoal, .05);
+        }
+
+        .uir-tabs-nav-dropdown-panel {
+            display: inline-block;
+        }
+    }
+}
