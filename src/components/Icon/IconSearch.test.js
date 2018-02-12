@@ -1,10 +1,8 @@
-/* global describe, expect, it, shallow */
-import React from 'react';
+/* global describe */
+import * as common from '../../../test/unit/commonTests';
 import IconSearch from './IconSearch';
 
 describe('IconSearch', () => {
-    it('has the appropriate classes', () => {
-        const icon = shallow(<IconSearch />);
-        expect(icon).to.have.className('uir-icon uir-icon-search');
-    });
+    common.isConformant(IconSearch, { tagName: 'svg' });
+    common.addsClassName(IconSearch, 'uir-icon');
 });
