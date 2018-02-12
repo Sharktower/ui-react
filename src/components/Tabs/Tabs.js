@@ -36,30 +36,40 @@ class Tabs extends Component {
         };
     }
 
-    render() {
-        const children = React.Children.map(this.props.children, (child) => {
+    getTabsChildren() {
+        return React.Children.map(this.props.children, (child) => {
             if (child.type === TabsNav) {
-                return React.cloneElement(child, {
-                    selectedIndex: this.state.selectedIndex,
-                    onSelectTab: (selectedIndex) => {
-                        this.setState({ selectedIndex });
-                    },
-                    tabsInstanceId: lastInstanceId,
-                    tabsVisible: this.props.tabsVisible,
-                });
+                return this.getTabsNav(child);
             } else if (child.type === TabsPanes) {
-                return React.cloneElement(child, {
-                    selectedIndex: this.state.selectedIndex,
-                    tabsInstanceId: lastInstanceId,
-                });
+                return this.getTabsPanes(child);
             }
 
             return child;
         });
+    }
 
+    getTabsNav(child) {
+        return React.cloneElement(child, {
+            selectedIndex: this.state.selectedIndex,
+            onSelectTab: (selectedIndex) => {
+                this.setState({ selectedIndex });
+            },
+            tabsInstanceId: lastInstanceId,
+            tabsVisible: this.props.tabsVisible,
+        });
+    }
+
+    getTabsPanes(child) {
+        return React.cloneElement(child, {
+            selectedIndex: this.state.selectedIndex,
+            tabsInstanceId: lastInstanceId,
+        });
+    }
+
+    render() {
         return (
             <div className={cx('uir-tabs', this.props.className)} style={this.props.style}>
-                {children}
+                {this.getTabsChildren()}
             </div>
         );
     }
