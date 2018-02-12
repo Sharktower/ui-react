@@ -140,11 +140,17 @@ stories.add(
         <div>
             <TextArea
                 label="Custom tooltip message"
-                isRequired
                 tooltipRequired="this field must be completed"
+                isRequired
+                isFullWidth
             />
             <TextArea
                 label="Full width required"
+                isRequired
+                isFullWidth
+            />
+            <TextArea
+                placeholder="Placeholder no label"
                 isRequired
                 isFullWidth
             />

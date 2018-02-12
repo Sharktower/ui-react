@@ -27,11 +27,6 @@ stories.add(
         />,
         <div>
             <TextField
-                label="Title with label"
-                variant={TextFieldVariant.TITLE}
-            />
-            <br />
-            <TextField
                 placeholder="My Placeholder"
                 variant={TextFieldVariant.TITLE}
                 value="A Given Value"
@@ -188,9 +183,15 @@ stories.add(
         <div>
             <TextField
                 label="Custom tooltip message"
-                isRequired
                 tooltipRequired="this field must be completed"
+                isRequired
             />
+            <br />
+            <TextField
+                placeholder="Placeholder no label"
+                isRequired
+            />
+            <br />
             <TextField
                 label="Full width required"
                 isRequired

@@ -7,10 +7,10 @@ import Tooltip from '../Tooltip/Tooltip';
 import TooltipBox from '../Tooltip/TooltipBox';
 import { TooltipBoxStatus, TooltipPosition } from '../Tooltip/TooltipEnums';
 import IconClear from '../Icon/IconClear';
-import IconRequired from '../Icon/IconRequired';
 import Button from '../Button/Button';
 import { ButtonVariant } from '../Button/ButtonEnums';
 import { TextFieldVariant } from './TextFieldEnums';
+import requiredIconAndTooltip from './RequiredIconAndTooltip';
 import './TextField.scss';
 
 const propTypes = {
@@ -217,9 +217,6 @@ class TextField extends Component {
             this.state.hasMouseOver ||
             !this.state.value
         );
-        const requiredIcon = this.props.isRequired ?
-            <Tooltip tooltip={this.props.tooltipRequired}><IconRequired /></Tooltip> :
-            null;
         /* eslint-disable jsx-a11y/label-has-for */
         // @NB: jsx-a11y/label-has-for fails with UID as id
         const label = this.props.label && showLabel ?
@@ -234,7 +231,7 @@ class TextField extends Component {
                     )}
                 >
                     {this.props.label}
-                    {requiredIcon}
+                    {requiredIconAndTooltip(this.props.isRequired, this.props.tooltipRequired)}
                 </label>
             ) :
             null;
@@ -308,6 +305,10 @@ class TextField extends Component {
                             value={this.state.value}
                         />,
                         this.props.tooltipError || this.props.tooltipHint,
+                    )}
+                    {requiredIconAndTooltip(
+                        this.props.isRequired && !this.props.label,
+                        this.props.tooltipRequired,
                     )}
                 </div>
                 <span className="uir-textfield-right-icon">
