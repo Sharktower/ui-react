@@ -78,6 +78,7 @@ Primary buttons should be used for main calls to action, use <code>variant="prim
         <div>
             <Button variant="primary" onClick={() => {}}>Not active</Button>
             <Button variant="primary" isActive onClick={() => {}}>Active</Button>
+            <Button variant="primary" isDisabled onClick={() => {}}>Disabled</Button>
         </div>,
     ),
 );
