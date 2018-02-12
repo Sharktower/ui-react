@@ -181,3 +181,40 @@ Good luck!
 );
 
 /* eslint-enable */
+
+stories.add(
+    'Conventions',
+    overviewWrapper(`
+The following notes give you a brief guide to some of the key conventions we try and follow with UI React.
+
+### ClassName and Style Props
+
+Every component should have both \`className\` and \`style\` props for you to make use of.
+
+### Event Handlers
+
+Event handle props will generally follow the format \`onEventName\`.
+
+React events can be found here: [https://reactjs.org/docs/events.html#supported-events](https://reactjs.org/docs/events.html#supported-events)
+
+### Boolean Flags
+
+Boolean props take one of two formats: \`hasProperty\` and \`isProperty\`.
+
+We generally use \`has...\` when we're modifying a component e.g. \`hasHalo\`.
+
+And we use \`is...\` to, most often, toggle state e.g. \`isActive\`.
+
+### Class Names
+
+Every component class name takes the format \`uir-component-name\` e.g. \`uir-avatar\`.
+
+When modifying a component we use the format \`uir-component--modifier\` e.g. \`uir-avatar--halo\`.
+
+### Callbacks and Errors
+
+Event callbacks provided to components should be called after the components internal state has been updated.
+
+It should be noted that we do not suppress callback errors.  You will need to handle your own errors.
+    `),
+);
