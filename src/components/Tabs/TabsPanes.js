@@ -22,7 +22,7 @@ const TabsPanes = ({
     const newChildren = React.Children.map(children, (child, index) =>
         React.cloneElement(child, {
             isSelected: index === selectedIndex,
-            relatedTabId: `uir-tabs-tab-${tabsInstanceId}-${index}`,
+            relatedTabId: `uir-tabs-nav-item-${tabsInstanceId}-${index}`,
         }));
 
     return (

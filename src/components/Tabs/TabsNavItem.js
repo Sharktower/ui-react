@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Button from '../Button/Button';
-import './TabsTab.scss';
+import './TabsNavItem.scss';
 
 const propTypes = {
     children: PropTypes.node,
@@ -22,7 +22,7 @@ const defaultProps = {
     onSelect: null,
 };
 
-const TabsTab = ({
+const TabsNavItem = ({
     children,
     className,
     id,
@@ -32,7 +32,7 @@ const TabsTab = ({
 }) => (
     <Button
         className={cx(
-            'uir-tabs-tab',
+            'uir-tabs-nav-item',
             className,
         )}
         id={id}
@@ -45,7 +45,7 @@ const TabsTab = ({
     </Button>
 );
 
-TabsTab.propTypes = propTypes;
-TabsTab.defaultProps = defaultProps;
+TabsNavItem.propTypes = propTypes;
+TabsNavItem.defaultProps = defaultProps;
 
-export default TabsTab;
+export default TabsNavItem;

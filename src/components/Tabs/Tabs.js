@@ -3,9 +3,9 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import StyleObjectPropType from '../../prop-types/style';
 import TabsNav from './TabsNav';
+import TabsNavItem from './TabsNavItem';
 import TabsPanes from './TabsPanes';
 import TabsPane from './TabsPane';
-import TabsTab from './TabsTab';
 
 let lastInstanceId = 0;
 
@@ -78,7 +78,7 @@ class Tabs extends Component {
 Tabs.propTypes = propTypes;
 Tabs.defaultProps = defaultProps;
 Tabs.Nav = TabsNav;
-Tabs.Tab = TabsTab;
+Tabs.NavItem = TabsNavItem;
 Tabs.Panes = TabsPanes;
 Tabs.Pane = TabsPane;
 

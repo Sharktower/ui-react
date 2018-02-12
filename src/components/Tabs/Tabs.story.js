@@ -14,9 +14,9 @@ Tabs component allows toggling between multiple content panes.
 
     <Tabs>
         <Tabs.Nav>
-            <Tabs.Tab>Tab one</Tabs.Tab>
-            <Tabs.Tab>Tab two</Tabs.Tab>
-            <Tabs.Tab>Tab three</Tabs.Tab>
+            <Tabs.NavItem>Tab one</Tabs.NavItem>
+            <Tabs.NavItem>Tab two</Tabs.NavItem>
+            <Tabs.NavItem>Tab three</Tabs.NavItem>
         </Tabs.Nav>
         <Tabs.Panes>
             <Tabs.Pane>
@@ -33,9 +33,9 @@ Tabs component allows toggling between multiple content panes.
         `,
         <Tabs>
             <Tabs.Nav>
-                <Tabs.Tab>Tab one</Tabs.Tab>
-                <Tabs.Tab>Tab two</Tabs.Tab>
-                <Tabs.Tab>Tab three</Tabs.Tab>
+                <Tabs.NavItem>Tab one</Tabs.NavItem>
+                <Tabs.NavItem>Tab two</Tabs.NavItem>
+                <Tabs.NavItem>Tab three</Tabs.NavItem>
             </Tabs.Nav>
             <Tabs.Panes>
                 <Tabs.Pane>
@@ -57,13 +57,13 @@ stories.add(
     'Disabled',
     storyWrapper(
         `
-To disable a tab, add <code>isDisabled</code> prop to the <code><Tabs.Tab></code> component.
+To disable a tab, add <code>isDisabled</code> prop to the <code><Tabs.NavItem></code> component.
 
     <Tabs>
         <Tabs.Nav>
-            <Tabs.Tab>Tab one</Tabs.Tab>
-            <Tabs.Tab isDisabled>Tab two</Tabs.Tab>
-            <Tabs.Tab>Tab three</Tabs.Tab>
+            <Tabs.NavItem>Tab one</Tabs.NavItem>
+            <Tabs.NavItem isDisabled>Tab two</Tabs.NavItem>
+            <Tabs.NavItem>Tab three</Tabs.NavItem>
         </Tabs.Nav>
         <Tabs.Panes>
             <Tabs.Pane>
@@ -80,9 +80,9 @@ To disable a tab, add <code>isDisabled</code> prop to the <code><Tabs.Tab></code
         `,
         <Tabs>
             <Tabs.Nav>
-                <Tabs.Tab>Tab one</Tabs.Tab>
-                <Tabs.Tab isDisabled>Tab two</Tabs.Tab>
-                <Tabs.Tab>Tab three</Tabs.Tab>
+                <Tabs.NavItem>Tab one</Tabs.NavItem>
+                <Tabs.NavItem isDisabled>Tab two</Tabs.NavItem>
+                <Tabs.NavItem>Tab three</Tabs.NavItem>
             </Tabs.Nav>
             <Tabs.Panes>
                 <Tabs.Pane>
@@ -107,9 +107,9 @@ Use the (zero-based) <code>selectedIndex</code> prop to preselect a tab on load.
 
     <Tabs selectedIndex={1}>
         <Tabs.Nav>
-            <Tabs.Tab>Tab one</Tabs.Tab>
-            <Tabs.Tab>Tab two</Tabs.Tab>
-            <Tabs.Tab>Tab three</Tabs.Tab>
+            <Tabs.NavItem>Tab one</Tabs.NavItem>
+            <Tabs.NavItem>Tab two</Tabs.NavItem>
+            <Tabs.NavItem>Tab three</Tabs.NavItem>
         </Tabs.Nav>
         <Tabs.Panes>
             <Tabs.Pane>
@@ -126,9 +126,9 @@ Use the (zero-based) <code>selectedIndex</code> prop to preselect a tab on load.
         `,
         <Tabs selectedIndex={1}>
             <Tabs.Nav>
-                <Tabs.Tab>Tab one</Tabs.Tab>
-                <Tabs.Tab>Tab two</Tabs.Tab>
-                <Tabs.Tab>Tab three</Tabs.Tab>
+                <Tabs.NavItem>Tab one</Tabs.NavItem>
+                <Tabs.NavItem>Tab two</Tabs.NavItem>
+                <Tabs.NavItem>Tab three</Tabs.NavItem>
             </Tabs.Nav>
             <Tabs.Panes>
                 <Tabs.Pane>
@@ -153,9 +153,9 @@ stories.add(
 
     <Tabs tabsVisible={2}>
         <Tabs.Nav>
-            <Tabs.Tab>Tab one</Tabs.Tab>
-            <Tabs.Tab>Tab two</Tabs.Tab>
-            <Tabs.Tab>Tab three</Tabs.Tab>
+            <Tabs.NavItem>Tab one</Tabs.NavItem>
+            <Tabs.NavItem>Tab two</Tabs.NavItem>
+            <Tabs.NavItem>Tab three</Tabs.NavItem>
         </Tabs.Nav>
         <Tabs.Panes>
             ...
@@ -164,9 +164,9 @@ stories.add(
         `,
         <Tabs tabsVisible={2}>
             <Tabs.Nav>
-                <Tabs.Tab>Tab one</Tabs.Tab>
-                <Tabs.Tab>Tab two</Tabs.Tab>
-                <Tabs.Tab>Tab three</Tabs.Tab>
+                <Tabs.NavItem>Tab one</Tabs.NavItem>
+                <Tabs.NavItem>Tab two</Tabs.NavItem>
+                <Tabs.NavItem>Tab three</Tabs.NavItem>
             </Tabs.Nav>
             <Tabs.Panes>
                 <Tabs.Pane>
@@ -183,10 +183,10 @@ stories.add(
         <div>
             <Tabs tabsVisible={1}>
                 <Tabs.Nav>
-                    <Tabs.Tab>Tab one</Tabs.Tab>
-                    <Tabs.Tab>Tab two</Tabs.Tab>
-                    <Tabs.Tab>Tab three</Tabs.Tab>
-                    <Tabs.Tab>Tab four</Tabs.Tab>
+                    <Tabs.NavItem>Tab one</Tabs.NavItem>
+                    <Tabs.NavItem>Tab two</Tabs.NavItem>
+                    <Tabs.NavItem>Tab three</Tabs.NavItem>
+                    <Tabs.NavItem>Tab four</Tabs.NavItem>
                 </Tabs.Nav>
                 <Tabs.Panes>
                     <Tabs.Pane>

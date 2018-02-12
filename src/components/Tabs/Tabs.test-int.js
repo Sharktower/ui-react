@@ -25,7 +25,7 @@ Scenario('Tabs', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
         I.seeNumberOfElements('.uir-tabs', 1);
         I.seeNumberOfElements('.uir-tabs-nav', 1);
-        I.seeNumberOfElements('.uir-tabs-tab', 3);
+        I.seeNumberOfElements('.uir-tabs-nav-item', 3);
         I.seeNumberOfElements('.uir-button--active', 1);
         I.see('TAB ONE', '.uir-button--active');
         I.seeNumberOfElements('.uir-tabs-panes', 1);
@@ -42,7 +42,7 @@ Scenario('Preselected', (I) => {
         I.see('TAB TWO', '.uir-button--active');
         I.see('Content 2', '.uir-tabs-pane');
 
-        I.click('.uir-tabs-tab:first-child');
+        I.click('.uir-tabs-nav-item:first-child');
         I.wait(0.5);
         I.see('TAB ONE', '.uir-button--active');
         I.see('Content 1', '.uir-tabs-pane');
@@ -56,14 +56,14 @@ Scenario('With dropdown', (I) => {
         I.seeElement('.uir-tabs-nav-dropdown');
         I.seeElement('.uir-tabs-nav-dropdown-trigger');
         I.dontSeeElement('.uir-tabs-nav-dropdown-panel');
-        I.see('TAB TWO', '.uir-tabs-tab');
-        I.dontSee('TAB THREE', '.uir-tabs-tab');
+        I.see('TAB TWO', '.uir-tabs-nav-item');
+        I.dontSee('TAB THREE', '.uir-tabs-nav-item');
 
         I.click('.uir-tabs-nav-dropdown-trigger');
         I.seeElement('.uir-tabs-nav-dropdown-panel');
-        I.see('TAB THREE', '.uir-tabs-tab');
+        I.see('TAB THREE', '.uir-tabs-nav-item');
 
-        I.click('.uir-tabs-nav-dropdown-panel .uir-tabs-tab');
+        I.click('.uir-tabs-nav-dropdown-panel .uir-tabs-nav-item');
         I.wait(0.5);
         I.see('Content 3', '.uir-tabs-pane');
     });

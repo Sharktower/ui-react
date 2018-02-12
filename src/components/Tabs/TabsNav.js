@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import TabsTab from './TabsTab';
+import TabsNavItem from './TabsNavItem';
 import Button from './../Button/Button';
 import IconMore from './../Icon/IconMore';
 import './TabsNav.scss';
@@ -83,9 +83,9 @@ class TabsNav extends Component {
 
     render() {
         let children = React.Children.map(this.props.children, (child, index) => {
-            if (child.type === TabsTab) {
+            if (child.type === TabsNavItem) {
                 return React.cloneElement(child, {
-                    id: `uir-tabs-tab-${this.props.tabsInstanceId}-${index}`,
+                    id: `uir-tabs-nav-item-${this.props.tabsInstanceId}-${index}`,
                     isSelected: index === this.props.selectedIndex,
                     onSelect: () => {
                         this.setState({
