@@ -1,4 +1,69 @@
-<!-- Last Updated: 2018-01-30 -->
+<!-- Last Updated: 2018-02-13 -->
+
+# UI React v1.2.0 (2018-02-13)
+
+## TextField and TextArea Component
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+New components:
+
+- TextField
+- TextArea
+- IconClear
+- IconNotification
+- IconRequired
+- IconSearch
+
+**Bug Fixes**
+
+- Fixed some minor rendering issues with Icons
+
+**Miscellaneous**
+
+- Clarify that issues should be reported via email (ui-react@mudano.com)
+
+
+## Tabs Component
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+- `Tabs` component
+- `IconMore` component
+
+**Bug Fixes**
+
+_None_
+
+**Miscellaneous**
+
+- Updated `Button` component colours
+
+
+## Button aria-expanded prop
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+- Added `aria-expanded` prop to the `Button` component
+
+**Bug Fixes**
+
+_None_
+
+
+
 
 # UI React v1.1.1 (2018-01-30)
 
