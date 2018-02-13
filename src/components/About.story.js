@@ -213,7 +213,7 @@ When modifying a component we use the format \`uir-component--modifier\` e.g. \`
 
 ### Callbacks and Errors
 
-Event callbacks provided to components should be called after the components internal state has been updated.
+Event callbacks provided to a component should be called after the component's internal state has been updated.
 
 It should be noted that we do not suppress callback errors.  You will need to handle your own errors.
     `),
