@@ -1,6 +1,7 @@
 /* global describe, expect, it, shallow, mount */
 import React from 'react';
 import sinon from 'sinon';
+import * as common from '../../../test/unit/commonTests';
 import TextField from './TextField';
 import Tooltip from '../Tooltip/Tooltip';
 import TooltipBox from '../Tooltip/TooltipBox';
@@ -15,10 +16,7 @@ function createTextfield() {
 }
 
 describe('TextField', () => {
-    it('renders an div wrapper element', () => {
-        const textField = createTextfield();
-        expect(textField).to.have.tagName('div');
-    });
+    common.isConformant(TextField, { requiredProps: { label: 'My Input' } });
 
     it('renders a label element', () => {
         const textField = createTextfield();
@@ -81,7 +79,7 @@ describe('TextField', () => {
     it('gives parent div focus class when input has focus ', () => {
         const textField = createTextfield();
         textField.find('input').simulate('focus');
-        expect(textField).to.have.className('uir-textfield--focus');
+        expect(textField).to.have.className('uir-text-field--focus');
     });
 
     it('renders an input element', () => {
@@ -91,9 +89,9 @@ describe('TextField', () => {
 
     it('has the correct classes', () => {
         const textField = createTextfield();
-        expect(textField).to.have.className('uir-textfield');
-        expect(textField.find('label')).to.have.className('uir-textfield-label');
-        expect(textField.find('input')).to.have.className('uir-textfield-input');
+        expect(textField).to.have.className('uir-text-field');
+        expect(textField.find('label')).to.have.className('uir-text-field-label');
+        expect(textField.find('input')).to.have.className('uir-text-field-input');
     });
 
     it('can pass in a className prop', () => {
@@ -104,7 +102,7 @@ describe('TextField', () => {
 
     it('has a full width class if isFullWidth is passed', () => {
         const textField = shallow(<TextField isFullWidth />);
-        expect(textField).to.have.className('uir-textfield--full-width');
+        expect(textField).to.have.className('uir-text-field--full-width');
     });
 
     it('shows a placeholder when input has focus', () => {
@@ -212,24 +210,24 @@ describe('TextField', () => {
 
     it('has no validation classes by default', () => {
         const textField = shallow(<TextField />);
-        expect(textField).to.not.have.className('uir-textfield--valid');
-        expect(textField).to.not.have.className('uir-textfield--invalid');
+        expect(textField).to.not.have.className('uir-text-field--valid');
+        expect(textField).to.not.have.className('uir-text-field--invalid');
     });
 
     it('has no validation classes if isValid is null', () => {
         const textField = shallow(<TextField isValid={null} />);
-        expect(textField).to.not.have.className('uir-textfield--valid');
-        expect(textField).to.not.have.className('uir-textfield--invalid');
+        expect(textField).to.not.have.className('uir-text-field--valid');
+        expect(textField).to.not.have.className('uir-text-field--invalid');
     });
 
     it('adds valid class if isValid is true', () => {
         const textField = shallow(<TextField isValid />);
-        expect(textField).to.have.className('uir-textfield--valid');
+        expect(textField).to.have.className('uir-text-field--valid');
     });
 
     it('adds invalid class if isValid is false', () => {
         const textField = shallow(<TextField isValid={false} />);
-        expect(textField).to.have.className('uir-textfield--invalid');
+        expect(textField).to.have.className('uir-text-field--invalid');
     });
 
     it('wraps input in a tooltip if tooltipError is given', () => {

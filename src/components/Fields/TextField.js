@@ -99,7 +99,7 @@ class TextField extends Component {
         };
 
         lastInstanceId += 1;
-        this.uid = `textfield-${lastInstanceId}`;
+        this.uid = `text-field-${lastInstanceId}`;
     }
 
     handleMouseEnter = () => {
@@ -224,9 +224,9 @@ class TextField extends Component {
                 <label
                     htmlFor={this.uid}
                     className={cx(
-                        'uir-textfield-label',
+                        'uir-text-field-label',
                         {
-                            'uir-textfield-label--visually-hidden': this.props.variant === TextFieldVariant.TITLE,
+                            'uir-text-field-label--visually-hidden': this.props.variant === TextFieldVariant.TITLE,
                         },
                     )}
                 >
@@ -257,19 +257,19 @@ class TextField extends Component {
         return (
             <div
                 className={cx(
-                    'uir-textfield',
+                    'uir-text-field',
                     {
-                        'uir-textfield--clearable': this.props.isClearable,
-                        'uir-textfield--disabled': this.props.isDisabled,
-                        'uir-textfield--focus': this.state.hasFocus,
-                        'uir-textfield--full-width': this.props.isFullWidth,
-                        'uir-textfield--has-left-icon': this.props.icon,
-                        'uir-textfield--has-right-icon': this.props.isRequired || this.props.isClearable,
-                        'uir-textfield--has-value': this.state.value,
-                        'uir-textfield--invalid': this.props.isValid === false,
-                        'uir-textfield--readonly': this.props.isReadOnly,
-                        'uir-textfield--title': this.props.variant === TextFieldVariant.TITLE,
-                        'uir-textfield--valid': this.props.isValid,
+                        'uir-text-field--clearable': this.props.isClearable,
+                        'uir-text-field--disabled': this.props.isDisabled,
+                        'uir-text-field--focus': this.state.hasFocus,
+                        'uir-text-field--full-width': this.props.isFullWidth,
+                        'uir-text-field--has-left-icon': this.props.icon,
+                        'uir-text-field--has-right-icon': this.props.isRequired || this.props.isClearable,
+                        'uir-text-field--has-value': this.state.value,
+                        'uir-text-field--invalid': this.props.isValid === false,
+                        'uir-text-field--readonly': this.props.isReadOnly,
+                        'uir-text-field--title': this.props.variant === TextFieldVariant.TITLE,
+                        'uir-text-field--valid': this.props.isValid,
                     },
                     this.props.className,
                 )}
@@ -277,17 +277,17 @@ class TextField extends Component {
                 onMouseLeave={this.handleMouseLeave}
                 style={this.props.style}
             >
-                <span className="uir-textfield-left-icon">
+                <span className="uir-text-field-left-icon">
                     {icon}
                 </span>
-                <div className="uir-textfield-inner">
-                    <div className="uir-textfield-label-wrapper">
+                <div className="uir-text-field-inner">
+                    <div className="uir-text-field-label-wrapper">
                         {label}
                     </div>
                     {this.wrapInputWithTooltip(
                         <input
                             aria-invalid={this.props.isValid === false}
-                            className="uir-textfield-input"
+                            className="uir-text-field-input"
                             disabled={this.props.isDisabled}
                             id={this.uid}
                             name={this.props.name}
@@ -311,7 +311,7 @@ class TextField extends Component {
                         this.props.tooltipRequired,
                     )}
                 </div>
-                <span className="uir-textfield-right-icon">
+                <span className="uir-text-field-right-icon">
                     {clearIcon}
                 </span>
             </div>

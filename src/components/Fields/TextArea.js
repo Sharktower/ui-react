@@ -88,7 +88,7 @@ class TextArea extends Component {
         };
 
         lastInstanceId += 1;
-        this.uid = `textarea-${lastInstanceId}`;
+        this.uid = `text-area-${lastInstanceId}`;
     }
 
     componentDidMount = () => {
@@ -208,7 +208,7 @@ class TextArea extends Component {
         // @NB: jsx-a11y/label-has-for fails with UID as id
         const label = this.props.label && showLabel ?
             (
-                <label htmlFor={this.uid} className="uir-textarea-label">
+                <label htmlFor={this.uid} className="uir-text-area-label">
                     {this.props.label}
                     {requiredIconAndTooltip(this.props.isRequired, this.props.tooltipRequired)}
                 </label>
@@ -219,17 +219,17 @@ class TextArea extends Component {
         return (
             <div
                 className={cx(
-                    'uir-textarea',
+                    'uir-text-area',
                     {
-                        'uir-textarea--disabled': this.props.isDisabled,
-                        'uir-textarea--focus': this.state.hasFocus,
-                        'uir-textarea--full-width': this.props.isFullWidth,
-                        'uir-textarea--has-auto-height': this.props.hasAutoHeight,
-                        'uir-textarea--has-right-icon': this.props.isRequired,
-                        'uir-textarea--has-value': this.state.value,
-                        'uir-textarea--invalid': this.props.isValid === false,
-                        'uir-textarea--readonly': this.props.isReadOnly,
-                        'uir-textarea--valid': this.props.isValid,
+                        'uir-text-area--disabled': this.props.isDisabled,
+                        'uir-text-area--focus': this.state.hasFocus,
+                        'uir-text-area--full-width': this.props.isFullWidth,
+                        'uir-text-area--has-auto-height': this.props.hasAutoHeight,
+                        'uir-text-area--has-right-icon': this.props.isRequired,
+                        'uir-text-area--has-value': this.state.value,
+                        'uir-text-area--invalid': this.props.isValid === false,
+                        'uir-text-area--readonly': this.props.isReadOnly,
+                        'uir-text-area--valid': this.props.isValid,
                     },
                     this.props.className,
                 )}
@@ -237,14 +237,14 @@ class TextArea extends Component {
                 onMouseLeave={this.handleMouseLeave}
                 style={this.props.style}
             >
-                <div className="uir-textarea-inner">
-                    <div className="uir-textarea-label-wrapper">
+                <div className="uir-text-area-inner">
+                    <div className="uir-text-area-label-wrapper">
                         {label}
                     </div>
                     {this.wrapInputWithTooltip(
                         <textarea
                             aria-invalid={this.props.isValid === false}
-                            className="uir-textarea-input"
+                            className="uir-text-area-input"
                             disabled={this.props.isDisabled}
                             id={this.uid}
                             name={this.props.name}
