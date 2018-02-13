@@ -1,0 +1,9 @@
+.uir-textfield-inner,
+.uir-textarea-inner {
+
+    & > .uir-tooltip.icon-required-tooltip {
+        position: absolute;
+        top: 20px;
+        width: auto;
+    }
+}

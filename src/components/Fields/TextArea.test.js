@@ -125,11 +125,9 @@ describe('TextArea', () => {
         const textArea = shallow(<TextArea />);
         const instance = textArea.instance();
         instance.inputRef = { value: 'test' };
-        const mock = sinon.mock(instance);
-        const expectation = mock.expects('setState');
+        const setStateSpy = sinon.spy(textArea.instance(), 'setState');
         textArea.find('textarea').simulate('change');
-        expect(expectation).to.be.called();
-        mock.restore();
+        expect(setStateSpy).to.have.been.called();
     });
 
     it('does not update the component state if textarea value is undefined', () => {
@@ -150,7 +148,7 @@ describe('TextArea', () => {
     });
 
     it('does nothing if no component ref fn is provided', () => {
-        mount(<TextArea componentRef={false} />);
+        mount(<TextArea />);
     });
 
     ['blur', 'change', 'focus', 'keyDown', 'keyPress', 'keyUp'].forEach((event) => {

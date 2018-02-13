@@ -1,31 +1,26 @@
 import React, { Component } from 'react';
+import autosize from 'autosize';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import StyleObjectPropType from '../../prop-types/style';
-import ListPropType from '../../prop-types/list';
 import Tooltip from '../Tooltip/Tooltip';
 import TooltipBox from '../Tooltip/TooltipBox';
 import { TooltipBoxStatus, TooltipPosition } from '../Tooltip/TooltipEnums';
-import IconClear from '../Icon/IconClear';
-import IconRequired from '../Icon/IconRequired';
-import Button from '../Button/Button';
-import { ButtonVariant } from '../Button/ButtonEnums';
-import { TextFieldVariant } from './TextFieldEnums';
-import './TextField.scss';
+import requiredIconAndTooltip from './RequiredIconAndTooltip';
+import './TextArea.scss';
 
 const propTypes = {
     className: PropTypes.string,
     componentRef: PropTypes.func,
+    hasAutoHeight: PropTypes.bool,
     hasLabelAlways: PropTypes.bool,
-    icon: PropTypes.element,
-    id: PropTypes.string,
-    isClearable: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
     isReadOnly: PropTypes.bool,
     isRequired: PropTypes.bool,
     isValid: PropTypes.bool,
     label: PropTypes.string,
+    name: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onEnterKey: PropTypes.func,
@@ -34,6 +29,7 @@ const propTypes = {
     onKeyPress: PropTypes.func,
     onKeyUp: PropTypes.func,
     placeholder: PropTypes.string,
+    rows: PropTypes.number,
     style: StyleObjectPropType(),
     tooltipError: PropTypes.oneOfType([
         PropTypes.element,
@@ -47,27 +43,21 @@ const propTypes = {
         PropTypes.element,
         PropTypes.string,
     ]),
-    type: PropTypes.string,
     value: PropTypes.string,
-    variant: ListPropType([
-        TextFieldVariant.DEFAULT,
-        TextFieldVariant.TITLE,
-    ]),
 };
 
 const defaultProps = {
     className: null,
     componentRef: null,
+    hasAutoHeight: false,
     hasLabelAlways: false,
-    icon: null,
-    id: null,
-    isClearable: false,
     isDisabled: false,
     isFullWidth: false,
     isReadOnly: false,
     isRequired: false,
     isValid: null,
     label: null,
+    name: null,
     onBlur: null,
     onChange: null,
     onEnterKey: null,
@@ -76,18 +66,17 @@ const defaultProps = {
     onKeyPress: null,
     onKeyUp: null,
     placeholder: null,
+    rows: 1,
     style: null,
     tooltipError: null,
     tooltipHint: null,
     tooltipRequired: 'required',
-    type: 'text',
     value: '',
-    variant: TextFieldVariant.DEFAULT,
 };
 
 let lastInstanceId = 0;
 
-class TextField extends Component {
+class TextArea extends Component {
     constructor(props) {
         super(props);
 
@@ -99,7 +88,13 @@ class TextField extends Component {
         };
 
         lastInstanceId += 1;
-        this.uid = `textfield-${lastInstanceId}`;
+        this.uid = `textarea-${lastInstanceId}`;
+    }
+
+    componentDidMount = () => {
+        if (this.props.hasAutoHeight) {
+            autosize(this.inputRef);
+        }
     }
 
     handleMouseEnter = () => {
@@ -119,41 +114,39 @@ class TextField extends Component {
     }
 
     handleInputBlur = (event) => {
-        const { onBlur } = this.props;
+        const onBlur = this.props.onBlur || (() => {});
         this.setState({
             hasFocus: false,
             showTooltip: false,
-        });
-        if (onBlur) {
+        }, () => {
             onBlur(event);
-        }
+        });
     }
 
     handleInputChange = (event) => {
         const { value } = this.inputRef;
-        const { onChange } = this.props;
+        const onChange = this.props.onChange || (() => {});
         if (typeof value !== 'undefined') {
-            this.setState({ value });
-        }
-        if (onChange) {
+            this.setState({ value }, () => {
+                onChange(value, event);
+            });
+        } else {
             onChange(value, event);
         }
     }
 
     handleInputFocus = (event) => {
-        const { onFocus } = this.props;
+        const onFocus = this.props.onFocus || (() => {});
         this.setState({
             hasFocus: true,
             showTooltip: true,
-        });
-        if (onFocus) {
+        }, () => {
             onFocus(event);
-        }
+        });
     }
 
     handleInputKeyDown = (event) => {
-        const { onKeyDown } = this.props;
-        const { onEnterKey } = this.props;
+        const { onKeyDown, onEnterKey } = this.props;
         if (onKeyDown) {
             onKeyDown(event.key, event);
         }
@@ -176,13 +169,14 @@ class TextField extends Component {
         }
     }
 
-    handleClearIconClick = () => {
-        this.setState({ value: '' });
-    }
-
-    wrapInputWithTooltip = (input, tooltip) => {
-        // @NB: if you provide a string to either tooltipError or tooltipHint a wrapper
-        //      will be created for you (an error tooltip box is used for tooltipError)
+    /**
+     * wrapInputWithTooltip
+     * provide a string or component to tooltipError or tooltipHint and this
+     * wrapper will be used to create a tooltipBox (an error box is used for tooltipError)
+     * @param {Element} textarea - the textarea field
+     * @param {Component|string} tooltip - the error or hint tooltip
+     */
+    wrapInputWithTooltip = (textarea, tooltip) => {
         const { DEFAULT, ERROR } = TooltipBoxStatus;
         return (
             tooltip ?
@@ -197,95 +191,63 @@ class TextField extends Component {
                         </TooltipBox>
                     }
                 >
-                    {input}
+                    {textarea}
                 </Tooltip> :
-                input
+                textarea
         );
     }
 
     render() {
-        /* eslint-disable jsx-a11y/label-has-for */
-        // @NB: jsx-a11y/label-has-for fails with UID as id
         const showLabel = (
             this.props.hasLabelAlways ||
             this.state.hasFocus ||
             this.state.hasMouseOver ||
             !this.state.value
         );
-        const requiredIcon = this.props.isRequired ?
-            <Tooltip tooltip={this.props.tooltipRequired}><IconRequired /></Tooltip> :
-            null;
+        /* eslint-disable jsx-a11y/label-has-for */
+        // @NB: jsx-a11y/label-has-for fails with UID as id
         const label = this.props.label && showLabel ?
             (
-                <label
-                    htmlFor={this.uid}
-                    className={cx(
-                        'uir-textfield-label',
-                        {
-                            'uir-textfield-label--visually-hidden': this.props.variant === TextFieldVariant.TITLE,
-                        },
-                    )}
-                >
+                <label htmlFor={this.uid} className="uir-textarea-label">
                     {this.props.label}
-                    {requiredIcon}
+                    {requiredIconAndTooltip(this.props.isRequired, this.props.tooltipRequired)}
                 </label>
             ) :
             null;
-        const showPlaceholder = (
-            !this.props.label ||
-            this.state.hasFocus ||
-            this.props.variant === TextFieldVariant.TITLE
-        );
-        const icon = this.props.icon ?
-            this.props.icon :
-            null;
-        const clearIcon = this.props.isClearable && this.state.value ?
-            (
-                <Button
-                    onClick={this.handleClearIconClick}
-                    variant={ButtonVariant.CLEAR}
-                >
-                    <IconClear />
-                </Button>
-            ) :
-            null;
+        /* eslint-enable */
+        const showPlaceholder = (!this.props.label || this.state.hasFocus);
         return (
             <div
                 className={cx(
-                    'uir-textfield',
+                    'uir-textarea',
                     {
-                        'uir-textfield--disabled': this.props.isDisabled,
-                        'uir-textfield--focus': this.state.hasFocus,
-                        'uir-textfield--full-width': this.props.isFullWidth,
-                        'uir-textfield--has-left-icon': this.props.icon,
-                        'uir-textfield--has-right-icon': this.props.isRequired || this.props.isClearable,
-                        'uir-textfield--has-value': this.state.value,
-                        'uir-textfield--invalid': this.props.isValid === false,
-                        'uir-textfield--readonly': this.props.isReadOnly,
-                        'uir-textfield--title': this.props.variant === TextFieldVariant.TITLE,
-                        'uir-textfield--valid': this.props.isValid,
+                        'uir-textarea--disabled': this.props.isDisabled,
+                        'uir-textarea--focus': this.state.hasFocus,
+                        'uir-textarea--full-width': this.props.isFullWidth,
+                        'uir-textarea--has-auto-height': this.props.hasAutoHeight,
+                        'uir-textarea--has-right-icon': this.props.isRequired,
+                        'uir-textarea--has-value': this.state.value,
+                        'uir-textarea--invalid': this.props.isValid === false,
+                        'uir-textarea--readonly': this.props.isReadOnly,
+                        'uir-textarea--valid': this.props.isValid,
                     },
                     this.props.className,
                 )}
-                id={this.props.id}
                 onMouseEnter={this.handleMouseEnter}
                 onMouseLeave={this.handleMouseLeave}
                 style={this.props.style}
             >
-                <span className="uir-textfield-left-icon">
-                    {icon}
-                </span>
-                <div className="uir-textfield-inner">
-                    <div className="uir-textfield-label-wrapper">
+                <div className="uir-textarea-inner">
+                    <div className="uir-textarea-label-wrapper">
                         {label}
                     </div>
                     {this.wrapInputWithTooltip(
-                        <input
+                        <textarea
                             aria-invalid={this.props.isValid === false}
-                            aria-required={this.props.isRequired}
-                            className="uir-textfield-input"
+                            className="uir-textarea-input"
                             disabled={this.props.isDisabled}
                             id={this.uid}
+                            name={this.props.name}
                             onChange={this.handleInputChange}
                             onBlur={this.handleInputBlur}
                             onFocus={this.handleInputFocus}
@@ -296,22 +258,22 @@ class TextField extends Component {
                             readOnly={this.props.isReadOnly}
                             required={this.props.isRequired}
                             ref={this.handleInputRef}
-                            type={this.props.type}
+                            rows={this.props.rows}
                             value={this.state.value}
                         />,
                         this.props.tooltipError || this.props.tooltipHint,
                     )}
+                    {requiredIconAndTooltip(
+                        this.props.isRequired && !this.props.label,
+                        this.props.tooltipRequired,
+                    )}
                 </div>
-                <span className="uir-textfield-right-icon">
-                    {clearIcon}
-                </span>
             </div>
         );
-        /* eslint-enable */
     }
 }
 
-TextField.propTypes = propTypes;
-TextField.defaultProps = defaultProps;
+TextArea.propTypes = propTypes;
+TextArea.defaultProps = defaultProps;
 
-export default TextField;
+export default TextArea;

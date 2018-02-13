@@ -6,12 +6,12 @@ import { TextFieldVariant } from './TextFieldEnums';
 import IconSearch from '../Icon/IconSearch';
 import IconNotification from '../Icon/IconNotification';
 
-const stories = storiesOf('TextField.TextField', module);
+const stories = storiesOf('Fields.TextField', module);
 
 stories.add(
     'Overview',
     storyWrapper(
-        'TextField is text input field.',
+        'TextField is a text input field.',
         <TextField label="Text field label" />,
     ),
 );
@@ -36,7 +36,6 @@ stories.add(
                 placeholder="A Required Field"
                 variant={TextFieldVariant.TITLE}
                 isRequired
-                isValid={false}
                 tooltipError="this field is required"
             />
             <br />
@@ -168,6 +167,13 @@ stories.add(
         <div>
             <TextField label="Input with an error" tooltipError="My Example Error" />
             <TextField label="Input with a hint" tooltipHint="My Example Hint" />
+            <br />
+            <TextField
+                placeholder="Required field"
+                tooltipHint="My Example Hint"
+                isRequired
+                isFullWidth
+            />
         </div>,
     ),
 );
@@ -184,9 +190,15 @@ stories.add(
         <div>
             <TextField
                 label="Custom tooltip message"
-                isRequired
                 tooltipRequired="this field must be completed"
+                isRequired
             />
+            <br />
+            <TextField
+                placeholder="Placeholder no label"
+                isRequired
+            />
+            <br />
             <TextField
                 label="Full width required"
                 isRequired

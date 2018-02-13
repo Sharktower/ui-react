@@ -26,7 +26,7 @@ const defaultProps = {
     style: null,
 };
 
-function AvatarCard(props) {
+function AvatarTitle(props) {
     const name = <div className="uir-avatar-title-name">{props.name}</div>;
     const jobRole = props.jobRole
         ? <div className="uir-avatar-title-job-role">{props.jobRole}</div>
@@ -52,7 +52,7 @@ function AvatarCard(props) {
     );
 }
 
-AvatarCard.propTypes = propTypes;
-AvatarCard.defaultProps = defaultProps;
+AvatarTitle.propTypes = propTypes;
+AvatarTitle.defaultProps = defaultProps;
 
-export default AvatarCard;
+export default AvatarTitle;

@@ -1,44 +1,19 @@
 @import "../_variables";
 
-@keyframes uir-button-confirmation-in {
-
-    0% {
-        transform: translateY(100%);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
-
-@keyframes uir-button-confirmation-out {
-
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(0);
-    }
-
-    100% {
-        transform: translateY(100%);
-    }
-}
-
 .uir-button {
     $button-font-family: $font-family !default;
     $button-font-size: $base-font-size !default;
     $button-color: rgba(47,40,51,.6) !default;
-    $button-color-clear: #000 !default;
-    $button-color-hover: rgb(47,40,51) !default;
-    $button-color-focus: rgb(47,40,51) !default;
-    $button-color-active: rgb(47,40,51) !default;
-    $button-background-color: rgba(47, 40, 51, .05) !default;
+    $button-color-clear: rgba($charcoal, .8) !default;
+    $button-color-hover: $charcoal !default;
+    $button-color-focus: $charcoal !default;
+    $button-color-active: $charcoal !default;
+    $button-background-color: rgba($charcoal, .05) !default;
     $button-background-color-clear: transparent !default;
-    $button-background-color-hover: rgba(47, 40, 51, .1) !default;
-    $button-background-color-focus: rgba(47, 40, 51, .2) !default;
-    $button-background-color-active: rgba(47, 40, 51, .4) !default;
+    $button-background-color-hover: rgba($charcoal, .1) !default;
+    $button-background-color-focus: rgba($charcoal, .2) !default;
+    $button-background-color-active: rgba($charcoal, .1) !default;
+    $button-background-color-active-hover: rgba($charcoal, .05) !default;
     $button-primary-background-top: #ff1966 !default;
     $button-primary-background-bottom: #fa439f !default;
     $button-primary-background-top-focus: darken($button-primary-background-top, 10%) !default;
@@ -68,7 +43,33 @@
     border: 0; /* override browser's default */
     border-radius: 2px;
     outline: none;
-    transition: all .3s;
+    transition: color .3s, background-color .3s;
+
+    @keyframes uir-button-confirmation-in {
+
+        0% {
+            transform: translateY(100%);
+        }
+
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes uir-button-confirmation-out {
+
+        0% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(0);
+        }
+
+        100% {
+            transform: translateY(100%);
+        }
+    }
 
     &-content {
         display: inline-block;
@@ -86,7 +87,7 @@
     // type=clear prop
     &--clear {
         color: $button-color-clear;
-        background: $button-background-color-clear;
+        background-color: $button-background-color-clear;
     }
 
     &:hover {
@@ -99,9 +100,15 @@
         background-color: $button-background-color-focus;
     }
 
+    // isActive prop
     &--active {
+        font-weight: 600; /* Medium, not bold if available */
         color: $button-color-active;
         background-color: $button-background-color-active;
+
+        &:hover {
+            background-color: $button-background-color-active-hover;
+        }
     }
 
     // isFullWidth prop
@@ -114,12 +121,7 @@
     // isDisabled prop
     &--disabled {
         pointer-events: none;
-        opacity: .5;
-    }
-
-    // isActive prop
-    &--active {
-        font-weight: 600; /* Medium, not bold if available */
+        opacity: .3;
     }
 
     // type=primary prop
@@ -201,7 +203,7 @@
             color: #fff;
         }
 
-        &--confirming:focus {
+        &--confirming {
             animation-name: uir-button-confirmation-in;
             animation-duration: .3s;
             animation-timing-function: cubic-bezier(0,0,.31,1);

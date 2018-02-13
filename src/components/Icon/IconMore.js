@@ -16,27 +16,29 @@ const defaultProps = {
     style: null,
 };
 
-const IconClear = ({
+const IconMore = ({
     className,
     style,
 }) => {
     lastInstanceId += 1;
-    const iconTitleId = `icon-clear-title-${lastInstanceId}`;
+    const iconTitleId = `icon-more-title-${lastInstanceId}`;
 
     return (
         <svg
-            className={cx('uir-icon uir-icon-clear', className)}
+            className={cx('uir-icon uir-icon-more', className)}
             style={style}
             viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
         >
-            <title id={iconTitleId}>Clear Icon</title>
-            <path d="M12 10.6L7.2 5.8 5.8 7.2l4.8 4.8-4.8 4.8 1.4 1.4 4.8-4.8 4.8 4.8 1.4-1.4-4.8-4.8 4.8-4.8-1.4-1.4-4.8 4.8zM12 .5C18.3.5 23.5 5.6 23.5 12c0 6.3-5.1 11.5-11.5 11.5C5.7 23.5.5 18.4.5 12 .5 5.7 5.7.5 12 .5z" />
+            <title id={iconTitleId}>Icon More</title>
+            <circle className="uir-icon-more-oval-1" cx="12" cy="3" r="2" />
+            <circle className="uir-icon-more-oval-2" cx="12" cy="12" r="2" />
+            <circle className="uir-icon-more-oval-3" cx="12" cy="21" r="2" />
         </svg>
     );
 };
 
-IconClear.propTypes = propTypes;
-IconClear.defaultProps = defaultProps;
+IconMore.propTypes = propTypes;
+IconMore.defaultProps = defaultProps;
 
-export default IconClear;
+export default IconMore;

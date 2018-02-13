@@ -30,11 +30,6 @@ $textFieldLabelColor: $charcoal !default;
         background: linear-gradient(to right, $pink 0%, transparent 100%);
     }
 
-    // @NB: removed at Antoine's request, this may be restored later
-    // &--valid:after {
-    //     background: linear-gradient(to right, $teal 0%, transparent 100%);
-    // }
-
     &--full-width {
         display: block;
         width: 100%;
@@ -54,6 +49,13 @@ $textFieldLabelColor: $charcoal !default;
         .uir-textarea-label {
             cursor: default;
             transform: translate(0, 0);
+        }
+    }
+
+    &--clearable {
+
+        input::-ms-clear {
+            display: none; // hide IE clear icon
         }
     }
 
@@ -90,7 +92,6 @@ $textFieldLabelColor: $charcoal !default;
         font-size: inherit;
         border: 0;
         outline: none;
-        box-shadow: none !important;
 
         &:invalid {
             box-shadow: none;

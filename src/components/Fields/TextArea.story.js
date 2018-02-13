@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-e
 import storyWrapper from '../../storybook-addons/storyWrapper';
 import TextArea from './TextArea';
 
-const stories = storiesOf('TextField.TextArea', module);
+const stories = storiesOf('Fields.TextArea', module);
 
 stories.add(
     'Overview',
@@ -140,11 +140,17 @@ stories.add(
         <div>
             <TextArea
                 label="Custom tooltip message"
-                isRequired
                 tooltipRequired="this field must be completed"
+                isRequired
+                isFullWidth
             />
             <TextArea
                 label="Full width required"
+                isRequired
+                isFullWidth
+            />
+            <TextArea
+                placeholder="Placeholder no label"
                 isRequired
                 isFullWidth
             />

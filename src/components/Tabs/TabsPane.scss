@@ -1,0 +1,56 @@
+.uir-tabs-pane {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 18px;
+    opacity: 0;
+
+    @keyframes uir-tabs-pane-in {
+
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes uir-tabs-pane-out {
+
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+    &:focus {
+        border: 0 transparent;
+        outline: none;
+    }
+
+    &--selected {
+        position: static;
+        opacity: 1;
+    }
+
+    &--selecting {
+        position: static;
+        animation-name: uir-tabs-pane-in;
+        animation-duration: .3s;
+        animation-timing-function: cubic-bezier(0,0,.31,1);
+        animation-delay: .1s;
+        animation-fill-mode: forwards;
+    }
+
+    &--deselecting {
+        animation-name: uir-tabs-pane-out;
+        animation-duration: .2s;
+        animation-timing-function: cubic-bezier(0,0,.31,1);
+        animation-delay: 0s;
+        animation-fill-mode: forwards;
+    }
+}

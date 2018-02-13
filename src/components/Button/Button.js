@@ -7,6 +7,7 @@ import { ButtonIconPosition, ButtonType, ButtonVariant } from './ButtonEnums';
 import './Button.scss';
 
 const propTypes = {
+    'aria-expanded': PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
     confirmText: PropTypes.string,
@@ -38,6 +39,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    'aria-expanded': null,
     children: null,
     className: null,
     confirmText: 'Confirm?',
@@ -65,6 +67,14 @@ class Button extends Component {
         clearTimeout(this.confirmedTimeout);
     }
 
+    handleBlur = () => {
+        if (this.state.confirming) {
+            this.setState({
+                confirming: false,
+            });
+        }
+    }
+
     handleClick = (event) => {
         const propsOnClick = this.props.onClick;
 
@@ -74,12 +84,25 @@ class Button extends Component {
         }
 
         if (this.props.hasConfirm) {
-            this.setState({
-                confirmed: false,
-                confirming: true,
-            }, () => {
-                this.confirmRef.focus();
-            });
+            if (!this.state.confirming) {
+                this.setState({
+                    confirmed: false,
+                    confirming: true,
+                });
+            } else {
+                this.setState({
+                    confirmed: true,
+                    confirming: false,
+                }, () => {
+                    // Wait 1s for animation to finish
+                    this.confirmedTimeout = setTimeout(() => {
+                        this.setState({
+                            confirmed: false,
+                        });
+                    }, 1000);
+                    propsOnClick(event);
+                });
+            }
         } else {
             propsOnClick(event);
         }
@@ -89,90 +112,38 @@ class Button extends Component {
         this.componentRef = ref;
     }
 
-    handleConfirmBlur = () => {
-        if (this.state.confirming) {
-            this.setState({
-                confirming: false,
-            });
-        }
-    }
-
-    handleConfirmClick = (event) => {
-        event.stopPropagation();
-        this.setState({
-            confirmed: true,
-            confirming: false,
-        }, () => {
-            // Wait 1s for animation to finish
-            this.confirmedTimeout = setTimeout(() => {
-                this.setState({
-                    confirmed: false,
-                });
-            }, 1000);
-            this.componentRef.focus();
-            this.props.onClick(event);
-        });
-    }
-
-    handleConfirmKeyDown = (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            this.handleConfirmClick(event);
-        }
-    }
-
-    handleConfirmRef = (ref) => {
-        this.confirmRef = ref;
-    }
-
     render() {
-        const {
-            children,
-            className,
-            confirmText,
-            confirmedText,
-            hasConfirm,
-            icon,
-            iconPosition,
-            id,
-            isActive,
-            isDisabled,
-            isFullWidth,
-            style,
-            tabIndex,
-            type,
-            variant,
-        } = this.props;
-
         return (
             <button
-                id={id}
-                type={type}
-                style={style}
+                id={this.props.id}
+                type={this.props.type}
+                style={this.props.style}
                 className={cx(
                     'uir-button',
-                    className,
-                    icon ? `uir-button--icon-${iconPosition}` : null,
+                    this.props.className,
+                    this.props.icon ? `uir-button--icon-${this.props.iconPosition}` : null,
                     {
-                        'uir-button--active': isActive,
-                        'uir-button--clear': variant === ButtonVariant.CLEAR,
-                        'uir-button--disabled': isDisabled,
-                        'uir-button--full-width': isFullWidth,
-                        'uir-button--primary': variant === ButtonVariant.PRIMARY,
-                        'uir-button--round': variant === ButtonVariant.ROUND,
+                        'uir-button--active': this.props.isActive,
+                        'uir-button--clear': this.props.variant === ButtonVariant.CLEAR,
+                        'uir-button--disabled': this.props.isDisabled,
+                        'uir-button--full-width': this.props.isFullWidth,
+                        'uir-button--primary': this.props.variant === ButtonVariant.PRIMARY,
+                        'uir-button--round': this.props.variant === ButtonVariant.ROUND,
                     },
                 )}
-                disabled={isDisabled}
+                aria-expanded={this.props['aria-expanded']}
+                disabled={this.props.isDisabled}
+                onBlur={this.handleBlur}
                 onClick={this.handleClick}
                 ref={this.handleRef}
-                tabIndex={tabIndex}
+                tabIndex={this.props.tabIndex}
             >
-                {iconPosition === ButtonIconPosition.LEFT ? icon : null }
+                {this.props.iconPosition === ButtonIconPosition.LEFT ? this.props.icon : null }
                 <span className="uir-button-content">
-                    {children}
+                    {this.props.children}
                 </span>
-                {iconPosition === ButtonIconPosition.RIGHT ? icon : null }
-                {hasConfirm ?
+                {this.props.iconPosition === ButtonIconPosition.RIGHT ? this.props.icon : null }
+                {this.props.hasConfirm ?
                     <span
                         aria-hidden={!this.state.confirming && !this.state.confirmed}
                         className={cx(
@@ -183,15 +154,9 @@ class Button extends Component {
                                 'uir-button-confirmation--confirmed': this.state.confirmed,
                             },
                         )}
-                        onBlur={this.handleConfirmBlur}
-                        onClick={this.handleConfirmClick}
-                        onKeyDown={this.handleConfirmKeyDown}
-                        ref={this.handleConfirmRef}
-                        role="button"
-                        tabIndex="-1"
                     >
-                        {this.state.confirmed ? confirmedText : null}
-                        {this.state.confirming ? confirmText : null}
+                        {this.state.confirmed ? this.props.confirmedText : null}
+                        {this.state.confirming ? this.props.confirmText : null}
                     </span>
                     : null
                 }
