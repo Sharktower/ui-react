@@ -167,6 +167,13 @@ stories.add(
         <div>
             <TextField label="Input with an error" tooltipError="My Example Error" />
             <TextField label="Input with a hint" tooltipHint="My Example Hint" />
+            <br />
+            <TextField
+                placeholder="Required field"
+                tooltipHint="My Example Hint"
+                isRequired
+                isFullWidth
+            />
         </div>,
     ),
 );
