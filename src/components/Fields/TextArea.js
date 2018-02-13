@@ -92,7 +92,9 @@ class TextArea extends Component {
     }
 
     componentDidMount = () => {
-        autosize(this.inputRef);
+        if (this.props.hasAutoHeight) {
+            autosize(this.inputRef);
+        }
     }
 
     handleMouseEnter = () => {
