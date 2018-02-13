@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import flatpickr from 'flatpickr';
 import StyleObjectPropType from '../../prop-types/style';
 import TextField from './TextField';
 import './DateField.scss';
@@ -21,11 +22,9 @@ const defaultProps = {
     style: null,
 };
 
-// on focus 
-
 class DateField extends Component {
-    handleFocus = () => {
-        console.log('change fired');
+    componentDidMount() {
+        flatpickr(this.divRef);
     }
 
     render() {
@@ -36,6 +35,7 @@ class DateField extends Component {
         } = this.props;
         return (
             <div
+                ref={(ref) => { this.divRef = ref; }}
                 className={cx('uir-datefield', className)}
                 style={style}
             >
