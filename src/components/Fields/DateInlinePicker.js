@@ -7,17 +7,41 @@ import './DateInlinePicker.scss';
 
 const propTypes = {
     className: PropTypes.string,
+    onChange: PropTypes.func,
     style: StyleObjectPropType(),
 };
 
 const defaultProps = {
     className: '',
+    onChange: null,
     style: null,
 };
 
 class DateField extends Component {
     componentDidMount() {
-        flatpickr(this.divRef);
+        const {
+            childRef,
+            handleChange,
+            props,
+        } = this;
+        const { ...options } = props;
+        if (childRef) {
+            flatpickr(childRef, {
+                ...options,
+                allowInput: true,
+                inline: true,
+                onChange: handleChange,
+            });
+        }
+    }
+
+    childRef = null
+
+    handleChange = (selectedDates, ...args) => {
+        const { onChange } = this.props;
+        if (onChange) {
+            onChange(selectedDates, ...args);
+        }
     }
 
     render() {
@@ -27,10 +51,11 @@ class DateField extends Component {
         } = this.props;
         return (
             <div
-                ref={(ref) => { this.divRef = ref; }}
-                className={cx('uir-dateinlinepicker', className)}
+                className={cx('uir-date-inline-picker', className)}
                 style={style}
-            />
+            >
+                <span ref={(ref) => { this.childRef = ref; }} />
+            </div>
         );
     }
 }

@@ -1,3 +1,12 @@
+@import "../variables";
+
+.uir-date-inline-picker {
+    font-family: $font-family;
+}
+
+// THE FOLLOWING HAS BEEN PORTED FROM FLATPICKR
+// https://flatpickr.js.org
+
 .flatpickr-calendar {
     position: absolute;
     box-sizing: border-box;
@@ -12,9 +21,7 @@
     touch-action: manipulation;
     visibility: hidden;
     background: #fff;
-    background: transparent;
     border: 0;
-    border-radius: 5px;
     box-shadow: 1px 0 0 #e6e6e6,-1px 0 0 #e6e6e6,0 1px 0 #e6e6e6,0 -1px 0 #e6e6e6,0 3px 13px rgba(0,0,0,.08);
     opacity: 0;
     animation: none;
@@ -430,7 +437,6 @@ span.flatpickr-weekday {
     cursor: pointer;
     background: none;
     border: 1px solid transparent;
-    border-radius: 150px;
 }
 
 .flatpickr-day.inRange,
@@ -486,32 +492,13 @@ span.flatpickr-weekday {
     box-shadow: none;
 }
 
-.flatpickr-day.selected.startRange,
-.flatpickr-day.startRange.startRange,
-.flatpickr-day.endRange.startRange {
-    border-radius: 50px 0 0 50px;
-}
-
-.flatpickr-day.selected.endRange,
-.flatpickr-day.startRange.endRange,
-.flatpickr-day.endRange.endRange {
-    border-radius: 0 50px 50px 0;
-}
-
 .flatpickr-day.selected.startRange + .endRange,
 .flatpickr-day.startRange.startRange + .endRange,
 .flatpickr-day.endRange.startRange + .endRange {
     box-shadow: -10px 0 0 #569ff7;
 }
 
-.flatpickr-day.selected.startRange.endRange,
-.flatpickr-day.startRange.startRange.endRange,
-.flatpickr-day.endRange.startRange.endRange {
-    border-radius: 50px;
-}
-
 .flatpickr-day.inRange {
-    border-radius: 0;
     box-shadow: -5px 0 0 #e6e6e6,5px 0 0 #e6e6e6;
 }
 
