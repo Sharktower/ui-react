@@ -134,7 +134,11 @@ stories.add(
     'Required',
     storyWrapper(
         'isRequired allows you to mark an input as required. And adds required icon with tooltip.',
-        <TextArea label="Required input" isRequired>
+        <TextArea
+            label="Required input"
+            tooltipRequired="required"
+            isRequired
+        >
             Hello, Friend
         </TextArea>,
         <div>

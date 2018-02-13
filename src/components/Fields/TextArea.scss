@@ -2,7 +2,7 @@
 
 $textFieldLabelColor: $charcoal !default;
 
-.uir-textarea {
+.uir-text-area {
     position: relative;
     display: inline-block;
     font-family: $font-family;
@@ -38,7 +38,7 @@ $textFieldLabelColor: $charcoal !default;
     &--full-width,
     &--has-auto-height {
 
-        .uir-textarea-input {
+        .uir-text-area-input {
             resize: none;
         }
     }
@@ -46,7 +46,7 @@ $textFieldLabelColor: $charcoal !default;
     &--focus,
     &--has-value {
 
-        .uir-textarea-label {
+        .uir-text-area-label {
             cursor: default;
             transform: translate(0, 0);
         }

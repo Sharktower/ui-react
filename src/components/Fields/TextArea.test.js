@@ -1,6 +1,7 @@
 /* global describe, expect, it, shallow, mount */
 import React from 'react';
 import sinon from 'sinon';
+import * as common from '../../../test/unit/commonTests';
 import TextArea from './TextArea';
 import Tooltip from '../Tooltip/Tooltip';
 import IconRequired from '../Icon/IconRequired';
@@ -10,10 +11,7 @@ function createTextarea() {
 }
 
 describe('TextArea', () => {
-    it('renders an div wrapper element', () => {
-        const textArea = createTextarea();
-        expect(textArea).to.have.tagName('div');
-    });
+    common.isConformant(TextArea, { requiredProps: { label: 'My Input' } });
 
     it('renders a label element', () => {
         const textArea = createTextarea();
@@ -76,7 +74,7 @@ describe('TextArea', () => {
     it('gives parent div focus class when textarea has focus ', () => {
         const textArea = createTextarea();
         textArea.find('textarea').simulate('focus');
-        expect(textArea).to.have.className('uir-textarea--focus');
+        expect(textArea).to.have.className('uir-text-area--focus');
     });
 
     it('renders an textarea element', () => {
@@ -86,9 +84,9 @@ describe('TextArea', () => {
 
     it('has the correct classes', () => {
         const textArea = createTextarea();
-        expect(textArea).to.have.className('uir-textarea');
-        expect(textArea.find('label')).to.have.className('uir-textarea-label');
-        expect(textArea.find('textarea')).to.have.className('uir-textarea-input');
+        expect(textArea).to.have.className('uir-text-area');
+        expect(textArea.find('label')).to.have.className('uir-text-area-label');
+        expect(textArea.find('textarea')).to.have.className('uir-text-area-input');
     });
 
     it('can pass in a className prop', () => {
@@ -99,12 +97,12 @@ describe('TextArea', () => {
 
     it('has a full width class if isFullWidth is passed', () => {
         const textArea = shallow(<TextArea isFullWidth />);
-        expect(textArea).to.have.className('uir-textarea--full-width');
+        expect(textArea).to.have.className('uir-text-area--full-width');
     });
 
     it('has a auto resize class if hasAutoHeight is passed', () => {
         const textArea = shallow(<TextArea hasAutoHeight />);
-        expect(textArea).to.have.className('uir-textarea--has-auto-height');
+        expect(textArea).to.have.className('uir-text-area--has-auto-height');
     });
 
     it('shows a placeholder when textarea has focus', () => {
@@ -204,24 +202,24 @@ describe('TextArea', () => {
 
     it('has no validation classes by default', () => {
         const textArea = shallow(<TextArea />);
-        expect(textArea).to.not.have.className('uir-textarea--valid');
-        expect(textArea).to.not.have.className('uir-textarea--invalid');
+        expect(textArea).to.not.have.className('uir-text-area--valid');
+        expect(textArea).to.not.have.className('uir-text-area--invalid');
     });
 
     it('has no validation classes if isValid is null', () => {
         const textArea = shallow(<TextArea isValid={null} />);
-        expect(textArea).to.not.have.className('uir-textarea--valid');
-        expect(textArea).to.not.have.className('uir-textarea--invalid');
+        expect(textArea).to.not.have.className('uir-text-area--valid');
+        expect(textArea).to.not.have.className('uir-text-area--invalid');
     });
 
     it('adds valid class if isValid is true', () => {
         const textArea = shallow(<TextArea isValid />);
-        expect(textArea).to.have.className('uir-textarea--valid');
+        expect(textArea).to.have.className('uir-text-area--valid');
     });
 
     it('adds invalid class if isValid is false', () => {
         const textArea = shallow(<TextArea isValid={false} />);
-        expect(textArea).to.have.className('uir-textarea--invalid');
+        expect(textArea).to.have.className('uir-text-area--invalid');
     });
 
     it('wraps textarea in a tooltip if tooltipError is given', () => {

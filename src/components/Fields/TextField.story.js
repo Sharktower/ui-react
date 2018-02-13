@@ -185,6 +185,7 @@ stories.add(
         <TextField
             label="Required input"
             value="Hello, Friend"
+            tooltipRequired="required"
             isRequired
         />,
         <div>

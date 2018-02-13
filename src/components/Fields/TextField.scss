@@ -2,7 +2,7 @@
 
 $textFieldLabelColor: $charcoal !default;
 
-.uir-textfield {
+.uir-text-field {
     position: relative;
     display: inline-block;
     font-family: $font-family;
@@ -38,7 +38,7 @@ $textFieldLabelColor: $charcoal !default;
     &--focus,
     &--has-value {
 
-        .uir-textfield-label {
+        .uir-text-field-label {
             cursor: default;
             transform: translate(0, 0);
         }
@@ -64,7 +64,7 @@ $textFieldLabelColor: $charcoal !default;
         background: none;
     }
 
-    &.uir-textfield--title {
+    &.uir-text-field--title {
         font-size: 36px;
 
         .uir-icon {
@@ -129,14 +129,14 @@ $textFieldLabelColor: $charcoal !default;
         margin-left: 5px;
     }
 
-    .uir-textfield-left-icon {
+    .uir-text-field-left-icon {
         position: absolute;
         top: 24px;
         left: 2px;
         line-height: 1em;
     }
 
-    .uir-textfield-right-icon {
+    .uir-text-field-right-icon {
         position: absolute;
         top: 21px;
         right: 2px;
