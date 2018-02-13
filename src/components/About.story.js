@@ -35,6 +35,16 @@ _NB: the main UI React library is a UMD bundle, we recommend tree shaking when y
 
 If you're looking for a more custom installation you also have the option of using [CommonJS](/?selectedKind=About&selectedStory=CommonJS) or [ES6 Native](/?selectedKind=About&selectedStory=CommonJS) modules.
 
+### Issues
+
+If you are a Mudano developer and you spot an issue with any of the UI React components please [raise an issue on JIRA](https://mdshowto.atlassian.net/projects/UR/issues).
+
+If you're using this platform outside of Mudano please feel free to email [ui-react@mudano.com](mailto:ui-react@mudano.com).
+
+### Contribution
+
+If you spot an issue, and can help resolve the problem, or you have thought of an improvement to a component - awesome! - please create a pull request for your fix / suggestion.
+
 ### Development
 
 To help with development, clone the repository from here: [https://github.com/Mudano/ui-react](https://github.com/Mudano/ui-react)
@@ -171,3 +181,40 @@ Good luck!
 );
 
 /* eslint-enable */
+
+stories.add(
+    'Conventions',
+    overviewWrapper(`
+The following notes give you a brief guide to some of the key conventions we try and follow with UI React.
+
+### ClassName and Style Props
+
+Every component should have both \`className\` and \`style\` props for you to make use of.
+
+### Event Handlers
+
+Event handle props will generally follow the format \`onEventName\`.
+
+React events can be found here: [https://reactjs.org/docs/events.html#supported-events](https://reactjs.org/docs/events.html#supported-events)
+
+### Boolean Flags
+
+Boolean props take one of two formats: \`hasProperty\` and \`isProperty\`.
+
+We generally use \`has...\` when we're modifying a component e.g. \`hasHalo\`.
+
+And we use \`is...\` to, most often, toggle state e.g. \`isActive\`.
+
+### Class Names
+
+Every component class name takes the format \`uir-component-name\` e.g. \`uir-avatar\`.
+
+When modifying a component we use the format \`uir-component--modifier\` e.g. \`uir-avatar--halo\`.
+
+### Callbacks and Errors
+
+Event callbacks provided to a component should be called after the component's internal state has been updated.
+
+It should be noted that we do not suppress callback errors.  You will need to handle your own errors.
+    `),
+);

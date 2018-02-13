@@ -16,27 +16,27 @@ const defaultProps = {
     style: null,
 };
 
-const IconArrow = ({
+const IconClear = ({
     className,
     style,
 }) => {
     lastInstanceId += 1;
-    const iconTitleId = `icon-arrow-title-${lastInstanceId}`;
+    const iconTitleId = `icon-clear-title-${lastInstanceId}`;
 
     return (
         <svg
-            className={cx('uir-icon uir-icon-arrow', className)}
+            className={cx('uir-icon uir-icon-clear', className)}
             style={style}
             viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
         >
-            <title id={iconTitleId}>Arrow Icon</title>
-            <path d="M 13.1 15.319 L 21.9 6.521 L 23 7.621 L 14.2 16.42 L 13.1 15.319 Z  M 1 7.621 L 2.1 6.521 L 13.1 17.52 L 12 18.619 L 1 7.621 Z" fillRule="evenodd" />
+            <title id={iconTitleId}>Clear Icon</title>
+            <path d="M12 10.6L7.2 5.8 5.8 7.2l4.8 4.8-4.8 4.8 1.4 1.4 4.8-4.8 4.8 4.8 1.4-1.4-4.8-4.8 4.8-4.8-1.4-1.4-4.8 4.8zM12 .5C18.3.5 23.5 5.6 23.5 12c0 6.3-5.1 11.5-11.5 11.5C5.7 23.5.5 18.4.5 12 .5 5.7 5.7.5 12 .5z" />
         </svg>
     );
 };
 
-IconArrow.propTypes = propTypes;
-IconArrow.defaultProps = defaultProps;
+IconClear.propTypes = propTypes;
+IconClear.defaultProps = defaultProps;
 
-export default IconArrow;
+export default IconClear;

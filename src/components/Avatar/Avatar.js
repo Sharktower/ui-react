@@ -39,9 +39,9 @@ const defaultProps = {
 
 class Avatar extends Component {
     handleClick = (event) => {
-        const propsOnClick = this.props.onClick;
-        if (propsOnClick) {
-            propsOnClick(event);
+        const { onClick } = this.props;
+        if (onClick) {
+            onClick(event);
         }
     }
 
@@ -78,8 +78,10 @@ class Avatar extends Component {
                 className={cx(
                     'uir-avatar',
                     `uir-avatar--${this.props.size}`,
-                    { 'uir-avatar--interactive': this.props.onClick },
-                    { 'uir-avatar--halo': this.props.hasHalo },
+                    {
+                        'uir-avatar--interactive': this.props.onClick,
+                        'uir-avatar--halo': this.props.hasHalo,
+                    },
                     this.props.className,
                 )}
                 aria-label={this.props.name}

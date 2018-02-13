@@ -2,19 +2,9 @@ import React from 'react';
 import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import Avatar from './Avatar';
 import Tooltip from '../Tooltip/Tooltip';
+import IconNotification from '../Icon/IconNotification';
 import storyWrapper from '../../storybook-addons/storyWrapper';
 
-// @NB: this will be replaced by a real Icon component soon
-function TempIcon() {
-    return (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <g fill="none" transform="translate(3 3)">
-                <circle cx="9" cy="9" r="8" stroke="#F33061" />
-                <path fill="#F33061" d="M8 5h2v5H8zm0 6h2v2H8z" />
-            </g>
-        </svg>
-    );
-}
 
 const stories = storiesOf('Avatar.Avatar', module);
 
@@ -55,7 +45,7 @@ Avatars will either display a user's profile image or their initials.
                 name="Jane Doe"
                 initials="JD"
                 src="https://randomuser.me/api/portraits/women/44.jpg"
-                icon={<TempIcon />}
+                icon={<IconNotification />}
             />
         </div>,
     ),
@@ -238,35 +228,35 @@ _NB: The \`icon\` prop expects an Icon component._
             initials="JS"
             size="lg"
             src="https://randomuser.me/api/portraits/women/68.jpg"
-            icon={<TempIcon />}
+            icon={<IconNotification />}
         />,
         <div>
             <Avatar
                 name="Jane Smith"
                 initials="JS"
                 size="xs"
-                icon={<TempIcon />}
+                icon={<IconNotification />}
                 style={{ marginRight: '30px' }}
             />
             <Avatar
                 name="Jane Smith"
                 initials="JS"
                 size="sm"
-                icon={<TempIcon />}
+                icon={<IconNotification />}
                 style={{ marginRight: '30px' }}
             />
             <Avatar
                 name="Jane Smith"
                 initials="JS"
                 size="md"
-                icon={<TempIcon />}
+                icon={<IconNotification />}
                 style={{ marginRight: '30px' }}
             />
             <Avatar
                 name="Jane Smith"
                 initials="JS"
                 size="lg"
-                icon={<TempIcon />}
+                icon={<IconNotification />}
             />
         </div>,
     ),
