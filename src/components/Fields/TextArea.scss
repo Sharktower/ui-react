@@ -98,6 +98,14 @@ $textFieldLabelColor: $charcoal !default;
         }
     }
 
+    &-inner {
+        height: 100%;
+
+        textarea {
+            height: 100%;
+        }
+    }
+
     &-inner > .uir-tooltip {
         width: 100%;
     }

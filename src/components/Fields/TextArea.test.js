@@ -100,9 +100,14 @@ describe('TextArea', () => {
         expect(textArea).to.have.className('uir-text-area--full-width');
     });
 
-    it('has a auto resize class if hasAutoHeight is passed', () => {
-        const textArea = shallow(<TextArea hasAutoHeight />);
+    it('has a auto resize class if preventAutoResize is false', () => {
+        const textArea = shallow(<TextArea preventAutoResize={false} />);
         expect(textArea).to.have.className('uir-text-area--has-auto-height');
+    });
+
+    it('does not have a auto resize class if preventAutoResize is true', () => {
+        const textArea = shallow(<TextArea preventAutoResize />);
+        expect(textArea).to.not.have.className('uir-text-area--has-auto-height');
     });
 
     it('shows a placeholder when textarea has focus', () => {

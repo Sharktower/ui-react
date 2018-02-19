@@ -5,11 +5,21 @@ import TextArea from './TextArea';
 
 const stories = storiesOf('Fields.TextArea', module);
 
+const multilineText = `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+
+Velit ipsam, nesciunt doloribus, aspernatur a itaque assumenda odit alias rem dignissimos culpa error magnam veniam cupiditate repellendus nam id perferendis sit.
+
+Velit ipsam, nesciunt doloribus, aspernatur a itaque assumenda odit alias rem dignissimos culpa error magnam veniam cupiditate repellendus nam id perferendis sit.`;
+
 stories.add(
     'Overview',
     storyWrapper(
-        'TextArea is a larger text input field.',
-        <TextArea label="Textarea field label" />,
+        'TextArea is a larger text input field. As you enter text the box will vertically resize automatically.',
+        <TextArea
+            isFullWidth
+            label="Textarea field label"
+            value={multilineText}
+        />,
     ),
 );
 
@@ -45,21 +55,16 @@ stories.add(
     ),
 );
 
-const multilineText = `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-
-Velit ipsam, nesciunt doloribus, aspernatur a itaque assumenda odit alias rem dignissimos culpa error magnam veniam cupiditate repellendus nam id perferendis sit.
-
-Velit ipsam, nesciunt doloribus, aspernatur a itaque assumenda odit alias rem dignissimos culpa error magnam veniam cupiditate repellendus nam id perferendis sit.`;
-
 stories.add(
-    'Auto Height',
+    'Prevent Auto Resize',
     storyWrapper(
-        'hasAutoHeight allows the textarea to resize with the content.',
+        'preventAutoResize stops the textarea from resizing as the content changes.',
         <TextArea
-            label="Full width resizeable"
-            hasAutoHeight
+            label="Full width not resizeable"
+            preventAutoResize
             isFullWidth
             value={multilineText}
+            style={{ height: '200px' }}
         />,
     ),
 );
