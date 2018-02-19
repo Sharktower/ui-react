@@ -230,9 +230,14 @@ describe('TextField', () => {
         expect(textField).to.have.className('uir-text-field--invalid');
     });
 
-    it('wraps input in a tooltip if tooltipError is given', () => {
-        const textField = shallow(<TextField tooltipError="error" />);
+    it('wraps input in a tooltip if tooltipError is given and isValid is false', () => {
+        const textField = shallow(<TextField isValid={false} tooltipError="error" />);
         expect(textField.find(Tooltip).length).to.equal(1);
+    });
+
+    it('does not wrap input in a tooltip if tooltipError is given and isValid is true', () => {
+        const textField = shallow(<TextField isValid tooltipError="error" />);
+        expect(textField.find(Tooltip).length).to.equal(0);
     });
 
     it('wraps input in a tooltip if tooltipHint is given', () => {

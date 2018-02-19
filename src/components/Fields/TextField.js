@@ -254,6 +254,7 @@ class TextField extends Component {
                 </Button>
             ) :
             null;
+        const tooltipError = this.props.isValid === false ? this.props.tooltipError : null;
         return (
             <div
                 className={cx(
@@ -304,7 +305,7 @@ class TextField extends Component {
                             type={this.props.type}
                             value={this.state.value}
                         />,
-                        this.props.tooltipError || this.props.tooltipHint,
+                        tooltipError || this.props.tooltipHint,
                     )}
                     {requiredIconAndTooltip(
                         this.props.isRequired && !this.props.label,
