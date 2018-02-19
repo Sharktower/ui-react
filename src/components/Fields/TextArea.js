@@ -13,7 +13,7 @@ const propTypes = {
     className: PropTypes.string,
     componentRef: PropTypes.func,
     hasAutoHeight: PropTypes.bool,
-    hasLabelAlways: PropTypes.bool,
+    hasLabelOnFocus: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
     isReadOnly: PropTypes.bool,
@@ -50,7 +50,7 @@ const defaultProps = {
     className: null,
     componentRef: null,
     hasAutoHeight: false,
-    hasLabelAlways: false,
+    hasLabelOnFocus: false,
     isDisabled: false,
     isFullWidth: false,
     isReadOnly: false,
@@ -199,7 +199,7 @@ class TextArea extends Component {
 
     render() {
         const showLabel = (
-            this.props.hasLabelAlways ||
+            this.props.hasLabelOnFocus === false ||
             this.state.hasFocus ||
             this.state.hasMouseOver ||
             !this.state.value

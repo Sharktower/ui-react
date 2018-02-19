@@ -23,24 +23,24 @@ describe('TextArea', () => {
         expect(textArea.find('label').length).to.equal(0);
     });
 
-    it('always renders a label element if hasLabelAlways is true', () => {
-        const textField = shallow(<TextArea label="foo" value="bar" hasLabelAlways />);
+    it('does render a label element if hasLabelOnFocus is true and value is undefined', () => {
+        const textField = shallow(<TextArea label="foo" hasLabelOnFocus />);
         expect(textField.find('label').length).to.equal(1);
     });
 
-    it('does not render a label element if label provided put value is defined', () => {
-        const textArea = shallow(<TextArea label="test" value="example" />);
-        expect(textArea.find('label').length).to.equal(0);
+    it('does not render a label element if hasLabelOnFocus is true and value is defined', () => {
+        const textField = shallow(<TextArea label="foo" value="test" hasLabelOnFocus />);
+        expect(textField.find('label').length).to.equal(0);
     });
 
     it('renders a label element when there is value and textarea has focus', () => {
-        const textArea = shallow(<TextArea label="test" value="example" />);
+        const textArea = shallow(<TextArea label="test" value="example" hasLabelOnFocus />);
         textArea.find('textarea').simulate('focus');
         expect(textArea.find('label').length).to.equal(1);
     });
 
     it('renders a label element when there is value and TextArea has mouse over', () => {
-        const textArea = shallow(<TextArea label="test" value="example" />);
+        const textArea = shallow(<TextArea label="test" value="example" hasLabelOnFocus />);
         textArea.simulate('mouseEnter');
         expect(textArea.find('label').length).to.equal(1);
     });

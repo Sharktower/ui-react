@@ -34,13 +34,13 @@ stories.add(
 );
 
 stories.add(
-    'Label Always',
+    'Label On Hover',
     storyWrapper(
-        'Label can be forced to always appear with the hasLabelAlways prop.',
+        'Label will hide when the input does not have focus with the hasLabelOnFocus prop.',
         <TextArea
             label="Always has a label"
             value="my example value"
-            hasLabelAlways
+            hasLabelOnFocus
         />,
     ),
 );
