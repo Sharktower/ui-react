@@ -79,7 +79,7 @@ stories.add(
 stories.add(
     'Auto Hide Label',
     storyWrapper(
-        'Label will hide when the input does not have focus with the autoHideLabel prop.',
+        'Use `autoHideLabel` to hide the field label when the input loses focus.',
         <TextField
             label="Always has a label"
             value="my example value"
