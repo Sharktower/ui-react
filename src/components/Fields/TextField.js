@@ -102,6 +102,12 @@ class TextField extends Component {
         this.uid = `text-field-${lastInstanceId}`;
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.value !== nextProps.value) {
+            this.setState({ value: nextProps.value });
+        }
+    }
+
     handleMouseEnter = () => {
         this.setState({ hasMouseOver: true });
     }
