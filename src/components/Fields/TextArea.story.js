@@ -58,7 +58,11 @@ stories.add(
 stories.add(
     'Prevent Auto Resize',
     storyWrapper(
-        'preventAutoResize stops the textarea from resizing as the content changes.',
+        `
+preventAutoResize stops the textarea from resizing as the content changes.
+
+The example below has a fixed height of 200px.
+`,
         <TextArea
             label="Full width not resizeable"
             preventAutoResize

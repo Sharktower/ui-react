@@ -99,6 +99,8 @@ $textFieldLabelColor: $charcoal !default;
     }
 
     &-inner {
+        display: flex;
+        flex-direction: column;
         height: 100%;
 
         textarea {
