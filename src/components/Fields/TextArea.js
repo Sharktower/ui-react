@@ -233,7 +233,6 @@ class TextArea extends Component {
                         'uir-text-area--disabled': this.props.isDisabled,
                         'uir-text-area--focus': this.state.hasFocus,
                         'uir-text-area--full-width': this.props.isFullWidth,
-                        'uir-text-area--has-fixed-height': this.props.hasFixedHeight,
                         'uir-text-area--has-right-icon': this.props.isRequired,
                         'uir-text-area--has-value': this.state.value,
                         'uir-text-area--invalid': this.props.isValid === false,

@@ -39,13 +39,6 @@ $textFieldLabelColor: $charcoal !default;
         resize: none;
     }
 
-    &--has-fixed-height {
-
-        .uir-text-area-input {
-            resize: both;
-        }
-    }
-
     &--focus,
     &--has-value {
 
