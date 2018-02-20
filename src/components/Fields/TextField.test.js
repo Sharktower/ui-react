@@ -38,13 +38,13 @@ describe('TextField', () => {
         expect(textField.find('label').length).to.equal(0);
     });
 
-    it('renders a label element when there is value and textarea has focus', () => {
+    it('renders a label element when there is value and input has focus', () => {
         const textField = shallow(<TextField label="test" value="example" autoHideLabel />);
         textField.find('input').simulate('focus');
         expect(textField.find('label').length).to.equal(1);
     });
 
-    it('renders a label element when there is value and TextArea has mouse over', () => {
+    it('renders a label element when there is value and TextField has mouse over', () => {
         const textField = shallow(<TextField label="test" value="example" autoHideLabel />);
         textField.simulate('mouseEnter');
         expect(textField.find('label').length).to.equal(1);

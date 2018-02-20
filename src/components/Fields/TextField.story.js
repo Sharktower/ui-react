@@ -77,13 +77,13 @@ stories.add(
 );
 
 stories.add(
-    'Label On Hover',
+    'Auto Hide Label',
     storyWrapper(
-        'Label will hide when the input does not have focus with the hasLabelOnFocus prop.',
+        'Label will hide when the input does not have focus with the autoHideLabel prop.',
         <TextField
             label="Always has a label"
             value="my example value"
-            hasLabelOnFocus
+            autoHideLabel
         />,
     ),
 );
