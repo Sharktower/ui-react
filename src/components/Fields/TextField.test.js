@@ -246,7 +246,7 @@ describe('TextField', () => {
     });
 
     it('gives precedence to tooltipError over tooltipHint', () => {
-        const textField = mount(<TextField tooltipHint="hint" tooltipError="error" />);
+        const textField = mount(<TextField isValid={false} tooltipHint="hint" tooltipError="error" />);
         textField.find('input').simulate('focus');
         expect(textField.find(TooltipBox).prop('status')).to.equal(TooltipBoxStatus.ERROR);
     });
