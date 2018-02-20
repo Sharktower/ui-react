@@ -39,7 +39,7 @@ $textFieldLabelColor: $charcoal !default;
         resize: none;
     }
 
-    &--has-static-height {
+    &--has-fixed-height {
 
         .uir-text-area-input {
             resize: both;

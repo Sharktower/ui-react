@@ -56,10 +56,10 @@ stories.add(
 );
 
 stories.add(
-    'Prevent Auto Resize',
+    'Fixed Height',
     storyWrapper(
         `
-hasStaticHeight stops the textarea from resizing as the content changes.
+hasFixedHeight stops the textarea from resizing as the content changes.
 
 The example below has a fixed height of 200px.
 
@@ -67,7 +67,7 @@ _NB: this mode also enables the default textarea resize function._
 `,
         <TextArea
             label="Full width not resizeable"
-            hasStaticHeight
+            hasFixedHeight
             isFullWidth
             value={multilineText}
             style={{ height: '200px' }}
