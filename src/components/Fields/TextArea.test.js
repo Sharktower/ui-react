@@ -23,24 +23,24 @@ describe('TextArea', () => {
         expect(textArea.find('label').length).to.equal(0);
     });
 
-    it('does render a label element if hasLabelOnFocus is true and value is undefined', () => {
-        const textField = shallow(<TextArea label="foo" hasLabelOnFocus />);
+    it('does render a label element if autoHideLabel is true and value is undefined', () => {
+        const textField = shallow(<TextArea label="foo" autoHideLabel />);
         expect(textField.find('label').length).to.equal(1);
     });
 
-    it('does not render a label element if hasLabelOnFocus is true and value is defined', () => {
-        const textField = shallow(<TextArea label="foo" value="test" hasLabelOnFocus />);
+    it('does not render a label element if autoHideLabel is true and value is defined', () => {
+        const textField = shallow(<TextArea label="foo" value="test" autoHideLabel />);
         expect(textField.find('label').length).to.equal(0);
     });
 
     it('renders a label element when there is value and textarea has focus', () => {
-        const textArea = shallow(<TextArea label="test" value="example" hasLabelOnFocus />);
+        const textArea = shallow(<TextArea label="test" value="example" autoHideLabel />);
         textArea.find('textarea').simulate('focus');
         expect(textArea.find('label').length).to.equal(1);
     });
 
     it('renders a label element when there is value and TextArea has mouse over', () => {
-        const textArea = shallow(<TextArea label="test" value="example" hasLabelOnFocus />);
+        const textArea = shallow(<TextArea label="test" value="example" autoHideLabel />);
         textArea.simulate('mouseEnter');
         expect(textArea.find('label').length).to.equal(1);
     });
