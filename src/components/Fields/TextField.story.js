@@ -100,13 +100,21 @@ stories.add(
 );
 
 stories.add(
-    'Label Always',
+    'Auto Hide Label',
     storyWrapper(
-        'Label can be forced to always appear with the hasLabelAlways prop.',
+        `
+Use \`autoHideLabel\` to hide the field label when the input loses focus.
+
+_NB: label will not hide if there is no value._
+        `,
         <TextField
-            label="Always has a label"
-            value="my example value"
-            hasLabelAlways
+            label="Label will auto hide"
+            value="My label auto hides"
+            autoHideLabel
+        />,
+        <TextField
+            label="Label without value"
+            autoHideLabel
         />,
     ),
 );

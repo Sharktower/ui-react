@@ -10,10 +10,10 @@ import requiredIconAndTooltip from './RequiredIconAndTooltip';
 import './TextArea.scss';
 
 const propTypes = {
+    autoHideLabel: PropTypes.bool,
     className: PropTypes.string,
     componentRef: PropTypes.func,
     hasAutoHeight: PropTypes.bool,
-    hasLabelAlways: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
     isReadOnly: PropTypes.bool,
@@ -47,10 +47,10 @@ const propTypes = {
 };
 
 const defaultProps = {
+    autoHideLabel: false,
     className: null,
     componentRef: null,
     hasAutoHeight: false,
-    hasLabelAlways: false,
     isDisabled: false,
     isFullWidth: false,
     isReadOnly: false,
@@ -207,7 +207,7 @@ class TextArea extends Component {
 
     render() {
         const showLabel = (
-            this.props.hasLabelAlways ||
+            this.props.autoHideLabel === false ||
             this.state.hasFocus ||
             this.state.hasMouseOver ||
             !this.state.value

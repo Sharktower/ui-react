@@ -199,11 +199,11 @@ React events can be found here: [https://reactjs.org/docs/events.html#supported-
 
 ### Boolean Flags
 
-Boolean props take one of two formats: \`hasProperty\` and \`isProperty\`.
+Boolean props generally take one of two formats: \`hasProperty\` and \`isProperty\`.
 
-We generally use \`has...\` when we're modifying a component e.g. \`hasHalo\`.
+We try to use \`has...\` when we're modifying a component e.g. \`hasHalo\`.
 
-And we use \`is...\` to, most often, toggle state e.g. \`isActive\`.
+And we try to use \`is...\` to, most often, toggle state e.g. \`isActive\`.
 
 ### Class Names
 
