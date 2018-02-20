@@ -14,9 +14,9 @@ import requiredIconAndTooltip from './RequiredIconAndTooltip';
 import './TextField.scss';
 
 const propTypes = {
+    autoHideLabel: PropTypes.bool,
     className: PropTypes.string,
     componentRef: PropTypes.func,
-    hasLabelOnFocus: PropTypes.bool,
     icon: PropTypes.element,
     isClearable: PropTypes.bool,
     isDisabled: PropTypes.bool,
@@ -56,9 +56,9 @@ const propTypes = {
 };
 
 const defaultProps = {
+    autoHideLabel: false,
     className: null,
     componentRef: null,
-    hasLabelOnFocus: false,
     icon: null,
     isClearable: false,
     isDisabled: false,
@@ -212,7 +212,7 @@ class TextField extends Component {
 
     render() {
         const showLabel = (
-            this.props.hasLabelOnFocus === false ||
+            this.props.autoHideLabel === false ||
             this.state.hasFocus ||
             this.state.hasMouseOver ||
             !this.state.value
