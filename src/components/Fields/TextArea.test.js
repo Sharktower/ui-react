@@ -239,9 +239,14 @@ describe('TextArea', () => {
         expect(textArea).to.have.className('uir-text-area--invalid');
     });
 
-    it('wraps textarea in a tooltip if tooltipError is given', () => {
-        const textArea = shallow(<TextArea tooltipError="error" />);
+    it('wraps textarea in a tooltip if tooltipError is given and isValid is false', () => {
+        const textArea = shallow(<TextArea isValid={false} tooltipError="error" />);
         expect(textArea.find(Tooltip).length).to.equal(1);
+    });
+
+    it('does not wrap textarea in a tooltip if tooltipError is given and isValid is true', () => {
+        const textArea = shallow(<TextArea isValid tooltipError="error" />);
+        expect(textArea.find(Tooltip).length).to.equal(0);
     });
 
     it('wraps textarea in a tooltip if tooltipHint is given', () => {

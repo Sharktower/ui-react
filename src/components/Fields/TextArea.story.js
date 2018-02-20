@@ -117,15 +117,27 @@ stories.add(
 stories.add(
     'Tooltips',
     storyWrapper(
-        'tooltipHint and tooltipError allow you to display tooltips to users on input focus. Error takes precedence over hint.',
+        `
+tooltipHint and tooltipError allow you to display tooltips to users on input focus. Error takes precedence over hint.
+
+_NB: tooltipError will ONLY be displayed if isValid is false._
+`,
         <TextArea
             label="Input with a tooltip"
+            isValid={false}
             tooltipHint="My Example Hint"
             tooltipError="My Example Error"
         />,
         <div>
-            <TextArea label="Input with an error" tooltipError="My Example Error" />
-            <TextArea label="Input with a hint" tooltipHint="My Example Hint" />
+            <TextArea
+                label="Input with an error"
+                isValid={false}
+                tooltipError="My Example Error"
+            />
+            <TextArea
+                label="Input with a hint"
+                tooltipHint="My Example Hint"
+            />
         </div>,
     ),
 );

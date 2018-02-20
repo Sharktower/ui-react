@@ -191,7 +191,9 @@ class TextArea extends Component {
                     showTooltip={this.state.showTooltip}
                     tooltip={
                         <TooltipBox
-                            status={this.props.tooltipError ? ERROR : DEFAULT}
+                            status={this.props.tooltipError && this.props.isValid === false ?
+                                ERROR :
+                                DEFAULT}
                         >
                             {tooltip}
                         </TooltipBox>
@@ -222,6 +224,7 @@ class TextArea extends Component {
             null;
         /* eslint-enable */
         const showPlaceholder = (!this.props.label || this.state.hasFocus);
+        const tooltipError = this.props.isValid === false ? this.props.tooltipError : null;
         return (
             <div
                 className={cx(
@@ -267,7 +270,7 @@ class TextArea extends Component {
                             rows={this.props.rows}
                             value={this.state.value}
                         />,
-                        this.props.tooltipError || this.props.tooltipHint,
+                        tooltipError || this.props.tooltipHint,
                     )}
                     {requiredIconAndTooltip(
                         this.props.isRequired && !this.props.label,
