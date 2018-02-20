@@ -185,7 +185,9 @@ class TextArea extends Component {
                     showTooltip={this.state.showTooltip}
                     tooltip={
                         <TooltipBox
-                            status={this.props.tooltipError ? ERROR : DEFAULT}
+                            status={this.props.tooltipError && this.props.isValid === false ?
+                                ERROR :
+                                DEFAULT}
                         >
                             {tooltip}
                         </TooltipBox>
