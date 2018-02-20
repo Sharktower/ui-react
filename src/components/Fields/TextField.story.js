@@ -79,10 +79,18 @@ stories.add(
 stories.add(
     'Auto Hide Label',
     storyWrapper(
-        'Use `autoHideLabel` to hide the field label when the input loses focus.',
+        `
+Use \`autoHideLabel\` to hide the field label when the input loses focus.
+
+_NB: label will not hide if there is no value._
+        `,
         <TextField
-            label="Always has a label"
-            value="my example value"
+            label="Label will auto hide"
+            value="My label auto hides"
+            autoHideLabel
+        />,
+        <TextField
+            label="Label without value"
             autoHideLabel
         />,
     ),
