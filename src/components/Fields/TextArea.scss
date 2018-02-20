@@ -35,11 +35,14 @@ $textFieldLabelColor: $charcoal !default;
         width: 100%;
     }
 
-    &--full-width,
-    &--has-auto-height {
+    .uir-text-area-input {
+        resize: none;
+    }
+
+    &--has-static-height {
 
         .uir-text-area-input {
-            resize: none;
+            resize: both;
         }
     }
 

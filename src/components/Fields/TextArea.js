@@ -28,7 +28,7 @@ const propTypes = {
     onKeyPress: PropTypes.func,
     onKeyUp: PropTypes.func,
     placeholder: PropTypes.string,
-    preventAutoResize: PropTypes.bool,
+    hasStaticHeight: PropTypes.bool,
     rows: PropTypes.number,
     style: StyleObjectPropType(),
     tooltipError: PropTypes.oneOfType([
@@ -65,7 +65,7 @@ const defaultProps = {
     onKeyPress: null,
     onKeyUp: null,
     placeholder: null,
-    preventAutoResize: false,
+    hasStaticHeight: false,
     rows: 1,
     style: null,
     tooltipError: null,
@@ -92,7 +92,7 @@ class TextArea extends Component {
     }
 
     componentDidMount = () => {
-        if (this.props.preventAutoResize === false) {
+        if (this.props.hasStaticHeight === false) {
             autosize(this.inputRef);
         }
     }
@@ -224,7 +224,7 @@ class TextArea extends Component {
                         'uir-text-area--disabled': this.props.isDisabled,
                         'uir-text-area--focus': this.state.hasFocus,
                         'uir-text-area--full-width': this.props.isFullWidth,
-                        'uir-text-area--has-auto-height': this.props.preventAutoResize === false,
+                        'uir-text-area--has-static-height': this.props.hasStaticHeight,
                         'uir-text-area--has-right-icon': this.props.isRequired,
                         'uir-text-area--has-value': this.state.value,
                         'uir-text-area--invalid': this.props.isValid === false,
