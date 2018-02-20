@@ -97,6 +97,12 @@ class TextArea extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.value !== nextProps.value) {
+            this.setState({ value: nextProps.value });
+        }
+    }
+
     handleMouseEnter = () => {
         this.setState({ hasMouseOver: true });
     }

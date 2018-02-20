@@ -119,6 +119,23 @@ describe('TextField', () => {
         expect(textField.find('input').prop('value')).to.equal(exampleValue);
     });
 
+    it('updates internal value when external prop changes', () => {
+        const textField = shallow(<TextField value="foo" />);
+        expect(textField.state('value')).to.equal('foo');
+        textField.setProps({ value: 'bar' });
+        expect(textField.state('value')).to.equal('bar');
+    });
+
+    it('state does not change when prop value is the same', () => {
+        const textField = mount(<TextField value="foo" />);
+        const instance = textField.instance();
+        const mock = sinon.mock(instance);
+        const expectation = mock.expects('setState');
+        textField.setProps({ name: 'bar' });
+        expect(expectation).to.not.be.called();
+        mock.restore();
+    });
+
     it('updates the component state when changing the input value', () => {
         const textField = mount(<TextField />);
         const instance = textField.instance();

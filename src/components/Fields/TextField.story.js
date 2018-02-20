@@ -1,18 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import storyWrapper from '../../storybook-addons/storyWrapper';
 import TextField from './TextField';
+import Button from '../Button/Button';
 import { TextFieldVariant } from './TextFieldEnums';
 import IconSearch from '../Icon/IconSearch';
 import IconNotification from '../Icon/IconNotification';
 
 const stories = storiesOf('Fields.TextField', module);
 
+class ChangeValueDemoComp extends Component {
+    state = {
+        value: 'I am the default...',
+    }
+
+    handleClick = () => {
+        this.setState({
+            value: 'I have changed!',
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <TextField label="Text field label" value={this.state.value} />
+                <Button onClick={this.handleClick}>Click to Change</Button>
+            </div>
+        );
+    }
+}
+
 stories.add(
     'Overview',
     storyWrapper(
         'TextField is a text input field.',
         <TextField label="Text field label" />,
+        <ChangeValueDemoComp />,
     ),
 );
 

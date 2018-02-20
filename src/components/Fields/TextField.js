@@ -102,6 +102,12 @@ class TextField extends Component {
         this.uid = `text-field-${lastInstanceId}`;
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.value !== nextProps.value) {
+            this.setState({ value: nextProps.value });
+        }
+    }
+
     handleMouseEnter = () => {
         this.setState({ hasMouseOver: true });
     }
@@ -244,16 +250,22 @@ class TextField extends Component {
             this.props.variant === TextFieldVariant.TITLE
         );
         const icon = this.props.icon ?
-            this.props.icon :
+            (
+                <span className="uir-text-field-left-icon">
+                    {this.props.icon}
+                </span>
+            ) :
             null;
         const clearIcon = this.props.isClearable && this.state.value ?
             (
-                <Button
-                    onClick={this.handleClearIconClick}
-                    variant={ButtonVariant.CLEAR}
-                >
-                    <IconClear />
-                </Button>
+                <span className="uir-text-field-right-icon">
+                    <Button
+                        onClick={this.handleClearIconClick}
+                        variant={ButtonVariant.CLEAR}
+                    >
+                        <IconClear />
+                    </Button>
+                </span>
             ) :
             null;
         const tooltipError = this.props.isValid === false ? this.props.tooltipError : null;
@@ -280,9 +292,7 @@ class TextField extends Component {
                 onMouseLeave={this.handleMouseLeave}
                 style={this.props.style}
             >
-                <span className="uir-text-field-left-icon">
-                    {icon}
-                </span>
+                {icon}
                 <div className="uir-text-field-inner">
                     <div className="uir-text-field-label-wrapper">
                         {label}
@@ -314,9 +324,7 @@ class TextField extends Component {
                         this.props.tooltipRequired,
                     )}
                 </div>
-                <span className="uir-text-field-right-icon">
-                    {clearIcon}
-                </span>
+                {clearIcon}
             </div>
         );
     }
