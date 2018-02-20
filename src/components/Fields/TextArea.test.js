@@ -23,24 +23,24 @@ describe('TextArea', () => {
         expect(textArea.find('label').length).to.equal(0);
     });
 
-    it('always renders a label element if hasLabelAlways is true', () => {
-        const textField = shallow(<TextArea label="foo" value="bar" hasLabelAlways />);
+    it('does render a label element if autoHideLabel is true and value is undefined', () => {
+        const textField = shallow(<TextArea label="foo" autoHideLabel />);
         expect(textField.find('label').length).to.equal(1);
     });
 
-    it('does not render a label element if label provided put value is defined', () => {
-        const textArea = shallow(<TextArea label="test" value="example" />);
-        expect(textArea.find('label').length).to.equal(0);
+    it('does not render a label element if autoHideLabel is true and value is defined', () => {
+        const textField = shallow(<TextArea label="foo" value="test" autoHideLabel />);
+        expect(textField.find('label').length).to.equal(0);
     });
 
     it('renders a label element when there is value and textarea has focus', () => {
-        const textArea = shallow(<TextArea label="test" value="example" />);
+        const textArea = shallow(<TextArea label="test" value="example" autoHideLabel />);
         textArea.find('textarea').simulate('focus');
         expect(textArea.find('label').length).to.equal(1);
     });
 
     it('renders a label element when there is value and TextArea has mouse over', () => {
-        const textArea = shallow(<TextArea label="test" value="example" />);
+        const textArea = shallow(<TextArea label="test" value="example" autoHideLabel />);
         textArea.simulate('mouseEnter');
         expect(textArea.find('label').length).to.equal(1);
     });
@@ -122,6 +122,23 @@ describe('TextArea', () => {
         const exampleValue = 'my example value';
         const textArea = shallow(<TextArea value={exampleValue} />);
         expect(textArea.find('textarea').prop('value')).to.equal(exampleValue);
+    });
+
+    it('updates internal value when external prop changes', () => {
+        const textField = shallow(<TextArea value="foo" />);
+        expect(textField.state('value')).to.equal('foo');
+        textField.setProps({ value: 'bar' });
+        expect(textField.state('value')).to.equal('bar');
+    });
+
+    it('state does not change when prop value is the same', () => {
+        const textField = mount(<TextArea value="foo" />);
+        const instance = textField.instance();
+        const mock = sinon.mock(instance);
+        const expectation = mock.expects('setState');
+        textField.setProps({ name: 'bar' });
+        expect(expectation).to.not.be.called();
+        mock.restore();
     });
 
     it('updates the component state when changing the textarea value', () => {
@@ -227,9 +244,14 @@ describe('TextArea', () => {
         expect(textArea).to.have.className('uir-text-area--invalid');
     });
 
-    it('wraps textarea in a tooltip if tooltipError is given', () => {
-        const textArea = shallow(<TextArea tooltipError="error" />);
+    it('wraps textarea in a tooltip if tooltipError is given and isValid is false', () => {
+        const textArea = shallow(<TextArea isValid={false} tooltipError="error" />);
         expect(textArea.find(Tooltip).length).to.equal(1);
+    });
+
+    it('does not wrap textarea in a tooltip if tooltipError is given and isValid is true', () => {
+        const textArea = shallow(<TextArea isValid tooltipError="error" />);
+        expect(textArea.find(Tooltip).length).to.equal(0);
     });
 
     it('wraps textarea in a tooltip if tooltipHint is given', () => {

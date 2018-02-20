@@ -44,13 +44,21 @@ stories.add(
 );
 
 stories.add(
-    'Label Always',
+    'Auto Hide Label',
     storyWrapper(
-        'Label can be forced to always appear with the hasLabelAlways prop.',
+        `
+Use \`autoHideLabel\` to hide the field label when the input loses focus.
+
+_NB: label will not hide if there is no value._
+        `,
         <TextArea
-            label="Always has a label"
-            value="my example value"
-            hasLabelAlways
+            label="Label will auto hide"
+            value="My label auto hides"
+            autoHideLabel
+        />,
+        <TextArea
+            label="Label without value"
+            autoHideLabel
         />,
     ),
 );
@@ -128,15 +136,27 @@ stories.add(
 stories.add(
     'Tooltips',
     storyWrapper(
-        'tooltipHint and tooltipError allow you to display tooltips to users on input focus. Error takes precedence over hint.',
+        `
+tooltipHint and tooltipError allow you to display tooltips to users on input focus. Error takes precedence over hint.
+
+_NB: tooltipError will ONLY be displayed if isValid is false._
+`,
         <TextArea
             label="Input with a tooltip"
+            isValid={false}
             tooltipHint="My Example Hint"
             tooltipError="My Example Error"
         />,
         <div>
-            <TextArea label="Input with an error" tooltipError="My Example Error" />
-            <TextArea label="Input with a hint" tooltipHint="My Example Hint" />
+            <TextArea
+                label="Input with an error"
+                isValid={false}
+                tooltipError="My Example Error"
+            />
+            <TextArea
+                label="Input with a hint"
+                tooltipHint="My Example Hint"
+            />
         </div>,
     ),
 );

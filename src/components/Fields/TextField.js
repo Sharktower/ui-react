@@ -14,9 +14,9 @@ import requiredIconAndTooltip from './RequiredIconAndTooltip';
 import './TextField.scss';
 
 const propTypes = {
+    autoHideLabel: PropTypes.bool,
     className: PropTypes.string,
     componentRef: PropTypes.func,
-    hasLabelAlways: PropTypes.bool,
     icon: PropTypes.element,
     isClearable: PropTypes.bool,
     isDisabled: PropTypes.bool,
@@ -56,9 +56,9 @@ const propTypes = {
 };
 
 const defaultProps = {
+    autoHideLabel: false,
     className: null,
     componentRef: null,
-    hasLabelAlways: false,
     icon: null,
     isClearable: false,
     isDisabled: false,
@@ -100,6 +100,12 @@ class TextField extends Component {
 
         lastInstanceId += 1;
         this.uid = `text-field-${lastInstanceId}`;
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.value !== nextProps.value) {
+            this.setState({ value: nextProps.value });
+        }
     }
 
     handleMouseEnter = () => {
@@ -198,7 +204,9 @@ class TextField extends Component {
                     showTooltip={this.state.showTooltip}
                     tooltip={
                         <TooltipBox
-                            status={this.props.tooltipError ? ERROR : DEFAULT}
+                            status={this.props.tooltipError && this.props.isValid === false ?
+                                ERROR :
+                                DEFAULT}
                         >
                             {tooltip}
                         </TooltipBox>
@@ -212,7 +220,7 @@ class TextField extends Component {
 
     render() {
         const showLabel = (
-            this.props.hasLabelAlways ||
+            this.props.autoHideLabel === false ||
             this.state.hasFocus ||
             this.state.hasMouseOver ||
             !this.state.value
@@ -242,18 +250,25 @@ class TextField extends Component {
             this.props.variant === TextFieldVariant.TITLE
         );
         const icon = this.props.icon ?
-            this.props.icon :
+            (
+                <span className="uir-text-field-left-icon">
+                    {this.props.icon}
+                </span>
+            ) :
             null;
         const clearIcon = this.props.isClearable && this.state.value ?
             (
-                <Button
-                    onClick={this.handleClearIconClick}
-                    variant={ButtonVariant.CLEAR}
-                >
-                    <IconClear />
-                </Button>
+                <span className="uir-text-field-right-icon">
+                    <Button
+                        onClick={this.handleClearIconClick}
+                        variant={ButtonVariant.CLEAR}
+                    >
+                        <IconClear />
+                    </Button>
+                </span>
             ) :
             null;
+        const tooltipError = this.props.isValid === false ? this.props.tooltipError : null;
         return (
             <div
                 className={cx(
@@ -277,9 +292,7 @@ class TextField extends Component {
                 onMouseLeave={this.handleMouseLeave}
                 style={this.props.style}
             >
-                <span className="uir-text-field-left-icon">
-                    {icon}
-                </span>
+                {icon}
                 <div className="uir-text-field-inner">
                     <div className="uir-text-field-label-wrapper">
                         {label}
@@ -304,16 +317,14 @@ class TextField extends Component {
                             type={this.props.type}
                             value={this.state.value}
                         />,
-                        this.props.tooltipError || this.props.tooltipHint,
+                        tooltipError || this.props.tooltipHint,
                     )}
                     {requiredIconAndTooltip(
                         this.props.isRequired && !this.props.label,
                         this.props.tooltipRequired,
                     )}
                 </div>
-                <span className="uir-text-field-right-icon">
-                    {clearIcon}
-                </span>
+                {clearIcon}
             </div>
         );
     }

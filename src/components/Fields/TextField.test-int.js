@@ -23,6 +23,6 @@ Scenario('Storybook Documentation', (I) => {
 
 Scenario('TextField', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.seeNumberOfElements('.uir-text-field', 1);
+        I.seeNumberOfElements('.uir-text-field', 2);
     });
 });
