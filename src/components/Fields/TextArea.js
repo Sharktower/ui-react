@@ -50,12 +50,7 @@ const defaultProps = {
     autoHideLabel: false,
     className: null,
     componentRef: null,
-<<<<<<< HEAD
-    hasLabelAlways: false,
     hasFixedHeight: false,
-=======
-    hasAutoHeight: false,
->>>>>>> master
     isDisabled: false,
     isFullWidth: false,
     isReadOnly: false,
