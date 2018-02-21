@@ -1,4 +1,78 @@
-<!-- Last Updated: 2018-02-13 -->
+<!-- Last Updated: 2018-02-21 -->
+
+# UI React v2.0.0 (2018-02-21)
+
+## TextArea auto resizes by default
+
+**Backwards Compatibility Implications**
+
+- `hasAutoHeight` prop removed from TextArea
+
+**New Features**
+
+- `hasFixedHeight` prop added to TextArea
+
+**Bug Fixes**
+
+_None_
+
+## TextField and TextArea label appears by default
+
+**Backwards Compatibility Implications**
+
+- `hasLabelAlways` prop removed from TextField and TextArea
+
+**New Features**
+
+- `autoHideLabel` prop added to TextField and TextArea
+
+**Bug Fixes**
+
+_None_
+
+## Display TextField and TextArea error tooltip only if not valid
+
+**Backwards Compatibility Implications**
+
+- `isValid` and `errorTooltip` are no longer mutually exclusive, however, their functions do not change.
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- `errorTooltip` will now **only** display if `isValid` is false.
+
+## Remove TextField icon spans when not in use
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- Previously the layout spans for the TextField icons would stay in the DOM even if no icon was being displayed.  This fixes that small bug and removes the spans if they are not in use.
+
+## Fix to allow TextField and TextArea value to be updated via props
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- Can now update TextField and TextValue value via props
+
+
 
 # UI React v1.2.0 (2018-02-13)
 
