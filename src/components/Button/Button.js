@@ -67,6 +67,39 @@ class Button extends Component {
         clearTimeout(this.confirmedTimeout);
     }
 
+    getConfirmationPane() {
+        return (
+            <span
+                aria-hidden={!this.state.confirming && !this.state.confirmed}
+            >
+                {this.getConfirmationTextPlaceholder()}
+                <span
+                    className={cx(
+                        'uir-button',
+                        'uir-button-confirmation',
+                        {
+                            'uir-button-confirmation--confirming': this.state.confirming,
+                            'uir-button-confirmation--confirmed': this.state.confirmed,
+                        },
+                    )}
+                >
+                    {this.state.confirmed ? this.props.confirmedText : null}
+                    {this.state.confirming ? this.props.confirmText : null}
+                </span>
+            </span>
+        );
+    }
+
+    // Outputs confirm and confirmed strings in order to reserve appropriate horizontal space.
+    // This is for width calculation only, the text is hidden from all users.
+    getConfirmationTextPlaceholder() {
+        return (
+            <span className="uir-button-confirmation-placeholder" aria-hidden="true">
+                {`${this.props.confirmText} \n ${this.props.confirmedText}`}
+            </span>
+        );
+    }
+
     handleBlur = () => {
         if (this.state.confirming) {
             this.setState({
@@ -138,28 +171,12 @@ class Button extends Component {
                 ref={this.handleRef}
                 tabIndex={this.props.tabIndex}
             >
-                {this.props.iconPosition === ButtonIconPosition.LEFT ? this.props.icon : null }
+                {this.props.iconPosition === ButtonIconPosition.LEFT ? this.props.icon : null}
                 <span className="uir-button-content">
                     {this.props.children}
                 </span>
-                {this.props.iconPosition === ButtonIconPosition.RIGHT ? this.props.icon : null }
-                {this.props.hasConfirm ?
-                    <span
-                        aria-hidden={!this.state.confirming && !this.state.confirmed}
-                        className={cx(
-                            'uir-button',
-                            'uir-button-confirmation',
-                            {
-                                'uir-button-confirmation--confirming': this.state.confirming,
-                                'uir-button-confirmation--confirmed': this.state.confirmed,
-                            },
-                        )}
-                    >
-                        {this.state.confirmed ? this.props.confirmedText : null}
-                        {this.state.confirming ? this.props.confirmText : null}
-                    </span>
-                    : null
-                }
+                {this.props.iconPosition === ButtonIconPosition.RIGHT ? this.props.icon : null}
+                {this.props.hasConfirm ? this.getConfirmationPane() : null}
             </button>
         );
     }

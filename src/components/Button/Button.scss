@@ -220,5 +220,16 @@
         &--confirmed {
             display: block;
         }
+
+        // Placeholder sets Button width based on the longest string.
+        // It's hidden form screenreaders using aria-hidden attribute.
+        // Hide it from sighted users using CSS.
+        &-placeholder {
+            display: block;
+            height: 0;
+            overflow: hidden;
+            white-space: pre;
+            visibility: hidden;
+        }
     }
 }
