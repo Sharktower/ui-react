@@ -129,21 +129,17 @@ class TextField extends Component {
         this.setState({
             hasFocus: false,
             showTooltip: false,
-        }, () => {
-            onBlur(event);
         });
+        onBlur(event);
     }
 
     handleInputChange = (event) => {
         const { value } = this.inputRef;
         const onChange = this.props.onChange || (() => {});
         if (typeof value !== 'undefined') {
-            this.setState({ value }, () => {
-                onChange(value, event);
-            });
-        } else {
-            onChange(value, event);
+            this.setState({ value });
         }
+        onChange(value, event);
     }
 
     handleInputFocus = (event) => {
@@ -151,9 +147,8 @@ class TextField extends Component {
         this.setState({
             hasFocus: true,
             showTooltip: true,
-        }, () => {
-            onFocus(event);
         });
+        onFocus(event);
     }
 
     handleInputKeyDown = (event) => {
