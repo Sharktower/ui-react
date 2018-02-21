@@ -230,7 +230,9 @@ class TextArea extends Component {
                 className={cx(
                     'uir-text-area',
                     {
+                        'uir-text-area--auto-height': this.props.hasFixedHeight === false,
                         'uir-text-area--disabled': this.props.isDisabled,
+                        'uir-text-area--fixed-height': this.props.hasFixedHeight,
                         'uir-text-area--focus': this.state.hasFocus,
                         'uir-text-area--full-width': this.props.isFullWidth,
                         'uir-text-area--has-right-icon': this.props.isRequired,
