@@ -75,7 +75,6 @@ class Button extends Component {
                 {this.getConfirmationTextPlaceholder()}
                 <span
                     className={cx(
-                        'uir-button',
                         'uir-button-confirmation',
                         {
                             'uir-button-confirmation--confirming': this.state.confirming,
