@@ -13,7 +13,7 @@ const propTypes = {
     autoHideLabel: PropTypes.bool,
     className: PropTypes.string,
     componentRef: PropTypes.func,
-    hasAutoHeight: PropTypes.bool,
+    hasFixedHeight: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
     isReadOnly: PropTypes.bool,
@@ -50,7 +50,7 @@ const defaultProps = {
     autoHideLabel: false,
     className: null,
     componentRef: null,
-    hasAutoHeight: false,
+    hasFixedHeight: false,
     isDisabled: false,
     isFullWidth: false,
     isReadOnly: false,
@@ -92,7 +92,7 @@ class TextArea extends Component {
     }
 
     componentDidMount = () => {
-        if (this.props.hasAutoHeight) {
+        if (this.props.hasFixedHeight === false) {
             autosize(this.inputRef);
         }
     }
@@ -230,10 +230,11 @@ class TextArea extends Component {
                 className={cx(
                     'uir-text-area',
                     {
+                        'uir-text-area--auto-height': this.props.hasFixedHeight === false,
                         'uir-text-area--disabled': this.props.isDisabled,
+                        'uir-text-area--fixed-height': this.props.hasFixedHeight,
                         'uir-text-area--focus': this.state.hasFocus,
                         'uir-text-area--full-width': this.props.isFullWidth,
-                        'uir-text-area--has-auto-height': this.props.hasAutoHeight,
                         'uir-text-area--has-right-icon': this.props.isRequired,
                         'uir-text-area--has-value': this.state.value,
                         'uir-text-area--invalid': this.props.isValid === false,
