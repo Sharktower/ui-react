@@ -138,6 +138,7 @@ stories.add(
         `
 Add an extra confirmation step with <code>hasConfirm</code>
 Use <code>confirmText</code> and <code>confirmedText</code> to customise the strings.
+Please note that the Button will resize to contain the longest string.
         `,
         <Button
             hasConfirm
@@ -148,7 +149,7 @@ Use <code>confirmText</code> and <code>confirmedText</code> to customise the str
         <div>
             <Button
                 hasConfirm
-                confirmText="Sure?"
+                confirmText="Are you absolutely sure?"
                 confirmedText="OK!"
                 onClick={() => { console.log('Confirmed!'); }}  // eslint-disable-line
             >
