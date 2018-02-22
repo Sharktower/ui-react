@@ -100,8 +100,8 @@ class Button extends Component {
                             confirmed: false,
                         });
                     }, 1000);
-                    propsOnClick(event);
                 });
+                propsOnClick(event);
             }
         } else {
             propsOnClick(event);
