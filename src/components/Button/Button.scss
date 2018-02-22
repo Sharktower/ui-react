@@ -21,12 +21,14 @@
     $button-icon-width: $base-font-size + 4 !default;
     $button-icon-height: $base-font-size + 4 !default;
 
+    $_button-padding: 9px 12px;
+
     position: relative;
     box-sizing: border-box;
     display: inline-block;
     min-width: 50px;
     min-height: 1em;
-    padding: 9px 12px;
+    padding: $_button-padding;
     margin: 8px 8px 8px 0;
     overflow: hidden;
     font-family: $button-font-family;
@@ -192,6 +194,7 @@
         bottom: 0;
         left: 0;
         display: none;
+        padding: $_button-padding;
         margin: 0;
         overflow: visible;
         line-height: 1.5;
@@ -219,6 +222,17 @@
         &--confirming,
         &--confirmed {
             display: block;
+        }
+
+        // Placeholder sets Button width based on the longest string.
+        // It's hidden form screenreaders using aria-hidden attribute.
+        // Hide it from sighted users using CSS.
+        &-placeholder {
+            display: block;
+            height: 0;
+            overflow: hidden;
+            white-space: pre;
+            visibility: hidden;
         }
     }
 }
