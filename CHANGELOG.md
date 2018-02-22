@@ -1,4 +1,22 @@
-<!-- Last Updated: 2018-02-21 -->
+<!-- Last Updated: 2018-02-22 -->
+
+# UI React v2.1.0 (2018-02-22)
+
+## Fix event property persistence
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- fixed issue with async event props not being persisted
+
+
 
 # UI React v2.0.0 (2018-02-21)
 
