@@ -34,7 +34,7 @@ function filterPullRequests(graphPullRequests, changelogLastUpdateDate) {
                 label.name === githubVariables.releaseRequestLabel
             )).length > 0;
         const mergedAfterLastUpdate = moment(pr.mergedAt)
-            .isAfter(changelogLastUpdateDate.add(1, 'day'));
+            .isAfter(changelogLastUpdateDate);
         return mergedAfterLastUpdate && hiddenFromChangelog === false;
     });
     pullRequests = pullRequests.map(pr => ({ title: pr.title, body: pr.body }));
