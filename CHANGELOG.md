@@ -1,4 +1,4 @@
-<!-- Last Updated: 2018-02-22 -->
+<!-- Last Updated: 2018-02-22 12:06:00 -->
 
 # UI React v2.0.1 (2018-02-22)
 
@@ -185,11 +185,11 @@ _None_
 
 _None_
 
-**New Features** 
+**New Features**
 
 - Added `id` prop to the Button component
 
-**Bug Fixes** 
+**Bug Fixes**
 
 _None_
 
@@ -213,7 +213,7 @@ _none_
 
 - Fixes bug that prevented access to Avatar and Tooltip components
 
-**Miscellaneous** 
+**Miscellaneous**
 
 - Updated usage documentation
 
@@ -229,7 +229,7 @@ _None_
 - `Button` component
 - `IconArrow` component
 
-**Bug Fixes** 
+**Bug Fixes**
 
 _None_
 
@@ -258,12 +258,12 @@ _None_
 
 ## New Avatar & Tooltip Components
 
-**Backwards Compatibility Implications** 
+**Backwards Compatibility Implications**
 
 _None_
 
 **New Features**  
- 
+
 - `Avatar` component
 - `AvatarTitle` component
 - `AvatarCard` component
@@ -271,7 +271,7 @@ _None_
 - `TooltipBox` component
 
 **Bug Fixes**  
- 
+
 _None_
 
 **Miscellaneous**  
