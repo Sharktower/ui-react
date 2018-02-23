@@ -1,4 +1,42 @@
-<!-- Last Updated: 2018-02-22 12:06:00 -->
+<!-- Last Updated: 2018-02-23 10:45:28 -->
+
+# UI React v2.0.2 (2018-02-23 10:45:28)
+
+## Decrease Button padding
+
+**Backwards Compatibility Implications** 
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+_None_
+
+**Miscellaneous**
+
+- Decreased Button padding to match the latest design
+
+
+## Button resizes to contain confirmation text
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- Button now automatically resizes to contain long confirmation text and prevent overflow and misalignment
+
+
+
 
 # UI React v2.0.1 (2018-02-22)
 
