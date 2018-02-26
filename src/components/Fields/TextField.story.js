@@ -254,17 +254,29 @@ stories.add(
 stories.add(
     'Clearable',
     storyWrapper(
-        'isClearable displays an icon that allows the user to clear a field.',
+        `
+isClearable displays an icon that allows the user to clear a field.
+
+_NB: when the clear icon is clicked, the input will trigger an onChange event_
+        `,
         <TextField
             label="Clearable input"
             value="clear me"
             isClearable
         />,
-        <TextField
-            label="Clearable required input"
-            isClearable
-            isRequired
-        />,
+        <div>
+            <TextField
+                label="Clearable required input"
+                isClearable
+                isRequired
+            />
+            <TextField
+                label="Console log on clear"
+                value="clear me"
+                isClearable
+                onChange={(value) => { console.log(value); }} // eslint-disable-line no-console
+            />
+        </div>,
     ),
 );
 

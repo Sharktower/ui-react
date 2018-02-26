@@ -290,9 +290,15 @@ describe('TextField', () => {
     });
 
     it('clears value when clear icon is clicked', () => {
-        const textField = shallow(<TextField value="an example value" isClearable />);
+        const textField = mount(<TextField value="an example value" isClearable />);
         textField.find(Button).simulate('click');
         expect(textField.state('value')).to.equal('');
+    });
+
+    it('clear does not change value if input is not mounted and has no reference', () => {
+        const textField = shallow(<TextField value="foo" isClearable />);
+        textField.find(Button).simulate('click');
+        expect(textField.state('value')).to.equal('foo');
     });
 
     it('input regains focus after clear icon is clicked', () => {

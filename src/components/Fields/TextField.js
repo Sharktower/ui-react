@@ -175,12 +175,12 @@ class TextField extends Component {
         }
     }
 
-    handleClearIconClick = () => {
-        this.setState({ value: '' }, () => {
-            if (this.inputRef) {
-                this.inputRef.focus();
-            }
-        });
+    handleClearIconClick = (event) => {
+        if (this.inputRef) {
+            this.inputRef.value = '';
+            this.inputRef.focus();
+            this.handleInputChange(event);
+        }
     }
 
     /**
