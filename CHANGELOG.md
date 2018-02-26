@@ -1,4 +1,22 @@
-<!-- Last Updated: 2018-02-23 10:45:28 -->
+<!-- Last Updated: 2018-02-26 15:12:08 -->
+
+# UI React v2.0.3 (2018-02-26 15:12:08)
+
+## Clear button triggers input change
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+- clicking the clear icon will now trigger the input change event
+
+**Bug Fixes**
+
+_None_
+
+
 
 # UI React v2.0.2 (2018-02-23 10:45:28)
 
