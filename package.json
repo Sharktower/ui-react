@@ -1,6 +1,6 @@
 {
   "name": "@mudano/ui-react",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Mudano UI React Component Library",
   "main": "dist/ui-react.min.js",
   "modules.root": "lib",
