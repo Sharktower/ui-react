@@ -12,3 +12,13 @@ stories.add(
         <DateInlinePicker />,
     ),
 );
+
+stories.add(
+    'Change Event',
+    storyWrapper(
+        'Use the `onChange` prop to add a change event callback.',
+        <DateInlinePicker
+            onChange={dates => console.log(dates)} // eslint-disable-line no-console
+        />,
+    ),
+);
