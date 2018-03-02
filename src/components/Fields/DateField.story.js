@@ -14,7 +14,7 @@ class ChangeValueDemoComp extends Component {
 
     handleClick = () => {
         this.setState({
-            value: Date(),
+            value: new Date(),
         });
     }
 

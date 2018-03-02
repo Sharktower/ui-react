@@ -8,9 +8,10 @@ import Tooltip from '../Tooltip/Tooltip';
 import { TooltipPosition } from '../Tooltip/TooltipEnums';
 import './DateField.scss';
 
-// @TODO: initial date prop
-// @TODO: tooltip position prop
-// @TODO: show selected date in input
+// @TODO: earliest available date
+// @TODO: latest available date
+
+// @TODO: example linked fields, from-to
 
 const propTypes = {
     className: PropTypes.string,
@@ -52,11 +53,23 @@ class DateField extends Component {
         });
     }
 
-    handleDatePickerChange = (selectedDates) => {
+    clearInputAfterChange = (inputValue) => {
+        if (inputValue === null || inputValue === '') {
+            this.setState({ selectedDate: null });
+        }
+    }
+
+    handleInputChange = (inputValue) => {
+        this.clearInputAfterChange(inputValue);
         const onChange = this.props.onChange || (() => {});
+        onChange(this.state.selectedDate);
+    }
+
+    handleDatePickerChange = (selectedDates) => {
         this.setState({
             selectedDate: selectedDates[0],
         });
+        const onChange = this.props.onChange || (() => {});
         onChange(selectedDates[0]);
     }
 
@@ -69,7 +82,7 @@ class DateField extends Component {
     render() {
         const formattedDate = this.formatDate(this.state.selectedDate);
         const datePicker = (<DateInlinePicker
-            defaultDate={this.state.selectedDate}
+            defaultDate={this.state.selectedDate || null}
             onChange={this.handleDatePickerChange}
         />);
         const {
@@ -92,6 +105,7 @@ class DateField extends Component {
                         {...textFieldProps}
                         isReadOnly
                         onBlur={this.handleInputBlur}
+                        onChange={this.handleInputChange}
                         onFocus={this.handleInputFocus}
                         value={formattedDate || ''}
                     />

@@ -2,6 +2,7 @@
 import React from 'react';
 import sinon from 'sinon';
 import DateField from './DateField';
+import Button from '../Button/Button';
 import * as common from '../../../test/unit/commonTests';
 
 function createMockDate() {
@@ -63,5 +64,18 @@ describe('DateField', () => {
         const dateField = shallow(<DateField />);
         dateField.instance().handleDatePickerChange([mockDate]);
         expect(dateField.state('selectedDate').toString()).to.equal(mockDate.toString());
+    });
+
+    it('clearable icon will clear the selectedDate state', () => {
+        const dateField = mount(<DateField value={createMockDate()} isClearable />);
+        dateField.find(Button).simulate('click');
+        expect(dateField.state('selectedDate')).to.be.null();
+    });
+
+    it('onChange will fire when input changes', () => {
+        const spy = sinon.spy();
+        const dateField = mount(<DateField value={createMockDate()} onChange={spy} />);
+        dateField.find('input').simulate('change');
+        expect(spy).to.be.calledOnce();
     });
 });
