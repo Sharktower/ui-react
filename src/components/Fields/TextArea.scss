@@ -59,8 +59,7 @@ $textFieldLabelColor: $charcoal !default;
         }
     }
 
-    &--disabled:after,
-    &--readonly:after {
+    &--disabled:after {
         background: none;
     }
 
