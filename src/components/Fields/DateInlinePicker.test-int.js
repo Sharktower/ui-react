@@ -6,7 +6,7 @@ Feature('DateInlinePicker');
 
 Scenario('Storybook Documentation', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.see('TextField: DateInlinePicker');
+        I.see('Fields: DateInlinePicker');
         I.see('Overview', 'h2');
         I.see('Example', 'h3');
         I.see('Source Code', 'h3');
@@ -17,7 +17,7 @@ Scenario('Storybook Documentation', (I) => {
         I.see('value');
         I.see('required');
         I.see('default');
-        I.seeNumberOfElements('td', 27 * 4);
+        I.seeNumberOfElements('td', 3 * 4);
     });
 });
 
