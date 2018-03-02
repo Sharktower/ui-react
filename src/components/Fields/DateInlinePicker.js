@@ -17,7 +17,7 @@ const defaultProps = {
     style: null,
 };
 
-class DateField extends Component {
+class DateInlinePicker extends Component {
     componentDidMount() {
         const {
             childRef,
@@ -60,7 +60,7 @@ class DateField extends Component {
     }
 }
 
-DateField.propTypes = propTypes;
-DateField.defaultProps = defaultProps;
+DateInlinePicker.propTypes = propTypes;
+DateInlinePicker.defaultProps = defaultProps;
 
-export default DateField;
+export default DateInlinePicker;
