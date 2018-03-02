@@ -1,9 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import storyWrapper from '../../storybook-addons/storyWrapper';
 import DateField from './DateField';
+import Button from '../Button/Button';
 
 const stories = storiesOf('Fields.DateField', module);
+
+
+class ChangeValueDemoComp extends Component {
+    state = {
+        value: null,
+    }
+
+    handleClick = () => {
+        this.setState({
+            value: Date(),
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <DateField label="Date Field Label" value={this.state.value} />
+                <Button onClick={this.handleClick}>Set to Today</Button>
+            </div>
+        );
+    }
+}
 
 stories.add(
     'Overview',
@@ -16,6 +39,7 @@ stories.add(
         <div>
             <DateField label="Your Own Date" />
             <DateField label="Clearable Date" isClearable />
+            <ChangeValueDemoComp />
         </div>,
     ),
 );
