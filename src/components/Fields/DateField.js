@@ -14,17 +14,13 @@ import './DateField.scss';
 
 const propTypes = {
     className: PropTypes.string,
-    date: PropTypes.number,
-    finishDate: PropTypes.number,
-    startDate: PropTypes.number,
+    onChange: PropTypes.func,
     style: StyleObjectPropType(),
 };
 
 const defaultProps = {
     className: '',
-    date: null,
-    finishDate: null,
-    startDate: null,
+    onChange: null,
     style: null,
 };
 
@@ -34,28 +30,40 @@ class DateField extends Component {
         selectedDate: null,
     }
 
-    handleBlur = () => {
+    formatDate = (date) => {
+        if (date instanceof Date) {
+            const findDateGroups = new RegExp(/\w{3} (\w{3}) (\d{2}) (\d{4}) .+/);
+            const reorderDateGroups = new RegExp(/$2 $1 $3/);
+            return date.toString().replace(findDateGroups, reorderDateGroups);
+        }
+        return date;
+    }
+
+    handleInputBlur = () => {
         this.setState({
             showDatePicker: false,
         });
     }
 
-    handleDateChange = (selectedDates) => {
+    handleDatePickerChange = (selectedDates) => {
+        const onChange = this.props.onChange || (() => {});
         this.setState({
             selectedDate: selectedDates[0],
         });
+        onChange(selectedDates[0]);
     }
 
-    handleFocus = () => {
+    handleInputFocus = () => {
         this.setState({
             showDatePicker: true,
         });
     }
 
     render() {
+        const formattedDate = this.formatDate(this.state.selectedDate);
         const datePicker = (<DateInlinePicker
             defaultDate={this.state.selectedDate}
-            onChange={this.handleDateChange}
+            onChange={this.handleDatePickerChange}
         />);
         const {
             className,
@@ -75,8 +83,10 @@ class DateField extends Component {
                 >
                     <TextField
                         {...textFieldProps}
-                        onBlur={this.handleBlur}
-                        onFocus={this.handleFocus}
+                        isReadOnly
+                        onBlur={this.handleInputBlur}
+                        onFocus={this.handleInputFocus}
+                        value={formattedDate || ''}
                     />
                 </Tooltip>
             </div>
