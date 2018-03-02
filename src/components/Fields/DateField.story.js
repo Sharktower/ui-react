@@ -6,7 +6,6 @@ import Button from '../Button/Button';
 
 const stories = storiesOf('Fields.DateField', module);
 
-
 class ChangeValueDemoComp extends Component {
     state = {
         value: null,
@@ -41,5 +40,27 @@ stories.add(
             <DateField label="Clearable Date" isClearable />
             <ChangeValueDemoComp />
         </div>,
+    ),
+);
+
+stories.add(
+    'Min Date',
+    storyWrapper(
+        'Set the earliest available date with the minDate prop.',
+        <DateField
+            label="Future Dates Only"
+            minDate={new Date()}
+        />,
+    ),
+);
+
+stories.add(
+    'Max Date',
+    storyWrapper(
+        'Set the latest available date with the maxDate prop.',
+        <DateField
+            label="Past Dates Only"
+            maxDate={new Date()}
+        />,
     ),
 );

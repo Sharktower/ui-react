@@ -8,13 +8,10 @@ import Tooltip from '../Tooltip/Tooltip';
 import { TooltipPosition } from '../Tooltip/TooltipEnums';
 import './DateField.scss';
 
-// @TODO: earliest available date
-// @TODO: latest available date
-
-// @TODO: example linked fields, from-to
-
 const propTypes = {
     className: PropTypes.string,
+    maxDate: PropTypes.instanceOf(Date),
+    minDate: PropTypes.instanceOf(Date),
     onChange: PropTypes.func,
     style: StyleObjectPropType(),
     value: PropTypes.instanceOf(Date),
@@ -22,6 +19,8 @@ const propTypes = {
 
 const defaultProps = {
     className: '',
+    maxDate: null,
+    minDate: null,
     onChange: null,
     style: null,
     value: null,
@@ -83,6 +82,8 @@ class DateField extends Component {
         const formattedDate = this.formatDate(this.state.selectedDate);
         const datePicker = (<DateInlinePicker
             defaultDate={this.state.selectedDate || null}
+            maxDate={this.props.maxDate}
+            minDate={this.props.minDate}
             onChange={this.handleDatePickerChange}
         />);
         const {
