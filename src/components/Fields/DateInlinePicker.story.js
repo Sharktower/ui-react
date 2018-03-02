@@ -8,8 +8,16 @@ const stories = storiesOf('Fields.DateInlinePicker', module);
 stories.add(
     'Overview',
     storyWrapper(
-        'DateInlinePicker is an inline date picker, primarily for use with DateField.',
+        'DateInlinePicker is an inline date picker, primarily for use with DateField. The date picker we use is called `flatpickr`.',
         <DateInlinePicker />,
+    ),
+);
+
+stories.add(
+    'Default Date',
+    storyWrapper(
+        'Use flatpickr\'s defaultDate prop to set the initial date.',
+        <DateInlinePicker defaultDate={new Date()} />,
     ),
 );
 

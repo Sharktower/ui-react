@@ -1,12 +1,12 @@
 /* global Feature, Scenario */
 
-const KIND = 'Fields.DateField';
+const KIND = 'Fields.DateInlinePicker';
 
-Feature('DateField');
+Feature('DateInlinePicker');
 
 Scenario('Storybook Documentation', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.see('TextField: DateField');
+        I.see('TextField: DateInlinePicker');
         I.see('Overview', 'h2');
         I.see('Example', 'h3');
         I.see('Source Code', 'h3');
@@ -21,8 +21,8 @@ Scenario('Storybook Documentation', (I) => {
     });
 });
 
-Scenario('DateField', (I) => {
+Scenario('DateInlinePicker', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.seeNumberOfElements('.uir-date-field', 4);
+        I.seeNumberOfElements('.uir-date-inline-picker', 1);
     });
 });
