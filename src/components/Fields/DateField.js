@@ -39,11 +39,11 @@ class DateField extends Component {
     }
 
     formatDate = (date) => {
-        if (date instanceof Date) {
-            const dateGroupsRegex = /\w{3} (\w{3}) (\d{2}) (\d{4}) .+/;
-            return date.toString().replace(dateGroupsRegex, '$2 $1 $3');
+        if (!date) {
+            return date;
         }
-        return date;
+        const dateGroupsRegex = /\w{3} (\w{3}) (\d{2}) (\d{4}) .+/;
+        return date.toString().replace(dateGroupsRegex, '$2 $1 $3');
     }
 
     handleInputBlur = () => {
