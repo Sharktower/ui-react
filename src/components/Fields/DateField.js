@@ -16,25 +16,32 @@ const propTypes = {
     className: PropTypes.string,
     onChange: PropTypes.func,
     style: StyleObjectPropType(),
+    value: PropTypes.instanceOf(Date),
 };
 
 const defaultProps = {
     className: '',
     onChange: null,
     style: null,
+    value: null,
 };
 
 class DateField extends Component {
     state = {
         showDatePicker: false,
-        selectedDate: null,
+        selectedDate: this.props.value,
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.value !== nextProps.value) {
+            this.setState({ selectedDate: nextProps.value });
+        }
     }
 
     formatDate = (date) => {
         if (date instanceof Date) {
-            const findDateGroups = new RegExp(/\w{3} (\w{3}) (\d{2}) (\d{4}) .+/);
-            const reorderDateGroups = new RegExp(/$2 $1 $3/);
-            return date.toString().replace(findDateGroups, reorderDateGroups);
+            const dateGroupsRegex = /\w{3} (\w{3}) (\d{2}) (\d{4}) .+/;
+            return date.toString().replace(dateGroupsRegex, '$2 $1 $3');
         }
         return date;
     }

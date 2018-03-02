@@ -8,7 +8,14 @@ const stories = storiesOf('Fields.DateField', module);
 stories.add(
     'Overview',
     storyWrapper(
-        'DateField is a TextField input with a date picker.',
-        <DateField label="Date field label" />,
+        'DateField is a TextField input the allows users to select a date via a date picker.',
+        <DateField
+            label="Today's Date"
+            value={new Date()}
+        />,
+        <div>
+            <DateField label="Your Own Date" />
+            <DateField label="Clearable Date" isClearable />
+        </div>,
     ),
 );
