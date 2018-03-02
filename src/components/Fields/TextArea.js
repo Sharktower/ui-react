@@ -10,10 +10,10 @@ import requiredIconAndTooltip from './RequiredIconAndTooltip';
 import './TextArea.scss';
 
 const propTypes = {
+    autoHideLabel: PropTypes.bool,
     className: PropTypes.string,
     componentRef: PropTypes.func,
-    hasAutoHeight: PropTypes.bool,
-    hasLabelAlways: PropTypes.bool,
+    hasFixedHeight: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
     isReadOnly: PropTypes.bool,
@@ -47,10 +47,10 @@ const propTypes = {
 };
 
 const defaultProps = {
+    autoHideLabel: false,
     className: null,
     componentRef: null,
-    hasAutoHeight: false,
-    hasLabelAlways: false,
+    hasFixedHeight: false,
     isDisabled: false,
     isFullWidth: false,
     isReadOnly: false,
@@ -92,8 +92,14 @@ class TextArea extends Component {
     }
 
     componentDidMount = () => {
-        if (this.props.hasAutoHeight) {
+        if (this.props.hasFixedHeight === false) {
             autosize(this.inputRef);
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.value !== nextProps.value) {
+            this.setState({ value: nextProps.value });
         }
     }
 
@@ -118,21 +124,17 @@ class TextArea extends Component {
         this.setState({
             hasFocus: false,
             showTooltip: false,
-        }, () => {
-            onBlur(event);
         });
+        onBlur(event);
     }
 
     handleInputChange = (event) => {
         const { value } = this.inputRef;
         const onChange = this.props.onChange || (() => {});
         if (typeof value !== 'undefined') {
-            this.setState({ value }, () => {
-                onChange(value, event);
-            });
-        } else {
-            onChange(value, event);
+            this.setState({ value });
         }
+        onChange(value, event);
     }
 
     handleInputFocus = (event) => {
@@ -140,9 +142,8 @@ class TextArea extends Component {
         this.setState({
             hasFocus: true,
             showTooltip: true,
-        }, () => {
-            onFocus(event);
         });
+        onFocus(event);
     }
 
     handleInputKeyDown = (event) => {
@@ -185,7 +186,9 @@ class TextArea extends Component {
                     showTooltip={this.state.showTooltip}
                     tooltip={
                         <TooltipBox
-                            status={this.props.tooltipError ? ERROR : DEFAULT}
+                            status={this.props.tooltipError && this.props.isValid === false ?
+                                ERROR :
+                                DEFAULT}
                         >
                             {tooltip}
                         </TooltipBox>
@@ -199,7 +202,7 @@ class TextArea extends Component {
 
     render() {
         const showLabel = (
-            this.props.hasLabelAlways ||
+            this.props.autoHideLabel === false ||
             this.state.hasFocus ||
             this.state.hasMouseOver ||
             !this.state.value
@@ -216,15 +219,17 @@ class TextArea extends Component {
             null;
         /* eslint-enable */
         const showPlaceholder = (!this.props.label || this.state.hasFocus);
+        const tooltipError = this.props.isValid === false ? this.props.tooltipError : null;
         return (
             <div
                 className={cx(
                     'uir-text-area',
                     {
+                        'uir-text-area--auto-height': this.props.hasFixedHeight === false,
                         'uir-text-area--disabled': this.props.isDisabled,
+                        'uir-text-area--fixed-height': this.props.hasFixedHeight,
                         'uir-text-area--focus': this.state.hasFocus,
                         'uir-text-area--full-width': this.props.isFullWidth,
-                        'uir-text-area--has-auto-height': this.props.hasAutoHeight,
                         'uir-text-area--has-right-icon': this.props.isRequired,
                         'uir-text-area--has-value': this.state.value,
                         'uir-text-area--invalid': this.props.isValid === false,
@@ -261,7 +266,7 @@ class TextArea extends Component {
                             rows={this.props.rows}
                             value={this.state.value}
                         />,
-                        this.props.tooltipError || this.props.tooltipHint,
+                        tooltipError || this.props.tooltipHint,
                     )}
                     {requiredIconAndTooltip(
                         this.props.isRequired && !this.props.label,

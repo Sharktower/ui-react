@@ -35,12 +35,8 @@ $textFieldLabelColor: $charcoal !default;
         width: 100%;
     }
 
-    &--full-width,
-    &--has-auto-height {
-
-        .uir-text-area-input {
-            resize: none;
-        }
+    .uir-text-area-input {
+        resize: none;
     }
 
     &--focus,
@@ -94,6 +90,16 @@ $textFieldLabelColor: $charcoal !default;
 
         &:invalid {
             box-shadow: none;
+        }
+    }
+
+    &-inner {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        textarea {
+            height: 100%;
         }
     }
 

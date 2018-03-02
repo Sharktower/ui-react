@@ -5,11 +5,21 @@ import TextArea from './TextArea';
 
 const stories = storiesOf('Fields.TextArea', module);
 
+const multilineText = `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+
+Velit ipsam, nesciunt doloribus, aspernatur a itaque assumenda odit alias rem dignissimos culpa error magnam veniam cupiditate repellendus nam id perferendis sit.
+
+Velit ipsam, nesciunt doloribus, aspernatur a itaque assumenda odit alias rem dignissimos culpa error magnam veniam cupiditate repellendus nam id perferendis sit.`;
+
 stories.add(
     'Overview',
     storyWrapper(
-        'TextArea is a larger text input field.',
-        <TextArea label="Textarea field label" />,
+        'TextArea is a larger text input field. As you enter text the box will vertically resize automatically.',
+        <TextArea
+            isFullWidth
+            label="Textarea field label"
+            value={multilineText}
+        />,
     ),
 );
 
@@ -34,32 +44,39 @@ stories.add(
 );
 
 stories.add(
-    'Label Always',
+    'Auto Hide Label',
     storyWrapper(
-        'Label can be forced to always appear with the hasLabelAlways prop.',
+        `
+Use \`autoHideLabel\` to hide the field label when the input loses focus.
+
+_NB: label will not hide if there is no value._
+        `,
         <TextArea
-            label="Always has a label"
-            value="my example value"
-            hasLabelAlways
+            label="Label will auto hide"
+            value="My label auto hides"
+            autoHideLabel
+        />,
+        <TextArea
+            label="Label without value"
+            autoHideLabel
         />,
     ),
 );
 
-const multilineText = `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-
-Velit ipsam, nesciunt doloribus, aspernatur a itaque assumenda odit alias rem dignissimos culpa error magnam veniam cupiditate repellendus nam id perferendis sit.
-
-Velit ipsam, nesciunt doloribus, aspernatur a itaque assumenda odit alias rem dignissimos culpa error magnam veniam cupiditate repellendus nam id perferendis sit.`;
-
 stories.add(
-    'Auto Height',
+    'Fixed Height',
     storyWrapper(
-        'hasAutoHeight allows the textarea to resize with the content.',
+        `
+hasFixedHeight stops the textarea from resizing as the content changes.
+
+The example below has a fixed height of 200px.
+`,
         <TextArea
-            label="Full width resizeable"
-            hasAutoHeight
+            label="Full width not resizeable"
+            hasFixedHeight
             isFullWidth
             value={multilineText}
+            style={{ height: '200px' }}
         />,
     ),
 );
@@ -117,15 +134,27 @@ stories.add(
 stories.add(
     'Tooltips',
     storyWrapper(
-        'tooltipHint and tooltipError allow you to display tooltips to users on input focus. Error takes precedence over hint.',
+        `
+tooltipHint and tooltipError allow you to display tooltips to users on input focus. Error takes precedence over hint.
+
+_NB: tooltipError will ONLY be displayed if isValid is false._
+`,
         <TextArea
             label="Input with a tooltip"
+            isValid={false}
             tooltipHint="My Example Hint"
             tooltipError="My Example Error"
         />,
         <div>
-            <TextArea label="Input with an error" tooltipError="My Example Error" />
-            <TextArea label="Input with a hint" tooltipHint="My Example Hint" />
+            <TextArea
+                label="Input with an error"
+                isValid={false}
+                tooltipError="My Example Error"
+            />
+            <TextArea
+                label="Input with a hint"
+                tooltipHint="My Example Hint"
+            />
         </div>,
     ),
 );

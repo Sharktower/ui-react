@@ -28,24 +28,24 @@ describe('TextField', () => {
         expect(textField.find('label').length).to.equal(0);
     });
 
-    it('always renders a label element if hasLabelAlways is true', () => {
-        const textField = shallow(<TextField label="foo" value="bar" hasLabelAlways />);
+    it('does render a label element if autoHideLabel is true and value is undefined', () => {
+        const textField = shallow(<TextField label="foo" autoHideLabel />);
         expect(textField.find('label').length).to.equal(1);
     });
 
-    it('does not render a label element if label provided put value is defined', () => {
-        const textField = shallow(<TextField label="test" value="example" />);
+    it('does not render a label element if autoHideLabel is true and value is defined', () => {
+        const textField = shallow(<TextField label="foo" value="test" autoHideLabel />);
         expect(textField.find('label').length).to.equal(0);
     });
 
     it('renders a label element when there is value and input has focus', () => {
-        const textField = shallow(<TextField label="test" value="example" />);
+        const textField = shallow(<TextField label="test" value="example" autoHideLabel />);
         textField.find('input').simulate('focus');
         expect(textField.find('label').length).to.equal(1);
     });
 
     it('renders a label element when there is value and TextField has mouse over', () => {
-        const textField = shallow(<TextField label="test" value="example" />);
+        const textField = shallow(<TextField label="test" value="example" autoHideLabel />);
         textField.simulate('mouseEnter');
         expect(textField.find('label').length).to.equal(1);
     });
@@ -117,6 +117,23 @@ describe('TextField', () => {
         const exampleValue = 'my example value';
         const textField = shallow(<TextField value={exampleValue} />);
         expect(textField.find('input').prop('value')).to.equal(exampleValue);
+    });
+
+    it('updates internal value when external prop changes', () => {
+        const textField = shallow(<TextField value="foo" />);
+        expect(textField.state('value')).to.equal('foo');
+        textField.setProps({ value: 'bar' });
+        expect(textField.state('value')).to.equal('bar');
+    });
+
+    it('state does not change when prop value is the same', () => {
+        const textField = mount(<TextField value="foo" />);
+        const instance = textField.instance();
+        const mock = sinon.mock(instance);
+        const expectation = mock.expects('setState');
+        textField.setProps({ name: 'bar' });
+        expect(expectation).to.not.be.called();
+        mock.restore();
     });
 
     it('updates the component state when changing the input value', () => {
@@ -230,9 +247,14 @@ describe('TextField', () => {
         expect(textField).to.have.className('uir-text-field--invalid');
     });
 
-    it('wraps input in a tooltip if tooltipError is given', () => {
-        const textField = shallow(<TextField tooltipError="error" />);
+    it('wraps input in a tooltip if tooltipError is given and isValid is false', () => {
+        const textField = shallow(<TextField isValid={false} tooltipError="error" />);
         expect(textField.find(Tooltip).length).to.equal(1);
+    });
+
+    it('does not wrap input in a tooltip if tooltipError is given and isValid is true', () => {
+        const textField = shallow(<TextField isValid tooltipError="error" />);
+        expect(textField.find(Tooltip).length).to.equal(0);
     });
 
     it('wraps input in a tooltip if tooltipHint is given', () => {
@@ -241,7 +263,7 @@ describe('TextField', () => {
     });
 
     it('gives precedence to tooltipError over tooltipHint', () => {
-        const textField = mount(<TextField tooltipHint="hint" tooltipError="error" />);
+        const textField = mount(<TextField isValid={false} tooltipHint="hint" tooltipError="error" />);
         textField.find('input').simulate('focus');
         expect(textField.find(TooltipBox).prop('status')).to.equal(TooltipBoxStatus.ERROR);
     });
@@ -268,9 +290,15 @@ describe('TextField', () => {
     });
 
     it('clears value when clear icon is clicked', () => {
-        const textField = shallow(<TextField value="an example value" isClearable />);
+        const textField = mount(<TextField value="an example value" isClearable />);
         textField.find(Button).simulate('click');
         expect(textField.state('value')).to.equal('');
+    });
+
+    it('clear does not change value if input is not mounted and has no reference', () => {
+        const textField = shallow(<TextField value="foo" isClearable />);
+        textField.find(Button).simulate('click');
+        expect(textField.state('value')).to.equal('foo');
     });
 
     it('input regains focus after clear icon is clicked', () => {

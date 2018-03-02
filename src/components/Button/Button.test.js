@@ -104,7 +104,7 @@ describe('Button', () => {
             const confirmation = wrapper.find('.uir-button-confirmation');
 
             wrapper.simulate('click');
-            confirmation.simulate('click');
+            wrapper.simulate('click');
 
             expect(confirmation).not.to.have.className('uir-button-confirmation--confirming');
         });
@@ -114,7 +114,7 @@ describe('Button', () => {
             const confirmation = wrapper.find('.uir-button-confirmation');
 
             wrapper.simulate('click');
-            confirmation.simulate('click');
+            wrapper.simulate('click');
 
             expect(confirmation).to.have.className('uir-button-confirmation--confirmed');
         });
@@ -124,7 +124,7 @@ describe('Button', () => {
             const confirmation = wrapper.find('.uir-button-confirmation');
 
             wrapper.simulate('click');
-            confirmation.simulate('click');
+            wrapper.simulate('click');
 
             setTimeout(() => {
                 expect(confirmation).not.to.have.className('uir-button-confirmation--confirmed');
@@ -134,12 +134,11 @@ describe('Button', () => {
 
         it('does not call setState after unmount', (done) => {
             const wrapper = mount(defaultConfirmButton);
-            const confirmation = wrapper.find('.uir-button-confirmation');
 
             sandbox.stub(console, 'error');
 
             wrapper.simulate('click');
-            confirmation.simulate('click');
+            wrapper.simulate('click');
             wrapper.unmount();
 
             setTimeout(() => {
@@ -151,52 +150,80 @@ describe('Button', () => {
             }, 1100);
         });
 
+        it('does not call onClick when not confirmed', () => {
+            const onClick = sandbox.spy();
+            const wrapper = mount((
+                <Button hasConfirm onClick={onClick}>Foo</Button>
+            ));
+
+            wrapper.simulate('click');
+            expect(onClick).not.to.have.been.called();
+        });
+
         it('calls onClick when confirmed', () => {
             const onClick = sandbox.spy();
             const wrapper = mount((
                 <Button hasConfirm onClick={onClick}>Foo</Button>
             ));
-            const confirmation = wrapper.find('.uir-button-confirmation');
 
+            // First click to show the confirmation
             wrapper.simulate('click');
-            confirmation.simulate('click');
+            // And confirm
+            wrapper.simulate('click');
             expect(onClick).to.have.been.calledOnce();
         });
 
         describe('confirmText', () => {
+            it('does not show default text before click', () => {
+                const wrapper = mount(defaultConfirmButton);
+                const confirmation = wrapper.find('.uir-button-confirmation');
+
+                expect(confirmation).not.to.contain.text('Confirm?');
+            });
+
             it('shows default text', () => {
                 const wrapper = mount(defaultConfirmButton);
+                const confirmation = wrapper.find('.uir-button-confirmation');
 
                 wrapper.simulate('click');
-                expect(wrapper).to.contain.text('Confirm?');
+                expect(confirmation).to.contain.text('Confirm?');
             });
 
             it('shows custom text', () => {
                 const wrapper = mount((
                     <Button hasConfirm confirmText="BarBaz?" onClick={() => {}}>Foo</Button>
                 ));
+                const confirmation = wrapper.find('.uir-button-confirmation');
 
                 wrapper.simulate('click');
-                expect(wrapper).to.contain.text('BarBaz?');
+                expect(confirmation).to.contain.text('BarBaz?');
             });
 
             it('does not show default confirmed text', () => {
                 const wrapper = mount(defaultConfirmButton);
+                const confirmation = wrapper.find('.uir-button-confirmation');
 
                 wrapper.simulate('click');
-                expect(wrapper).not.to.contain.text('Cool!');
+                expect(confirmation).not.to.contain.text('Cool!');
             });
         });
 
         describe('confirmedText', () => {
+            it('does not show default text before click', () => {
+                const wrapper = mount(defaultConfirmButton);
+                const confirmation = wrapper.find('.uir-button-confirmation');
+
+                expect(confirmation).not.to.contain.text('Cool!');
+            });
+
             it('shows default text', () => {
                 const wrapper = mount(defaultConfirmButton);
                 const confirmation = wrapper.find('.uir-button-confirmation');
 
                 wrapper.simulate('click');
-                confirmation.simulate('click');
+                wrapper.simulate('click');
 
-                expect(wrapper).to.contain.text('Cool!');
+                expect(confirmation).to.contain.text('Cool!');
             });
 
             it('shows custom text', () => {
@@ -206,9 +233,9 @@ describe('Button', () => {
                 const confirmation = wrapper.find('.uir-button-confirmation');
 
                 wrapper.simulate('click');
-                confirmation.simulate('click');
+                wrapper.simulate('click');
 
-                expect(wrapper).to.contain.text('BarBaz!');
+                expect(confirmation).to.contain.text('BarBaz!');
             });
 
             it('does not show default confirming text', () => {
@@ -216,9 +243,9 @@ describe('Button', () => {
                 const confirmation = wrapper.find('.uir-button-confirmation');
 
                 wrapper.simulate('click');
-                confirmation.simulate('click');
+                wrapper.simulate('click');
 
-                expect(wrapper).not.to.contain.text('Confirm?');
+                expect(confirmation).not.to.contain.text('Confirm?');
             });
         });
 
@@ -231,9 +258,9 @@ describe('Button', () => {
 
                 expect(confirmation).to.have.className('uir-button-confirmation--confirming');
 
-                confirmation.simulate('blur');
+                wrapper.simulate('blur');
 
-                expect(wrapper).not.to.contain.text('Confirm?');
+                expect(confirmation).not.to.contain.text('Confirm?');
                 expect(confirmation).not.to.have.className('uir-button-confirmation--confirming');
             });
 
@@ -243,13 +270,13 @@ describe('Button', () => {
                 const confirmation = wrapper.find('.uir-button-confirmation');
 
                 wrapper.simulate('click');
-                confirmation.simulate('click');
+                wrapper.simulate('click');
 
                 expect(confirmation).not.to.have.className('uir-button-confirmation--confirming');
 
-                confirmation.simulate('blur');
+                wrapper.simulate('blur');
 
-                expect(wrapper).not.to.contain.text('Confirm?');
+                expect(confirmation).not.to.contain.text('Confirm?');
                 expect(confirmation).not.to.have.className('uir-button-confirmation--confirming');
             });
         });

@@ -23,6 +23,6 @@ Scenario('Storybook Documentation', (I) => {
 
 Scenario('TextArea', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.seeNumberOfElements('.uir-textarea', 1);
+        I.seeNumberOfElements('.uir-text-area', 1);
     });
 });

@@ -6,7 +6,7 @@ const shell = require('shelljs');
 const { executeSilently } = require('./shell-utils');
 const githubVariables = require('./github-variables');
 
-const changeLogDateFormat = 'YYYY-MM-DD';
+const changeLogDateFormat = 'YYYY-MM-DD HH:mm:ss';
 
 function formatLastUpdatedDate(dateString) {
     const lastUpdatedDateFormat = '<!-- Last Updated: %s -->';
@@ -18,7 +18,7 @@ function stripComments(string) {
 }
 
 function getChangelogLastUpdateDate(changelogBuffer) {
-    const lastUpdatedDateRegExp = new RegExp(formatLastUpdatedDate('(\\d{4}-\\d{2}-\\d{2})'));
+    const lastUpdatedDateRegExp = new RegExp(formatLastUpdatedDate('(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2})'));
     const lastUpdatedDateString = changelogBuffer.slice(0, 33).toString()
         .replace(lastUpdatedDateRegExp, '$1');
     const lastUpdatedDate = moment(lastUpdatedDateString, changeLogDateFormat);
@@ -34,7 +34,7 @@ function filterPullRequests(graphPullRequests, changelogLastUpdateDate) {
                 label.name === githubVariables.releaseRequestLabel
             )).length > 0;
         const mergedAfterLastUpdate = moment(pr.mergedAt)
-            .isAfter(changelogLastUpdateDate.add(1, 'day'));
+            .isAfter(changelogLastUpdateDate);
         return mergedAfterLastUpdate && hiddenFromChangelog === false;
     });
     pullRequests = pullRequests.map(pr => ({ title: pr.title, body: pr.body }));

@@ -1,18 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import storyWrapper from '../../storybook-addons/storyWrapper';
 import TextField from './TextField';
+import Button from '../Button/Button';
 import { TextFieldVariant } from './TextFieldEnums';
 import IconSearch from '../Icon/IconSearch';
 import IconNotification from '../Icon/IconNotification';
 
 const stories = storiesOf('Fields.TextField', module);
 
+class ChangeValueDemoComp extends Component {
+    state = {
+        value: 'I am the default...',
+    }
+
+    handleClick = () => {
+        this.setState({
+            value: 'I have changed!',
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <TextField label="Text field label" value={this.state.value} />
+                <Button onClick={this.handleClick}>Click to Change</Button>
+            </div>
+        );
+    }
+}
+
 stories.add(
     'Overview',
     storyWrapper(
         'TextField is a text input field.',
         <TextField label="Text field label" />,
+        <ChangeValueDemoComp />,
     ),
 );
 
@@ -77,13 +100,21 @@ stories.add(
 );
 
 stories.add(
-    'Label Always',
+    'Auto Hide Label',
     storyWrapper(
-        'Label can be forced to always appear with the hasLabelAlways prop.',
+        `
+Use \`autoHideLabel\` to hide the field label when the input loses focus.
+
+_NB: label will not hide if there is no value._
+        `,
         <TextField
-            label="Always has a label"
-            value="my example value"
-            hasLabelAlways
+            label="Label will auto hide"
+            value="My label auto hides"
+            autoHideLabel
+        />,
+        <TextField
+            label="Label without value"
+            autoHideLabel
         />,
     ),
 );
@@ -158,21 +189,32 @@ stories.add(
 stories.add(
     'Tooltips',
     storyWrapper(
-        'tooltipHint and tooltipError allow you to display tooltips to users on input focus. Error takes precedence over hint.',
+        `
+tooltipHint and tooltipError allow you to display tooltips to users on input focus. Error takes precedence over hint.
+
+_NB: tooltipError will ONLY be displayed if isValid is false._
+`,
         <TextField
             label="Input with a tooltip"
+            isValid={false}
             tooltipHint="My Example Hint"
             tooltipError="My Example Error"
         />,
         <div>
-            <TextField label="Input with an error" tooltipError="My Example Error" />
-            <TextField label="Input with a hint" tooltipHint="My Example Hint" />
+            <TextField
+                label="Input with an error"
+                isValid={false}
+                tooltipError="My Example Error"
+            />
+            <TextField
+                label="Input with a hint"
+                tooltipHint="My Example Hint"
+            />
             <br />
             <TextField
-                placeholder="Required field"
+                label="Required field"
                 tooltipHint="My Example Hint"
                 isRequired
-                isFullWidth
             />
         </div>,
     ),
@@ -212,17 +254,29 @@ stories.add(
 stories.add(
     'Clearable',
     storyWrapper(
-        'isClearable displays an icon that allows the user to clear a field.',
+        `
+isClearable displays an icon that allows the user to clear a field.
+
+_NB: when the clear icon is clicked, the input will trigger an onChange event_
+        `,
         <TextField
             label="Clearable input"
             value="clear me"
             isClearable
         />,
-        <TextField
-            label="Clearable required input"
-            isClearable
-            isRequired
-        />,
+        <div>
+            <TextField
+                label="Clearable required input"
+                isClearable
+                isRequired
+            />
+            <TextField
+                label="Console log on clear"
+                value="clear me"
+                isClearable
+                onChange={(value) => { console.log(value); }} // eslint-disable-line no-console
+            />
+        </div>,
     ),
 );
 
