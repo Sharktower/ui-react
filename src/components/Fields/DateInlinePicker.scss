@@ -451,9 +451,10 @@ span.flatpickr-weekday {
 .flatpickr-day:focus,
 .flatpickr-day.prevMonthDay:focus,
 .flatpickr-day.nextMonthDay:focus {
+    color: #fff;
     cursor: pointer;
-    background: #e6e6e6;
-    border-color: #e6e6e6;
+    background: $purple;
+    border-color: $purple;
     outline: 0;
 }
 
@@ -464,8 +465,8 @@ span.flatpickr-weekday {
 .flatpickr-day.today:hover,
 .flatpickr-day.today:focus {
     color: #fff;
-    background: #959ea9;
-    border-color: #959ea9;
+    background: $purple;
+    border-color: $purple;
 }
 
 .flatpickr-day.selected,
@@ -487,19 +488,40 @@ span.flatpickr-weekday {
 .flatpickr-day.startRange.nextMonthDay,
 .flatpickr-day.endRange.nextMonthDay {
     color: #fff;
-    background: #569ff7;
-    border-color: #569ff7;
+    background: $purple;
+    border-color: $purple;
     box-shadow: none;
+}
+
+.flatpickr-day:hover,
+.flatpickr-day.today,
+.flatpickr-day.selected,
+.flatpickr-day.selected.endRange.inRange,
+.flatpickr-day.startRange.endRange {
+    border-radius: 50%;
+}
+
+.flatpickr-day.inRange {
+    border-radius: 0;
+}
+
+.flatpickr-day.startRange {
+    border-radius: 50% 0 0 50%;
+}
+
+.flatpickr-day.inRange + .flatpickr-day.selected.endRange,
+.flatpickr-day.endRange {
+    border-radius: 0 50% 50% 0;
 }
 
 .flatpickr-day.selected.startRange + .endRange,
 .flatpickr-day.startRange.startRange + .endRange,
 .flatpickr-day.endRange.startRange + .endRange {
-    box-shadow: -10px 0 0 #569ff7;
+    box-shadow: -10px 0 0 $purple;
 }
 
 .flatpickr-day.inRange {
-    box-shadow: -5px 0 0 #e6e6e6,5px 0 0 #e6e6e6;
+    box-shadow: -5px 0 0 $purple,5px 0 0 $purple;
 }
 
 .flatpickr-day.disabled,
@@ -523,7 +545,7 @@ span.flatpickr-weekday {
 
 .flatpickr-day.week.selected {
     border-radius: 0;
-    box-shadow: -5px 0 0 #569ff7,5px 0 0 #569ff7;
+    box-shadow: -5px 0 0 $purple,5px 0 0 $purple;
 }
 
 .rangeMode .flatpickr-day {

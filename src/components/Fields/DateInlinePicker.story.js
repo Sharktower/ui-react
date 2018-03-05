@@ -22,6 +22,14 @@ stories.add(
 );
 
 stories.add(
+    'Range',
+    storyWrapper(
+        'Use flatpickr\'s mode prop to create a range.',
+        <DateInlinePicker mode="range" />,
+    ),
+);
+
+stories.add(
     'Change Event',
     storyWrapper(
         'Use the `onChange` prop to add a change event callback.',
