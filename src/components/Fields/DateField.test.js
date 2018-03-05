@@ -66,6 +66,40 @@ describe('DateField', () => {
         expect(dateField.state('selectedDate').toString()).to.equal(mockDate.toString());
     });
 
+    it('sets multiple selectedDates when isRange is true', () => {
+        const mockDate = createMockDate();
+        const dateField = shallow(<DateField isRange />);
+        dateField.instance().handleDatePickerChange([mockDate, mockDate]);
+        const selectedDates = dateField.state('selectedDate');
+        expect(selectedDates).to.be.an('array');
+        expect(selectedDates[0].toString()).to.equal(mockDate.toString());
+        expect(selectedDates[1].toString()).to.equal(mockDate.toString());
+    });
+
+    it('will hide the datepicker when a date is selected', () => {
+        const mockDate = createMockDate();
+        const dateField = shallow(<DateField />);
+        dateField.setState({ showDatePicker: true });
+        dateField.instance().handleDatePickerChange([mockDate]);
+        expect(dateField.state('showDatePicker')).to.be.false();
+    });
+
+    it('will hide the datepicker when mutliple dates are selected and isRange is true', () => {
+        const mockDate = createMockDate();
+        const dateField = shallow(<DateField isRange />);
+        dateField.setState({ showDatePicker: true });
+        dateField.instance().handleDatePickerChange([mockDate, mockDate]);
+        expect(dateField.state('showDatePicker')).to.be.false();
+    });
+
+    it('will not hide the datepicker if a single date selected and isRange is true', () => {
+        const mockDate = createMockDate();
+        const dateField = shallow(<DateField isRange />);
+        dateField.setState({ showDatePicker: true });
+        dateField.instance().handleDatePickerChange([mockDate]);
+        expect(dateField.state('showDatePicker')).to.be.true();
+    });
+
     it('clearable icon will clear the selectedDate state', () => {
         const dateField = mount(<DateField value={createMockDate()} isClearable />);
         dateField.find(Button).simulate('click');
