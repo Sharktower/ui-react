@@ -306,6 +306,7 @@
     line-height: 1;
     color: inherit;
     text-align: center;
+    text-transform: uppercase;
     transform: translate3d(0,0,0);
 }
 
@@ -316,10 +317,6 @@
     font-family: inherit;
     font-weight: 700;
     color: inherit;
-}
-
-.flatpickr-current-month span.cur-month:hover {
-    background: rgba(0,0,0,.05);
 }
 
 .flatpickr-current-month .numInputWrapper {
