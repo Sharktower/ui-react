@@ -6,22 +6,33 @@ import TextField from './TextField';
 import DateInlinePicker from './DateInlinePicker';
 import Tooltip from '../Tooltip/Tooltip';
 import { TooltipPosition } from '../Tooltip/TooltipEnums';
+import { DateFieldRangePosition } from './TextFieldEnums';
 import './DateField.scss';
 
 const propTypes = {
     className: PropTypes.string,
+    isRange: PropTypes.bool,
     maxDate: PropTypes.instanceOf(Date),
     minDate: PropTypes.instanceOf(Date),
     onChange: PropTypes.func,
+    rangePosition: PropTypes.oneOf([
+        DateFieldRangePosition.START,
+        DateFieldRangePosition.FINISH,
+    ]),
     style: StyleObjectPropType(),
-    value: PropTypes.instanceOf(Date),
+    value: PropTypes.oneOfType([
+        PropTypes.instanceOf(Date),
+        PropTypes.arrayOf(PropTypes.instanceOf(Date)),
+    ]),
 };
 
 const defaultProps = {
     className: '',
+    isRange: false,
     maxDate: null,
     minDate: null,
     onChange: null,
+    rangePosition: DateFieldRangePosition.START,
     style: null,
     value: null,
 };
@@ -38,6 +49,28 @@ class DateField extends Component {
         }
     }
 
+    clearInputAfterChange = (inputValue) => {
+        if (inputValue === null || inputValue === '') {
+            this.setState({ selectedDate: null });
+        }
+    }
+
+    datePickerClose() {
+        if (this.props.isRange === false ||
+            (this.state.selectedDate && this.state.selectedDate.length === 2)
+        ) {
+            this.setState({
+                showDatePicker: false,
+            });
+        }
+    }
+
+    datePickerOpen() {
+        this.setState({
+            showDatePicker: true,
+        });
+    }
+
     formatDate = (date) => {
         if (!date) {
             return date;
@@ -46,16 +79,17 @@ class DateField extends Component {
         return date.toString().replace(dateGroupsRegex, '$2 $1 $3');
     }
 
-    handleInputBlur = () => {
-        this.setState({
-            showDatePicker: false,
+    handleDatePickerChange = (selectedDates) => {
+        const selectedDate = this.props.isRange ? selectedDates : selectedDates[0];
+        this.setState({ selectedDate }, () => {
+            this.datePickerClose();
         });
+        const onChange = this.props.onChange || (() => {});
+        onChange(selectedDate);
     }
 
-    clearInputAfterChange = (inputValue) => {
-        if (inputValue === null || inputValue === '') {
-            this.setState({ selectedDate: null });
-        }
+    handleInputBlur = () => {
+        this.datePickerClose();
     }
 
     handleInputChange = (inputValue) => {
@@ -64,26 +98,20 @@ class DateField extends Component {
         onChange(this.state.selectedDate);
     }
 
-    handleDatePickerChange = (selectedDates) => {
-        this.setState({
-            selectedDate: selectedDates[0],
-        });
-        const onChange = this.props.onChange || (() => {});
-        onChange(selectedDates[0]);
-    }
-
     handleInputFocus = () => {
-        this.setState({
-            showDatePicker: true,
-        });
+        this.datePickerOpen();
     }
 
     render() {
-        const formattedDate = this.formatDate(this.state.selectedDate);
+        const selectedDateToFormat = this.props.isRange && this.state.selectedDate ?
+            this.state.selectedDate[this.props.rangePosition] :
+            this.state.selectedDate;
+        const formattedDate = this.formatDate(selectedDateToFormat);
         const datePicker = (<DateInlinePicker
             defaultDate={this.state.selectedDate || null}
             maxDate={this.props.maxDate}
             minDate={this.props.minDate}
+            mode={this.props.isRange ? 'range' : 'single'}
             onChange={this.handleDatePickerChange}
         />);
         const {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import storyWrapper from '../../storybook-addons/storyWrapper';
 import DateField from './DateField';
+import { DateFieldRangePosition } from './TextFieldEnums';
 import Button from '../Button/Button';
 
 const stories = storiesOf('Fields.DateField', module);
@@ -39,6 +40,34 @@ stories.add(
             <DateField label="Your Own Date" />
             <DateField label="Clearable Date" isClearable />
             <ChangeValueDemoComp />
+        </div>,
+    ),
+);
+
+stories.add(
+    'Range',
+    storyWrapper(
+        `
+Use the isRange prop to create a range DateField.
+
+You can also use the rangePosition prop to display the start or end date from the range.
+`,
+        <DateField
+            isRange
+            label="Range Selector"
+            rangePosition={DateFieldRangePosition.START}
+        />,
+        <div>
+            <DateField
+                isRange
+                label="Show Start Only"
+                rangePosition={DateFieldRangePosition.START}
+            />
+            <DateField
+                isRange
+                label="Show Finish Only"
+                rangePosition={DateFieldRangePosition.FINISH}
+            />
         </div>,
     ),
 );
