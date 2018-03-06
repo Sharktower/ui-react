@@ -7,34 +7,34 @@ import { DateFieldRangePosition } from './TextFieldEnums';
 
 const propTypes = {
     className: PropTypes.string,
-    dateRange: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
     fromLabel: PropTypes.string,
     maxDate: PropTypes.instanceOf(Date),
     minDate: PropTypes.instanceOf(Date),
     onChange: PropTypes.func,
     toLabel: PropTypes.string,
     style: StyleObjectPropType(),
+    value: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
 };
 
 const defaultProps = {
     className: '',
-    dateRange: [],
     fromLabel: 'From',
     maxDate: null,
     minDate: null,
     onChange: null,
     toLabel: 'To',
     style: null,
+    value: [],
 };
 
 class DateFieldLinked extends Component {
     state = {
-        selectedDates: this.props.dateRange,
+        selectedDates: this.props.value,
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.dateRange !== nextProps.dateRange) {
-            this.setState({ selectedDates: nextProps.dateRange });
+        if (this.props.value !== nextProps.value) {
+            this.setState({ selectedDates: nextProps.value });
         }
     }
 
