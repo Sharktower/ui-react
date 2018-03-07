@@ -30,7 +30,11 @@ class DateInlinePicker extends Component {
                 ...options,
                 allowInput: true,
                 inline: true,
+                locale: {
+                    firstDayOfWeek: 1,
+                },
                 onChange: handleChange,
+                shorthandCurrentMonth: true,
             });
         }
     }
