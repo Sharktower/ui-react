@@ -106,10 +106,52 @@ describe('DateField', () => {
         expect(dateField.state('selectedDate')).to.be.null();
     });
 
+    it('handleInputChange will call clear selectedDate if input is null', () => {
+        const dateField = mount(<DateField value={createMockDate()} />);
+        dateField.instance().handleInputChange(null);
+        expect(dateField.state('selectedDate')).to.be.null();
+    });
+
+    it('handleInputChange will call clear selectedDate if input is empty string', () => {
+        const dateField = mount(<DateField value={createMockDate()} />);
+        dateField.instance().handleInputChange('');
+        expect(dateField.state('selectedDate')).to.be.null();
+    });
+
     it('onChange will fire when input changes', () => {
         const spy = sinon.spy();
-        const dateField = mount(<DateField value={createMockDate()} onChange={spy} />);
+        const dateField = mount(<DateField onChange={spy} />);
         dateField.find('input').simulate('change');
         expect(spy).to.be.calledOnce();
+    });
+
+    it('onFocus will fire when input gains focus', () => {
+        const spy = sinon.spy();
+        const dateField = mount(<DateField onFocus={spy} />);
+        dateField.find('input').simulate('focus');
+        expect(spy).to.be.calledOnce();
+    });
+
+    it('onBlur will fire when input loses focus', () => {
+        const spy = sinon.spy();
+        const dateField = mount(<DateField onBlur={spy} />);
+        dateField.find('input').simulate('blur');
+        expect(spy).to.be.calledOnce();
+    });
+
+    it('DateInlinePicker can be programatically closed via forceHideCalendar prop', () => {
+        const dateField = mount(<DateField />);
+        dateField.find('input').simulate('focus');
+        expect(dateField.state('showDatePicker')).to.be.true();
+        dateField.setProps({ forceHideCalendar: true });
+        expect(dateField.state('showDatePicker')).to.be.false();
+    });
+
+    it('DateInlinePicker visibility controlled by component if forceHideCalendar prop false', () => {
+        const dateField = mount(<DateField forceHideCalendar />);
+        dateField.find('input').simulate('focus');
+        expect(dateField.state('showDatePicker')).to.be.true();
+        dateField.setProps({ forceHideCalendar: false });
+        expect(dateField.state('showDatePicker')).to.be.true();
     });
 });

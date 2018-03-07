@@ -68,4 +68,18 @@ describe('DateFieldLinked', () => {
         dateFieldLinked.instance().handleChange();
         expect(spy).to.be.calledOnce();
     });
+
+    it('only allows the from datepicker to display when from has focus', () => {
+        const dateFieldLinked = mount(<DateFieldLinked />);
+        dateFieldLinked.find('input').first().simulate('focus');
+        expect(dateFieldLinked.state('hideFromDatePicker')).to.be.false();
+        expect(dateFieldLinked.state('hideToDatePicker')).to.be.true();
+    });
+
+    it('only allows the to datepicker to display when to has focus', () => {
+        const dateFieldLinked = mount(<DateFieldLinked />);
+        dateFieldLinked.find('input').last().simulate('focus');
+        expect(dateFieldLinked.state('hideFromDatePicker')).to.be.true();
+        expect(dateFieldLinked.state('hideToDatePicker')).to.be.false();
+    });
 });

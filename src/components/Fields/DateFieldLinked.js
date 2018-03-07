@@ -30,6 +30,8 @@ const defaultProps = {
 class DateFieldLinked extends Component {
     state = {
         selectedDates: this.props.value,
+        hideFromDatePicker: false,
+        hideToDatePicker: false,
     }
 
     componentWillReceiveProps(nextProps) {
@@ -44,6 +46,20 @@ class DateFieldLinked extends Component {
         onChange(this.state.selectedDates);
     }
 
+    handleFromFocus = () => {
+        this.setState({
+            hideFromDatePicker: false,
+            hideToDatePicker: true,
+        });
+    }
+
+    handleToFocus = () => {
+        this.setState({
+            hideFromDatePicker: true,
+            hideToDatePicker: false,
+        });
+    }
+
     render() {
         return (
             <div
@@ -52,19 +68,23 @@ class DateFieldLinked extends Component {
             >
                 <DateField
                     label={this.props.fromLabel}
+                    forceHideCalendar={this.state.hideFromDatePicker}
                     isRange
                     maxDate={this.props.maxDate}
                     minDate={this.props.minDate}
                     onChange={this.handleChange}
+                    onFocus={this.handleFromFocus}
                     rangePosition={DateFieldRangePosition.START}
                     value={this.state.selectedDates}
                 />
                 <DateField
                     label={this.props.toLabel}
+                    forceHideCalendar={this.state.hideToDatePicker}
                     isRange
                     maxDate={this.props.maxDate}
                     minDate={this.props.minDate}
                     onChange={this.handleChange}
+                    onFocus={this.handleToFocus}
                     rangePosition={DateFieldRangePosition.FINISH}
                     value={this.state.selectedDates}
                 />

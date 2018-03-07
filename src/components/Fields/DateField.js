@@ -11,10 +11,13 @@ import './DateField.scss';
 
 const propTypes = {
     className: PropTypes.string,
+    forceHideCalendar: PropTypes.bool,
     isRange: PropTypes.bool,
     maxDate: PropTypes.instanceOf(Date),
     minDate: PropTypes.instanceOf(Date),
+    onBlur: PropTypes.func,
     onChange: PropTypes.func,
+    onFocus: PropTypes.func,
     rangePosition: PropTypes.oneOf([
         DateFieldRangePosition.START,
         DateFieldRangePosition.FINISH,
@@ -29,9 +32,12 @@ const propTypes = {
 const defaultProps = {
     className: '',
     isRange: false,
+    forceHideCalendar: false,
     maxDate: null,
     minDate: null,
+    onBlur: null,
     onChange: null,
+    onFocus: null,
     rangePosition: DateFieldRangePosition.START,
     style: null,
     value: null,
@@ -39,13 +45,18 @@ const defaultProps = {
 
 class DateField extends Component {
     state = {
-        showDatePicker: false,
         selectedDate: this.props.value,
+        showDatePicker: false,
     }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.value !== nextProps.value) {
             this.setState({ selectedDate: nextProps.value });
+        }
+        if (this.props.forceHideCalendar !== nextProps.forceHideCalendar) {
+            if (nextProps.forceHideCalendar) {
+                this.setState({ showDatePicker: false });
+            }
         }
     }
 
@@ -88,8 +99,10 @@ class DateField extends Component {
         onChange(selectedDate);
     }
 
-    handleInputBlur = () => {
+    handleInputBlur = (event) => {
         this.datePickerClose();
+        const onBlur = this.props.onBlur || (() => {});
+        onBlur(event);
     }
 
     handleInputChange = (inputValue) => {
@@ -98,8 +111,10 @@ class DateField extends Component {
         onChange(this.state.selectedDate);
     }
 
-    handleInputFocus = () => {
+    handleInputFocus = (event) => {
         this.datePickerOpen();
+        const onFocus = this.props.onFocus || (() => {});
+        onFocus(event);
     }
 
     render() {
