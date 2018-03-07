@@ -106,16 +106,23 @@ describe('DateField', () => {
         expect(dateField.state('selectedDate')).to.be.null();
     });
 
-    it('handleInputChange will call clear selectedDate if input is null', () => {
+    it('handleInputChange will clear selectedDate if input is null', () => {
         const dateField = mount(<DateField value={createMockDate()} />);
         dateField.instance().handleInputChange(null);
         expect(dateField.state('selectedDate')).to.be.null();
     });
 
-    it('handleInputChange will call clear selectedDate if input is empty string', () => {
+    it('handleInputChange will clear selectedDate if input is empty string', () => {
         const dateField = mount(<DateField value={createMockDate()} />);
         dateField.instance().handleInputChange('');
         expect(dateField.state('selectedDate')).to.be.null();
+    });
+
+    it('handleInputChange will not clear selectedDate if input is not null or empty string', () => {
+        const mockDate = createMockDate();
+        const dateField = mount(<DateField value={mockDate} />);
+        dateField.instance().handleInputChange('test');
+        expect(dateField.state('selectedDate').toString()).to.equal(mockDate.toString());
     });
 
     it('onChange will fire when input changes', () => {
