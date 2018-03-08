@@ -83,9 +83,6 @@ class DateField extends Component {
     }
 
     formatDate = (date) => {
-        if (!date) {
-            return date;
-        }
         const dateGroupsRegex = /\w{3} (\w{3}) (\d{2}) (\d{4}) .+/;
         return date.toString().replace(dateGroupsRegex, '$2 $1 $3');
     }
@@ -121,7 +118,9 @@ class DateField extends Component {
         const selectedDateToFormat = this.props.isRange && this.state.selectedDate ?
             this.state.selectedDate[this.props.rangePosition] :
             this.state.selectedDate;
-        const formattedDate = this.formatDate(selectedDateToFormat);
+        const formattedDate = selectedDateToFormat instanceof Date ?
+            this.formatDate(selectedDateToFormat)
+            : null;
         const datePicker = (<DateInlinePicker
             defaultDate={this.state.selectedDate || null}
             maxDate={this.props.maxDate}
