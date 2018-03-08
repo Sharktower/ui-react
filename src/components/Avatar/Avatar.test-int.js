@@ -18,24 +18,13 @@ Scenario('Storybook Documentation', (I) => {
         I.see('value');
         I.see('required');
         I.see('default');
-        I.seeNumberOfElements('td', 10 * 4);
     });
 });
 
 Scenario('Avatar', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.seeNumberOfElements('.uir-avatar', 5);
-        I.seeNumberOfElements('.uir-avatar--halo', 1);
-        I.seeNumberOfElements('.uir-avatar-icon svg', 1);
-    });
-});
-
-Scenario('Avatar Clickable', (I) => {
-    I.searchWithinIframe(KIND, 'Overview', () => {
         I.seeElement('.uir-avatar');
-        I.click('#root');
-        I.click('.uir-avatar', '.uir-tooltip');
-        I.seeInPopup('hello!');
-        I.acceptPopup();
+        I.seeElement('.uir-avatar--halo');
+        I.seeElement('.uir-avatar-icon svg');
     });
 });

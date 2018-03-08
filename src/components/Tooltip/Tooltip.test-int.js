@@ -17,7 +17,6 @@ Scenario('Storybook Documentation', (I) => {
         I.see('value');
         I.see('required');
         I.see('default');
-        I.seeNumberOfElements('td', 7 * 4);
     });
 });
 
@@ -26,7 +25,5 @@ Scenario('Tooltip', (I) => {
         I.seeElement('.uir-tooltip');
         I.moveCursorTo('.uir-tooltip');
         I.seeElement('.uir-avatar-card');
-        I.moveCursorTo('h1');
-        I.dontSeeElement('.uir-avatar-card');
     });
 });

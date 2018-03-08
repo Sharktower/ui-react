@@ -1,14 +1,5 @@
 #!/bin/bash
 
-seleniumProcessID=`ps -ef | grep "selenium"|grep -v grep | awk '{ print $2}'`
-
-if [ "$seleniumProcessID" != "" ]; then
-	kill -9 $seleniumProcessID
-fi
-
-yarn selenium install
-yarn selenium start 2> /dev/null &
-
 storyBookProcessID=`ps -ef | grep "storybook"|grep -v grep | awk '{ print $2}'`
 
 if [ "$storyBookProcessID" = "" ]; then

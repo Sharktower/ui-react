@@ -20,7 +20,6 @@ Scenario('Storybook Documentation', (I) => {
         I.see('value');
         I.see('required');
         I.see('default');
-        I.seeNumberOfElements('td', 17 * 4);
     });
 });
 
@@ -28,23 +27,13 @@ Scenario('Button', (I) => {
     const buttonSelector = '.uir-button';
 
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.seeNumberOfElements(buttonSelector, 8);
+        I.seeElement(buttonSelector);
         I.see('CUSTOM LABEL', buttonSelector);
-        I.seeNumberOfElements('.uir-button--disabled', 1);
-        I.seeNumberOfElements('.uir-button--active', 1);
-        I.seeNumberOfElements('.uir-button--clear', 1);
-        I.seeNumberOfElements('.uir-button--primary', 1);
-        I.seeNumberOfElements('.uir-button--icon-left', 2);
-        I.seeNumberOfElements('.uir-button--round', 1);
-    });
-});
-
-Scenario('Button Clickable', (I) => {
-    const buttonSelector = '.uir-button';
-
-    I.searchWithinIframe(KIND, 'Overview', () => {
-        I.click(buttonSelector);
-        I.seeInPopup('it works!');
-        I.acceptPopup();
+        I.seeElement('.uir-button--disabled');
+        I.seeElement('.uir-button--active');
+        I.seeElement('.uir-button--clear');
+        I.seeElement('.uir-button--primary');
+        I.seeElement('.uir-button--icon-left');
+        I.seeElement('.uir-button--round');
     });
 });
