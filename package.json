@@ -45,7 +45,7 @@
     "test": "npm-run-all -s test:unit test:int",
     "test:unit": "cross-env NODE_ENV=test karma start karma.config.js --autoWatch false --singleRun true",
     "test:unit-watch": "cross-env NODE_ENV=test karma start karma.config.js --autoWatch true --singleRun false",
-    "test:int": "codeceptjs run",
+    "test:int": "codeceptjs run --verbose",
     "test:int-setup": "./test/codecept/setup",
     "selenium": "selenium-standalone"
   },

@@ -5,6 +5,7 @@ sudo: required
 dist: trusty
 addons:
     chrome: stable
+    firefox: stable
 cache: yarn
 install:
     - yarn install
