@@ -3,7 +3,9 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import StyleObjectPropType from '../../prop-types/style';
 import DateField from './DateField';
+import IconArrowLongRight from '../Icon/IconArrowLongRight';
 import { DateFieldRangePosition } from './TextFieldEnums';
+import './DateFieldLinked.scss';
 
 const propTypes = {
     className: PropTypes.string,
@@ -77,6 +79,7 @@ class DateFieldLinked extends Component {
                     rangePosition={DateFieldRangePosition.START}
                     value={this.state.selectedDates}
                 />
+                <IconArrowLongRight />
                 <DateField
                     label={this.props.toLabel}
                     forceHideCalendar={this.state.hideToDatePicker}
