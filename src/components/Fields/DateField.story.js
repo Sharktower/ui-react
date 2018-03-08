@@ -93,3 +93,37 @@ stories.add(
         />,
     ),
 );
+
+stories.add(
+    'On Blur',
+    storyWrapper(
+        'Use onBlur to handle blur events.',
+        <DateField
+            label="Handle Blur"
+            onBlur={() => {}}
+        />,
+    ),
+);
+
+stories.add(
+    'On Change',
+    storyWrapper(
+        'Use onChange to handle change events.',
+        <DateField
+            label="Handle Change"
+            onChange={() => {}}
+        />,
+    ),
+);
+
+
+stories.add(
+    'On Focus',
+    storyWrapper(
+        'Use onFocus to handle focus events.',
+        <DateField
+            label="Handle Focus"
+            onFocus={() => {}}
+        />,
+    ),
+);

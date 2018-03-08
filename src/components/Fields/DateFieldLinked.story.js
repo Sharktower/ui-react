@@ -9,6 +9,19 @@ stories.add(
     'Overview',
     storyWrapper(
         'DateFieldLinked combines two DateFields to allow you to select a date range.',
-        <DateFieldLinked />,
+        <DateFieldLinked fromLabel="Start" toLabel="Finish" />,
+    ),
+);
+
+const minDate = new Date();
+minDate.setFullYear(2010);
+const maxDate = new Date();
+minDate.setFullYear(2030);
+
+stories.add(
+    'Min and Max Date',
+    storyWrapper(
+        'Use minDate and maxDate to set the earliest and latest available dates.',
+        <DateFieldLinked minDate={minDate} maxDate={maxDate} />,
     ),
 );
