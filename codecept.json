@@ -1,14 +1,9 @@
 {
   "output": "./test/codecept/output",
   "helpers": {
-    "WebDriverIO": {
+    "Nightmare": {
       "url": "http://localhost:6006",
-      "browser": "chrome",
-      "desiredCapabilities": {
-        "chromeOptions": {
-          "args": ["--headless", "--start-maximized"]
-        }
-      }
+      "windowSize": "1000x1000"
     }
   },
   "include": {

@@ -17,28 +17,27 @@ Scenario('Storybook Documentation', (I) => {
         I.see('value');
         I.see('required');
         I.see('default');
-        I.seeNumberOfElements('td', 5 * 4);
     });
 });
 
 Scenario('Tabs', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.seeNumberOfElements('.uir-tabs', 1);
-        I.seeNumberOfElements('.uir-tabs-nav', 1);
-        I.seeNumberOfElements('.uir-tabs-nav-item', 3);
-        I.seeNumberOfElements('.uir-button--active', 1);
+        I.seeElement('.uir-tabs');
+        I.seeElement('.uir-tabs-nav');
+        I.seeElement('.uir-tabs-nav-item');
+        I.seeElement('.uir-button--active');
         I.see('TAB ONE', '.uir-button--active');
-        I.seeNumberOfElements('.uir-tabs-panes', 1);
-        I.seeNumberOfElements('.uir-tabs-pane', 3);
-        I.see('Content 1', '.uir-tabs-pane');
-        I.dontSee('Content 2', '.uir-tabs-pane');
+        I.seeElement('.uir-tabs-panes');
+        I.seeElement('.uir-tabs-pane');
+        I.see('Content 1', '.uir-tabs-pane--selected');
+        I.dontSee('Content 2', '.uir-tabs-pane--selected');
     });
 });
 
 Scenario('Preselected', (I) => {
     I.searchWithinIframe(KIND, 'Preselected', () => {
         I.seeElement('.uir-tabs');
-        I.seeNumberOfElements('.uir-button--active', 1);
+        I.seeElement('.uir-button--active');
         I.see('TAB TWO', '.uir-button--active');
         I.see('Content 2', '.uir-tabs-pane');
 
@@ -52,7 +51,7 @@ Scenario('Preselected', (I) => {
 Scenario('With dropdown', (I) => {
     I.searchWithinIframe(KIND, 'With a dropdown', () => {
         I.seeElement('.uir-tabs');
-        I.seeNumberOfElements('.uir-tabs', 2);
+        I.seeElement('.uir-tabs');
         I.seeElement('.uir-tabs-nav-dropdown');
         I.seeElement('.uir-tabs-nav-dropdown-trigger');
         I.dontSeeElement('.uir-tabs-nav-dropdown-panel');
