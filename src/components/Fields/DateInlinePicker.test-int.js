@@ -17,12 +17,11 @@ Scenario('Storybook Documentation', (I) => {
         I.see('value');
         I.see('required');
         I.see('default');
-        I.seeNumberOfElements('td', 3 * 4);
     });
 });
 
 Scenario('DateInlinePicker', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.seeNumberOfElements('.uir-date-inline-picker', 1);
+        I.seeElement('.uir-date-inline-picker');
     });
 });

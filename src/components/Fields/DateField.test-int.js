@@ -17,12 +17,11 @@ Scenario('Storybook Documentation', (I) => {
         I.see('value');
         I.see('required');
         I.see('default');
-        I.seeNumberOfElements('td', 8 * 4);
     });
 });
 
 Scenario('DateField', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.seeNumberOfElements('.uir-date-field', 4);
+        I.seeElement('.uir-date-field');
     });
 });
