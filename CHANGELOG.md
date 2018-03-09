@@ -1,4 +1,38 @@
-<!-- Last Updated: 2018-02-26 15:12:08 -->
+<!-- Last Updated: 2018-03-09 10:35:26 -->
+
+# UI React v2.1.0 (2018-03-09 10:35:26)
+
+## DateField and InlineDatePicker
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+ - DateField
+ - DateFieldLinked
+ - InlineDatePicker
+
+**Bug Fixes**
+
+_None_
+
+## Clear button triggers input change
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+- clicking the clear icon will now trigger the input change event
+
+**Bug Fixes**
+
+_None_
+
+
 
 # UI React v2.0.3 (2018-02-26 15:12:08)
 
