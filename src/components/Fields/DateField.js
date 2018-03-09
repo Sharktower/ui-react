@@ -5,7 +5,7 @@ import StyleObjectPropType from '../../prop-types/style';
 import TextField from './TextField';
 import DateInlinePicker from './DateInlinePicker';
 import Tooltip from '../Tooltip/Tooltip';
-import { formatDate } from '../date-fns';
+import { formatDate } from '../date-utils';
 import { TooltipPosition } from '../Tooltip/TooltipEnums';
 import { DateFieldRangePosition } from './TextFieldEnums';
 import './DateField.scss';

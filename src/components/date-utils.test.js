@@ -1,7 +1,7 @@
 /* global describe, expect, it */
-import { formatDate } from './date-fns';
+import { formatDate } from './date-utils';
 
-describe('date-fns', () => {
+describe('date-utils', () => {
     it('can format a current date', () => {
         const mockDate = new Date();
         mockDate.setDate(1);
