@@ -5,6 +5,7 @@ import StyleObjectPropType from '../../prop-types/style';
 import TextField from './TextField';
 import DateInlinePicker from './DateInlinePicker';
 import Tooltip from '../Tooltip/Tooltip';
+import { formatDate } from '../date-fns';
 import { TooltipPosition } from '../Tooltip/TooltipEnums';
 import { DateFieldRangePosition } from './TextFieldEnums';
 import './DateField.scss';
@@ -82,11 +83,6 @@ class DateField extends Component {
         });
     }
 
-    formatDate = (date) => {
-        const dateGroupsRegex = /\w{3} (\w{3}) (\d{2}) (\d{4}) .+/;
-        return date.toString().replace(dateGroupsRegex, '$2 $1 $3');
-    }
-
     handleDatePickerChange = (selectedDates) => {
         const selectedDate = this.props.isRange ? selectedDates : selectedDates[0];
         this.setState({ selectedDate }, () => {
@@ -119,7 +115,7 @@ class DateField extends Component {
             this.state.selectedDate[this.props.rangePosition] :
             this.state.selectedDate;
         const formattedDate = selectedDateToFormat instanceof Date ?
-            this.formatDate(selectedDateToFormat)
+            formatDate(selectedDateToFormat)
             : null;
         const datePicker = (<DateInlinePicker
             defaultDate={this.state.selectedDate || null}

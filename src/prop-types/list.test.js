@@ -24,13 +24,13 @@ describe('List Prop Type', () => {
         sandbox.restore();
     });
 
-    it('throws error if value not in list', () => {
+    it('logs error if value not in list', () => {
         validateRunner('charlie');
         // eslint-disable-next-line no-console
         expect(console.error).to.be.calledWithMatch('Invalid list `list` of value `charlie` supplied to `MockComponent`, expected one of ["alpha","beta"].');
     });
 
-    it('does not throw value is in list', () => {
+    it('does not log error if value is in list', () => {
         validateRunner('alpha');
         // eslint-disable-next-line no-console
         expect(console.error).to.not.be.called();

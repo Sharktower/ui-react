@@ -18,7 +18,7 @@ describe('DateField', () => {
 
     it('can set an initial date value', () => {
         const dateField = mount(<DateField value={createMockDate()} />);
-        expect(dateField.find('input').prop('value')).to.equal('01 Jan 2018');
+        expect(dateField.find('input').prop('value')).to.equal('1 Jan 2018');
     });
 
     it('can change the value via props', () => {
