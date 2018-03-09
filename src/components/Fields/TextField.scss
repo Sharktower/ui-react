@@ -59,8 +59,7 @@ $textFieldLabelColor: $charcoal !default;
         padding-left: 20px;
     }
 
-    &--disabled:after,
-    &--readonly:after {
+    &--disabled:after {
         background: none;
     }
 
