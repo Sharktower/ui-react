@@ -30,7 +30,7 @@ _None_
 **New Features**
 
  - DateField
- - DateFieldLinked
+ - DateFieldRange
  - InlineDatePicker
 
 **Bug Fixes**
@@ -75,7 +75,7 @@ _None_
 
 ## Decrease Button padding
 
-**Backwards Compatibility Implications** 
+**Backwards Compatibility Implications**
 
 _None_
 
