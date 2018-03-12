@@ -103,7 +103,7 @@ e.g. \`onBlur={event => console.log(event)}\`
 `,
         <DateField
             label="Handle Blur"
-            onBlur={() => {}}
+            onBlur={event => console.log(event)} // eslint-disable-line no-console
         />,
     ),
 );
@@ -140,7 +140,7 @@ e.g. \`onFocus={event => console.log(event)}\`
 `,
         <DateField
             label="Handle Focus"
-            onFocus={() => {}}
+            onFocus={event => console.log(event)} // eslint-disable-line no-console
         />,
     ),
 );
