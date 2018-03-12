@@ -7,7 +7,6 @@ import DateInlinePicker from './DateInlinePicker';
 import Tooltip from '../Tooltip/Tooltip';
 import { formatDate } from '../date-utils';
 import { TooltipPosition } from '../Tooltip/TooltipEnums';
-import { DateFieldRangePosition } from './TextFieldEnums';
 import './DateField.scss';
 
 const propTypes = {
@@ -19,40 +18,44 @@ const propTypes = {
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
-    rangePosition: PropTypes.oneOf([
-        DateFieldRangePosition.START,
-        DateFieldRangePosition.FINISH,
-    ]),
+    rangeFromValue: PropTypes.instanceOf(Date),
+    rangeToValue: PropTypes.instanceOf(Date),
     style: StyleObjectPropType(),
-    value: PropTypes.oneOfType([
-        PropTypes.instanceOf(Date),
-        PropTypes.arrayOf(PropTypes.instanceOf(Date)),
-    ]),
+    value: PropTypes.instanceOf(Date),
 };
 
 const defaultProps = {
-    className: '',
-    isRange: false,
+    className: null,
     forceHideCalendar: false,
+    isRange: false,
     maxDate: null,
     minDate: null,
     onBlur: null,
     onChange: null,
     onFocus: null,
-    rangePosition: DateFieldRangePosition.START,
+    rangeFromValue: null,
+    rangeToValue: null,
     style: null,
     value: null,
 };
 
 class DateField extends Component {
     state = {
-        selectedDate: this.props.value,
+        value: this.props.value,
+        rangeFromValue: this.props.rangeFromValue,
+        rangeToValue: this.props.rangeToValue,
         showDatePicker: false,
     }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.value !== nextProps.value) {
-            this.setState({ selectedDate: nextProps.value });
+            this.setState({ value: nextProps.value });
+        }
+        if (this.props.rangeFromValue !== nextProps.rangeFromValue) {
+            this.setState({ rangeFromValue: nextProps.rangeFromValue });
+        }
+        if (this.props.rangeToValue !== nextProps.rangeToValue) {
+            this.setState({ rangeToValue: nextProps.rangeToValue });
         }
         if (this.props.forceHideCalendar !== nextProps.forceHideCalendar) {
             if (nextProps.forceHideCalendar) {
@@ -61,15 +64,9 @@ class DateField extends Component {
         }
     }
 
-    clearInputAfterChange = (inputValue) => {
-        if (inputValue === null || inputValue === '') {
-            this.setState({ selectedDate: null });
-        }
-    }
-
     datePickerClose() {
         if (this.props.isRange === false ||
-            (this.state.selectedDate && this.state.selectedDate.length === 2)
+            (this.state.rangeFromValue && this.state.rangeToValue)
         ) {
             this.setState({
                 showDatePicker: false,
@@ -84,12 +81,17 @@ class DateField extends Component {
     }
 
     handleDatePickerChange = (selectedDates) => {
-        const selectedDate = this.props.isRange ? selectedDates : selectedDates[0];
-        this.setState({ selectedDate }, () => {
+        this.setState({
+            value: selectedDates.slice(0, 1).pop(),
+            rangeFromValue: selectedDates.slice(0, 1).pop(),
+            rangeToValue: selectedDates.slice(1, 2).pop(),
+        }, () => {
             this.datePickerClose();
         });
         const onChange = this.props.onChange || (() => {});
-        onChange(selectedDate);
+        onChange(this.props.isRange ?
+            [this.state.rangeFromValue, this.state.rangeToValue] :
+            this.state.value);
     }
 
     handleInputBlur = (event) => {
@@ -99,9 +101,18 @@ class DateField extends Component {
     }
 
     handleInputChange = (inputValue) => {
-        this.clearInputAfterChange(inputValue);
         const onChange = this.props.onChange || (() => {});
-        onChange(this.state.selectedDate);
+        if (inputValue === null || inputValue === '') {
+            this.setState({
+                value: null,
+                rangeFromValue: null,
+                rangeToValue: null,
+            }, () => {
+                onChange(this.state.value);
+            });
+        } else {
+            onChange(this.state.value);
+        }
     }
 
     handleInputFocus = (event) => {
@@ -111,14 +122,14 @@ class DateField extends Component {
     }
 
     render() {
-        const selectedDateToFormat = this.props.isRange && this.state.selectedDate ?
-            this.state.selectedDate[this.props.rangePosition] :
-            this.state.selectedDate;
-        const formattedDate = selectedDateToFormat instanceof Date ?
-            formatDate(selectedDateToFormat)
+        const datePickerValues = this.props.isRange ?
+            [this.state.rangeFromValue, this.state.rangeToValue] :
+            this.state.value;
+        const formattedDate = this.state.value instanceof Date ?
+            formatDate(this.state.value)
             : null;
         const datePicker = (<DateInlinePicker
-            defaultDate={this.state.selectedDate || null}
+            defaultDate={datePickerValues}
             maxDate={this.props.maxDate}
             minDate={this.props.minDate}
             mode={this.props.isRange ? 'range' : 'single'}

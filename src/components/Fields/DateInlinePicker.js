@@ -12,7 +12,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    className: '',
+    className: null,
     onChange: null,
     style: null,
 };

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import StyleObjectPropType from '../../prop-types/style';
 import DateField from './DateField';
 import IconArrowLongRight from '../Icon/IconArrowLongRight';
-import { DateFieldRangePosition } from './TextFieldEnums';
 import './DateFieldLinked.scss';
 
 const propTypes = {
@@ -13,39 +12,48 @@ const propTypes = {
     maxDate: PropTypes.instanceOf(Date),
     minDate: PropTypes.instanceOf(Date),
     onChange: PropTypes.func,
-    toLabel: PropTypes.string,
+    rangeFromValue: PropTypes.instanceOf(Date),
+    rangeToValue: PropTypes.instanceOf(Date),
     style: StyleObjectPropType(),
-    value: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
+    toLabel: PropTypes.string,
 };
 
 const defaultProps = {
-    className: '',
+    className: null,
     fromLabel: 'From',
     maxDate: null,
     minDate: null,
     onChange: null,
-    toLabel: 'To',
+    rangeFromValue: null,
+    rangeToValue: null,
     style: null,
-    value: [],
+    toLabel: 'To',
 };
 
 class DateFieldLinked extends Component {
     state = {
-        selectedDates: this.props.value,
+        rangeFromValue: this.props.rangeFromValue,
+        rangeToValue: this.props.rangeToValue,
         hideFromDatePicker: false,
         hideToDatePicker: false,
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.value !== nextProps.value) {
-            this.setState({ selectedDates: nextProps.value });
+        if (this.props.rangeFromValue !== nextProps.rangeFromValue) {
+            this.setState({ rangeFromValue: nextProps.rangeFromValue });
+        }
+        if (this.props.rangeToValue !== nextProps.rangeToValue) {
+            this.setState({ rangeToValue: nextProps.rangeToValue });
         }
     }
 
     handleChange = (selectedDates) => {
-        this.setState({ selectedDates });
+        this.setState({
+            rangeFromValue: selectedDates.slice(0, 1).pop(),
+            rangeToValue: selectedDates.slice(1, 2).pop(),
+        });
         const onChange = this.props.onChange || (() => {});
-        onChange(this.state.selectedDates);
+        onChange(selectedDates);
     }
 
     handleFromFocus = () => {
@@ -76,8 +84,9 @@ class DateFieldLinked extends Component {
                     minDate={this.props.minDate}
                     onChange={this.handleChange}
                     onFocus={this.handleFromFocus}
-                    rangePosition={DateFieldRangePosition.START}
-                    value={this.state.selectedDates}
+                    rangeFromValue={this.state.rangeFromValue}
+                    rangeToValue={this.state.rangeToValue}
+                    value={this.state.rangeFromValue}
                 />
                 <IconArrowLongRight />
                 <DateField
@@ -88,8 +97,9 @@ class DateFieldLinked extends Component {
                     minDate={this.props.minDate}
                     onChange={this.handleChange}
                     onFocus={this.handleToFocus}
-                    rangePosition={DateFieldRangePosition.FINISH}
-                    value={this.state.selectedDates}
+                    rangeFromValue={this.state.rangeFromValue}
+                    rangeToValue={this.state.rangeToValue}
+                    value={this.state.rangeToValue}
                 />
             </div>
         );

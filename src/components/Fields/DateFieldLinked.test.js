@@ -18,54 +18,64 @@ describe('DateFieldLinked', () => {
 
     it('can update state with the initial date values', () => {
         const mockDate = createMockDate();
-        const dateFieldLinked = mount(<DateFieldLinked value={[mockDate, mockDate]} />);
-        const internalState = dateFieldLinked.state('selectedDates');
-        expect(internalState.length).to.equal(2);
-        expect(internalState[0].toString()).to.equal(mockDate.toString());
-        expect(internalState[1].toString()).to.equal(mockDate.toString());
+        const dateFieldLinked = mount(<DateFieldLinked
+            rangeFromValue={mockDate}
+            rangeToValue={mockDate}
+        />);
+        const rangeFromValue = dateFieldLinked.state('rangeFromValue');
+        const rangeToValue = dateFieldLinked.state('rangeToValue');
+        expect(rangeFromValue.toString()).to.equal(mockDate.toString());
+        expect(rangeToValue.toString()).to.equal(mockDate.toString());
     });
 
     it('date values are mapped to internal DateFields', () => {
         const mockDate = createMockDate();
-        const dateFieldLinked = mount(<DateFieldLinked value={[mockDate, mockDate]} />);
+        const dateFieldLinked = mount(<DateFieldLinked
+            rangeFromValue={mockDate}
+            rangeToValue={mockDate}
+        />);
         const firstDateField = dateFieldLinked.find(DateField).first();
         const lastDateField = dateFieldLinked.find(DateField).last();
-        expect(firstDateField.prop('value')[0].toString()).to.equal(mockDate.toString());
-        expect(firstDateField.prop('value')[1].toString()).to.equal(mockDate.toString());
-        expect(lastDateField.prop('value')[0].toString()).to.equal(mockDate.toString());
-        expect(lastDateField.prop('value')[1].toString()).to.equal(mockDate.toString());
+        expect(firstDateField.prop('rangeFromValue').toString()).to.equal(mockDate.toString());
+        expect(firstDateField.prop('rangeToValue').toString()).to.equal(mockDate.toString());
+        expect(lastDateField.prop('rangeFromValue').toString()).to.equal(mockDate.toString());
+        expect(lastDateField.prop('rangeToValue').toString()).to.equal(mockDate.toString());
     });
 
     it('can update the component by changing props', () => {
         const mockDate = createMockDate();
         const dateFieldLinked = mount(<DateFieldLinked />);
-        dateFieldLinked.setProps({ value: [mockDate, mockDate] });
-        const internalState = dateFieldLinked.state('selectedDates');
-        expect(internalState[0].toString()).to.equal(mockDate.toString());
-        expect(internalState[1].toString()).to.equal(mockDate.toString());
+        dateFieldLinked.setProps({ rangeFromValue: mockDate, rangeToValue: mockDate });
+        const rangeFromValue = dateFieldLinked.state('rangeFromValue');
+        const rangeToValue = dateFieldLinked.state('rangeToValue');
+        expect(rangeFromValue.toString()).to.equal(mockDate.toString());
+        expect(rangeToValue.toString()).to.equal(mockDate.toString());
     });
 
     it('updating a prop other than value does not cause data state to change', () => {
         const dateFieldLinked = mount(<DateFieldLinked />);
         dateFieldLinked.setProps({ className: 'test' });
-        const internalState = dateFieldLinked.state('selectedDates');
-        expect(internalState).to.be.empty();
+        const rangeFromValue = dateFieldLinked.state('rangeFromValue');
+        const rangeToValue = dateFieldLinked.state('rangeToValue');
+        expect(rangeFromValue).to.be.null();
+        expect(rangeToValue).to.be.null();
     });
 
     it('handleChange will set internal state', () => {
         const mockDate = createMockDate();
         const dateFieldLinked = mount(<DateFieldLinked />);
         dateFieldLinked.instance().handleChange([mockDate, mockDate]);
-        const internalState = dateFieldLinked.state('selectedDates');
-        expect(internalState.length).to.equal(2);
-        expect(internalState[0].toString()).to.equal(mockDate.toString());
-        expect(internalState[1].toString()).to.equal(mockDate.toString());
+        const rangeFromValue = dateFieldLinked.state('rangeFromValue');
+        const rangeToValue = dateFieldLinked.state('rangeToValue');
+        expect(rangeFromValue.toString()).to.equal(mockDate.toString());
+        expect(rangeToValue.toString()).to.equal(mockDate.toString());
     });
 
     it('onChange will fire when input changes', () => {
         const spy = sinon.spy();
+        const mockDate = createMockDate();
         const dateFieldLinked = shallow(<DateFieldLinked onChange={spy} />);
-        dateFieldLinked.instance().handleChange();
+        dateFieldLinked.instance().handleChange([mockDate, mockDate]);
         expect(spy).to.be.calledOnce();
     });
 
