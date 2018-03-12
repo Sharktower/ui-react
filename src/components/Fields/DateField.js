@@ -81,17 +81,17 @@ class DateField extends Component {
     }
 
     handleDatePickerChange = (selectedDates) => {
+        const onChange = this.props.onChange || (() => {});
         this.setState({
             value: selectedDates.slice(0, 1).pop(),
             rangeFromValue: selectedDates.slice(0, 1).pop(),
             rangeToValue: selectedDates.slice(1, 2).pop(),
         }, () => {
             this.datePickerClose();
+            onChange(this.props.isRange ?
+                [this.state.rangeFromValue, this.state.rangeToValue] :
+                this.state.value);
         });
-        const onChange = this.props.onChange || (() => {});
-        onChange(this.props.isRange ?
-            [this.state.rangeFromValue, this.state.rangeToValue] :
-            this.state.value);
     }
 
     handleInputBlur = (event) => {
