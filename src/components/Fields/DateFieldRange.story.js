@@ -1,9 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import storyWrapper from '../../storybook-addons/storyWrapper';
-import DateFieldLinked from './DateFieldLinked';
+import DateFieldRange from './DateFieldRange';
 
-const stories = storiesOf('Fields.DateFieldLinked', module);
+const stories = storiesOf('Fields.DateFieldRange', module);
 
 const startDate = new Date();
 startDate.setDate(1);
@@ -14,7 +14,7 @@ stories.add(
     'Overview',
     storyWrapper(
         `
-DateFieldLinked combines two DateFields to allow users to select a range of dates.
+DateFieldRange combines two DateFields to allow users to select a range of dates.
 
 You can retrieve the selected date by passing a function to the \`onChange\` prop.
 
@@ -22,7 +22,7 @@ e.g. \`onChange={selectedDates => console.log(selectedDates)}\`
 
 \`selectedDates\` will receive an array of \`Date\` objects.
 `,
-        <DateFieldLinked
+        <DateFieldRange
             rangeFromValue={startDate}
             rangeToValue={finishDate}
             onChange={selectedDates => console.log(selectedDates)} // eslint-disable-line no-console
@@ -36,7 +36,7 @@ stories.add(
         `
 Provide a \`Date\` object to the \`rangeFromValue\` and \`rangeFromValue\` prop to set the initial date range.
 `,
-        <DateFieldLinked
+        <DateFieldRange
             rangeFromValue={startDate}
             rangeToValue={finishDate}
             onChange={selectedDates => console.log(selectedDates)} // eslint-disable-line no-console
@@ -48,7 +48,7 @@ stories.add(
     'Labels',
     storyWrapper(
         'Use `fromLabel` and `toLabel` to customise the input labels.',
-        <DateFieldLinked fromLabel="Start" toLabel="Finish" />,
+        <DateFieldRange fromLabel="Start" toLabel="Finish" />,
     ),
 );
 
@@ -61,7 +61,7 @@ stories.add(
     'Min and Max Date',
     storyWrapper(
         'Use `minDate` and `maxDate` to set the earliest and latest available dates.',
-        <DateFieldLinked minDate={minDate} maxDate={maxDate} />,
+        <DateFieldRange minDate={minDate} maxDate={maxDate} />,
     ),
 );
 
@@ -73,7 +73,7 @@ Use \`onChange\` to handle date selection events.
 
 e.g. \`onChange={selectedDates => console.log(selectedDates)}\`
 `,
-        <DateFieldLinked
+        <DateFieldRange
             label="Log Change"
             onChange={selectedDates => console.log(selectedDates)} // eslint-disable-line no-console
         />,

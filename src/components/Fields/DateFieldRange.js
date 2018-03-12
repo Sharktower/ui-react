@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import StyleObjectPropType from '../../prop-types/style';
 import DateField from './DateField';
 import IconArrowLongRight from '../Icon/IconArrowLongRight';
-import './DateFieldLinked.scss';
+import './DateFieldRange.scss';
 
 const propTypes = {
     className: PropTypes.string,
@@ -30,7 +30,7 @@ const defaultProps = {
     toLabel: 'To',
 };
 
-class DateFieldLinked extends Component {
+class DateFieldRange extends Component {
     state = {
         rangeFromValue: this.props.rangeFromValue,
         rangeToValue: this.props.rangeToValue,
@@ -73,7 +73,7 @@ class DateFieldLinked extends Component {
     render() {
         return (
             <div
-                className={cx('uir-date-field-linked', this.props.className)}
+                className={cx('uir-date-field-range', this.props.className)}
                 style={this.props.style}
             >
                 <DateField
@@ -106,7 +106,7 @@ class DateFieldLinked extends Component {
     }
 }
 
-DateFieldLinked.propTypes = propTypes;
-DateFieldLinked.defaultProps = defaultProps;
+DateFieldRange.propTypes = propTypes;
+DateFieldRange.defaultProps = defaultProps;
 
-export default DateFieldLinked;
+export default DateFieldRange;

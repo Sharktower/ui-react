@@ -2,7 +2,7 @@
 import React from 'react';
 import sinon from 'sinon';
 import DateField from './DateField';
-import DateFieldLinked from './DateFieldLinked';
+import DateFieldRange from './DateFieldRange';
 import * as common from '../../../test/unit/commonTests';
 
 function createMockDate() {
@@ -13,12 +13,12 @@ function createMockDate() {
     return mockDate;
 }
 
-describe('DateFieldLinked', () => {
-    common.isConformant(DateFieldLinked);
+describe('DateFieldRange', () => {
+    common.isConformant(DateFieldRange);
 
     it('can update state with the initial date values', () => {
         const mockDate = createMockDate();
-        const dateFieldLinked = mount(<DateFieldLinked
+        const dateFieldLinked = mount(<DateFieldRange
             rangeFromValue={mockDate}
             rangeToValue={mockDate}
         />);
@@ -30,7 +30,7 @@ describe('DateFieldLinked', () => {
 
     it('date values are mapped to internal DateFields', () => {
         const mockDate = createMockDate();
-        const dateFieldLinked = mount(<DateFieldLinked
+        const dateFieldLinked = mount(<DateFieldRange
             rangeFromValue={mockDate}
             rangeToValue={mockDate}
         />);
@@ -44,7 +44,7 @@ describe('DateFieldLinked', () => {
 
     it('can update the component by changing props', () => {
         const mockDate = createMockDate();
-        const dateFieldLinked = mount(<DateFieldLinked />);
+        const dateFieldLinked = mount(<DateFieldRange />);
         dateFieldLinked.setProps({ rangeFromValue: mockDate, rangeToValue: mockDate });
         const rangeFromValue = dateFieldLinked.state('rangeFromValue');
         const rangeToValue = dateFieldLinked.state('rangeToValue');
@@ -53,7 +53,7 @@ describe('DateFieldLinked', () => {
     });
 
     it('updating a prop other than value does not cause data state to change', () => {
-        const dateFieldLinked = mount(<DateFieldLinked />);
+        const dateFieldLinked = mount(<DateFieldRange />);
         dateFieldLinked.setProps({ className: 'test' });
         const rangeFromValue = dateFieldLinked.state('rangeFromValue');
         const rangeToValue = dateFieldLinked.state('rangeToValue');
@@ -63,7 +63,7 @@ describe('DateFieldLinked', () => {
 
     it('handleChange will set internal state', () => {
         const mockDate = createMockDate();
-        const dateFieldLinked = mount(<DateFieldLinked />);
+        const dateFieldLinked = mount(<DateFieldRange />);
         dateFieldLinked.instance().handleChange([mockDate, mockDate]);
         const rangeFromValue = dateFieldLinked.state('rangeFromValue');
         const rangeToValue = dateFieldLinked.state('rangeToValue');
@@ -74,20 +74,20 @@ describe('DateFieldLinked', () => {
     it('onChange will fire when input changes', () => {
         const spy = sinon.spy();
         const mockDate = createMockDate();
-        const dateFieldLinked = shallow(<DateFieldLinked onChange={spy} />);
+        const dateFieldLinked = shallow(<DateFieldRange onChange={spy} />);
         dateFieldLinked.instance().handleChange([mockDate, mockDate]);
         expect(spy).to.be.calledOnce();
     });
 
     it('only allows the from datepicker to display when from has focus', () => {
-        const dateFieldLinked = mount(<DateFieldLinked />);
+        const dateFieldLinked = mount(<DateFieldRange />);
         dateFieldLinked.find('input').first().simulate('focus');
         expect(dateFieldLinked.state('hideFromDatePicker')).to.be.false();
         expect(dateFieldLinked.state('hideToDatePicker')).to.be.true();
     });
 
     it('only allows the to datepicker to display when to has focus', () => {
-        const dateFieldLinked = mount(<DateFieldLinked />);
+        const dateFieldLinked = mount(<DateFieldRange />);
         dateFieldLinked.find('input').last().simulate('focus');
         expect(dateFieldLinked.state('hideFromDatePicker')).to.be.true();
         expect(dateFieldLinked.state('hideToDatePicker')).to.be.false();

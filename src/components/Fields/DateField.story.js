@@ -33,7 +33,7 @@ stories.add(
         `
 DateField is a TextField input the allows users to select a date via a calendar interface (date picker).
 
-Use the \`isRange\` prop to allow users to select a range, see this in action with the \`DateFieldLinked\` component.
+Use the \`isRange\` prop to allow users to select a range, see this in action with the \`DateFieldRange\` component.
 
 You can retrieve the selected date by passing a function to the \`onChange\` prop.
 
