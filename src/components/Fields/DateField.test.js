@@ -59,21 +59,21 @@ describe('DateField', () => {
         expect(dateField.state('showDatePicker')).to.be.false();
     });
 
-    it('sets selectedDate when DateInlinePicker changes', () => {
+    it('sets value when DateInlinePicker changes', () => {
         const mockDate = createMockDate();
         const dateField = shallow(<DateField />);
         dateField.instance().handleDatePickerChange([mockDate]);
-        expect(dateField.state('selectedDate').toString()).to.equal(mockDate.toString());
+        expect(dateField.state('value').toString()).to.equal(mockDate.toString());
     });
 
-    it('sets multiple selectedDates when isRange is true', () => {
+    it('sets rangeFromValue and rangeToValue when isRange is true', () => {
         const mockDate = createMockDate();
         const dateField = shallow(<DateField isRange />);
         dateField.instance().handleDatePickerChange([mockDate, mockDate]);
-        const selectedDates = dateField.state('selectedDate');
-        expect(selectedDates).to.be.an('array');
-        expect(selectedDates[0].toString()).to.equal(mockDate.toString());
-        expect(selectedDates[1].toString()).to.equal(mockDate.toString());
+        const rangeFromValue = dateField.state('rangeFromValue');
+        const rangeToValue = dateField.state('rangeToValue');
+        expect(rangeFromValue.toString()).to.equal(mockDate.toString());
+        expect(rangeToValue.toString()).to.equal(mockDate.toString());
     });
 
     it('will hide the datepicker when a date is selected', () => {
@@ -100,29 +100,45 @@ describe('DateField', () => {
         expect(dateField.state('showDatePicker')).to.be.true();
     });
 
-    it('clearable icon will clear the selectedDate state', () => {
+    it('clearable icon will clear the value state', () => {
         const dateField = mount(<DateField value={createMockDate()} isClearable />);
         dateField.find(Button).simulate('click');
-        expect(dateField.state('selectedDate')).to.be.null();
+        expect(dateField.state('value')).to.be.null();
     });
 
-    it('handleInputChange will clear selectedDate if input is null', () => {
+    it('handleInputChange will clear value if input is null', () => {
         const dateField = mount(<DateField value={createMockDate()} />);
         dateField.instance().handleInputChange(null);
-        expect(dateField.state('selectedDate')).to.be.null();
+        expect(dateField.state('value')).to.be.null();
     });
 
-    it('handleInputChange will clear selectedDate if input is empty string', () => {
+    it('handleInputChange will clear value if input is empty string', () => {
         const dateField = mount(<DateField value={createMockDate()} />);
         dateField.instance().handleInputChange('');
-        expect(dateField.state('selectedDate')).to.be.null();
+        expect(dateField.state('value')).to.be.null();
     });
 
-    it('handleInputChange will not clear selectedDate if input is not null or empty string', () => {
+    it('onChange will return null if input is null', () => {
+        const dateField = mount(<DateField
+            value={createMockDate()}
+            onChange={value => expect(value).to.be.null}
+        />);
+        dateField.instance().handleInputChange(null);
+    });
+
+    it('onChange will return null if input is empty string', () => {
+        const dateField = mount(<DateField
+            value={createMockDate()}
+            onChange={value => expect(value).to.be.null}
+        />);
+        dateField.instance().handleInputChange('');
+    });
+
+    it('handleInputChange will not clear value if input is not null or empty string', () => {
         const mockDate = createMockDate();
         const dateField = mount(<DateField value={mockDate} />);
         dateField.instance().handleInputChange('test');
-        expect(dateField.state('selectedDate').toString()).to.equal(mockDate.toString());
+        expect(dateField.state('value').toString()).to.equal(mockDate.toString());
     });
 
     it('onChange will fire when input changes', () => {

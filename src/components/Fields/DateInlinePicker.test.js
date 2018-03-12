@@ -20,7 +20,6 @@ describe('DateInlinePicker', () => {
     });
 
     it('does not call onChange when date changes if onChange is null', () => {
-        // @NB: this isn't the best test, but it gives us 100% code coverage
         const spy = sinon.spy();
         const dateInlinePicker = mount(<DateInlinePicker onChange={null} />);
         dateInlinePicker.instance().handleChange();

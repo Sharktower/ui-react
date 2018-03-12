@@ -1,12 +1,12 @@
 /* global Feature, Scenario */
 
-const KIND = 'Fields.DateFieldLinked';
+const KIND = 'Fields.DateFieldRange';
 
-Feature('DateFieldLinked');
+Feature('DateFieldRange');
 
 Scenario('Storybook Documentation', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.see('Fields: DateFieldLinked');
+        I.see('Fields: DateFieldRange');
         I.see('Overview', 'h2');
         I.see('Example', 'h3');
         I.see('Source Code', 'h3');
@@ -20,8 +20,8 @@ Scenario('Storybook Documentation', (I) => {
     });
 });
 
-Scenario('DateFieldLinked', (I) => {
+Scenario('DateFieldRange', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.seeElement('.uir-date-field-linked');
+        I.seeElement('.uir-date-field-range');
     });
 });
