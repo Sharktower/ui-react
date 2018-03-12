@@ -11,7 +11,7 @@ stories.add(
         `
 DateInlinePicker is an inline date picker, primarily for use with DateField. The date picker we use is called \`flatpickr\`.
 
-This component can take \`flatpickr\` config options as props.
+This component can take \`flatpickr\` config options as props, [read the docs here](https://flatpickr.js.org/options/).
 
 Both \`flatpickr\` and this component pass an array of \`Date\` objects to the \`onChange\` callback.
 `,
