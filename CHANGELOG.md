@@ -1,4 +1,42 @@
-<!-- Last Updated: 2018-03-12 21:25:28 -->
+<!-- Last Updated: 2018-03-13 19:35:35 -->
+
+# UI React v2.1.1 (2018-03-13 19:35:35)
+
+## Export DateFieldRange, DateInlinePicker and IconArrowLongRight
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- Export DateFieldRange, DateInlinePicker and IconArrowLongRight in the build bundle
+
+
+## Update DateField component documentation
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+ - Better prop names for selecting a range of dates
+
+**Bug Fixes**
+
+_None_
+
+**Miscellaneous**
+
+ - Clearer documentation for DateFields
+
+
+
 
 # UI React v2.1.0 (2018-03-12 21:25:28)
 
