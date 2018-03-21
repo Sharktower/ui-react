@@ -48,7 +48,10 @@ const propTypes = {
         PropTypes.string,
     ]),
     type: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]),
     variant: ListPropType([
         TextFieldVariant.DEFAULT,
         TextFieldVariant.TITLE,
