@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import StyleObjectPropType from '../../prop-types/style';
+import ListPropType from '../../prop-types/list';
 import TextField from './TextField';
 import DateInlinePicker from './DateInlinePicker';
 import Tooltip from '../Tooltip/Tooltip';
@@ -21,6 +22,14 @@ const propTypes = {
     rangeFromValue: PropTypes.instanceOf(Date),
     rangeToValue: PropTypes.instanceOf(Date),
     style: StyleObjectPropType(),
+    tooltipPosition: ListPropType([
+        TooltipPosition.TOP_CENTER,
+        TooltipPosition.TOP_LEFT,
+        TooltipPosition.TOP_RIGHT,
+        TooltipPosition.BOTTOM_CENTER,
+        TooltipPosition.BOTTOM_RIGHT,
+        TooltipPosition.BOTTOM_LEFT,
+    ]),
     value: PropTypes.instanceOf(Date),
 };
 
@@ -36,6 +45,7 @@ const defaultProps = {
     rangeFromValue: null,
     rangeToValue: null,
     style: null,
+    tooltipPosition: TooltipPosition.BOTTOM_CENTER,
     value: null,
 };
 
@@ -149,7 +159,7 @@ class DateField extends Component {
                 <Tooltip
                     tooltip={datePicker}
                     showTooltip={this.state.showDatePicker}
-                    position={TooltipPosition.BOTTOM_LEFT}
+                    position={this.props.tooltipPosition}
                 >
                     <TextField
                         {...textFieldProps}

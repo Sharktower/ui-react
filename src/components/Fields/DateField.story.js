@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-e
 import storyWrapper from '../../storybook-addons/storyWrapper';
 import DateField from './DateField';
 import Button from '../Button/Button';
+import { TooltipPosition } from '../Tooltip/TooltipEnums';
 
 const stories = storiesOf('Fields.DateField', module);
 
@@ -141,6 +142,24 @@ e.g. \`onFocus={event => console.log(event)}\`
         <DateField
             label="Handle Focus"
             onFocus={event => console.log(event)} // eslint-disable-line no-console
+        />,
+    ),
+);
+
+stories.add(
+    'Picker Position',
+    storyWrapper(
+        `
+By default the date picker appears to the bottom in the centre of the field.
+
+You can change this by setting \`tooltipPosition\`.
+
+In the same way you can position a \`Tooltip\` on a \`TextField\`.
+`,
+        <DateField
+            label="Today's Date"
+            tooltipPosition={TooltipPosition.TOP_LEFT}
+            value={new Date()}
         />,
     ),
 );
