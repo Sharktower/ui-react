@@ -4,6 +4,7 @@ import storyWrapper from '../../storybook-addons/storyWrapper';
 import TextField from './TextField';
 import Button from '../Button/Button';
 import { TextFieldVariant } from './TextFieldEnums';
+import { TooltipPosition } from '../Tooltip/TooltipEnums';
 import IconSearch from '../Icon/IconSearch';
 import IconNotification from '../Icon/IconNotification';
 
@@ -40,9 +41,9 @@ stories.add(
 );
 
 stories.add(
-    'Title',
+    'Title Variant',
     storyWrapper(
-        'The variant prop allows you to choose a larger title input, which has no visible label.',
+        'The `variant` prop allows you to choose a larger title input, which has no visible label.',
         <TextField
             label="Label for screenreaders"
             placeholder="My Title Element"
@@ -81,7 +82,7 @@ stories.add(
 stories.add(
     'Placeholder',
     storyWrapper(
-        'Placeholder appears when the input has focus or if no label is provided.',
+        '`placeholder` appears when the input has focus or if no label is provided.',
         <TextField label="Label with placeholder" placeholder="your placeholder here" />,
         <TextField placeholder="no label here" />,
     ),
@@ -90,7 +91,7 @@ stories.add(
 stories.add(
     'Value',
     storyWrapper(
-        'Value allows you to set an initial value.',
+        '`value` allows you to set an initial value.',
         <TextField
             label="With value"
             placeholder="your placeholder here"
@@ -105,7 +106,7 @@ stories.add(
         `
 Use \`autoHideLabel\` to hide the field label when the input loses focus.
 
-_NB: label will not hide if there is no value._
+_NB: the label will not hide if there is no value._
         `,
         <TextField
             label="Label will auto hide"
@@ -122,7 +123,7 @@ _NB: label will not hide if there is no value._
 stories.add(
     'Type',
     storyWrapper(
-        'Type allows you to set the HTML input type.',
+        '`type` allows you to set the HTML input type.',
         <TextField
             label="With input type"
             type="email"
@@ -133,7 +134,7 @@ stories.add(
 stories.add(
     'Full Width',
     storyWrapper(
-        'isFullWidth makes an input fill the full width of it\'s container.',
+        '`isFullWidth` makes an input fill the full width of it\'s container.',
         <TextField label="Full width input" isFullWidth />,
     ),
 );
@@ -141,7 +142,7 @@ stories.add(
 stories.add(
     'Disabled',
     storyWrapper(
-        'isDisabled allows you to disable the input. Disabled mode removes the line at the bottom of the input.',
+        '`isDisabled` allows you to disable the input. Disabled mode removes the line at the bottom of the input.',
         <TextField
             label="Disabled input"
             value="Hello, Friend"
@@ -159,7 +160,7 @@ stories.add(
 stories.add(
     'Read Only',
     storyWrapper(
-        'isReadOnly allows you to make an input read only. Read only mode removes the line at the bottom of the input.',
+        '`isReadOnly` allows you to make an input read only. Read only mode removes the line at the bottom of the input.',
         <TextField
             label="Read only input"
             value="Hello, Friend"
@@ -177,7 +178,7 @@ stories.add(
 stories.add(
     'Validation',
     storyWrapper(
-        'isValid allows you to control input validation state.',
+        '`isValid` allows you to control input validation state.',
         <TextField label="Invalid input" isValid={false} />,
         <div>
             <TextField label="Valid input" isValid />
@@ -190,15 +191,18 @@ stories.add(
     'Tooltips',
     storyWrapper(
         `
-tooltipHint and tooltipError allow you to display tooltips to users on input focus. Error takes precedence over hint.
+\`tooltipHint\` and \`tooltipError\` allow you to display tooltips to users on input focus. Error takes precedence over hint.
 
-_NB: tooltipError will ONLY be displayed if isValid is false._
+Use \`tooltipPosition\` to override the default tooltip position of centre bottom.
+
+_NB: \`tooltipError\` will ONLY be displayed if \`isValid\` is false._
 `,
         <TextField
             label="Input with a tooltip"
             isValid={false}
             tooltipHint="My Example Hint"
             tooltipError="My Example Error"
+            tooltipPosition={TooltipPosition.TOP_RIGHT}
         />,
         <div>
             <TextField
@@ -223,7 +227,7 @@ _NB: tooltipError will ONLY be displayed if isValid is false._
 stories.add(
     'Required',
     storyWrapper(
-        'isRequired allows you to mark an input as required. And adds required icon with tooltip.',
+        '`isRequired` allows you to mark an input as required. And adds required icon with tooltip.',
         <TextField
             label="Required input"
             value="Hello, Friend"
@@ -255,9 +259,9 @@ stories.add(
     'Clearable',
     storyWrapper(
         `
-isClearable displays an icon that allows the user to clear a field.
+\`isClearable\` displays an icon that allows the user to clear a field.
 
-_NB: when the clear icon is clicked, the input will trigger an onChange event_
+_NB: when the clear icon is clicked, the input will trigger an \`onChange\` event_
         `,
         <TextField
             label="Clearable input"
@@ -283,7 +287,7 @@ _NB: when the clear icon is clicked, the input will trigger an onChange event_
 stories.add(
     'Icon',
     storyWrapper(
-        'icon prop allows you to display an icon on the left of the input field.',
+        '`icon` prop allows you to display an icon on the left of the input field.',
         <TextField placeholder="search" icon={<IconSearch />} />,
         <TextField label="Full width with icon" isFullWidth icon={<IconNotification />} />,
     ),

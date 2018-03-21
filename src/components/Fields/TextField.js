@@ -43,6 +43,14 @@ const propTypes = {
         PropTypes.element,
         PropTypes.string,
     ]),
+    tooltipPosition: ListPropType([
+        TooltipPosition.TOP_CENTER,
+        TooltipPosition.TOP_LEFT,
+        TooltipPosition.TOP_RIGHT,
+        TooltipPosition.BOTTOM_CENTER,
+        TooltipPosition.BOTTOM_RIGHT,
+        TooltipPosition.BOTTOM_LEFT,
+    ]),
     tooltipRequired: PropTypes.oneOfType([
         PropTypes.element,
         PropTypes.string,
@@ -83,6 +91,7 @@ const defaultProps = {
     tooltipError: null,
     tooltipHint: null,
     tooltipRequired: 'required',
+    tooltipPosition: TooltipPosition.BOTTOM_CENTER,
     type: 'text',
     value: '',
     variant: TextFieldVariant.DEFAULT,
@@ -198,7 +207,7 @@ class TextField extends Component {
         return (
             tooltip ?
                 <Tooltip
-                    position={TooltipPosition.BOTTOM_CENTER}
+                    position={this.props.tooltipPosition}
                     showTooltip={this.state.showTooltip}
                     tooltip={
                         <TooltipBox
