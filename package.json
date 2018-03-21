@@ -126,8 +126,8 @@
     "webpack": "^3.0.0"
   },
   "peerDependencies": {
-    "react": ">=0.14.0 <= 15",
-    "react-dom": ">=0.14.0 <= 15"
+    "react": ">=0.14.0 <= 16",
+    "react-dom": ">=0.14.0 <= 16"
   },
   "dependencies": {
     "autosize": "^4.0.0",
