@@ -152,13 +152,13 @@ stories.add(
         `
 By default the date picker appears to the bottom in the centre of the field.
 
-You can change this by setting \`tooltipPosition\`.
+You can change this by setting \`datePickerPosition\`.
 
-In the same way you can position a \`Tooltip\` on a \`TextField\`.
+In the same way you can position a \`Tooltip\` on a \`TextField\` with \`tooltipPosition\`.
 `,
         <DateField
             label="Today's Date"
-            tooltipPosition={TooltipPosition.TOP_LEFT}
+            datePickerPosition={TooltipPosition.TOP_LEFT}
             value={new Date()}
         />,
     ),

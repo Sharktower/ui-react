@@ -22,7 +22,7 @@ const propTypes = {
     rangeFromValue: PropTypes.instanceOf(Date),
     rangeToValue: PropTypes.instanceOf(Date),
     style: StyleObjectPropType(),
-    tooltipPosition: ListPropType([
+    datePickerPosition: ListPropType([
         TooltipPosition.TOP_CENTER,
         TooltipPosition.TOP_LEFT,
         TooltipPosition.TOP_RIGHT,
@@ -45,7 +45,7 @@ const defaultProps = {
     rangeFromValue: null,
     rangeToValue: null,
     style: null,
-    tooltipPosition: TooltipPosition.BOTTOM_CENTER,
+    datePickerPosition: TooltipPosition.BOTTOM_CENTER,
     value: null,
 };
 
@@ -159,7 +159,7 @@ class DateField extends Component {
                 <Tooltip
                     tooltip={datePicker}
                     showTooltip={this.state.showDatePicker}
-                    position={this.props.tooltipPosition}
+                    position={this.props.datePickerPosition}
                 >
                     <TextField
                         {...textFieldProps}
