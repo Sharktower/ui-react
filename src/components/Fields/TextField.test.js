@@ -174,6 +174,14 @@ describe('TextField', () => {
         expect(textField.find('input').prop('type')).to.equal('email');
     });
 
+    it('allows step, man and min to be set if type is number', () => {
+        const textField = shallow(<TextField label="My Input" type="number" min={1} max={21} step={3} />);
+        expect(textField.find('input').prop('type')).to.equal('number');
+        expect(textField.find('input').prop('min')).to.equal(1);
+        expect(textField.find('input').prop('max')).to.equal(21);
+        expect(textField.find('input').prop('step')).to.equal(3);
+    });
+
     ['blur', 'change', 'focus', 'keyDown', 'keyPress', 'keyUp'].forEach((event) => {
         it(`triggers handler on input ${event}`, () => {
             const spy = sinon.spy();
