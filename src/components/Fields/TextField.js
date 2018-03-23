@@ -25,6 +25,8 @@ const propTypes = {
     isRequired: PropTypes.bool,
     isValid: PropTypes.bool,
     label: PropTypes.string,
+    max: PropTypes.number,
+    min: PropTypes.number,
     name: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
@@ -34,6 +36,7 @@ const propTypes = {
     onKeyPress: PropTypes.func,
     onKeyUp: PropTypes.func,
     placeholder: PropTypes.string,
+    step: PropTypes.number,
     style: StyleObjectPropType(),
     tooltipError: PropTypes.oneOfType([
         PropTypes.element,
@@ -78,6 +81,8 @@ const defaultProps = {
     isRequired: false,
     isValid: null,
     label: null,
+    max: null,
+    min: null,
     name: null,
     onBlur: null,
     onChange: null,
@@ -87,6 +92,7 @@ const defaultProps = {
     onKeyPress: null,
     onKeyUp: null,
     placeholder: null,
+    step: null,
     style: null,
     tooltipError: null,
     tooltipHint: null,
@@ -310,6 +316,8 @@ class TextField extends Component {
                             className="uir-text-field-input"
                             disabled={this.props.isDisabled}
                             id={this.uid}
+                            max={this.props.type === 'number' ? this.props.max : null}
+                            min={this.props.type === 'number' ? this.props.min : null}
                             name={this.props.name}
                             onChange={this.handleInputChange}
                             onBlur={this.handleInputBlur}
@@ -321,6 +329,7 @@ class TextField extends Component {
                             readOnly={this.props.isReadOnly}
                             required={this.props.isRequired}
                             ref={this.handleInputRef}
+                            step={this.props.type === 'number' ? this.props.step : null}
                             type={this.props.type}
                             value={this.state.value}
                         />,

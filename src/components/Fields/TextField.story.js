@@ -123,9 +123,20 @@ _NB: the label will not hide if there is no value._
 stories.add(
     'Type',
     storyWrapper(
-        '`type` allows you to set the HTML input type.',
+        `
+\`type\` allows you to set the HTML input type.
+
+_NB: if you set \`type\` to \`number\` you can control the increment with \`step\` and the minimum and maxium with \`min\` and \`max\`._
+`,
         <TextField
-            label="With input type"
+            label="Number input type"
+            min={5}
+            max={50}
+            step={5}
+            type="number"
+        />,
+        <TextField
+            label="Email input type"
             type="email"
         />,
     ),
@@ -135,7 +146,10 @@ stories.add(
     'Full Width',
     storyWrapper(
         '`isFullWidth` makes an input fill the full width of it\'s container.',
-        <TextField label="Full width input" isFullWidth />,
+        <TextField
+            label="Full width input"
+            isFullWidth
+        />,
     ),
 );
 
