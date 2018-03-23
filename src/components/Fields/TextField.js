@@ -316,8 +316,8 @@ class TextField extends Component {
                             className="uir-text-field-input"
                             disabled={this.props.isDisabled}
                             id={this.uid}
-                            max={this.props.type === 'number' ? this.props.max : null}
-                            min={this.props.type === 'number' ? this.props.min : null}
+                            max={this.props.max}
+                            min={this.props.min}
                             name={this.props.name}
                             onChange={this.handleInputChange}
                             onBlur={this.handleInputBlur}
@@ -329,7 +329,7 @@ class TextField extends Component {
                             readOnly={this.props.isReadOnly}
                             required={this.props.isRequired}
                             ref={this.handleInputRef}
-                            step={this.props.type === 'number' ? this.props.step : null}
+                            step={this.props.step}
                             type={this.props.type}
                             value={this.state.value}
                         />,
