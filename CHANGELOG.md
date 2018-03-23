@@ -1,4 +1,38 @@
-<!-- Last Updated: 2018-03-21 16:00:57 -->
+<!-- Last Updated: 2018-03-23 13:10:14 -->
+
+# UI React v2.3.0 (2018-03-23 13:10:14)
+
+## Allow step, max, min attribute to be set for any input type
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+- allow step, mix and max attributes for any input type, not just number
+
+**Bug Fixes**
+
+_None_
+
+## Add step, max & min props to textfield
+
+**Backwards Compatibility Implications**
+_None_
+
+**New Features**
+
+- add step prop to TextField
+- add max prop to TextField
+- add min prop to TextField
+
+**Bug Fixes**
+
+_None_
+
+
+
 
 # UI React v2.2.0 (2018-03-21 16:00:57)
 
