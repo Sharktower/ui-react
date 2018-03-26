@@ -13,7 +13,10 @@ const propTypes = {
     confirmText: PropTypes.string,
     confirmedText: PropTypes.string,
     hasConfirm: PropTypes.bool,
-    icon: PropTypes.element,
+    icon: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+    ]),
     iconPosition: ListPropType([
         ButtonIconPosition.LEFT,
         ButtonIconPosition.RIGHT,
