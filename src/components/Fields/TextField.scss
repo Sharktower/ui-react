@@ -133,42 +133,35 @@ $textFieldLabelColor: $charcoal !default;
         margin-left: 5px;
     }
 
-    .uir-text-field-left-icon {
-        position: absolute;
-        top: 24px;
-        left: 2px;
-        line-height: 1em;
-    }
-
+    .uir-text-field-left-icon,
     .uir-text-field-right-icon {
         position: absolute;
         top: 21px;
-        right: 2px;
         line-height: 1em;
+    }
+
+    .uir-text-field-left-icon {
+        left: 2px;
+    }
+
+    .uir-text-field-right-icon {
+        right: 2px;
 
         .uir-tooltip-contents {
             line-height: normal;
         }
+    }
 
-        .uir-button {
-            position: relative;
-            box-sizing: border-box;
-            display: inline-block;
-            width: 16px;
-            min-width: 16px;
-            height: 16px;
-            padding: 0;
-            margin: 0;
+    .uir-button.uir-text-field-icon-wrapper {
+        min-width: 16px;
+        padding: 0;
+        margin: 0;
 
-            &-content {
-                line-height: inherit;
-            }
+        &:focus,
+        &:hover {
+            background-color: transparent;
 
-            &:hover {
-                background-color: transparent;
-            }
-
-            .uir-icon-clear:hover {
+            .uir-icon-clear {
                 fill: $charcoal;
             }
         }
