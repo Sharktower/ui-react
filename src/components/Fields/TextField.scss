@@ -10,18 +10,6 @@ $textFieldLabelColor: $charcoal !default;
     font-weight: 400;
     color: $textFieldLabelColor;
 
-    &:after {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        display: block;
-        width: 40%;
-        height: 1px;
-        content: "";
-        background: linear-gradient(to right, $grey 0%, transparent 100%);
-        transition: width .25s;
-    }
-
     &--focus:after {
         width: 100%;
     }
@@ -100,6 +88,26 @@ $textFieldLabelColor: $charcoal !default;
         }
     }
 
+    &-inner {
+        position: relative;
+
+        & > .uir-tooltip {
+            width: 100%;
+        }
+
+        &:after {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: block;
+            width: 40%;
+            height: 1px;
+            content: "";
+            background: linear-gradient(to right, $grey 0%, transparent 100%);
+            transition: width .25s;
+        }
+    }
+
     &-input {
         width: 100%;
         padding: 2px 0 3px;
@@ -113,9 +121,6 @@ $textFieldLabelColor: $charcoal !default;
         }
     }
 
-    &-inner > .uir-tooltip {
-        width: 100%;
-    }
 
     .uir-icon {
         width: 13px;
