@@ -157,6 +157,7 @@ $textFieldLabelColor: $charcoal !default;
             background-color: transparent;
         }
 
+        .uir-icon-clear:focus,
         .uir-icon-clear:hover {
             fill: $charcoal;
         }
