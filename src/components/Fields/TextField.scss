@@ -147,17 +147,18 @@ $textFieldLabelColor: $charcoal !default;
         }
     }
 
-    .uir-button.icon-wrapper {
+    .uir-button.uir-text-field-icon-wrapper {
         min-width: 16px;
         padding: 0;
         margin: 0;
 
+        &:focus,
         &:hover {
             background-color: transparent;
-        }
 
-        .uir-icon-clear:hover {
-            fill: $charcoal;
+            .uir-icon-clear {
+                fill: $charcoal;
+            }
         }
     }
 }

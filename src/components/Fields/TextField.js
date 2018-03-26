@@ -279,9 +279,10 @@ class TextField extends Component {
             (
                 <span className="uir-text-field-left-icon">
                     <Button
-                        className="icon-wrapper"
+                        className="uir-text-field-icon-wrapper"
                         icon={this.props.icon}
-                        onClick={this.handleClearIconClick}
+                        onClick={this.handleIconClick}
+                        tabIndex={-1}
                         variant={ButtonVariant.CLEAR}
                     />
                 </span>
@@ -291,7 +292,7 @@ class TextField extends Component {
             (
                 <span className="uir-text-field-right-icon">
                     <Button
-                        className="icon-wrapper"
+                        className="uir-text-field-icon-wrapper"
                         icon={<IconClear />}
                         onClick={this.handleClearIconClick}
                         variant={ButtonVariant.CLEAR}
