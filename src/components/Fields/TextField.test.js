@@ -374,7 +374,7 @@ describe('TextField', () => {
         expect(textField.hasClass('uir-text-field--has-value')).to.equal(true);
     });
 
-    it('does not add --has-value when value isnull', () => {
+    it('does not add --has-value when value is undefined', () => {
         const textField = shallow(<TextField />);
         expect(textField.hasClass('uir-text-field--has-value')).to.not.equal(true);
     });
