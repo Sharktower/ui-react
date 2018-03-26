@@ -97,6 +97,19 @@ stories.add(
             placeholder="your placeholder here"
             value="Hello, Friend"
         />,
+        <div>
+            <TextField
+                label="Number Zero"
+                placeholder="your placeholder here"
+                value={0}
+            />
+            <TextField
+                label="Empty String"
+                placeholder="your placeholder here"
+                value=""
+            />
+        </div>
+        ,
     ),
 );
 
