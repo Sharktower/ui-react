@@ -305,6 +305,13 @@ describe('TextField', () => {
         textField.find(Button).simulate('click');
     });
 
+    it('does not clear value when left icon is clicked', () => {
+        const mockValue = 'test me';
+        const textField = mount(<TextField icon={<IconSearch />} value={mockValue} />);
+        textField.find(Button).simulate('click');
+        expect(textField.state('value')).to.equal(mockValue);
+    });
+
     it('gives focus to input when clear icon is clicked', () => {
         const textField = mount(<TextField
             isClearable
