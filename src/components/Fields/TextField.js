@@ -281,7 +281,8 @@ class TextField extends Component {
                     <Button
                         className="icon-wrapper"
                         icon={this.props.icon}
-                        onClick={this.handleClearIconClick}
+                        onClick={this.handleIconClick}
+                        tabIndex={-1}
                         variant={ButtonVariant.CLEAR}
                     />
                 </span>
