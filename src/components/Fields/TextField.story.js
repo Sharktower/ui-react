@@ -150,6 +150,18 @@ stories.add(
             label="Full width input"
             isFullWidth
         />,
+        <div style={{ display: 'flex', maxWidth: '300px', height: '100px' }}>
+            <TextField
+                label="50% flex layout"
+                isFullWidth
+                style={{ width: '50%' }}
+            />
+            <TextField
+                label="50% flex layout"
+                isFullWidth
+                style={{ width: '50%' }}
+            />
+        </div>,
     ),
 );
 
