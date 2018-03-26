@@ -126,6 +126,13 @@ class TextField extends Component {
         }
     }
 
+    clearInput = () => {
+        if (this.inputRef) {
+            this.inputRef.value = '';
+            this.handleInputChange();
+        }
+    }
+
     handleMouseEnter = () => {
         this.setState({ hasMouseOver: true });
     }
@@ -152,12 +159,14 @@ class TextField extends Component {
     }
 
     handleInputChange = (event) => {
-        const { value } = this.inputRef;
-        const onChange = this.props.onChange || (() => {});
-        if (typeof value !== 'undefined') {
-            this.setState({ value });
+        if (this.inputRef) {
+            const { value } = this.inputRef;
+            const onChange = this.props.onChange || (() => {});
+            if (typeof value !== 'undefined') {
+                this.setState({ value });
+            }
+            onChange(value, event);
         }
-        onChange(value, event);
     }
 
     handleInputFocus = (event) => {
@@ -193,12 +202,16 @@ class TextField extends Component {
         }
     }
 
-    handleClearIconClick = (event) => {
+    handleIconClick = () => {
         if (this.inputRef) {
-            this.inputRef.value = '';
             this.inputRef.focus();
-            this.handleInputChange(event);
         }
+    }
+
+    handleClearIconClick = (event) => {
+        this.clearInput();
+        this.handleIconClick();
+        this.handleInputChange(event);
     }
 
     /**
@@ -265,7 +278,13 @@ class TextField extends Component {
         const icon = this.props.icon ?
             (
                 <span className="uir-text-field-left-icon">
-                    {this.props.icon}
+                    <Button
+                        className="uir-text-field-icon-wrapper"
+                        icon={this.props.icon}
+                        onClick={this.handleIconClick}
+                        tabIndex={-1}
+                        variant={ButtonVariant.CLEAR}
+                    />
                 </span>
             ) :
             null;
@@ -273,11 +292,11 @@ class TextField extends Component {
             (
                 <span className="uir-text-field-right-icon">
                     <Button
+                        className="uir-text-field-icon-wrapper"
+                        icon={<IconClear />}
                         onClick={this.handleClearIconClick}
                         variant={ButtonVariant.CLEAR}
-                    >
-                        <IconClear />
-                    </Button>
+                    />
                 </span>
             ) :
             null;
