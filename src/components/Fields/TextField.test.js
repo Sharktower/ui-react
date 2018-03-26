@@ -277,7 +277,7 @@ describe('TextField', () => {
     });
 
     it('displays a clear icon if isClearable is given and textfield has a value', () => {
-        const textField = shallow(<TextField value="an example value" isClearable />);
+        const textField = mount(<TextField value="an example value" isClearable />);
         expect(textField.find(IconClear).length).to.equal(1);
     });
 
@@ -295,6 +295,23 @@ describe('TextField', () => {
         const textField = shallow(<TextField label="my label" hasLabelAlways isRequired />);
         textField.find(IconRequired).simulate('hover');
         expect(textField.find(Tooltip).length).to.equal(1);
+    });
+
+    it('gives focus to input when left icon is clicked', () => {
+        const textField = mount(<TextField
+            icon={<IconSearch />}
+            onFocus={event => expect(event).to.have.property('value')}
+        />);
+        textField.find(Button).simulate('click');
+    });
+
+    it('gives focus to input when clear icon is clicked', () => {
+        const textField = mount(<TextField
+            isClearable
+            onFocus={event => expect(event).to.have.property('value')}
+            value="an example value"
+        />);
+        textField.find(Button).simulate('click');
     });
 
     it('clears value when clear icon is clicked', () => {
@@ -324,7 +341,7 @@ describe('TextField', () => {
     });
 
     it('displays an icon if provided', () => {
-        const textField = shallow(<TextField icon={<IconSearch />} />);
+        const textField = mount(<TextField icon={<IconSearch />} />);
         expect(textField.find(IconSearch).length).to.equal(1);
     });
 
