@@ -17,7 +17,10 @@ const propTypes = {
     autoHideLabel: PropTypes.bool,
     className: PropTypes.string,
     componentRef: PropTypes.func,
-    icon: PropTypes.element,
+    icon: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+    ]),
     isClearable: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
@@ -36,6 +39,10 @@ const propTypes = {
     onKeyPress: PropTypes.func,
     onKeyUp: PropTypes.func,
     placeholder: PropTypes.string,
+    prefix: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+    ]),
     step: PropTypes.number,
     style: StyleObjectPropType(),
     tooltipError: PropTypes.oneOfType([
@@ -92,6 +99,7 @@ const defaultProps = {
     onKeyPress: null,
     onKeyUp: null,
     placeholder: null,
+    prefix: null,
     step: null,
     style: null,
     tooltipError: null,
@@ -275,6 +283,19 @@ class TextField extends Component {
             this.state.hasFocus ||
             this.props.variant === TextFieldVariant.TITLE
         );
+        const prefix = this.props.prefix && (this.state.hasFocus || this.state.value) ?
+            (
+                <span className="uir-text-field-prefix">
+                    <Button
+                        className="uir-text-field-prefix-wrapper"
+                        icon={this.props.prefix}
+                        onClick={this.handleIconClick}
+                        tabIndex={-1}
+                        variant={ButtonVariant.CLEAR}
+                    />
+                </span>
+            ) :
+            null;
         const icon = this.props.icon ?
             (
                 <span className="uir-text-field-left-icon">
@@ -311,8 +332,9 @@ class TextField extends Component {
                         'uir-text-field--focus': this.state.hasFocus,
                         'uir-text-field--full-width': this.props.isFullWidth,
                         'uir-text-field--has-left-icon': this.props.icon,
+                        'uir-text-field--has-prefix': this.props.prefix,
                         'uir-text-field--has-right-icon': this.props.isRequired || this.props.isClearable,
-                        'uir-text-field--has-value': `${this.state.value}`,
+                        'uir-text-field--has-value': this.state.value,
                         'uir-text-field--invalid': this.props.isValid === false,
                         'uir-text-field--readonly': this.props.isReadOnly,
                         'uir-text-field--title': this.props.variant === TextFieldVariant.TITLE,
@@ -324,7 +346,7 @@ class TextField extends Component {
                 onMouseLeave={this.handleMouseLeave}
                 style={this.props.style}
             >
-                {icon}
+                {prefix || icon}
                 <div className="uir-text-field-inner">
                     <div className="uir-text-field-label-wrapper">
                         {label}
