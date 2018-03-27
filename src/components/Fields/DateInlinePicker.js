@@ -8,7 +8,7 @@ import './DateInlinePicker.scss';
 const propTypes = {
     className: PropTypes.string,
     onChange: PropTypes.func,
-    style: StyleObjectPropType(),
+    style: StyleObjectPropType,
 };
 
 const defaultProps = {

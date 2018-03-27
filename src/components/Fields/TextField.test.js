@@ -308,6 +308,11 @@ describe('TextField', () => {
         expect(textField.find(Button).length).to.equal(1);
     });
 
+    it('only displays prefix if prefix and icon are set', () => {
+        const textField = mount(<TextField icon={<IconSearch />} prefix="£" value="test" />);
+        expect(textField.find(Button).first().text()).to.equal('£');
+    });
+
     it('gives focus to input when prefix is clicked', () => {
         const textField = mount(<TextField
             onFocus={event => expect(event).to.have.property('value')}

@@ -21,7 +21,7 @@ const propTypes = {
     onFocus: PropTypes.func,
     rangeFromValue: PropTypes.instanceOf(Date),
     rangeToValue: PropTypes.instanceOf(Date),
-    style: StyleObjectPropType(),
+    style: StyleObjectPropType,
     datePickerPosition: ListPropType([
         TooltipPosition.TOP_CENTER,
         TooltipPosition.TOP_LEFT,

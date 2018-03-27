@@ -339,7 +339,11 @@ stories.add(
 stories.add(
     'Prefix',
     storyWrapper(
-        '`prefix` prop allows you to display an alternative to an icon on focus only, the prefix appears tight the left of the value and is good for showing currency.',
+        `
+\`prefix\` prop allows you to display an alternative to an icon on focus only, the prefix appears tight the left of the value and is good for showing currency.
+
+_NB: if you add a prefix and an icon, only the prefix will be displayed_
+        `,
         <TextField label="Currency" prefix="£" />,
     ),
 );

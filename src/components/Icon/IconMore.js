@@ -8,7 +8,7 @@ let lastInstanceId = 0;
 
 const propTypes = {
     className: PropTypes.string,
-    style: StyleObjectPropType(),
+    style: StyleObjectPropType,
 };
 
 const defaultProps = {

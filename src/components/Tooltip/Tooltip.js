@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import ElementOrStringPropType from '../../prop-types/element-or-string';
 import ListPropType from '../../prop-types/list';
 import StyleObjectPropType from '../../prop-types/style';
 import TooltipBox from './TooltipBox';
@@ -19,12 +20,9 @@ const propTypes = {
         TooltipPosition.BOTTOM_LEFT,
     ]),
     showTooltip: PropTypes.bool,
-    style: StyleObjectPropType(),
+    style: StyleObjectPropType,
     tabIndex: PropTypes.number,
-    tooltip: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.string,
-    ]).isRequired,
+    tooltip: ElementOrStringPropType.isRequired,
 };
 
 const defaultProps = {

@@ -13,7 +13,7 @@ const propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     selectedIndex: PropTypes.number,
-    style: StyleObjectPropType(),
+    style: StyleObjectPropType,
     tabsVisible: PropTypes.number,
 };
 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import StyleObjectPropType from '../../prop-types/style';
+import ElementOrStringPropType from '../../prop-types/element-or-string';
 import ListPropType from '../../prop-types/list';
+import StyleObjectPropType from '../../prop-types/style';
 import Tooltip from '../Tooltip/Tooltip';
 import TooltipBox from '../Tooltip/TooltipBox';
 import { TooltipBoxStatus, TooltipPosition } from '../Tooltip/TooltipEnums';
@@ -17,10 +18,7 @@ const propTypes = {
     autoHideLabel: PropTypes.bool,
     className: PropTypes.string,
     componentRef: PropTypes.func,
-    icon: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.string,
-    ]),
+    icon: ElementOrStringPropType,
     isClearable: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
@@ -39,20 +37,11 @@ const propTypes = {
     onKeyPress: PropTypes.func,
     onKeyUp: PropTypes.func,
     placeholder: PropTypes.string,
-    prefix: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.string,
-    ]),
+    prefix: ElementOrStringPropType,
     step: PropTypes.number,
-    style: StyleObjectPropType(),
-    tooltipError: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.string,
-    ]),
-    tooltipHint: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.string,
-    ]),
+    style: StyleObjectPropType,
+    tooltipError: ElementOrStringPropType,
+    tooltipHint: ElementOrStringPropType,
     tooltipPosition: ListPropType([
         TooltipPosition.TOP_CENTER,
         TooltipPosition.TOP_LEFT,
@@ -61,15 +50,9 @@ const propTypes = {
         TooltipPosition.BOTTOM_RIGHT,
         TooltipPosition.BOTTOM_LEFT,
     ]),
-    tooltipRequired: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.string,
-    ]),
+    tooltipRequired: ElementOrStringPropType,
     type: PropTypes.string,
-    value: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-    ]),
+    value: ElementOrStringPropType,
     variant: ListPropType([
         TextFieldVariant.DEFAULT,
         TextFieldVariant.TITLE,

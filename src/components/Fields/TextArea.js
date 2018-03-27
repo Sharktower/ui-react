@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import autosize from 'autosize';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import ElementOrStringPropType from '../../prop-types/element-or-string';
 import StyleObjectPropType from '../../prop-types/style';
 import Tooltip from '../Tooltip/Tooltip';
 import TooltipBox from '../Tooltip/TooltipBox';
@@ -30,19 +31,10 @@ const propTypes = {
     onKeyUp: PropTypes.func,
     placeholder: PropTypes.string,
     rows: PropTypes.number,
-    style: StyleObjectPropType(),
-    tooltipError: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.string,
-    ]),
-    tooltipHint: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.string,
-    ]),
-    tooltipRequired: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.string,
-    ]),
+    style: StyleObjectPropType,
+    tooltipError: ElementOrStringPropType,
+    tooltipHint: ElementOrStringPropType,
+    tooltipRequired: ElementOrStringPropType,
     value: PropTypes.string,
 };
 

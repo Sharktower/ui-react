@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import ElementOrStringPropType from '../../prop-types/element-or-string';
 import ListPropType from '../../prop-types/list';
 import StyleObjectPropType from '../../prop-types/style';
 import { ButtonIconPosition, ButtonType, ButtonVariant } from './ButtonEnums';
@@ -13,10 +14,7 @@ const propTypes = {
     confirmText: PropTypes.string,
     confirmedText: PropTypes.string,
     hasConfirm: PropTypes.bool,
-    icon: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.string,
-    ]),
+    icon: ElementOrStringPropType,
     iconPosition: ListPropType([
         ButtonIconPosition.LEFT,
         ButtonIconPosition.RIGHT,
@@ -26,7 +24,7 @@ const propTypes = {
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
-    style: StyleObjectPropType(),
+    style: StyleObjectPropType,
     tabIndex: PropTypes.number,
     type: ListPropType([
         ButtonType.BUTTON,
