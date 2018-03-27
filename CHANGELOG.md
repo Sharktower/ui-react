@@ -1,4 +1,22 @@
-<!-- Last Updated: 2018-03-27 11:34:51 -->
+<!-- Last Updated: 2018-03-27 11:51:11 -->
+
+# UI React v3.0.0 (2018-03-27 11:51:11)
+
+## Increase TextField font size from 13px to 16px
+
+**Backwards Compatibility Implications**
+
+- TextField font size increase from 13px to 16px
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+_None_
+
+
 
 # UI React v2.4.0 (2018-03-27 11:34:51)
 
