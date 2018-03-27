@@ -334,7 +334,7 @@ class TextField extends Component {
                         'uir-text-field--has-left-icon': this.props.icon,
                         'uir-text-field--has-prefix': this.props.prefix,
                         'uir-text-field--has-right-icon': this.props.isRequired || this.props.isClearable,
-                        'uir-text-field--has-value': this.state.value,
+                        'uir-text-field--has-value': `${this.state.value}`,
                         'uir-text-field--invalid': this.props.isValid === false,
                         'uir-text-field--readonly': this.props.isReadOnly,
                         'uir-text-field--title': this.props.variant === TextFieldVariant.TITLE,
