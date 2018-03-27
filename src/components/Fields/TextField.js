@@ -52,7 +52,10 @@ const propTypes = {
     ]),
     tooltipRequired: ElementOrStringPropType,
     type: PropTypes.string,
-    value: ElementOrStringPropType,
+    value: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]),
     variant: ListPropType([
         TextFieldVariant.DEFAULT,
         TextFieldVariant.TITLE,
@@ -279,7 +282,7 @@ class TextField extends Component {
                 </span>
             ) :
             null;
-        const icon = this.props.icon ?
+        const icon = this.props.prefix === null && this.props.icon ?
             (
                 <span className="uir-text-field-left-icon">
                     <Button

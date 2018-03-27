@@ -146,6 +146,10 @@ $textFieldLabelColor: $charcoal !default;
         margin-left: 5px;
     }
 
+    .uir-text-field-prefix {
+        z-index: 10;
+    }
+
     .uir-text-field-prefix,
     .uir-text-field-left-icon,
     .uir-text-field-right-icon {
