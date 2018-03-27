@@ -12,20 +12,6 @@
 
 _None_
 
-**Bug Fixes** 
-
-_None_
-
-## Add prefix prop to TextField
-
-**Backwards Compatibility Implications**
-
-_None_
-
-**New Features**
-
-- add prefix as an option instead of an icon, that only shows when an input has focus or a value
-
 **Bug Fixes**
 
 _None_
