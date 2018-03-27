@@ -108,8 +108,17 @@ stories.add(
                 placeholder="your placeholder here"
                 value=""
             />
-        </div>
-        ,
+            <TextField
+                label="Null Value"
+                placeholder="your placeholder here"
+                value={null}
+            />
+            <TextField
+                label="Undefined Value"
+                placeholder="your placeholder here"
+                value={undefined}
+            />
+        </div>,
     ),
 );
 

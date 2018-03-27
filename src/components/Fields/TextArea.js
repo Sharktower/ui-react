@@ -223,7 +223,7 @@ class TextArea extends Component {
                         'uir-text-area--focus': this.state.hasFocus,
                         'uir-text-area--full-width': this.props.isFullWidth,
                         'uir-text-area--has-right-icon': this.props.isRequired,
-                        'uir-text-area--has-value': this.state.value,
+                        'uir-text-area--has-value': this.state.value === null ? false : `${this.state.value}`,
                         'uir-text-area--invalid': this.props.isValid === false,
                         'uir-text-area--readonly': this.props.isReadOnly,
                         'uir-text-area--valid': this.props.isValid,
@@ -256,7 +256,7 @@ class TextArea extends Component {
                             required={this.props.isRequired}
                             ref={this.handleInputRef}
                             rows={this.props.rows}
-                            value={this.state.value}
+                            value={this.state.value === null ? '' : this.state.value}
                         />,
                         tooltipError || this.props.tooltipHint,
                     )}
