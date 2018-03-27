@@ -39,12 +39,25 @@ $textFieldLabelColor: $charcoal !default;
         }
     }
 
+    &--has-left-icon {
+        padding-left: 20px;
+    }
+
     &--has-right-icon {
         padding-right: 20px;
     }
 
-    &--has-left-icon {
+    &--has-prefix {
         padding-left: 20px;
+
+        .uir-text-field-inner {
+            left: -20px;
+        }
+
+        .uir-text-field-input {
+            position: relative;
+            left: 20px;
+        }
     }
 
     &--disabled:after {
@@ -133,6 +146,11 @@ $textFieldLabelColor: $charcoal !default;
         margin-left: 5px;
     }
 
+    .uir-text-field-prefix {
+        z-index: 10;
+    }
+
+    .uir-text-field-prefix,
     .uir-text-field-left-icon,
     .uir-text-field-right-icon {
         position: absolute;
@@ -140,6 +158,7 @@ $textFieldLabelColor: $charcoal !default;
         line-height: 1em;
     }
 
+    .uir-text-field-prefix,
     .uir-text-field-left-icon {
         left: 2px;
     }
@@ -152,6 +171,7 @@ $textFieldLabelColor: $charcoal !default;
         }
     }
 
+    .uir-button.uir-text-field-prefix-wrapper,
     .uir-button.uir-text-field-icon-wrapper {
         min-width: 16px;
         padding: 0;
@@ -165,5 +185,9 @@ $textFieldLabelColor: $charcoal !default;
                 fill: $charcoal;
             }
         }
+    }
+
+    .uir-button.uir-text-field-prefix-wrapper {
+        text-align: left;
     }
 }

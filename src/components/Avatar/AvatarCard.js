@@ -9,7 +9,7 @@ const propTypes = {
     className: PropTypes.string,
     jobRole: PropTypes.string,
     name: PropTypes.string.isRequired,
-    style: StyleObjectPropType(),
+    style: StyleObjectPropType,
     team: PropTypes.string,
 };
 

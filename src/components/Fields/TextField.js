@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import StyleObjectPropType from '../../prop-types/style';
+import ElementOrStringPropType from '../../prop-types/element-or-string';
 import ListPropType from '../../prop-types/list';
+import StyleObjectPropType from '../../prop-types/style';
 import Tooltip from '../Tooltip/Tooltip';
 import TooltipBox from '../Tooltip/TooltipBox';
 import { TooltipBoxStatus, TooltipPosition } from '../Tooltip/TooltipEnums';
@@ -17,7 +18,7 @@ const propTypes = {
     autoHideLabel: PropTypes.bool,
     className: PropTypes.string,
     componentRef: PropTypes.func,
-    icon: PropTypes.element,
+    icon: ElementOrStringPropType,
     isClearable: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
@@ -36,16 +37,11 @@ const propTypes = {
     onKeyPress: PropTypes.func,
     onKeyUp: PropTypes.func,
     placeholder: PropTypes.string,
+    prefix: ElementOrStringPropType,
     step: PropTypes.number,
-    style: StyleObjectPropType(),
-    tooltipError: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.string,
-    ]),
-    tooltipHint: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.string,
-    ]),
+    style: StyleObjectPropType,
+    tooltipError: ElementOrStringPropType,
+    tooltipHint: ElementOrStringPropType,
     tooltipPosition: ListPropType([
         TooltipPosition.TOP_CENTER,
         TooltipPosition.TOP_LEFT,
@@ -54,10 +50,7 @@ const propTypes = {
         TooltipPosition.BOTTOM_RIGHT,
         TooltipPosition.BOTTOM_LEFT,
     ]),
-    tooltipRequired: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.string,
-    ]),
+    tooltipRequired: ElementOrStringPropType,
     type: PropTypes.string,
     value: PropTypes.oneOfType([
         PropTypes.number,
@@ -92,6 +85,7 @@ const defaultProps = {
     onKeyPress: null,
     onKeyUp: null,
     placeholder: null,
+    prefix: null,
     step: null,
     style: null,
     tooltipError: null,
@@ -275,7 +269,20 @@ class TextField extends Component {
             this.state.hasFocus ||
             this.props.variant === TextFieldVariant.TITLE
         );
-        const icon = this.props.icon ?
+        const prefix = this.props.prefix && (this.state.hasFocus || this.state.value) ?
+            (
+                <span className="uir-text-field-prefix">
+                    <Button
+                        className="uir-text-field-prefix-wrapper"
+                        icon={this.props.prefix}
+                        onClick={this.handleIconClick}
+                        tabIndex={-1}
+                        variant={ButtonVariant.CLEAR}
+                    />
+                </span>
+            ) :
+            null;
+        const icon = this.props.prefix === null && this.props.icon ?
             (
                 <span className="uir-text-field-left-icon">
                     <Button
@@ -311,6 +318,7 @@ class TextField extends Component {
                         'uir-text-field--focus': this.state.hasFocus,
                         'uir-text-field--full-width': this.props.isFullWidth,
                         'uir-text-field--has-left-icon': this.props.icon,
+                        'uir-text-field--has-prefix': this.props.prefix,
                         'uir-text-field--has-right-icon': this.props.isRequired || this.props.isClearable,
                         'uir-text-field--has-value': `${this.state.value}`,
                         'uir-text-field--invalid': this.props.isValid === false,
@@ -324,7 +332,7 @@ class TextField extends Component {
                 onMouseLeave={this.handleMouseLeave}
                 style={this.props.style}
             >
-                {icon}
+                {prefix || icon}
                 <div className="uir-text-field-inner">
                     <div className="uir-text-field-label-wrapper">
                         {label}

@@ -15,7 +15,7 @@ const propTypes = {
         AvatarTitleSize.SM,
         AvatarTitleSize.LG,
     ]),
-    style: StyleObjectPropType(),
+    style: StyleObjectPropType,
 };
 
 const defaultProps = {

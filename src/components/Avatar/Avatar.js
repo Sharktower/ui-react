@@ -21,7 +21,7 @@ const propTypes = {
         AvatarSize.LG,
     ]),
     src: PropTypes.string,
-    style: StyleObjectPropType(),
+    style: StyleObjectPropType,
     tabIndex: PropTypes.number,
 };
 

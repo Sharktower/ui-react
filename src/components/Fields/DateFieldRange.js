@@ -14,7 +14,7 @@ const propTypes = {
     onChange: PropTypes.func,
     rangeFromValue: PropTypes.instanceOf(Date),
     rangeToValue: PropTypes.instanceOf(Date),
-    style: StyleObjectPropType(),
+    style: StyleObjectPropType,
     toLabel: PropTypes.string,
 };
 

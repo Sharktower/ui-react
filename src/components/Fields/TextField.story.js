@@ -326,8 +326,24 @@ _NB: when the clear icon is clicked, the input will trigger an \`onChange\` even
 stories.add(
     'Icon',
     storyWrapper(
-        '`icon` prop allows you to display an icon on the left of the input field.',
+        'icon` prop allows you to display an icon on the left of the input field.',
         <TextField placeholder="search" icon={<IconSearch />} />,
-        <TextField label="Full width with icon" isFullWidth icon={<IconNotification />} />,
+        <div>
+            <TextField label="Search" icon={<IconSearch />} />
+            <TextField label="Emoji" icon="😺" />
+            <TextField label="Full width with icon" isFullWidth icon={<IconNotification />} />
+        </div>,
+    ),
+);
+
+stories.add(
+    'Prefix',
+    storyWrapper(
+        `
+\`prefix\` prop allows you to display an alternative to an icon on focus only, the prefix appears to the left of the value and is good for showing currency.
+
+_NB: if you add a prefix and an icon, only the prefix will be displayed_
+        `,
+        <TextField label="Currency" prefix="£" />,
     ),
 );

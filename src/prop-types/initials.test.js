@@ -1,4 +1,4 @@
-/* global describe, expect, it */
+/* global describe, it, expect */
 import InitialsPropType from './initials';
 
 describe('Initials Prop Type', () => {

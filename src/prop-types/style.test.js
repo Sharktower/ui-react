@@ -5,7 +5,7 @@ import StyleObjectPropType from './style';
 
 function validateRunner(value) {
     const types = {
-        style: StyleObjectPropType(),
+        style: StyleObjectPropType,
     };
     const values = {
         style: value,
