@@ -1,4 +1,79 @@
-<!-- Last Updated: 2018-03-23 13:10:14 -->
+<!-- Last Updated: 2018-03-27 11:34:51 -->
+
+# UI React v2.4.0 (2018-03-27 11:34:51)
+
+## Add prefix prop to TextField
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+- add prefix as an option instead of an icon, that only shows when an input has focus or a value
+
+**Bug Fixes**
+
+_None_
+
+## Adjust position of TextField bottom border
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- keep bottom border aligned to input even when TextField is laid out with flex box
+
+
+## TextField accepts zero as a valid input
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- allow zero to activate TextField and move label
+
+## TextField icon click gives focus to input
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- TextField icon click gives input focus
+
+## Allow step, max, min attribute to be set for any input type
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+- allow step, mix and max attributes for any input type, not just number
+
+**Bug Fixes**
+
+_None_
+
+
 
 # UI React v2.3.0 (2018-03-23 13:10:14)
 
