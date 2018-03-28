@@ -42,11 +42,6 @@ stories.add(
         />,
         <div>
             <TextArea
-                label="Number Zero"
-                placeholder="your placeholder here"
-                value={0}
-            />
-            <TextArea
                 label="Empty String"
                 placeholder="your placeholder here"
                 value=""
