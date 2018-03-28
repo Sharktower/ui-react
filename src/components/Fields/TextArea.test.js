@@ -277,4 +277,24 @@ describe('TextArea', () => {
         const textArea = shallow(<TextArea style={exampleStyle} />);
         expect(textArea.prop('style')).to.equal(exampleStyle);
     });
+
+    it('adds --has-value when value is not null', () => {
+        const textField = shallow(<TextArea value="test" />);
+        expect(textField.hasClass('uir-text-area--has-value')).to.equal(true);
+    });
+
+    it('does not add --has-value when value is null', () => {
+        const textField = shallow(<TextArea value={null} />);
+        expect(textField.hasClass('uir-text-area--has-value')).to.equal(false);
+    });
+
+    it('adds --has-value when value is falsy but not null', () => {
+        const textField = shallow(<TextArea value={0} />);
+        expect(textField.hasClass('uir-text-area--has-value')).to.equal(true);
+    });
+
+    it('does not add --has-value when value is undefined', () => {
+        const textField = shallow(<TextArea />);
+        expect(textField.hasClass('uir-text-area--has-value')).to.not.equal(true);
+    });
 });

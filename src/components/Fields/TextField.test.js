@@ -401,6 +401,11 @@ describe('TextField', () => {
         expect(textField.hasClass('uir-text-field--has-value')).to.equal(true);
     });
 
+    it('does not add --has-value when value is null', () => {
+        const textField = shallow(<TextField value={null} />);
+        expect(textField.hasClass('uir-text-field--has-value')).to.equal(false);
+    });
+
     it('adds --has-value when value is falsy but not null', () => {
         const textField = shallow(<TextField value={0} />);
         expect(textField.hasClass('uir-text-field--has-value')).to.equal(true);
