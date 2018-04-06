@@ -40,6 +40,23 @@ stories.add(
             placeholder="your placeholder here"
             value="Hello, Friend"
         />,
+        <div>
+            <TextArea
+                label="Empty String"
+                placeholder="your placeholder here"
+                value=""
+            />
+            <TextArea
+                label="Null Value"
+                placeholder="your placeholder here"
+                value={null}
+            />
+            <TextArea
+                label="Undefined Value"
+                placeholder="your placeholder here"
+                value={undefined}
+            />
+        </div>,
     ),
 );
 
