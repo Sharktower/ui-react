@@ -1,4 +1,80 @@
-<!-- Last Updated: 2018-03-27 11:51:11 -->
+<!-- Last Updated: 2018-04-06 17:11:10 -->
+
+# UI React v3.0.1 (2018-04-06 17:11:10)
+
+## [UR-72] Fix TextField focus when tooltip is rendered or removed
+
+**Backwards Compatibility Implications** 
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- Fix TextField focus when tooltip is rendered or removed
+
+
+## Fix issue with error border not displaying
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- fix the issue with error border not displaying on invalid TextFields
+
+
+## Fix issue with TextField and TextArea not handling null
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- fix issue with TextField and TextArea not handling null
+
+## Increase TextField font size from 13px to 16px
+
+**Backwards Compatibility Implications**
+
+- TextField font size increase from 13px to 16px
+
+**New Features**
+
+_None_
+
+**Bug Fixes** 
+
+_None_
+
+## Add prefix prop to TextField
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+- add prefix as an option instead of an icon, that only shows when an input has focus or a value
+
+**Bug Fixes**
+
+_None_
+
+
 
 # UI React v3.0.0 (2018-03-27 11:51:11)
 
