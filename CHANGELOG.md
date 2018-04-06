@@ -4,7 +4,7 @@
 
 ## [UR-72] Fix TextField focus when tooltip is rendered or removed
 
-**Backwards Compatibility Implications** 
+**Backwards Compatibility Implications**
 
 _None_
 
@@ -45,34 +45,6 @@ _None_
 **Bug Fixes**
 
 - fix issue with TextField and TextArea not handling null
-
-## Increase TextField font size from 13px to 16px
-
-**Backwards Compatibility Implications**
-
-- TextField font size increase from 13px to 16px
-
-**New Features**
-
-_None_
-
-**Bug Fixes** 
-
-_None_
-
-## Add prefix prop to TextField
-
-**Backwards Compatibility Implications**
-
-_None_
-
-**New Features**
-
-- add prefix as an option instead of an icon, that only shows when an input has focus or a value
-
-**Bug Fixes**
-
-_None_
 
 
 
