@@ -235,6 +235,44 @@ stories.add(
     ),
 );
 
+/* eslint-disable react/no-multi-comp */
+class ValidationTooltipComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: '',
+            touched: false,
+        };
+    }
+
+    isValid() {
+        const { value, touched } = this.state;
+        if (!touched) {
+            return true;
+        }
+
+        return value !== '';
+    }
+
+    render() {
+        const { value } = this.state;
+        return (
+            <TextField
+                label="Input with a variable tooltip"
+                isValid={this.isValid()}
+                value={value}
+                onChange={val => this.setState({
+                    touched: true,
+                    value: val,
+                })}
+                tooltipError="Field is required"
+                tooltipPosition={TooltipPosition.TOP_RIGHT}
+            />
+        );
+    }
+}
+/* eslint-enable */
+
 stories.add(
     'Tooltips',
     storyWrapper(
@@ -268,6 +306,8 @@ _NB: \`tooltipError\` will ONLY be displayed if \`isValid\` is false._
                 tooltipHint="My Example Hint"
                 isRequired
             />
+            <br />
+            <ValidationTooltipComponent />
         </div>,
     ),
 );
