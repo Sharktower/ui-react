@@ -122,10 +122,6 @@ $textFieldLabelColor: $charcoal !default;
         .uir-text-field-inner {
             position: relative;
 
-            & > .uir-tooltip {
-                width: 100%;
-            }
-
             &:after {
                 background: linear-gradient(to right, $pink 0%, transparent 100%);
             }
