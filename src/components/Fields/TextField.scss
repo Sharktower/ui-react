@@ -120,7 +120,6 @@ $textFieldLabelColor: $charcoal !default;
     &--invalid {
 
         .uir-text-field-inner {
-            position: relative;
 
             &:after {
                 background: linear-gradient(to right, $pink 0%, transparent 100%);
