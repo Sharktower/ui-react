@@ -14,10 +14,6 @@ $textFieldLabelColor: $charcoal !default;
         width: 100%;
     }
 
-    &--invalid:after {
-        background: linear-gradient(to right, $pink 0%, transparent 100%);
-    }
-
     &--full-width {
         display: block;
         width: 100%;
@@ -118,6 +114,16 @@ $textFieldLabelColor: $charcoal !default;
             content: "";
             background: linear-gradient(to right, $grey 0%, transparent 100%);
             transition: width .25s;
+        }
+    }
+
+    &--invalid {
+
+        .uir-text-field-inner {
+
+            &:after {
+                background: linear-gradient(to right, $pink 0%, transparent 100%);
+            }
         }
     }
 
