@@ -1,4 +1,52 @@
-<!-- Last Updated: 2018-03-27 11:51:11 -->
+<!-- Last Updated: 2018-04-06 17:11:10 -->
+
+# UI React v3.0.1 (2018-04-06 17:11:10)
+
+## [UR-72] Fix TextField focus when tooltip is rendered or removed
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- Fix TextField focus when tooltip is rendered or removed
+
+
+## Fix issue with error border not displaying
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- fix the issue with error border not displaying on invalid TextFields
+
+
+## Fix issue with TextField and TextArea not handling null
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- fix issue with TextField and TextArea not handling null
+
+
 
 # UI React v3.0.0 (2018-03-27 11:51:11)
 
