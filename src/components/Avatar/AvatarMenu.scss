@@ -1,0 +1,70 @@
+@import "../variables";
+
+.uir-avatar-menu {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+}
+
+.uir-avatar-menu .uir-avatar {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 100;
+}
+
+@keyframes fadeIn {
+
+    from { opacity: 0; }
+
+    to { opacity: 1; }
+}
+
+.uir-avatar-menu .uir-avatar-menu-internals {
+    position: relative;
+    box-shadow: 0 0 24px 0 rgba(47,40,51,.2);
+    animation-name: fadeIn;
+    animation-duration: .3s;
+}
+
+.uir-avatar-menu .uir-avatar-menu-internals .uir-avatar-menu-user-nav {
+    padding-top: 8px;
+    padding-left: 8px;
+    margin-right: 60px;
+}
+
+.uir-avatar-menu .uir-avatar-menu-internals .uir-avatar-menu-project-nav {
+    margin-top: 10px;
+}
+
+.uir-avatar-menu .uir-avatar-menu-internals .uir-avatar-menu-user-nav ul,
+.uir-avatar-menu .uir-avatar-menu-internals .uir-avatar-menu-project-nav ul {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.uir-avatar-menu .uir-avatar-menu-internals .uir-avatar-menu-user-nav ul li {
+    display: inline;
+}
+
+.uir-avatar-menu .uir-avatar-menu-internals .uir-avatar-menu-project-nav ul li span {
+    display: block;
+    min-height: 32px;
+    padding: 18px 20px 8px;
+    font-size: 16px;
+    outline: none;
+}
+
+.uir-avatar-menu .uir-avatar-menu-internals .uir-avatar-menu-project-nav ul li span:hover,
+.uir-avatar-menu .uir-avatar-menu-internals .uir-avatar-menu-project-nav ul li span:focus {
+    cursor: pointer;
+    background-color: rgba(47, 40, 51, .1);
+}
+
+.uir-avatar-menu .icon {
+    width: 32px;
+    height: 24px;
+    margin-right: 12px;
+    vertical-align: middle;
+}
