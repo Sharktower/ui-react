@@ -297,38 +297,6 @@ describe('TextField', () => {
         expect(textField.find(Tooltip).length).to.equal(1);
     });
 
-    it('displays a prefix if value present', () => {
-        const textField = shallow(<TextField prefix="£" value="test" />);
-        expect(textField.find(Button).length).to.equal(1);
-    });
-
-    it('displays a prefix if input has focus', () => {
-        const textField = shallow(<TextField prefix="£" />);
-        textField.setState({ hasFocus: true });
-        expect(textField.find(Button).length).to.equal(1);
-    });
-
-    it('only displays prefix if prefix and icon are set', () => {
-        const textField = mount(<TextField icon={<IconSearch />} prefix="£" value="test" />);
-        expect(textField.find(Button).first().text()).to.equal('£');
-    });
-
-    it('gives focus to input when prefix is clicked', () => {
-        const textField = mount(<TextField
-            onFocus={event => expect(event).to.have.property('value')}
-            prefix="£"
-            value="test"
-        />);
-        textField.find(Button).simulate('click');
-    });
-
-    it('does not clear value when prefix is clicked', () => {
-        const mockValue = 'test me';
-        const textField = mount(<TextField prefix="£" value={mockValue} />);
-        textField.find(Button).simulate('click');
-        expect(textField.state('value')).to.equal(mockValue);
-    });
-
     it('gives focus to input when left icon is clicked', () => {
         const textField = mount(<TextField
             icon={<IconSearch />}
@@ -456,5 +424,49 @@ describe('TextField', () => {
 
         expect(textField.instance().inputRef.selectionStart).to.equal(2);
         expect(textField.instance().inputRef.selectionEnd).to.equal(2);
+    });
+
+    describe('prefix', () => {
+        it('displays a prefix if value present', () => {
+            const textField = shallow(<TextField prefix="£" value="test" />);
+            expect(textField.find(Button).length).to.equal(1);
+        });
+
+        it('still display a prefix if value is zero', () => {
+            const textField = shallow(<TextField prefix="£" value={0} />);
+            expect(textField.find(Button).length).to.equal(1);
+        });
+
+        it('does not display a prefix if value is empty string', () => {
+            const textField = shallow(<TextField prefix="£" value="" />);
+            expect(textField.find(Button).length).to.equal(0);
+        });
+
+        it('displays a prefix if input has focus', () => {
+            const textField = shallow(<TextField prefix="£" />);
+            textField.setState({ hasFocus: true });
+            expect(textField.find(Button).length).to.equal(1);
+        });
+
+        it('only displays prefix if prefix and icon are set', () => {
+            const textField = mount(<TextField icon={<IconSearch />} prefix="£" value="test" />);
+            expect(textField.find(Button).first().text()).to.equal('£');
+        });
+
+        it('gives focus to input when prefix is clicked', () => {
+            const textField = mount(<TextField
+                onFocus={event => expect(event).to.have.property('value')}
+                prefix="£"
+                value="test"
+            />);
+            textField.find(Button).simulate('click');
+        });
+
+        it('does not clear value when prefix is clicked', () => {
+            const mockValue = 'test me';
+            const textField = mount(<TextField prefix="£" value={mockValue} />);
+            textField.find(Button).simulate('click');
+            expect(textField.state('value')).to.equal(mockValue);
+        });
     });
 });

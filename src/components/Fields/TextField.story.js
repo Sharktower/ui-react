@@ -394,5 +394,9 @@ stories.add(
 _NB: if you add a prefix and an icon, only the prefix will be displayed_
         `,
         <TextField label="Currency" prefix="£" />,
+        <div>
+            <TextField label="Zero Value" prefix="£" value={0} />
+            <TextField label="Empty String" prefix="£" value="" />
+        </div>,
     ),
 );
