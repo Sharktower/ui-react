@@ -1,17 +1,16 @@
 /* global Feature, Scenario */
 
-const KIND = 'Avatar.Avatar';
+const KIND = 'Breadcrumbs.Breadcrumbs';
 
-Feature('Avatar');
+Feature('Breadcrumbs');
 
 Scenario('Storybook Documentation', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.see('Avatar: Avatar');
+        I.see('Breadcrumbs: Breadcrumbs');
         I.see('Overview', 'h2');
         I.see('Example', 'h3');
         I.see('Source Code', 'h3');
         I.seeElement('code');
-        I.see('Variations', 'h3');
         I.see('Props', 'h3');
         I.seeElement('table');
         I.see('property');
@@ -21,10 +20,8 @@ Scenario('Storybook Documentation', (I) => {
     });
 });
 
-Scenario('Avatar', (I) => {
+Scenario('Breadcrumbs', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.seeElement('.uir-avatar');
-        I.seeElement('.uir-avatar--halo');
-        I.seeElement('.uir-avatar-icon svg');
+        I.seeElement('.uir-breadcrumbs');
     });
 });
