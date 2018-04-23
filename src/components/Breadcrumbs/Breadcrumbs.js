@@ -32,11 +32,16 @@ class Breadcrumbs extends Component {
         if (Array.isArray(trail) === false) {
             return trail;
         }
+        let keyIndex = 0;
         const crumbs = trail
-            .map(crumb => (<span className="uir-breadcrumbs-part">{crumb}</span>))
+            .map((crumb) => {
+                keyIndex += 1;
+                return (<span key={keyIndex} className="uir-breadcrumbs-part">{crumb}</span>);
+            })
             .reduce((newTrail, crumb) => {
+                keyIndex += 1;
                 newTrail.push(crumb);
-                newTrail.push(<span className="uir-breadcrumbs-separator">{separator}</span>);
+                newTrail.push(<span key={keyIndex} className="uir-breadcrumbs-separator">{separator}</span>);
                 return newTrail;
             }, []);
         crumbs.pop();

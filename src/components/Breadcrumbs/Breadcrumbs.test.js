@@ -1,4 +1,4 @@
-/* global describe, expect, it, shallow, beforeEach, afterEach  */
+/* global describe, expect, it, shallow, mount, beforeEach, afterEach  */
 import React from 'react';
 import sinon from 'sinon';
 import * as common from '../../../test/unit/commonTests';
@@ -51,7 +51,7 @@ describe('Breadcrumbs', () => {
     });
 
     it('renders the default separator', () => {
-        const breadcrumbs = shallow(<Breadcrumbs trail={[<MockLink />, <MockLink />]} />);
+        const breadcrumbs = mount(<Breadcrumbs trail={[<MockLink />, <MockLink />]} />);
         expect(breadcrumbs.find('svg').length).to.equal(1);
     });
 
@@ -69,6 +69,6 @@ describe('Breadcrumbs', () => {
             ariaLabel={testLabel}
             trail={[<MockLink />, <MockLink />]}
         />);
-        expect(breadcrumbs.prop('ariaLabel')).to.be(testLabel);
+        expect(breadcrumbs.prop('aria-label')).to.equal(testLabel);
     });
 });
