@@ -260,11 +260,12 @@ class TextField extends Component {
     }
 
     render() {
+        const hasValue = this.state.value === 0 ? true : Boolean(this.state.value);
         const showLabel = (
             this.props.autoHideLabel === false ||
             this.state.hasFocus ||
             this.state.hasMouseOver ||
-            !this.state.value
+            !hasValue
         );
         /* eslint-disable jsx-a11y/label-has-for */
         // @NB: jsx-a11y/label-has-for fails with UID as id
@@ -290,7 +291,7 @@ class TextField extends Component {
             this.state.hasFocus ||
             this.props.variant === TextFieldVariant.TITLE
         );
-        const prefix = this.props.prefix && (this.state.hasFocus || this.state.value) ?
+        const prefix = this.props.prefix && (this.state.hasFocus || hasValue) ?
             (
                 <span className="uir-text-field-prefix">
                     <Button
@@ -316,7 +317,7 @@ class TextField extends Component {
                 </span>
             ) :
             null;
-        const clearIcon = this.props.isClearable && this.state.value ?
+        const clearIcon = this.props.isClearable && hasValue ?
             (
                 <span className="uir-text-field-right-icon">
                     <Button
@@ -341,7 +342,7 @@ class TextField extends Component {
                         'uir-text-field--has-left-icon': this.props.icon,
                         'uir-text-field--has-prefix': this.props.prefix,
                         'uir-text-field--has-right-icon': this.props.isRequired || this.props.isClearable,
-                        'uir-text-field--has-value': this.state.value === null ? false : `${this.state.value}`,
+                        'uir-text-field--has-value': hasValue,
                         'uir-text-field--invalid': this.props.isValid === false,
                         'uir-text-field--readonly': this.props.isReadOnly,
                         'uir-text-field--title': this.props.variant === TextFieldVariant.TITLE,
