@@ -1,70 +1,94 @@
 @import "../variables";
 
+$avatar-menu-size: 52px;
+
 .uir-avatar-menu {
-    position: fixed;
-    top: 12px;
-    right: 12px;
-}
-
-.uir-avatar-menu .uir-avatar {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    z-index: 100;
-}
-
-@keyframes fadeIn {
-
-    from { opacity: 0; }
-
-    to { opacity: 1; }
-}
-
-.uir-avatar-menu .uir-avatar-menu-internals {
     position: relative;
-    box-shadow: 0 0 24px 0 rgba(47,40,51,.2);
-    animation-name: fadeIn;
-    animation-duration: .3s;
-}
+    z-index: 1000;
+    display: inline-block;
+    width: $avatar-menu-size;
+    min-height: $avatar-menu-size;
+    font-family: $font-family;
+    background: $white;
 
-.uir-avatar-menu .uir-avatar-menu-internals .uir-avatar-menu-user-nav {
-    padding-top: 8px;
-    padding-left: 8px;
-    margin-right: 60px;
-}
+    &--open {
+        width: 314px;
+    }
 
-.uir-avatar-menu .uir-avatar-menu-internals .uir-avatar-menu-project-nav {
-    margin-top: 10px;
-}
+    &--left {
 
-.uir-avatar-menu .uir-avatar-menu-internals .uir-avatar-menu-user-nav ul,
-.uir-avatar-menu .uir-avatar-menu-internals .uir-avatar-menu-project-nav ul {
-    padding-left: 0;
-    margin: 0;
-    list-style: none;
-}
+        .uir-avatar {
+            left: 8px;
+        }
 
-.uir-avatar-menu .uir-avatar-menu-internals .uir-avatar-menu-user-nav ul li {
-    display: inline;
-}
+        .uir-avatar-menu-internals .uir-avatar-menu-nav:nth-child(1) {
+            padding-right: 8px;
+            margin-left: $avatar-menu-size;
+        }
+    }
 
-.uir-avatar-menu .uir-avatar-menu-internals .uir-avatar-menu-project-nav ul li span {
-    display: block;
-    min-height: 32px;
-    padding: 18px 20px 8px;
-    font-size: 16px;
-    outline: none;
-}
+    &--right {
 
-.uir-avatar-menu .uir-avatar-menu-internals .uir-avatar-menu-project-nav ul li span:hover,
-.uir-avatar-menu .uir-avatar-menu-internals .uir-avatar-menu-project-nav ul li span:focus {
-    cursor: pointer;
-    background-color: rgba(47, 40, 51, .1);
-}
+        .uir-avatar {
+            right: 8px;
+        }
 
-.uir-avatar-menu .icon {
-    width: 32px;
-    height: 24px;
-    margin-right: 12px;
-    vertical-align: middle;
+        .uir-avatar-menu-internals .uir-avatar-menu-nav:nth-child(1) {
+            padding-left: 8px;
+            margin-right: $avatar-menu-size;
+        }
+    }
+
+    .uir-avatar {
+        position: absolute;
+        top: 8px;
+    }
+
+    .uir-avatar-menu-internals {
+        box-shadow: 0 0 24px 0 rgba(47,40,51,.2);
+
+        .uir-avatar-menu-nav {
+            padding-left: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .uir-avatar-menu-nav:nth-child(1) {
+            padding-top: 4px;
+
+            .uir-avatar-menu-item {
+                display: inline;
+            }
+        }
+
+        .uir-avatar-menu-nav:nth-child(2) {
+
+            .uir-avatar-menu-item {
+                display: block;
+                padding: 16px 20px;
+                font-size: 16px;
+                outline: none;
+            }
+
+            .uir-avatar-menu-item:hover,
+            .uir-avatar-menu-item:focus {
+                cursor: pointer;
+                background-color: rgba(47, 40, 51, .1);
+            }
+        }
+    }
+
+    .uir-button {
+        margin: 8px 0;
+    }
+
+    .uir-avatar-menu-nav-icon,
+    .uir-avatar-menu-nav-spacer {
+        display: inline-block;
+        width: 32px;
+        height: 24px;
+        margin-right: 12px;
+        text-align: center;
+        vertical-align: middle;
+    }
 }

@@ -23,10 +23,10 @@ describe('AvatarMenu', () => {
     //     expect(console.error).to.be.called();
     // });
 
-    it('renders', () => {
-        const avatarMenu = shallow(<AvatarMenu />);
-        expect(avatarMenu).to.be.a('function');
-    });
+    // it('renders', () => {
+    //     const avatarMenu = shallow(<AvatarMenu />);
+    //     expect(avatarMenu).to.be.a('function');
+    // });
 
     // const mockUser = new User();
     // mockUser.name = 'Katrina Scott';

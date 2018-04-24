@@ -51,7 +51,7 @@ export default (Component, options = {}) => {
             it('renders with provided style', () => {
                 const wrapper = shallow(createElement(Component, propsWithStyle));
 
-                expect(wrapper).to.have.attr('style', 'width:2px;color:#ff0000;');
+                expect(wrapper).to.have.attr('style', 'width:2px;color:#ff0000');
             });
         });
 

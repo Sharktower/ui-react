@@ -10,7 +10,6 @@ const propTypes = {
         PropTypes.number,
         PropTypes.arrayOf(PropTypes.element),
     ]).isRequired,
-    location: PropTypes.string.isRequired,
     style: StyleObjectPropType,
 };
 
@@ -23,7 +22,6 @@ const AvatarMenuNav = props => (
     <ul
         className={cx(
             'uir-avatar-menu-nav',
-            `uir-avatar-menu-nav--${props.location}`,
             props.className,
         )}
         style={props.style}

@@ -9,25 +9,40 @@ const propTypes = {
         PropTypes.string,
         PropTypes.number,
     ]).isRequired,
+    icon: PropTypes.element,
+    hasSpacer: PropTypes.boolean,
     style: StyleObjectPropType,
 };
 
 const defaultProps = {
     className: null,
+    icon: null,
+    hasSpacer: false,
     style: null,
 };
 
-const AvatarMenuItem = props => (
-    <li
-        className={cx(
-            'uir-avatar-menu',
-            props.className,
-        )}
-        style={props.style}
-    >
-        {props.children}
-    </li>
-);
+const AvatarMenuItem = (props) => {
+    const icon = props.icon ? (
+        <span className="uir-avatar-menu-nav-icon">
+            {props.icon}
+        </span>
+    ) : null;
+    const spacer = props.hasSpacer ? (
+        <span className="uir-avatar-menu-nav-spacer" />
+    ) : null;
+    return (
+        <li
+            className={cx(
+                'uir-avatar-menu-item',
+                props.className,
+            )}
+            style={props.style}
+        >
+            {icon || spacer}
+            {props.children}
+        </li>
+    );
+};
 
 AvatarMenuItem.propTypes = propTypes;
 AvatarMenuItem.defaultProps = defaultProps;

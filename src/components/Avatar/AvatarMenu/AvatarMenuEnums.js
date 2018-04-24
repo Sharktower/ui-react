@@ -1,12 +1,10 @@
 // AvatarMenuIcons enum used by the AvatarMenu.Item icon prop
 
-export const AvatarMenuIcons = Object.freeze({
-    DASHBOARD: 'dashboard',
-    FOCUS: 'focus',
-    PROJECT: 'project',
+/* eslint-disable import/prefer-default-export */
+
+export const AvatarMenuPosition = Object.freeze({
+    LEFT: 'left',
+    RIGHT: 'right',
 });
 
-export const AvatarMenuNavLocation = Object.freeze({
-    APP: 'app',
-    USER: 'user',
-});
+/* eslint-enable */
