@@ -32,8 +32,8 @@ const IconArrowLongRight = ({
         >
             <title id={iconTitleId}>Right Arrow Icon</title>
             <g fill="none" fillRule="evenodd">
-                <path className="uir-icon-arrow-fill" d="M3 12h18v1H3z" />
-                <path className="uir-icon-arrow-stroke" d="M14.071 5.5l7.071 7.071-7.07 7.071" />
+                <path className="uir-icon-fill-charcoal" d="M3 12h18v1H3z" />
+                <path className="uir-icon-stroke-charcoal" d="M14.071 5.5l7.071 7.071-7.07 7.071" />
             </g>
         </svg>
     );
