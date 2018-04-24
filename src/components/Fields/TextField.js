@@ -260,7 +260,7 @@ class TextField extends Component {
     }
 
     render() {
-        const hasValue = this.state.value === null ? false : Boolean(this.state.value);
+        const hasValue = this.state.value === 0 ? true : Boolean(this.state.value);
         const showLabel = (
             this.props.autoHideLabel === false ||
             this.state.hasFocus ||
