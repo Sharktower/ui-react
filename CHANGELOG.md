@@ -17,21 +17,6 @@ _None_
 - fix the issue with prefix not being displayed if Textfield has 0 as a value
 
 
-## [UR-72] Fix TextField focus when tooltip is rendered or removed
-
-**Backwards Compatibility Implications** 
-
-_None_
-
-**New Features**
-
-_None_
-
-**Bug Fixes**
-
-- Fix TextField focus when tooltip is rendered or removed
-
-
 
 
 # UI React v3.0.1 (2018-04-06 17:11:10)
