@@ -1,4 +1,23 @@
-<!-- Last Updated: 2018-04-06 17:11:10 -->
+<!-- Last Updated: 2018-04-24 16:51:55 -->
+
+# UI React v3.0.2 (2018-04-24 16:51:55)
+
+## Textfield prefix zero value bug
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- fix the issue with prefix not being displayed if Textfield has 0 as a value
+
+
+
 
 # UI React v3.0.1 (2018-04-06 17:11:10)
 
