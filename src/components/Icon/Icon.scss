@@ -3,17 +3,32 @@
 .uir-icon {
     width: 24px;
     height: 24px;
-    fill: $charcoal;
+
+    &-fill {
+        fill: $charcoal;
+    }
+
+    &-stroke {
+        stroke: $charcoal
+    }
 }
 
-.uir-icon-fill-pink {
+.uir-icon-path {
+
+    &-fill {
+        fill: $charcoal;
+    }
+
+    &-stroke {
+        stroke: $charcoal
+    }
+}
+
+.uir-icon-dashboard {
+    width: 32px;
+    height: 24px;
+}
+
+.uir-icon-notification {
     fill: $pink;
-}
-
-.uir-icon-fill-charcoal {
-    fill: $charcoal
-}
-
-.uir-icon-stroke-charcoal {
-    stroke: $charcoal
 }

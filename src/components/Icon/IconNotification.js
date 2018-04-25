@@ -25,7 +25,7 @@ const IconNotification = ({
 
     return (
         <svg
-            className={cx('uir-icon uir-icon-fill-pink', className)}
+            className={cx('uir-icon uir-icon-notification', className)}
             style={style}
             viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
