@@ -33,7 +33,7 @@ const IconPriority = ({
             <title id={iconTitleId}>Priority Icon</title>
             <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                 <g fillRule="nonzero">
-                    <polygon className="uir-icon-fill-charcoal" points="12 19.5857864 16.7832395 14.802547 12.4460456 6.12815913 13 5 18 15 12 21 6 15 12 3 12.559017 4.11803399 7.21676051 14.802547" />
+                    <polygon className="uir-icon-path-fill" points="12 19.5857864 16.7832395 14.802547 12.4460456 6.12815913 13 5 18 15 12 21 6 15 12 3 12.559017 4.11803399 7.21676051 14.802547" />
                 </g>
             </g>
         </svg>

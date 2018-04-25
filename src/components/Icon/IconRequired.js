@@ -25,7 +25,7 @@ const IconRequired = ({
 
     return (
         <svg
-            className={cx('uir-icon uir-icon-fill-charcoal', className)}
+            className={cx('uir-icon uir-icon-required', className)}
             style={style}
             viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}

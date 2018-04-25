@@ -33,9 +33,9 @@ const IconDashboard = ({
             <title id={iconTitleId}>Dashboard Icon</title>
             <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                 <g fillRule="nonzero">
-                    <path className="uir-icon-fill-charcoal" fillOpacity="0.5" transform="translate(0,0)" d="M8 1.155L1.206 5.077v7.846L8 16.845l6.794-3.922V5.077L8 1.155zM8 0l7.794 4.5v9L8 18 .206 13.5v-9L8 0z" />
-                    <path className="uir-icon-fill-charcoal" fillOpacity="1" transform="translate(7.8,4.5)" d="M8 1.155L1.206 5.077v7.846L8 16.845l6.794-3.922V5.077L8 1.155zM8 0l7.794 4.5v9L8 18 .206 13.5v-9L8 0z" />
-                    <path className="uir-icon-fill-charcoal" fillOpacity="0.2" transform="translate(15.46,0)" d="M8 1.155L1.206 5.077v7.846L8 16.845l6.794-3.922V5.077L8 1.155zM8 0l7.794 4.5v9L8 18 .206 13.5v-9L8 0z" />
+                    <path className="uir-icon-path-fill" fillOpacity="0.5" transform="translate(0,0)" d="M8 1.155L1.206 5.077v7.846L8 16.845l6.794-3.922V5.077L8 1.155zM8 0l7.794 4.5v9L8 18 .206 13.5v-9L8 0z" />
+                    <path className="uir-icon-path-fill" fillOpacity="1" transform="translate(7.8,4.5)" d="M8 1.155L1.206 5.077v7.846L8 16.845l6.794-3.922V5.077L8 1.155zM8 0l7.794 4.5v9L8 18 .206 13.5v-9L8 0z" />
+                    <path className="uir-icon-path-fill" fillOpacity="0.2" transform="translate(15.46,0)" d="M8 1.155L1.206 5.077v7.846L8 16.845l6.794-3.922V5.077L8 1.155zM8 0l7.794 4.5v9L8 18 .206 13.5v-9L8 0z" />
                 </g>
             </g>
         </svg>
