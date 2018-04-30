@@ -204,8 +204,7 @@ describe('Tabs', () => {
             const trigger = wrapper.find('Button.uir-tabs-nav-dropdown-trigger');
             const dropdown = wrapper.find('.uir-tabs-nav-dropdown');
             const dropdownTab = dropdown.find(TabsNavItem).at(0);
-            // eslint-disable-next-line react/no-find-dom-node
-            const dropdownTabNode = ReactDOM.findDOMNode(dropdownTab.instance());
+            const dropdownTabNode = dropdownTab.getDOMNode();
             const syntheticEvent = { relatedTarget: dropdownTabNode };
 
             trigger.simulate('click');
