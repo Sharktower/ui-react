@@ -1,0 +1,39 @@
+@import "../variables";
+
+.uir-breadcrumbs {
+    font-family: $font-family;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: $charcoal;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    .uir-breadcrumbs-part,
+    .uir-breadcrumbs-separator {
+        display: inline-block;
+    }
+
+    .uir-breadcrumbs-part {
+        position: relative;
+        opacity: .5;
+    }
+
+    .uir-breadcrumbs-separator {
+        fill: $charcoal;
+        padding: 0 4px;
+        opacity: .6;
+    }
+
+    &--large-title {
+
+        .uir-breadcrumbs-part:last-child {
+            display: block;
+            font-size: 34px;
+            color: #000;
+            text-transform: none;
+            opacity: 1;
+        }
+    }
+}
