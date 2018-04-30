@@ -15,7 +15,7 @@ describe('AvatarMenu', () => {
         sandbox.restore();
     });
 
-    common.isConformant(AvatarMenu, { requiredProps: {} });
+    common.isConformant(AvatarMenu, { tagName: 'nav', requiredProps: {} });
 
     // it('complains if user name is not provided', () => {
     //     shallow(<AvatarMenu />);
