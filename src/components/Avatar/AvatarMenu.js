@@ -44,14 +44,6 @@ class AvatarMenu extends Component {
         onMenuItemClick(path);
     }
 
-    renderMenuInternals() {
-        return (
-            <div className="uir-avatar-menu-internals">
-                {this.props.children}
-            </div>
-        );
-    }
-
     render() {
         return (
             <nav
@@ -71,7 +63,11 @@ class AvatarMenu extends Component {
                     size={AvatarSize.SM}
                     src={this.props.src}
                 />
-                {this.state.open ? this.renderMenuInternals() : null}
+                {this.state.open ? (
+                    <div className="uir-avatar-menu-internals">
+                        {this.props.children}
+                    </div>
+                ) : null}
             </nav>
         );
     }
