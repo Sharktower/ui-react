@@ -3,7 +3,7 @@ import chaiEnzyme from 'chai-enzyme';
 import dirtyChai from 'dirty-chai';
 import sinonChai from 'sinon-chai';
 import Enzyme, { shallow, render, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import Adapter from 'enzyme-adapter-react-15';
 
 // React 15 Enzyme adapter
 Enzyme.configure({ adapter: new Adapter() });
