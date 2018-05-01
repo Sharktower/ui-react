@@ -121,7 +121,7 @@ describe('AvatarMenu', () => {
         expect(avatarMenu.state('open')).to.equal(false);
     });
 
-    it('closes menu on keyDown', () => {
+    it('closes menu on keyDown if Enter pressed', () => {
         const avatarMenu = shallow((
             <AvatarMenu avatar={<Avatar name={sampleData.name} />} open>
                 <AvatarMenu.Nav />
@@ -129,7 +129,19 @@ describe('AvatarMenu', () => {
             </AvatarMenu>
         ));
         expect(avatarMenu.state('open')).to.equal(true);
-        avatarMenu.find('div').first().simulate('keydown');
+        avatarMenu.find('div').first().simulate('keydown', { key: 'Enter' });
         expect(avatarMenu.state('open')).to.equal(false);
+    });
+
+    it('does not close menu on keyDown if any other key pressed', () => {
+        const avatarMenu = shallow((
+            <AvatarMenu avatar={<Avatar name={sampleData.name} />} open>
+                <AvatarMenu.Nav />
+                <AvatarMenu.Nav />
+            </AvatarMenu>
+        ));
+        expect(avatarMenu.state('open')).to.equal(true);
+        avatarMenu.find('div').first().simulate('keydown', { key: ' ' });
+        expect(avatarMenu.state('open')).to.equal(true);
     });
 });
