@@ -60,7 +60,7 @@ describe('AvatarMenu', () => {
         expect(avatarMenu.find(Avatar).length).to.equal(1);
     });
 
-    it('default open state is false', () => {
+    it('sets open state to false by default', () => {
         const avatarMenu = renderMockMenu();
         expect(avatarMenu.state('open')).to.equal(false);
     });
