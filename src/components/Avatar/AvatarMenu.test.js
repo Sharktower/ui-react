@@ -1,8 +1,21 @@
-/* global describe, expect, it, shallow, beforeEach, afterEach  */
+/* global describe, expect, it, shallow, mount, beforeEach, afterEach  */
 import React from 'react';
 import sinon from 'sinon';
 import * as common from '../../../test/unit/commonTests';
 import AvatarMenu from './AvatarMenu';
+import Avatar from './Avatar';
+
+const sampleData = {
+    name: 'Matt Davies',
+    src: 'https://randomuser.me/api/portraits/lego/2.jpg',
+};
+
+const renderMockMenu = () => shallow((
+    <AvatarMenu avatar={<Avatar name={sampleData.name} src={sampleData.src} />}>
+        <AvatarMenu.Nav />
+        <AvatarMenu.Nav />
+    </AvatarMenu>
+));
 
 describe('AvatarMenu', () => {
     const sandbox = sinon.sandbox.create();
@@ -15,76 +28,112 @@ describe('AvatarMenu', () => {
         sandbox.restore();
     });
 
-    common.isConformant(AvatarMenu, { tagName: 'nav', requiredProps: {} });
+    common.isConformant(AvatarMenu, {
+        tagName: 'nav',
+        requiredProps: {
+            requiredProps: {
+                name: sampleData.name,
+                src: sampleData.src,
+            },
+        },
+    });
 
-    // it('complains if user name is not provided', () => {
-    //     shallow(<AvatarMenu />);
-    //     // eslint-disable-next-line no-console
-    //     expect(console.error).to.be.called();
-    // });
+    it('complains if user name is not provided', () => {
+        shallow((
+            <AvatarMenu>
+                <AvatarMenu.Nav />
+                <AvatarMenu.Nav />
+            </AvatarMenu>
+        ));
+        // eslint-disable-next-line no-console
+        expect(console.error).to.be.called();
+    });
 
-    // it('renders', () => {
-    //     const avatarMenu = shallow(<AvatarMenu />);
-    //     expect(avatarMenu).to.be.a('function');
-    // });
+    it('complains if children are not provided', () => {
+        shallow(<AvatarMenu name="Matthew Davies" />);
+        // eslint-disable-next-line no-console
+        expect(console.error).to.be.called();
+    });
 
-    // const mockUser = new User();
-    // mockUser.name = 'Katrina Scott';
-    // mockUser.avatar = 'https://randomuser.me/api/portraits/women/79.jpg';
-    //
-    // it('renders with correct class', () => {
-    //     const avatarMenu = shallow(<AvatarMenu user={mockUser} />);
-    //     expect(avatarMenu.hasClass('avatar-menu')).toBe(true);
-    // });
-    //
-    // it('renders with Avatar', () => {
-    //     const avatarMenu = shallow(<AvatarMenu user={mockUser} />);
-    //     expect(avatarMenu.find(Avatar).length).toBe(1);
-    // });
-    //
-    // it('default open state is false', () => {
-    //     const avatarMenu = shallow(<AvatarMenu user={mockUser} />);
-    //     expect(avatarMenu.state('open')).toBe(false);
-    // });
-    //
-    // it('default open state can be set by prop', () => {
-    //     const avatarMenu = shallow(<AvatarMenu open user={mockUser} />);
-    //     expect(avatarMenu.state('open')).toBe(true);
-    // });
-    //
-    // it('click the Avatar toggles open state to true', () => {
-    //     const avatarMenu = shallow(<AvatarMenu user={mockUser} />);
-    //     expect(avatarMenu.state('open')).toBe(false);
-    //     avatarMenu.find(Avatar).simulate('click');
-    //     expect(avatarMenu.state('open')).toBe(true);
-    // });
-    //
-    // it('click the Avatar toggles open state to false', () => {
-    //     const avatarMenu = shallow(<AvatarMenu open user={mockUser} />);
-    //     expect(avatarMenu.state('open')).toBe(true);
-    //     avatarMenu.find(Avatar).simulate('click');
-    //     expect(avatarMenu.state('open')).toBe(false);
-    // });
-    //
-    // it('open state addeds --open class', () => {
-    //     const avatarMenu = shallow(<AvatarMenu open user={mockUser} />);
-    //     expect(avatarMenu.hasClass('avatar-menu--open')).toBe(true);
-    // });
-    //
-    // it('can handle clicking nav elements', () => {
-    //     const avatarMenu = mount(<AvatarMenu
-    //         onMenuItemClick={path => expect(typeof path === 'string').toBe(true)}
-    //         open
-    //         user={mockUser}
-    //     />);
-    //     avatarMenu.find(Button).first().simulate('click');
-    //     avatarMenu.find('span').first().simulate('click');
-    // });
-    //
-    // it('can handle clicking nav elements without prop', () => {
-    //     const avatarMenu = mount(<AvatarMenu open user={mockUser} />);
-    //     expect(() => {
-    //         avatarMenu.find(Button).first().simulate('click');
-    //     }).not.toThrow();
-    // });
+    it('renders with Avatar', () => {
+        const avatarMenu = renderMockMenu();
+        expect(avatarMenu.find(Avatar).length).to.equal(1);
+    });
+
+    it('default open state is false', () => {
+        const avatarMenu = renderMockMenu();
+        expect(avatarMenu.state('open')).to.equal(false);
+    });
+
+    it('default open state can be set by prop', () => {
+        const avatarMenu = shallow((
+            <AvatarMenu avatar={<Avatar name={sampleData.name} />} open>
+                <AvatarMenu.Nav />
+                <AvatarMenu.Nav />
+            </AvatarMenu>
+        ));
+        expect(avatarMenu.state('open')).to.equal(true);
+    });
+
+    it('click the Avatar toggles open state to true', () => {
+        const avatarMenu = renderMockMenu();
+        expect(avatarMenu.state('open')).to.equal(false);
+        avatarMenu.find(Avatar).simulate('click');
+        expect(avatarMenu.state('open')).to.equal(true);
+    });
+
+    it('click the Avatar toggles open state to false', () => {
+        const avatarMenu = mount((
+            <AvatarMenu avatar={<Avatar name={sampleData.name} />} open>
+                <AvatarMenu.Nav />
+                <AvatarMenu.Nav />
+            </AvatarMenu>
+        ));
+        expect(avatarMenu.state('open')).to.equal(true);
+        avatarMenu.find(Avatar).simulate('click');
+        expect(avatarMenu.state('open')).to.equal(false);
+    });
+
+    it('does not have --open class by default', () => {
+        const avatarMenu = renderMockMenu();
+        expect(avatarMenu.hasClass('uir-avatar-menu--open')).to.equal(false);
+    });
+
+    it('open state adds --open class', () => {
+        const avatarMenu = shallow((
+            <AvatarMenu avatar={<Avatar name={sampleData.name} />} open>
+                <AvatarMenu.Nav />
+                <AvatarMenu.Nav />
+            </AvatarMenu>
+        ));
+        expect(avatarMenu.hasClass('uir-avatar-menu--open')).to.equal(true);
+    });
+
+    it('click nav child item closes menu', () => {
+        const avatarMenu = shallow((
+            <AvatarMenu avatar={<Avatar name={sampleData.name} />} open>
+                <AvatarMenu.Nav />
+                <AvatarMenu.Nav />
+            </AvatarMenu>
+        ));
+        expect(avatarMenu.state('open')).to.equal(true);
+        avatarMenu.find(AvatarMenu.Nav).first().simulate('click');
+        expect(avatarMenu.state('open')).to.equal(false);
+    });
+
+    it('click nav child item closes menu', () => {
+        const onClickSpy = sinon.spy();
+        const avatarMenu = shallow((
+            <AvatarMenu
+                avatar={<Avatar name={sampleData.name} />}
+                onMenuItemClick={onClickSpy}
+                open
+            >
+                <AvatarMenu.Nav />
+                <AvatarMenu.Nav />
+            </AvatarMenu>
+        ));
+        avatarMenu.find(AvatarMenu.Nav).first().simulate('click');
+        expect(onClickSpy).to.be.called();
+    });
 });

@@ -10,13 +10,12 @@ import { AvatarSize } from './AvatarEnums';
 import './AvatarMenu.scss';
 
 const propTypes = {
+    avatar: PropTypes.instanceOf(Avatar).isRequired,
     className: PropTypes.string,
     children: PropTypes.arrayOf(PropTypes.element).isRequired,
-    name: PropTypes.string.isRequired,
     onMenuItemClick: PropTypes.func,
     open: PropTypes.bool,
     position: PropTypes.string,
-    src: PropTypes.string,
     style: StyleObjectPropType,
 };
 
@@ -25,7 +24,6 @@ const defaultProps = {
     onMenuItemClick: null,
     open: false,
     position: AvatarMenuPosition.RIGHT,
-    src: null,
     style: null,
 };
 
@@ -38,13 +36,33 @@ class AvatarMenu extends Component {
         this.setState({ open: !this.state.open });
     }
 
-    handleMenuItemClick = (path) => {
+    handleChildClick = (event) => {
         this.setState({ open: false });
         const onMenuItemClick = this.props.onMenuItemClick || (() => {});
-        onMenuItemClick(path);
+        onMenuItemClick(event);
     }
 
-    render() {
+    augmentAvatar = avatar => (
+        avatar ? React.cloneElement(
+            avatar,
+            {
+                onClick: this.handleAvatarClick,
+                size: AvatarSize.SM,
+            },
+        ) : null)
+
+    augmentChildren = children => (
+        React.Children.map(
+            children,
+            child => React.cloneElement(
+                child,
+                { onClick: this.handleChildClick },
+            ),
+        )
+    );
+
+    render = () => {
+        const { avatar, children } = this.props;
         return (
             <nav
                 className={cx(
@@ -57,15 +75,10 @@ class AvatarMenu extends Component {
                 )}
                 style={this.props.style}
             >
-                <Avatar
-                    name={this.props.name}
-                    onClick={this.handleAvatarClick}
-                    size={AvatarSize.SM}
-                    src={this.props.src}
-                />
+                {this.augmentAvatar(avatar)}
                 {this.state.open ? (
                     <div className="uir-avatar-menu-internals">
-                        {this.props.children}
+                        {this.augmentChildren(children)}
                     </div>
                 ) : null}
             </nav>
