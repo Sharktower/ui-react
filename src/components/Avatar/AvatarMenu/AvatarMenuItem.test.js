@@ -53,22 +53,4 @@ describe('AvatarMenuItem', () => {
         ));
         expect(avatarMenuItem.find('.uir-avatar-menu-nav-spacer').length).to.equal(1);
     });
-
-    it('handles click with click handler', () => {
-        const onClickSpy = sinon.spy();
-        const avatarMenuItem = shallow((
-            <AvatarMenuItem onClick={onClickSpy}>Test Link</AvatarMenuItem>
-        ));
-        avatarMenuItem.find('span').simulate('click');
-        expect(onClickSpy.calledOnce).to.equal(true);
-    });
-
-    it('accepts click with no handler', () => {
-        const avatarMenuItem = shallow((
-            <AvatarMenuItem>Test Link</AvatarMenuItem>
-        ));
-        avatarMenuItem.find('span').simulate('click');
-        // eslint-disable-next-line no-console
-        expect(console.error).to.not.be.called();
-    });
 });

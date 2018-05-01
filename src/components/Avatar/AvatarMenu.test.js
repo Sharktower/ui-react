@@ -120,20 +120,4 @@ describe('AvatarMenu', () => {
         avatarMenu.find(AvatarMenu.Nav).first().simulate('click');
         expect(avatarMenu.state('open')).to.equal(false);
     });
-
-    it('click nav child item closes menu', () => {
-        const onClickSpy = sinon.spy();
-        const avatarMenu = shallow((
-            <AvatarMenu
-                avatar={<Avatar name={sampleData.name} />}
-                onMenuItemClick={onClickSpy}
-                open
-            >
-                <AvatarMenu.Nav />
-                <AvatarMenu.Nav />
-            </AvatarMenu>
-        ));
-        avatarMenu.find(AvatarMenu.Nav).first().simulate('click');
-        expect(onClickSpy).to.be.called();
-    });
 });

@@ -13,7 +13,6 @@ const propTypes = {
     avatar: PropTypes.instanceOf(Avatar).isRequired,
     className: PropTypes.string,
     children: PropTypes.arrayOf(PropTypes.element).isRequired,
-    onMenuItemClick: PropTypes.func,
     open: PropTypes.bool,
     position: PropTypes.string,
     style: StyleObjectPropType,
@@ -21,7 +20,6 @@ const propTypes = {
 
 const defaultProps = {
     className: null,
-    onMenuItemClick: null,
     open: false,
     position: AvatarMenuPosition.RIGHT,
     style: null,
@@ -36,11 +34,9 @@ class AvatarMenu extends Component {
         this.setState({ open: !this.state.open });
     }
 
-    handleChildClick = (event) => {
-        this.setState({ open: false });
-        const onMenuItemClick = this.props.onMenuItemClick || (() => {});
-        onMenuItemClick(event);
-    }
+    handleClick = () => this.setState({ open: false })
+
+    handleKeyDown = () => this.handleClick
 
     augmentAvatar = avatar => (
         avatar ? React.cloneElement(
@@ -51,39 +47,34 @@ class AvatarMenu extends Component {
             },
         ) : null)
 
-    augmentChildren = children => (
-        React.Children.map(
-            children,
-            child => React.cloneElement(
-                child,
-                { onClick: this.handleChildClick },
-            ),
-        )
-    );
-
-    render = () => {
-        const { avatar, children } = this.props;
-        return (
-            <nav
-                className={cx(
-                    'uir-avatar-menu',
-                    {
-                        'uir-avatar-menu--open': this.state.open,
-                    },
-                    `uir-avatar-menu--${this.props.position}`,
-                    this.props.className,
-                )}
-                style={this.props.style}
-            >
-                {this.augmentAvatar(avatar)}
-                {this.state.open ? (
-                    <div className="uir-avatar-menu-internals">
-                        {this.augmentChildren(children)}
-                    </div>
-                ) : null}
-            </nav>
-        );
-    }
+    render = () => (
+        /* eslint-disable jsx-a11y/no-static-element-interactions */
+        /* added onClick and onKeyDown below without role
+            to handle state not user interaction */
+        <nav
+            className={cx(
+                'uir-avatar-menu',
+                {
+                    'uir-avatar-menu--open': this.state.open,
+                },
+                `uir-avatar-menu--${this.props.position}`,
+                this.props.className,
+            )}
+            style={this.props.style}
+        >
+            {this.augmentAvatar(this.props.avatar)}
+            {this.state.open ? (
+                <div
+                    className="uir-avatar-menu-internals"
+                    onClick={this.handleClick}
+                    onKeyDown={this.handleKeyDown}
+                >
+                    {this.props.children}
+                </div>
+            ) : null}
+        </nav>
+        /* eslint-enable */
+    )
 }
 
 AvatarMenu.propTypes = propTypes;
