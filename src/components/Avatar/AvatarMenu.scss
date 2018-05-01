@@ -65,8 +65,6 @@ $avatar-menu-size: 52px;
 
             .uir-avatar-menu-item {
                 display: block;
-                padding: 16px 20px;
-                font-size: 16px;
                 outline: none;
             }
 
@@ -74,6 +72,18 @@ $avatar-menu-size: 52px;
             .uir-avatar-menu-item:focus {
                 cursor: pointer;
                 background-color: rgba(47, 40, 51, .1);
+            }
+
+            .uir-avatar-menu-item a,
+            .uir-avatar-menu-item a:hover,
+            .uir-avatar-menu-item a:visited,
+            .uir-avatar-menu-item a:focus,
+            .uir-avatar-menu-item a:active {
+                display: block;
+                padding: 16px 20px;
+                font-size: 16px;
+                color: $charcoal;
+                text-decoration: none;
             }
         }
     }
