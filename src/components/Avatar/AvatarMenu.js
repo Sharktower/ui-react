@@ -36,8 +36,6 @@ class AvatarMenu extends Component {
 
     handleClick = () => this.setState({ open: false })
 
-    handleKeyDown = () => this.handleClick
-
     augmentAvatar = avatar => (
         avatar ? React.cloneElement(
             avatar,
@@ -67,7 +65,7 @@ class AvatarMenu extends Component {
                 <div
                     className="uir-avatar-menu-internals"
                     onClick={this.handleClick}
-                    onKeyDown={this.handleKeyDown}
+                    onKeyDown={this.handleClick}
                 >
                     {this.props.children}
                 </div>

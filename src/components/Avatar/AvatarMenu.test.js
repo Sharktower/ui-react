@@ -75,14 +75,14 @@ describe('AvatarMenu', () => {
         expect(avatarMenu.state('open')).to.equal(true);
     });
 
-    it('click the Avatar toggles open state to true', () => {
+    it('toggles open state to true when Avatar is clicked', () => {
         const avatarMenu = renderMockMenu();
         expect(avatarMenu.state('open')).to.equal(false);
         avatarMenu.find(Avatar).simulate('click');
         expect(avatarMenu.state('open')).to.equal(true);
     });
 
-    it('click the Avatar toggles open state to false', () => {
+    it('toggles open state to false when Avatar is clicked', () => {
         const avatarMenu = mount((
             <AvatarMenu avatar={<Avatar name={sampleData.name} />} open>
                 <AvatarMenu.Nav />
@@ -99,7 +99,7 @@ describe('AvatarMenu', () => {
         expect(avatarMenu.hasClass('uir-avatar-menu--open')).to.equal(false);
     });
 
-    it('open state adds --open class', () => {
+    it('adds --open class when open state equals true', () => {
         const avatarMenu = shallow((
             <AvatarMenu avatar={<Avatar name={sampleData.name} />} open>
                 <AvatarMenu.Nav />
@@ -109,7 +109,7 @@ describe('AvatarMenu', () => {
         expect(avatarMenu.hasClass('uir-avatar-menu--open')).to.equal(true);
     });
 
-    it('click nav child item closes menu', () => {
+    it('closes menu on click', () => {
         const avatarMenu = shallow((
             <AvatarMenu avatar={<Avatar name={sampleData.name} />} open>
                 <AvatarMenu.Nav />
@@ -117,7 +117,19 @@ describe('AvatarMenu', () => {
             </AvatarMenu>
         ));
         expect(avatarMenu.state('open')).to.equal(true);
-        avatarMenu.find(AvatarMenu.Nav).first().simulate('click');
+        avatarMenu.find('div').first().simulate('click');
+        expect(avatarMenu.state('open')).to.equal(false);
+    });
+
+    it('closes menu on keyDown', () => {
+        const avatarMenu = shallow((
+            <AvatarMenu avatar={<Avatar name={sampleData.name} />} open>
+                <AvatarMenu.Nav />
+                <AvatarMenu.Nav />
+            </AvatarMenu>
+        ));
+        expect(avatarMenu.state('open')).to.equal(true);
+        avatarMenu.find('div').first().simulate('keydown');
         expect(avatarMenu.state('open')).to.equal(false);
     });
 });
