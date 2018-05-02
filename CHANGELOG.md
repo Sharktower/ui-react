@@ -1,4 +1,53 @@
-<!-- Last Updated: 2018-04-24 16:51:55 -->
+<!-- Last Updated: 2018-05-02 16:40:21 -->
+
+# UI React v3.1.0 (2018-05-02 16:40:21)
+
+## AvatarMenu Component
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+- add AvatarMenu component
+
+**Bug Fixes**
+
+_None_
+
+## Breadcrumbs Component
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+- new breadcrumb (with title) component
+
+**Bug Fixes**
+
+_None_
+
+## New Icons
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+- new dashboard icon
+- new priority icon
+- new project icon
+
+**Bug Fixes**
+
+_None_
+
+
+
 
 # UI React v3.0.2 (2018-04-24 16:51:55)
 
