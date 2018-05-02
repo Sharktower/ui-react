@@ -1,0 +1,104 @@
+@import "../variables";
+
+$avatar-menu-size: 52px;
+
+.uir-avatar-menu {
+    position: relative;
+    z-index: 1000;
+    display: inline-block;
+    width: $avatar-menu-size;
+    min-height: $avatar-menu-size;
+    font-family: $font-family;
+    background: $white;
+
+    &--open {
+        width: 314px;
+    }
+
+    &--left {
+
+        .uir-avatar {
+            left: 8px;
+        }
+
+        .uir-avatar-menu-internals .uir-avatar-menu-nav:nth-child(1) {
+            padding-right: 8px;
+            margin-left: $avatar-menu-size;
+        }
+    }
+
+    &--right {
+
+        .uir-avatar {
+            right: 8px;
+        }
+
+        .uir-avatar-menu-internals .uir-avatar-menu-nav:nth-child(1) {
+            padding-left: 8px;
+            margin-right: $avatar-menu-size;
+        }
+    }
+
+    .uir-avatar {
+        position: absolute;
+        top: 8px;
+    }
+
+    .uir-avatar-menu-internals {
+        box-shadow: 0 0 24px 0 rgba(47,40,51,.2);
+
+        .uir-avatar-menu-nav {
+            padding-left: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .uir-avatar-menu-nav:nth-child(1) {
+            padding-top: 4px;
+
+            .uir-avatar-menu-item {
+                display: inline;
+            }
+        }
+
+        .uir-avatar-menu-nav:nth-child(2) {
+
+            .uir-avatar-menu-item {
+                display: block;
+                outline: none;
+            }
+
+            .uir-avatar-menu-item:hover,
+            .uir-avatar-menu-item:focus {
+                cursor: pointer;
+                background-color: rgba(47, 40, 51, .1);
+            }
+
+            .uir-avatar-menu-item a,
+            .uir-avatar-menu-item a:hover,
+            .uir-avatar-menu-item a:visited,
+            .uir-avatar-menu-item a:focus,
+            .uir-avatar-menu-item a:active {
+                display: block;
+                padding: 16px 20px;
+                font-size: 16px;
+                color: $charcoal;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .uir-button {
+        margin: 8px 0;
+    }
+
+    .uir-avatar-menu-nav-icon,
+    .uir-avatar-menu-nav-spacer {
+        display: inline-block;
+        width: 32px;
+        height: 24px;
+        margin-right: 12px;
+        text-align: center;
+        vertical-align: middle;
+    }
+}
