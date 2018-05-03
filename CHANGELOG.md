@@ -46,20 +46,6 @@ _None_
 
 _None_
 
-## Textfield prefix zero value bug
-
-**Backwards Compatibility Implications**
-
-_None_
-
-**New Features**
-
-_None_
-
-**Bug Fixes**
-
-- fix the issue with prefix not being displayed if Textfield has 0 as a value
-
 
 
 
