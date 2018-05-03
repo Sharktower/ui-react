@@ -58,12 +58,24 @@ stories.add(
                 </AvatarMenu.Item>
             </AvatarMenu.Nav>
             <AvatarMenu.Nav>
-                <AvatarMenu.Item icon={<IconDashboard />}>My Dashboard</AvatarMenu.Item>
-                <AvatarMenu.Item icon={<IconPriority />}>Priority Tracker</AvatarMenu.Item>
-                <AvatarMenu.Item icon={<IconDashboard />}>Project Status</AvatarMenu.Item>
-                <AvatarMenu.Item icon={<IconProject />}>Example Project</AvatarMenu.Item>
-                <AvatarMenu.Item icon={<IconProject />}>Example Project</AvatarMenu.Item>
-                <AvatarMenu.Item hasSpacer>Add Project</AvatarMenu.Item>
+                <AvatarMenu.Item icon={<IconDashboard />}>
+                    <a href="//">My Dashboard</a>
+                </AvatarMenu.Item>
+                <AvatarMenu.Item icon={<IconPriority />}>
+                    <a href="//">Priority Tracker</a>
+                </AvatarMenu.Item>
+                <AvatarMenu.Item icon={<IconDashboard />}>
+                    <a href="//">Project Status</a>
+                </AvatarMenu.Item>
+                <AvatarMenu.Item icon={<IconProject />}>
+                    <a href="//">Example Project</a>
+                </AvatarMenu.Item>
+                <AvatarMenu.Item icon={<IconProject />}>
+                    <a href="//">Example Project</a>
+                </AvatarMenu.Item>
+                <AvatarMenu.Item hasSpacer>
+                    <a href="//">Add Project</a>
+                </AvatarMenu.Item>
             </AvatarMenu.Nav>
         </AvatarMenu>,
     ),
@@ -98,12 +110,24 @@ The prop \`position\` adjusts where the \`AvatarMenu\` is displayed. The default
                 </AvatarMenu.Item>
             </AvatarMenu.Nav>
             <AvatarMenu.Nav>
-                <AvatarMenu.Item icon={<IconDashboard />}>My Dashboard</AvatarMenu.Item>
-                <AvatarMenu.Item icon={<IconPriority />}>Priority Tracker</AvatarMenu.Item>
-                <AvatarMenu.Item icon={<IconDashboard />}>Project Status</AvatarMenu.Item>
-                <AvatarMenu.Item icon={<IconProject />}>Example Project</AvatarMenu.Item>
-                <AvatarMenu.Item icon={<IconProject />}>Example Project</AvatarMenu.Item>
-                <AvatarMenu.Item hasSpacer>Add Project</AvatarMenu.Item>
+                <AvatarMenu.Item icon={<IconDashboard />}>
+                    <a href="//">My Dashboard</a>
+                </AvatarMenu.Item>
+                <AvatarMenu.Item icon={<IconPriority />}>
+                    <a href="//">Priority Tracker</a>
+                </AvatarMenu.Item>
+                <AvatarMenu.Item icon={<IconDashboard />}>
+                    <a href="//">Project Status</a>
+                </AvatarMenu.Item>
+                <AvatarMenu.Item icon={<IconProject />}>
+                    <a href="//">Example Project</a>
+                </AvatarMenu.Item>
+                <AvatarMenu.Item icon={<IconProject />}>
+                    <a href="//">Example Project</a>
+                </AvatarMenu.Item>
+                <AvatarMenu.Item hasSpacer>
+                    <a href="//">Add Project</a>
+                </AvatarMenu.Item>
             </AvatarMenu.Nav>
         </AvatarMenu>,
     ),

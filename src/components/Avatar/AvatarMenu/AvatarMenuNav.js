@@ -6,9 +6,8 @@ import StyleObjectPropType from '../../../prop-types/style';
 const propTypes = {
     className: PropTypes.string,
     children: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
         PropTypes.arrayOf(PropTypes.element),
+        PropTypes.element,
     ]).isRequired,
     style: StyleObjectPropType,
 };
