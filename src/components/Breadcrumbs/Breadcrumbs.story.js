@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-e
 import Breadcrumbs from './Breadcrumbs';
 import storyWrapper from '../../storybook-addons/storyWrapper';
 
-const stories = storiesOf('Breadcrumbs.Breadcrumbs', module);
+const stories = storiesOf('Breadcrumbs', module);
 
 const Separator = () => (
     <span> | </span>
