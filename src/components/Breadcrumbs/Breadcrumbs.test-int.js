@@ -1,12 +1,12 @@
 /* global Feature, Scenario */
 
-const KIND = 'Breadcrumbs.Breadcrumbs';
+const KIND = 'Breadcrumbs';
 
 Feature('Breadcrumbs');
 
 Scenario('Storybook Documentation', (I) => {
     I.searchWithinIframe(KIND, 'Overview', () => {
-        I.see('Breadcrumbs: Breadcrumbs');
+        I.see('Breadcrumbs');
         I.see('Overview', 'h2');
         I.see('Example', 'h3');
         I.see('Source Code', 'h3');
