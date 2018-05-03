@@ -6,11 +6,13 @@ import StyleObjectPropType from '../../../prop-types/style';
 const propTypes = {
     className: PropTypes.string,
     children: PropTypes.oneOfType([
-        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.element),
+        PropTypes.element,
         PropTypes.number,
+        PropTypes.string,
     ]).isRequired,
     icon: PropTypes.element,
-    hasSpacer: PropTypes.boolean,
+    hasSpacer: PropTypes.bool,
     style: StyleObjectPropType,
 };
 

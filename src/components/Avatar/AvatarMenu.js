@@ -5,14 +5,18 @@ import StyleObjectPropType from '../../prop-types/style';
 import AvatarMenuItem from './AvatarMenu/AvatarMenuItem';
 import AvatarMenuNav from './AvatarMenu/AvatarMenuNav';
 import { AvatarMenuPosition } from './AvatarMenu/AvatarMenuEnums';
-import Avatar from './Avatar';
 import { AvatarSize } from './AvatarEnums';
 import './AvatarMenu.scss';
 
 const propTypes = {
-    avatar: PropTypes.instanceOf(Avatar).isRequired,
+    avatar: PropTypes.element.isRequired,
     className: PropTypes.string,
-    children: PropTypes.arrayOf(PropTypes.element).isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.element),
+        PropTypes.element,
+        PropTypes.number,
+        PropTypes.string,
+    ]).isRequired,
     open: PropTypes.bool,
     position: PropTypes.string,
     style: StyleObjectPropType,
