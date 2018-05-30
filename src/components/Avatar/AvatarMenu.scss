@@ -82,7 +82,7 @@ $avatar-menu-size: 52px;
             .uir-avatar-menu-item a:focus,
             .uir-avatar-menu-item a:active {
                 display: inline-block;
-                flex: 1;
+                flex: 1 0 0%;
                 padding: 16px 20px;
                 font-size: 16px;
                 color: $charcoal;
