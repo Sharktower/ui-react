@@ -1,4 +1,40 @@
-<!-- Last Updated: 2018-05-03 10:24:59 -->
+<!-- Last Updated: 2018-05-30 10:57:30 -->
+
+# UI React v3.2.0 (2018-05-30 10:57:30)
+
+## Fix AvatarMenu link width issue
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- fix the issue with links in AvatarMenu not filling full width of menu and being hard to click
+
+## Set flatpickr version to 4.3.2 and fix DateField
+
+
+
+**Backwards Compatibility Implications** 
+
+- Reverts Flatpickr version in the yarn.lock to v4.3.2 so it might cause compatibility issues to anyone who was relying on Flatpickr version 4.4.4
+
+**New Features** 
+
+_None_
+
+**Bug Fixes** 
+
+- Fix the layout of week day labels in date pickers
+- Fix the functionality of month arrows in the `DateField` component's date picker
+
+
+
 
 # UI React v3.1.0 (2018-05-03 10:24:59)
 
