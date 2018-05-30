@@ -9,10 +9,11 @@ $avatar-menu-size: 52px;
     width: $avatar-menu-size;
     min-height: $avatar-menu-size;
     font-family: $font-family;
-    background: $white;
+    background: transparent;
 
     &--open {
         width: 314px;
+        background: $white;
     }
 
     &--left {
@@ -64,7 +65,8 @@ $avatar-menu-size: 52px;
         .uir-avatar-menu-nav:nth-child(2) {
 
             .uir-avatar-menu-item {
-                display: block;
+                display: flex;
+                align-items: center;
                 outline: none;
             }
 
@@ -80,6 +82,7 @@ $avatar-menu-size: 52px;
             .uir-avatar-menu-item a:focus,
             .uir-avatar-menu-item a:active {
                 display: inline-block;
+                flex: 1;
                 padding: 16px 20px;
                 font-size: 16px;
                 color: $charcoal;
