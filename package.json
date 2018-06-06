@@ -133,6 +133,7 @@
     "autosize": "^4.0.0",
     "classnames": "^2.2.5",
     "flatpickr": "4.3.2",
-    "prop-types": "15.6.0"
+    "prop-types": "15.6.0",
+    "react-click-outside": "^3.0.1"
   }
 }
