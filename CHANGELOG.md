@@ -1,4 +1,22 @@
-<!-- Last Updated: 2018-05-30 10:57:30 -->
+<!-- Last Updated: 2018-06-08 11:08:20 -->
+
+# UI React v3.2.1 (2018-06-08 11:08:20)
+
+## Switch AvatarMenu to auto width
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+- allow AvatarMenu to expand based on content
+
+**Bug Fixes**
+
+_None_
+
+
 
 # UI React v3.2.0 (2018-05-30 10:57:30)
 
@@ -20,15 +38,15 @@ _None_
 
 
 
-**Backwards Compatibility Implications** 
+**Backwards Compatibility Implications**
 
 - Reverts Flatpickr version in the yarn.lock to v4.3.2 so it might cause compatibility issues to anyone who was relying on Flatpickr version 4.4.4
 
-**New Features** 
+**New Features**
 
 _None_
 
-**Bug Fixes** 
+**Bug Fixes**
 
 - Fix the layout of week day labels in date pickers
 - Fix the functionality of month arrows in the `DateField` component's date picker
@@ -682,7 +700,7 @@ _None_
 
 _None_
 
-**New Features**  
+**New Features**
 
 - `Avatar` component
 - `AvatarTitle` component
@@ -690,10 +708,10 @@ _None_
 - `Tooltip` component
 - `TooltipBox` component
 
-**Bug Fixes**  
+**Bug Fixes**
 
 _None_
 
-**Miscellaneous**  
+**Miscellaneous**
 
 - New StoryBook documentation
