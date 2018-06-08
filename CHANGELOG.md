@@ -1,4 +1,37 @@
-<!-- Last Updated: 2018-05-30 10:57:30 -->
+<!-- Last Updated: 2018-06-08 11:08:20 -->
+
+# UI React v3.2.1 (2018-06-08 11:08:20)
+
+## Switch AvatarMenu to auto width
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features** 
+
+- allow AvatarMenu to expand based on content
+
+**Bug Fixes**
+
+_None_
+
+
+## Fix AvatarMenu link width issue
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+_None_
+
+**Bug Fixes**
+
+- fix the issue with links in AvatarMenu not filling full width of menu and being hard to click
+
+
 
 # UI React v3.2.0 (2018-05-30 10:57:30)
 
