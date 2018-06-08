@@ -8,28 +8,13 @@
 
 _None_
 
-**New Features** 
+**New Features**
 
 - allow AvatarMenu to expand based on content
 
 **Bug Fixes**
 
 _None_
-
-
-## Fix AvatarMenu link width issue
-
-**Backwards Compatibility Implications**
-
-_None_
-
-**New Features**
-
-_None_
-
-**Bug Fixes**
-
-- fix the issue with links in AvatarMenu not filling full width of menu and being hard to click
 
 
 
@@ -53,15 +38,15 @@ _None_
 
 
 
-**Backwards Compatibility Implications** 
+**Backwards Compatibility Implications**
 
 - Reverts Flatpickr version in the yarn.lock to v4.3.2 so it might cause compatibility issues to anyone who was relying on Flatpickr version 4.4.4
 
-**New Features** 
+**New Features**
 
 _None_
 
-**Bug Fixes** 
+**Bug Fixes**
 
 - Fix the layout of week day labels in date pickers
 - Fix the functionality of month arrows in the `DateField` component's date picker
@@ -715,7 +700,7 @@ _None_
 
 _None_
 
-**New Features**  
+**New Features**
 
 - `Avatar` component
 - `AvatarTitle` component
@@ -723,10 +708,10 @@ _None_
 - `Tooltip` component
 - `TooltipBox` component
 
-**Bug Fixes**  
+**Bug Fixes**
 
 _None_
 
-**Miscellaneous**  
+**Miscellaneous**
 
 - New StoryBook documentation
