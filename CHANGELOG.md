@@ -12,7 +12,7 @@ _None_
 
 **New Features**
 
-- adding `componentRef` prop to Button
+- add `componentRef` prop to Button
 
 **Bug Fixes**
 
