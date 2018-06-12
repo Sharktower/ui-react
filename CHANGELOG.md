@@ -6,28 +6,13 @@
 
 
 
-**Backwards Compatibility Implications** 
-
-_None_
-
-**New Features** 
-
-Adding `componentRef` prop to Button
-
-**Bug Fixes** 
-
-_None_
-
-
-## Switch AvatarMenu to auto width
-
 **Backwards Compatibility Implications**
 
 _None_
 
-**New Features** 
+**New Features**
 
-- allow AvatarMenu to expand based on content
+- adding `componentRef` prop to Button
 
 **Bug Fixes**
 
