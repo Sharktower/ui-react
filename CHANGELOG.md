@@ -1,4 +1,25 @@
-<!-- Last Updated: 2018-06-08 11:08:20 -->
+<!-- Last Updated: 2018-06-12 16:35:11 -->
+
+# UI React v3.2.2 (2018-06-12 16:35:11)
+
+## Add componentRef prop to Button
+
+
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+- adding `componentRef` prop to Button
+
+**Bug Fixes**
+
+_None_
+
+
+
 
 # UI React v3.2.1 (2018-06-08 11:08:20)
 
