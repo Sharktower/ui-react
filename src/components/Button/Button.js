@@ -26,6 +26,7 @@ const propTypes = {
     onClick: PropTypes.func.isRequired,
     style: StyleObjectPropType,
     tabIndex: PropTypes.number,
+    componentRef: PropTypes.func,
     type: ListPropType([
         ButtonType.BUTTON,
         ButtonType.RESET,
@@ -56,6 +57,7 @@ const defaultProps = {
     tabIndex: null,
     type: ButtonType.BUTTON,
     variant: ButtonVariant.DEFAULT,
+    componentRef: null,
 };
 
 class Button extends Component {
@@ -142,7 +144,11 @@ class Button extends Component {
     }
 
     handleRef = (ref) => {
-        this.componentRef = ref;
+        const { componentRef } = this.props;
+        this.buttonRef = ref;
+        if (componentRef) {
+            componentRef(ref);
+        }
     }
 
     render() {
