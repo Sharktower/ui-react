@@ -471,4 +471,15 @@ describe('Button', () => {
         testVariantProp('primary');
         testVariantProp('round');
     });
+
+    describe('componentRef', () => {
+        it('passes ref forward to componentRef function', () => {
+            const componentRef = sandbox.spy();
+            mount((
+                <Button componentRef={componentRef}>Foo</Button>
+            ));
+
+            expect(componentRef).to.have.been.called();
+        });
+    });
 });
