@@ -17,10 +17,6 @@ _None_
 Add IconCalendar export in lib files
 
 
-## [UR-84] Add IconCalendar
-
-
-
 
 
 # UI React v3.3.0 (2018-06-20 14:49:23)
