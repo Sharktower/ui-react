@@ -34,10 +34,9 @@ You can modify properties such as <code>width</code>, <code>height</code>, <code
     width: 100px;
     height: 100px;
 }
-.demo-icon-calendar-red .uir-icon-path-stroke { stroke: #f00; }
-.demo-icon-calendar-inverted .uir-icon-path-stroke {
-    fill: #000;
-    stroke: #fff;
+.demo-icon-calendar-red .uir-icon-path-fill { fill: #f00; }
+.demo-icon-calendar-inverted .uir-icon-path-fill {
+    fill: #fff;
 }
                     `
                 }

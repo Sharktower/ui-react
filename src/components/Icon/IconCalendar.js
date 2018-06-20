@@ -27,19 +27,21 @@ const IconCalendar = ({
         <svg
             className={cx('uir-icon uir-icon-calendar', className)}
             style={style}
-            viewBox="0 0 16 16"
+            viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
         >
             <title id={iconTitleId}>Calendar Icon</title>
-            <rect className="uir-icon-path-stroke uir-icon-calendar-outer" x="1.5" y="2" width="13" height="11" />
-            <rect className="uir-icon-path-stroke uir-icon-calendar-nub-left" x="4.5" y="1" width="1" height="1" />
-            <rect className="uir-icon-path-stroke uir-icon-calendar-nub-right" x="10.5" y="1" width="1" height="1" />
-            <rect className="uir-icon-path-stroke uir-icon-calendar-box-top-left" x="4.5" y="7" width="1" height="1" />
-            <rect className="uir-icon-path-stroke uir-icon-calendar-box-top-middle" x="7.5" y="7" width="1" height="1" />
-            <rect className="uir-icon-path-stroke uir-icon-calendar-box-top-right" x="10.5" y="7" width="1" height="1" />
-            <rect className="uir-icon-path-stroke uir-icon-calendar-box-bottom-left" x="4.5" y="10" width="1" height="1" />
-            <rect className="uir-icon-path-stroke uir-icon-calendar-box-bottom-middle" x="7.5" y="10" width="1" height="1" />
-            <rect className="uir-icon-path-stroke uir-icon-calendar-box-bottom-right" x="10.5" y="10" width="1" height="1" />
+            <g>
+                <path className="uir-icon-path-fill uir-icon-calendar-outer" d="M23,22H1V3.5h22V22z M2.6,20.5h18.9V5.1H2.6V20.5z" />
+                <rect className="uir-icon-path-fill uir-icon-calendar-nub-left" x="5.7" y="2" width="3.1" height="3.1" />
+                <rect className="uir-icon-path-fill uir-icon-calendar-nub-right" x="15.1" y="2" width="3.1" height="3.1" />
+                <rect className="uir-icon-path-fill uir-icon-calendar-box-top-left" x="5.7" y="11.2" width="3.1" height="3.1" />
+                <rect className="uir-icon-path-fill uir-icon-calendar-box-top-middle" x="10.4" y="11.2" width="3.1" height="3.1" />
+                <rect className="uir-icon-path-fill uir-icon-calendar-box-top-right" x="15.1" y="11.2" width="3.1" height="3.1" />
+                <rect className="uir-icon-path-fill uir-icon-calendar-box-bottom-left" x="5.7" y="15.8" width="3.1" height="3.1" />
+                <rect className="uir-icon-path-fill uir-icon-calendar-box-bottom-middle" x="10.4" y="15.8" width="3.1" height="3.1" />
+                <rect className="uir-icon-path-fill uir-icon-calendar-box-bottom-right" x="15.1" y="15.8" width="3.1" height="3.1" />
+            </g>
         </svg>
     );
 };
