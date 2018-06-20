@@ -4,21 +4,15 @@
 
 ## [UR-84] Add IconCalendar
 
-
-
-## Add componentRef prop to Button
-
-
-
-**Backwards Compatibility Implications** 
+**Backwards Compatibility Implications**
 
 _None_
 
-**New Features** 
+**New Features**
 
-Adding `componentRef` prop to Button
+Add IconCalendar component
 
-**Bug Fixes** 
+**Bug Fixes**
 
 _None_
 
@@ -28,8 +22,6 @@ _None_
 # UI React v3.2.2 (2018-06-12 16:35:11)
 
 ## Add componentRef prop to Button
-
-
 
 **Backwards Compatibility Implications**
 
