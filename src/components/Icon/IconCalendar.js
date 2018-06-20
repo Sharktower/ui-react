@@ -31,11 +31,6 @@ const IconCalendar = ({
             aria-labelledby={iconTitleId}
         >
             <title id={iconTitleId}>Calendar Icon</title>
-            <style type="text/css">{`
-                .uir-icon-calendar-outer {
-                    fill: none;
-                }
-            `}</style>
             <rect className="uir-icon-path-stroke uir-icon-calendar-outer" x="1.5" y="2" width="13" height="11" />
             <rect className="uir-icon-path-stroke uir-icon-calendar-nub-left" x="4.5" y="1" width="1" height="1" />
             <rect className="uir-icon-path-stroke uir-icon-calendar-nub-right" x="10.5" y="1" width="1" height="1" />
