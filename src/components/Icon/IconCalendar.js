@@ -9,16 +9,19 @@ let lastInstanceId = 0;
 const propTypes = {
     className: PropTypes.string,
     style: StyleObjectPropType,
+    title: PropTypes.string,
 };
 
 const defaultProps = {
     className: null,
     style: null,
+    title: 'Calendar Icon',
 };
 
 const IconCalendar = ({
     className,
     style,
+    title,
 }) => {
     lastInstanceId += 1;
     const iconTitleId = `icon-calendar-title-${lastInstanceId}`;
@@ -30,7 +33,7 @@ const IconCalendar = ({
             viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
         >
-            <title id={iconTitleId}>Calendar Icon</title>
+            <title id={iconTitleId}>{title}</title>
             <g>
                 <path className="uir-icon-path-fill uir-icon-calendar-outer" d="M23,22H1V3.5h22V22z M2.6,20.5h18.9V5.1H2.6V20.5z" />
                 <rect className="uir-icon-path-fill uir-icon-calendar-nub-left" x="5.7" y="2" width="3.1" height="3.1" />

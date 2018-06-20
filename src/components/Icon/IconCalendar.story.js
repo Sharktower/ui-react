@@ -12,7 +12,7 @@ stories.add(
         `
 SVG calendar icon
         `,
-        <IconCalendar />,
+        <IconCalendar title="Calendar" />,
     ),
 );
 
