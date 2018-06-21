@@ -1,4 +1,25 @@
-<!-- Last Updated: 2018-06-20 16:08:57 -->
+<!-- Last Updated: 2018-06-21 16:09:24 -->
+
+# UI React v3.4.0 (2018-06-21 16:09:24)
+
+## IconKanban Component
+
+
+
+**Backwards Compatibility Implications** 
+
+_None_
+
+**New Features** 
+
+- IconKanban component
+
+**Bug Fixes** 
+
+_None_
+
+
+
 
 # UI React v3.3.1 (2018-06-20 16:08:57)
 
