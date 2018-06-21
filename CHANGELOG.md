@@ -19,21 +19,6 @@ _None_
 _None_
 
 
-## Patch fix to add IconCalendar lib files
-
-**Backwards Compatibility Implications** 
-
-_None_
-
-**New Features**
-
-_None_
-
-**Bug Fixes**
-
-Add IconCalendar export in lib files
-
-
 
 
 # UI React v3.3.1 (2018-06-20 16:08:57)
