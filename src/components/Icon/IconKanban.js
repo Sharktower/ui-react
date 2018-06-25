@@ -15,7 +15,7 @@ const propTypes = {
 const defaultProps = {
     className: null,
     style: null,
-    title: 'Calendar Icon',
+    title: 'Kanban Icon',
 };
 
 const IconKanban = ({
