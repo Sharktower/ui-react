@@ -11,6 +11,7 @@ const propTypes = {
     style: StyleObjectPropType,
     priority: PropTypes.string,
     blocked: PropTypes.bool,
+    title: PropTypes.string,
 };
 
 const defaultProps = {
@@ -18,6 +19,7 @@ const defaultProps = {
     style: null,
     priority: 'MEDIUM',
     blocked: false,
+    title: 'Story Icon',
 };
 
 const IconTask = ({
@@ -25,6 +27,7 @@ const IconTask = ({
     style,
     priority,
     blocked,
+    title,
 }) => {
     lastInstanceId += 1;
     const iconTitleId = `icon-task-title-${lastInstanceId}`;
@@ -37,6 +40,7 @@ const IconTask = ({
                 viewBox="0 0 24 24"
                 aria-labelledby={iconTitleId}
             >
+                <title id={iconTitleId}>{title}</title>
                 <g fill="#FF1966" fillRule="evenodd">
                     <path d="M13 8h6v1h-6zM5 12h14v1H5zM5 16h14v1H5z" />
                     <path fillRule="nonzero" d="M5.354 7.646l-.708.708L7 10.707l4.354-4.353-.708-.708L7 9.293z" />
@@ -51,6 +55,7 @@ const IconTask = ({
                 viewBox="0 0 24 24"
                 aria-labelledby={iconTitleId}
             >
+                <title id={iconTitleId}>{title}</title>
                 <g fill="#2F2833" fillRule="evenodd">
                     <path d="M13 8h6v1h-6z" />
                     <path d="M5 12h14v1H5zM5 16h14v1H5z" opacity=".3" />
@@ -66,6 +71,7 @@ const IconTask = ({
                 viewBox="0 0 24 24"
                 aria-labelledby={iconTitleId}
             >
+                <title id={iconTitleId}>{title}</title>
                 <g fill="#2F2833" fillRule="evenodd">
                     <path d="M13 8h6v1h-6zM5 12h14v1H5z" />
                     <path d="M5 16h14v1H5z" opacity=".3" />
@@ -81,6 +87,7 @@ const IconTask = ({
             viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
         >
+            <title id={iconTitleId}>{title}</title>
             <g fill="#2F2833" fillRule="evenodd">
                 <path d="M13 8h6v1h-6zM5 12h14v1H5zM5 16h14v1H5z" />
                 <path fillRule="nonzero" d="M5.354 7.646l-.708.708L7 10.707l4.354-4.353-.708-.708L7 9.293z" />

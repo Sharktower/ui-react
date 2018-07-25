@@ -9,16 +9,19 @@ let lastInstanceId = 0;
 const propTypes = {
     className: PropTypes.string,
     style: StyleObjectPropType,
+    title: PropTypes.string,
 };
 
 const defaultProps = {
     className: null,
     style: null,
+    title: 'Complete Icon',
 };
 
 const IconComplete = ({
     className,
     style,
+    title,
 }) => {
     lastInstanceId += 1;
     const iconTitleId = `icon-blocked-title-${lastInstanceId}`;
@@ -29,6 +32,7 @@ const IconComplete = ({
             viewBox="0 0 12 12"
             aria-labelledby={iconTitleId}
         >
+            <title id={iconTitleId}>{title}</title>
             <g fill="#2F2833" fillRule="evenodd">
                 <path
                     fillRule="nonzero"

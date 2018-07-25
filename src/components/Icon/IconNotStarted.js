@@ -9,16 +9,19 @@ let lastInstanceId = 0;
 const propTypes = {
     className: PropTypes.string,
     style: StyleObjectPropType,
+    title: PropTypes.string,
 };
 
 const defaultProps = {
     className: null,
     style: null,
+    title: 'Not Started Icon',
 };
 
 const IconNotStarted = ({
     className,
     style,
+    title,
 }) => {
     lastInstanceId += 1;
     const iconTitleId = `icon-blocked-title-${lastInstanceId}`;
@@ -29,6 +32,7 @@ const IconNotStarted = ({
             viewBox="0 0 12 12"
             aria-labelledby={iconTitleId}
         >
+            <title id={iconTitleId}>{title}</title>
             <circle cx="10" cy="5" r="4.5" fill="none" fillRule="evenodd" stroke="#2F2833" transform="translate(-4 1)" />
         </svg>
     );

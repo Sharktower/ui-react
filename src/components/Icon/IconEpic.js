@@ -9,16 +9,19 @@ let lastInstanceId = 0;
 const propTypes = {
     className: PropTypes.string,
     style: StyleObjectPropType,
+    title: PropTypes.string,
 };
 
 const defaultProps = {
     className: null,
     style: null,
+    title: 'Epic Icon',
 };
 
 const IconEpic = ({
     className,
     style,
+    title,
 }) => {
     lastInstanceId += 1;
     const iconTitleId = `icon-project-title-${lastInstanceId}`;
@@ -30,6 +33,7 @@ const IconEpic = ({
             viewBox="-4 -1 24 24"
             aria-labelledby={iconTitleId}
         >
+            <title id={iconTitleId}>{title}</title>
             <path fill="none" fillRule="evenodd" stroke="#2F2833" d="M20.191 18.5L14 6.118l-4 8-2-4L3.809 18.5h16.382z" />
         </svg>
     );

@@ -9,16 +9,19 @@ let lastInstanceId = 0;
 const propTypes = {
     className: PropTypes.string,
     style: StyleObjectPropType,
+    title: PropTypes.string,
 };
 
 const defaultProps = {
     className: null,
     style: null,
+    title: 'In Progress Icon',
 };
 
 const IconInProgress = ({
     className,
     style,
+    title,
 }) => {
     lastInstanceId += 1;
     const iconTitleId = `icon-blocked-title-${lastInstanceId}`;
@@ -29,6 +32,7 @@ const IconInProgress = ({
             viewBox="0 0 12 12"
             aria-labelledby={iconTitleId}
         >
+            <title id={iconTitleId}>{title}</title>
             <g fill="none" fillRule="evenodd">
                 <g transform="translate(0 1)">
                     <circle cx="5.5" cy="5.5" r="4" stroke="#2F2833" />
