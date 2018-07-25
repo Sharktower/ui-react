@@ -20,33 +20,32 @@ const defaultProps = {
     blocked: false,
 };
 
-const IconTask = ({
+const IconStory = ({
     className,
     style,
     priority,
     blocked,
 }) => {
     lastInstanceId += 1;
-    const iconTitleId = `icon-task-title-${lastInstanceId}`;
+    const iconTitleId = `icon-story-title-${lastInstanceId}`;
 
     if (blocked) {
         return (
             <svg
-                className={cx('uir-icon uir-icon-task uir-icon-task-blocked', className)}
+                className={cx('uir-icon uir-icon-story uir-icon-story-blocked', className)}
                 style={style}
                 viewBox="0 0 24 24"
                 aria-labelledby={iconTitleId}
             >
                 <g fill="#FF1966" fillRule="evenodd">
-                    <path d="M13 8h6v1h-6zM5 12h14v1H5zM5 16h14v1H5z" />
-                    <path fillRule="nonzero" d="M5.354 7.646l-.708.708L7 10.707l4.354-4.353-.708-.708L7 9.293z" />
+                    <path d="M13 8h6v1h-6zM5 12h14v1H5zM5 16h14v1H5zM5 5h5v1H5zM5 7h5v1H5zM5 9h5v1H5zM5 6h1v1H5zM9 8h1v1H9z" />
                 </g>
             </svg>
         );
     } else if (priority === 'LOW') {
         return (
             <svg
-                className={cx('uir-icon uir-icon-task uir-icon-task-low', className)}
+                className={cx('uir-icon uir-icon-story uir-icon-story-low', className)}
                 style={style}
                 viewBox="0 0 24 24"
                 aria-labelledby={iconTitleId}
@@ -54,14 +53,14 @@ const IconTask = ({
                 <g fill="#2F2833" fillRule="evenodd">
                     <path d="M13 8h6v1h-6z" />
                     <path d="M5 12h14v1H5zM5 16h14v1H5z" opacity=".3" />
-                    <path fillRule="nonzero" d="M5.354 7.646l-.708.708L7 10.707l4.354-4.353-.708-.708L7 9.293z" />
+                    <path d="M5 5h5v1H5zM5 7h5v1H5zM5 9h5v1H5zM5 6h1v1H5zM9 8h1v1H9z" />
                 </g>
             </svg>
         );
     } else if (priority === 'MEDIUM') {
         return (
             <svg
-                className={cx('uir-icon uir-icon-task uir-icon-task-medium', className)}
+                className={cx('uir-icon uir-icon-story uir-icon-story-medium', className)}
                 style={style}
                 viewBox="0 0 24 24"
                 aria-labelledby={iconTitleId}
@@ -69,27 +68,26 @@ const IconTask = ({
                 <g fill="#2F2833" fillRule="evenodd">
                     <path d="M13 8h6v1h-6zM5 12h14v1H5z" />
                     <path d="M5 16h14v1H5z" opacity=".3" />
-                    <path fillRule="nonzero" d="M5.354 7.646l-.708.708L7 10.707l4.354-4.353-.708-.708L7 9.293z" />
+                    <path d="M5 5h5v1H5zM5 7h5v1H5zM5 9h5v1H5zM5 6h1v1H5zM9 8h1v1H9z" />
                 </g>
             </svg>
         );
     }
     return (
         <svg
-            className={cx('uir-icon uir-icon-task uir-icon-task-high', className)}
+            className={cx('uir-icon uir-icon-story uir-icon-story-high', className)}
             style={style}
             viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
         >
             <g fill="#2F2833" fillRule="evenodd">
-                <path d="M13 8h6v1h-6zM5 12h14v1H5zM5 16h14v1H5z" />
-                <path fillRule="nonzero" d="M5.354 7.646l-.708.708L7 10.707l4.354-4.353-.708-.708L7 9.293z" />
+                <path d="M13 8h6v1h-6zM5 12h14v1H5zM5 16h14v1H5zM5 5h5v1H5zM5 7h5v1H5zM5 9h5v1H5zM5 6h1v1H5zM9 8h1v1H9z" />
             </g>
         </svg>
     );
 };
 
-IconTask.propTypes = propTypes;
-IconTask.defaultProps = defaultProps;
+IconStory.propTypes = propTypes;
+IconStory.defaultProps = defaultProps;
 
-export default IconTask;
+export default IconStory;
