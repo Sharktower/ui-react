@@ -19,7 +19,7 @@ const defaultProps = {
     style: null,
     priority: 'MEDIUM',
     blocked: false,
-    title: 'Story Icon',
+    title: 'Task Icon',
 };
 
 const IconTask = ({
