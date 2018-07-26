@@ -29,14 +29,14 @@ const IconBlocked = ({
         <svg
             className={cx('uir-icon uir-icon-blocked', className)}
             style={style}
-            viewBox="0 0 10 10"
+            viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
         >
             <title id={iconTitleId}>{title}</title>
-            <g fill="none" fillRule="evenodd">
-                <path fill="#FF1966" d="M2 2.707L2.707 2l5.657 5.657-.707.707z" />
-                <circle cx="5" cy="5" r="4" stroke="#FF1966" />
-            </g>
+            <path d="M12 1C5.9 1 1 5.9 1 12s4.9 11 11 11 11-4.9 11-11S18.1 1 12 1zm8.6 11c0 1.9-.7 3.7-1.7
+                5.1L6.9 5.2c1.4-1.1 3.2-1.7 5.1-1.7 4.7-.1 8.6 3.8 8.6 8.5zM3.4 12c0-1.9.7-3.7 1.7-5.1L17
+                18.8c-1.4 1.1-3.2 1.7-5.1 1.7-4.6.1-8.5-3.8-8.5-8.5z"
+            />
         </svg>
     );
 };

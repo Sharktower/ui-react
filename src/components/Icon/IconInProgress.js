@@ -29,17 +29,20 @@ const IconInProgress = ({
         <svg
             className={cx('uir-icon uir-icon-status', className)}
             style={style}
-            viewBox="0 0 12 12"
+            viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
         >
             <title id={iconTitleId}>{title}</title>
-            <g fill="none" fillRule="evenodd">
-                <g transform="translate(0 1)">
-                    <circle cx="5.5" cy="5.5" r="4" stroke="#2F2833" />
-                    <path fill="#2F2833" d="M1.575.868L2.98 2.272l-.707.707L.868 1.576zM10.132 1.575L8.853 2.854l-.707-.708L9.425.868z" />
-                </g>
-                <path fill="#2F2833" d="M5 1h1v1H5zM7 0v1H4V0zM6.681 5.11l.707.708-1.414 1.414-.707-.707z" />
-            </g>
+            <path
+                className="uir-icon-path"
+                d="M21 6.2l-1.4-1.4L17.4 7c-1.3-1-2.8-1.7-4.5-1.9V3h1.9V1H9.1v2H11v2.1C9.4
+                5.3 7.8 6 6.6 7L4.4 4.7 3 6.2l2.2 2.3C4 10 3.3 11.9 3.3 14c0 5 3.9 9 8.7
+                9s8.7-4 8.7-9c0-2.1-.7-4-1.9-5.6L21 6.2zM12 21c-3.7 0-6.8-3.1-6.8-7S8.3 7 12 7s6.8 3.1 6.8 7-3.1 7-6.8 7z"
+            />
+            <path
+                className="uir-icon-path"
+                d="M11.5 14.1l1.4 1.4 2.8-2.9-1.4-1.4z"
+            />
         </svg>
     );
 };

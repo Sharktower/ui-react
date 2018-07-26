@@ -31,11 +31,11 @@ const IconNotification = ({
             aria-labelledby={iconTitleId}
         >
             <title id={iconTitleId}>Notification Icon</title>
-            <g transform="translate(3 3)">
-                <path d="M9 20.5C2.7 20.5-2.5 15.3-2.5 9S2.7-2.5 9-2.5 20.5 2.6 20.5 9c0 6.3-5.2 11.5-11.5 11.5zm0-21C3.8-.5-.5 3.8-.5 9s4.3 9.5 9.5 9.5 9.5-4.3 9.5-9.5S14.2-.5 9-.5z" />
-                <path d="M7.7 3.8h2.6v6.5H7.7z" />
-                <path d="M7.7 11.6h2.6v2.6H7.7z" />
-            </g>
+            <path d="M12 23.5C5.7 23.5.5 18.3.5 12S5.7.5 12 .5 23.5 5.6 23.5 12c0
+                6.3-5.2 11.5-11.5 11.5zm0-21c-5.2 0-9.5 4.3-9.5 9.5s4.3 9.5 9.5
+                9.5 9.5-4.3 9.5-9.5-4.3-9.5-9.5-9.5z"
+            />
+            <path d="M10.5 6h3v7.5h-3V6zm0 9h3v3h-3v-3z" />
         </svg>
     );
 };

@@ -29,11 +29,13 @@ const IconNotStarted = ({
         <svg
             className={cx('uir-icon uir-icon-status', className)}
             style={style}
-            viewBox="0 0 12 12"
+            viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
         >
             <title id={iconTitleId}>{title}</title>
-            <circle cx="10" cy="5" r="4.5" fill="none" fillRule="evenodd" stroke="#2F2833" transform="translate(-4 1)" />
+            <path d="M12 23C5.9 23 1 18.1 1 12S5.9 1 12 1s11 4.9 11 11-4.9 11-11
+                11zm0-19.8c-4.9 0-8.8 3.9-8.8 8.8s3.9 8.8 8.8 8.8 8.8-3.9 8.8-8.8-3.9-8.8-8.8-8.8z"
+            />
         </svg>
     );
 };

@@ -29,18 +29,19 @@ const IconComplete = ({
         <svg
             className={cx('uir-icon uir-icon-status', className)}
             style={style}
-            viewBox="0 0 12 12"
+            viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
         >
             <title id={iconTitleId}>{title}</title>
-            <g fill="#2F2833" fillRule="evenodd">
-                <path
-                    fillRule="nonzero"
-                    d="M9.662 2.595l-.708.708a4 4 0 1 0 .96 1.868l.811-.81a5 5 0 1 1-1.063-1.765z"
-                />
-                <path d="M5.577 7.405l5.656-5.657.708.707-5.657 5.657z" />
-                <path d="M3.455 5.283l.707-.707 2.122 2.121-.707.708z" />
-            </g>
+            <path
+                className="uir-icon-path"
+                d="M18.4 5.2zM18.9 10.3c.6 2.8-.3 5.7-2.4 7.6-3.3 3-8.4 2.8-11.4-.5s-2.8-8.3.5-11.3S14
+                3.3 17 6.6l1.4-1.4c-2.7-2.9-6.9-3.9-10.7-2.6-5.2 1.8-8 7.5-6.2 12.7 1.8 5.2 7.6 8 12.8 6.2s8-7.5 6.2-12.7l-1.6 1.5z"
+            />
+            <path
+                className="uir-icon-path"
+                d="M21.6 3.5l-10 9.9-4.2-4.3-1.5 1.5 4.3 4.2.1.1 1.3 1.3L23 4.9z"
+            />
         </svg>
     );
 };

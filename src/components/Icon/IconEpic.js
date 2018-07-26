@@ -30,11 +30,11 @@ const IconEpic = ({
         <svg
             className={cx('uir-icon uir-icon-project', className)}
             style={style}
-            viewBox="-4 -1 24 24"
+            viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
         >
             <title id={iconTitleId}>{title}</title>
-            <path fill="none" fillRule="evenodd" stroke="#2F2833" d="M20.191 18.5L14 6.118l-4 8-2-4L3.809 18.5h16.382z" />
+            <path d="M22 20.5H2L7.6 8.4l2.2 4.9 4.4-9.7L22 20.5zM3.8 19.3h16.4l-6-13.1-4.4 9.7L7.6 11l-3.8 8.3z" />
         </svg>
     );
 };

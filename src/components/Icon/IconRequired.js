@@ -31,22 +31,10 @@ const IconRequired = ({
             aria-labelledby={iconTitleId}
         >
             <title id={iconTitleId}>Required Icon</title>
-            <g transform="translate(637 326)">
-                <g transform="translate(2 1)">
-                    <g transform="scale(-1 1) rotate(30 -7.464 -12.428)">
-                        <path d="M379.7-590.3h2.8v-2.8h-2.8z" />
-                        <path d="M399.2-590.3h2.8v-2.8h-2.8z" />
-                    </g>
-                    <g transform="rotate(30 -3.464 2.5)">
-                        <path transform="rotate(90.001 -712.017 39.449)" d="M-713.4 38.1h2.8v2.8h-2.8z" />
-                        <path transform="rotate(90.001 -692.5 39.45)" d="M-693.9 38.1h2.8v2.8h-2.8z" />
-                    </g>
-                    <g transform="matrix(0 -1 -1 0 4.5 8.5)">
-                        <path transform="rotate(-90 313.64 631.612)" d="M312.2 633h2.8v-2.8h-2.8z" />
-                        <path transform="rotate(-90 333.157 631.612)" d="M331.8 633h2.8v-2.8h-2.8z" />
-                    </g>
-                </g>
-            </g>
+            <path d="M2 16.4l1.4 2.5 2.3-1.4L4.4 15zM22 7.7l-1.3-2.4-2.4 1.4 1.4 2.4zM5.7
+              6.7L3.3 5.3 2 7.7l2.3 1.4zM18.3 17.5l2.3 1.4 1.4-2.5-2.4-1.4zM10.7
+              20.1h2.9V23h-2.9zM10.7 1h2.9v2.9h-2.9z"
+            />
         </svg>
     );
 };
