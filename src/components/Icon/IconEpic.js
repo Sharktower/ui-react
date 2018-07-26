@@ -9,34 +9,37 @@ let lastInstanceId = 0;
 const propTypes = {
     className: PropTypes.string,
     style: StyleObjectPropType,
+    title: PropTypes.string,
 };
 
 const defaultProps = {
     className: null,
     style: null,
+    title: 'Epic Icon',
 };
 
-const IconRequired = ({
+const IconEpic = ({
     className,
     style,
+    title,
 }) => {
     lastInstanceId += 1;
-    const iconTitleId = `icon-search-title-${lastInstanceId}`;
+    const iconTitleId = `icon-project-title-${lastInstanceId}`;
 
     return (
         <svg
-            className={cx('uir-icon uir-icon-required', className)}
+            className={cx('uir-icon uir-icon-project', className)}
             style={style}
             viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
         >
-            <title id={iconTitleId}>Required Icon</title>
-            <path d="M2 16.4l1.4 2.5 2.3-1.4L4.4 15zM22 7.7l-1.3-2.4-2.4 1.4 1.4 2.4zM5.7 6.7L3.3 5.3 2 7.7l2.3 1.4zM18.3 17.5l2.3 1.4 1.4-2.5-2.4-1.4zM10.7 20.1h2.9V23h-2.9zM10.7 1h2.9v2.9h-2.9z" />
+            <title id={iconTitleId}>{title}</title>
+            <path d="M22 20.5H2L7.6 8.4l2.2 4.9 4.4-9.7L22 20.5zM3.8 19.3h16.4l-6-13.1-4.4 9.7L7.6 11l-3.8 8.3z" />
         </svg>
     );
 };
 
-IconRequired.propTypes = propTypes;
-IconRequired.defaultProps = defaultProps;
+IconEpic.propTypes = propTypes;
+IconEpic.defaultProps = defaultProps;
 
-export default IconRequired;
+export default IconEpic;

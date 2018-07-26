@@ -9,34 +9,36 @@ let lastInstanceId = 0;
 const propTypes = {
     className: PropTypes.string,
     style: StyleObjectPropType,
+    title: PropTypes.string,
 };
 
 const defaultProps = {
     className: null,
     style: null,
+    title: 'Not Started Icon',
 };
 
-const IconRequired = ({
+const IconNotStarted = ({
     className,
     style,
+    title,
 }) => {
     lastInstanceId += 1;
-    const iconTitleId = `icon-search-title-${lastInstanceId}`;
-
+    const iconTitleId = `icon-blocked-title-${lastInstanceId}`;
     return (
         <svg
-            className={cx('uir-icon uir-icon-required', className)}
+            className={cx('uir-icon uir-icon-status', className)}
             style={style}
             viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
         >
-            <title id={iconTitleId}>Required Icon</title>
-            <path d="M2 16.4l1.4 2.5 2.3-1.4L4.4 15zM22 7.7l-1.3-2.4-2.4 1.4 1.4 2.4zM5.7 6.7L3.3 5.3 2 7.7l2.3 1.4zM18.3 17.5l2.3 1.4 1.4-2.5-2.4-1.4zM10.7 20.1h2.9V23h-2.9zM10.7 1h2.9v2.9h-2.9z" />
+            <title id={iconTitleId}>{title}</title>
+            <path d="M12 23C5.9 23 1 18.1 1 12S5.9 1 12 1s11 4.9 11 11-4.9 11-11 11zm0-19.8c-4.9 0-8.8 3.9-8.8 8.8s3.9 8.8 8.8 8.8 8.8-3.9 8.8-8.8-3.9-8.8-8.8-8.8z" />
         </svg>
     );
 };
 
-IconRequired.propTypes = propTypes;
-IconRequired.defaultProps = defaultProps;
+IconNotStarted.propTypes = propTypes;
+IconNotStarted.defaultProps = defaultProps;
 
-export default IconRequired;
+export default IconNotStarted;
