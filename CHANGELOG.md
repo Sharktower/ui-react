@@ -1,4 +1,50 @@
-<!-- Last Updated: 2018-06-21 16:09:24 -->
+<!-- Last Updated: 2018-07-26 17:42:31 -->
+
+# UI React v3.5.0 (2018-07-26 17:42:31)
+
+## New Project Icons
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+- IconBlocked
+- IconComplete
+- IconEpic
+- IconInProgress
+- IconNotStarted
+- IconStory
+- IconTask
+
+**Bug Fixes**
+
+- Refined IconNotification, IconRequired SVGs
+
+## Fix kanban default title
+
+
+
+**Backwards Compatibility Implications** 
+
+_None_
+
+**New Features** 
+
+_None_
+
+**Bug Fixes** 
+
+- Fixes default title on IconKanban
+
+**Performance Improvements** 
+
+
+**Miscellaneous** 
+
+
+
 
 # UI React v3.4.0 (2018-06-21 16:09:24)
 
