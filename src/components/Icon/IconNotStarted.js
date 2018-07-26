@@ -29,7 +29,7 @@ const IconNotStarted = ({
         <svg
             className={cx('uir-icon uir-icon-status', className)}
             style={style}
-            viewBox="0 0 12 12"
+            viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
         >
             <title id={iconTitleId}>{title}</title>
