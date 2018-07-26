@@ -18,6 +18,7 @@ SVG task icon
             <IconTask priority="low" />
             <IconTask priority="medium" />
             <IconTask priority="high" />
+            <IconTask isBlocked priority="high" />
             <IconTask isBlocked />
         </div>,
     ),

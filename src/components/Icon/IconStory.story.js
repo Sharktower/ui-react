@@ -18,6 +18,7 @@ SVG story icon
             <IconStory priority="low" />
             <IconStory priority="medium" />
             <IconStory priority="high" />
+            <IconStory isBlocked priority="high" />
             <IconStory isBlocked />
         </div>,
     ),
