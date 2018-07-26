@@ -31,10 +31,7 @@ const IconRequired = ({
             aria-labelledby={iconTitleId}
         >
             <title id={iconTitleId}>Required Icon</title>
-            <path d="M2 16.4l1.4 2.5 2.3-1.4L4.4 15zM22 7.7l-1.3-2.4-2.4 1.4 1.4 2.4zM5.7
-              6.7L3.3 5.3 2 7.7l2.3 1.4zM18.3 17.5l2.3 1.4 1.4-2.5-2.4-1.4zM10.7
-              20.1h2.9V23h-2.9zM10.7 1h2.9v2.9h-2.9z"
-            />
+            <path d="M2 16.4l1.4 2.5 2.3-1.4L4.4 15zM22 7.7l-1.3-2.4-2.4 1.4 1.4 2.4zM5.7 6.7L3.3 5.3 2 7.7l2.3 1.4zM18.3 17.5l2.3 1.4 1.4-2.5-2.4-1.4zM10.7 20.1h2.9V23h-2.9zM10.7 1h2.9v2.9h-2.9z" />
         </svg>
     );
 };
