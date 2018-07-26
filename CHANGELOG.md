@@ -22,27 +22,6 @@ _None_
 
 - Refined IconNotification, IconRequired SVGs
 
-## Fix kanban default title
-
-
-
-**Backwards Compatibility Implications** 
-
-_None_
-
-**New Features** 
-
-_None_
-
-**Bug Fixes** 
-
-- Fixes default title on IconKanban
-
-**Performance Improvements** 
-
-
-**Miscellaneous** 
-
 
 
 
