@@ -10,7 +10,7 @@ stories.add(
     'Overview',
     storyWrapper(
         `
-SVG complete icon
+SVG close icon
         `,
         <IconClose />,
     ),
