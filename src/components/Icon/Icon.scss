@@ -65,3 +65,44 @@
         }
     }
 }
+
+.uir-icon-decision {
+
+    .uir-icon-line-a,
+    .uir-icon-line-b,
+    .uir-icon-line-c {
+        stroke: #2F2833;
+    }
+    
+    .uir-icon-line-d {
+        fill: #2F2833;
+    }
+
+    &--low {
+
+        .uir-icon-line-b,
+        .uir-icon-line-c {
+            opacity: .3;
+        }
+    }
+
+    &--medium {
+
+        .uir-icon-line-c {
+            opacity: .3
+        }
+    }
+
+    &--blocked {
+
+        .uir-icon-line-a,
+        .uir-icon-line-b,
+        .uir-icon-line-c {
+            stroke: #FF1966;
+        }
+        
+        .uir-icon-line-d {
+            fill: #FF1966;
+        }
+    }
+}
