@@ -4,40 +4,17 @@
 
 ## Fix Tabs stealing focus on rerender
 
-
-
-**Backwards Compatibility Implications** 
+**Backwards Compatibility Implications**
 
 The active pane in a set of Tabs will no longer steal focus each time its parent triggers a re-render. In theory, someone could have been relying on this behaviour, but it seems unlikely.
 
-**New Features** 
-
-_None_
-
-**Bug Fixes** 
-
-Call to `focusPane` on `render` now takes place in `componentDidUpdate` only when moving from unselected to selected. This fixes a bug where a TabsPane would steal focus from a sibling input whenever their parent triggered a re-render.
-
-
-## New Project Icons
-
-**Backwards Compatibility Implications**
-
-_None_
-
 **New Features**
 
-- IconBlocked
-- IconComplete
-- IconEpic
-- IconInProgress
-- IconNotStarted
-- IconStory
-- IconTask
+_None_
 
 **Bug Fixes**
 
-- Refined IconNotification, IconRequired SVGs
+Call to `focusPane` on `render` now takes place in `componentDidUpdate` only when moving from unselected to selected. This fixes a bug where a TabsPane would steal focus from a sibling input whenever their parent triggered a re-render.
 
 
 
@@ -72,15 +49,15 @@ _None_
 
 
 
-**Backwards Compatibility Implications** 
+**Backwards Compatibility Implications**
 
 _None_
 
-**New Features** 
+**New Features**
 
 - IconKanban component
 
-**Bug Fixes** 
+**Bug Fixes**
 
 _None_
 
@@ -91,7 +68,7 @@ _None_
 
 ## Patch fix to add IconCalendar lib files
 
-**Backwards Compatibility Implications** 
+**Backwards Compatibility Implications**
 
 _None_
 
