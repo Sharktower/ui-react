@@ -1,6 +1,21 @@
-<!-- Last Updated: 2018-08-21 14:56:58 -->
+<!-- Last Updated: 2018-08-21 15:49:06 -->
 
-# UI React v3.5.1 (2018-08-21 14:56:58)
+# UI React v3.5.2 (2018-08-21 15:49:06)
+
+## Adjust publish script
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+- Adjust publish script to check node version prior to publish
+
+**Bug Fixes**
+
+_None_
+
 
 ## Fix Tabs stealing focus on rerender
 
@@ -15,6 +30,7 @@ _None_
 **Bug Fixes**
 
 Call to `focusPane` on `render` now takes place in `componentDidUpdate` only when moving from unselected to selected. This fixes a bug where a TabsPane would steal focus from a sibling input whenever their parent triggered a re-render.
+
 
 
 
