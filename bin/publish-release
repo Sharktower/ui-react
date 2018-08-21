@@ -2,6 +2,11 @@
 
 /* eslint-disable import/no-extraneous-dependencies, no-console */
 
+if (!process.version.match(/v9\.10.*/)) {
+    console.error(`Woah!! You're using Node ${process.version}. Please use Node v9.10.x`);
+    return;
+}
+
 const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
