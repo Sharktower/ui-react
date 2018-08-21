@@ -24,11 +24,11 @@ const IconEpic = ({
     title,
 }) => {
     lastInstanceId += 1;
-    const iconTitleId = `icon-project-title-${lastInstanceId}`;
+    const iconTitleId = `icon-epic-title-${lastInstanceId}`;
 
     return (
         <svg
-            className={cx('uir-icon uir-icon-project', className)}
+            className={cx('uir-icon uir-icon-epic', className)}
             style={style}
             viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
