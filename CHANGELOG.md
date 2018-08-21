@@ -19,27 +19,6 @@ _None_
 
 ## Fix Tabs stealing focus on rerender
 
-
-
-**Backwards Compatibility Implications** 
-
-The active pane in a set of Tabs will no longer steal focus each time its parent triggers a re-render. In theory, someone could have been relying on this behaviour, but it seems unlikely.
-
-**New Features** 
-
-_None_
-
-**Bug Fixes** 
-
-Call to `focusPane` on `render` now takes place in `componentDidUpdate` only when moving from unselected to selected. This fixes a bug where a TabsPane would steal focus from a sibling input whenever their parent triggered a re-render.
-
-
-
-
-# UI React v3.5.1 (2018-08-21 14:56:58)
-
-## Fix Tabs stealing focus on rerender
-
 **Backwards Compatibility Implications**
 
 The active pane in a set of Tabs will no longer steal focus each time its parent triggers a re-render. In theory, someone could have been relying on this behaviour, but it seems unlikely.
@@ -51,6 +30,7 @@ _None_
 **Bug Fixes**
 
 Call to `focusPane` on `render` now takes place in `componentDidUpdate` only when moving from unselected to selected. This fixes a bug where a TabsPane would steal focus from a sibling input whenever their parent triggered a re-render.
+
 
 
 
