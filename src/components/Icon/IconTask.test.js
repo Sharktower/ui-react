@@ -13,7 +13,7 @@ describe('IconTask', () => {
             <IconTask isBlocked />
         ));
 
-        expect(wrapper.find('.uir-icon-task--blocked')).to.exist();
+        expect(wrapper).to.have.className('uir-icon-task--blocked');
     });
 
     it('sets priority to none by default', () => {
@@ -21,7 +21,7 @@ describe('IconTask', () => {
             <IconTask />
         ));
 
-        expect(wrapper.find('.uir-icon-task--none')).to.exist();
+        expect(wrapper).to.have.className('uir-icon-task--none');
     });
 
     it('sets priority low', () => {
@@ -29,7 +29,7 @@ describe('IconTask', () => {
             <IconTask priority={IconPriority.LOW} />
         ));
 
-        expect(wrapper.find('.uir-icon-task--low')).to.exist();
+        expect(wrapper).to.have.className('uir-icon-task--low');
     });
 
     it('sets priority medium', () => {
@@ -37,7 +37,7 @@ describe('IconTask', () => {
             <IconTask priority={IconPriority.MEDIUM} />
         ));
 
-        expect(wrapper.find('.uir-icon-task--medium')).to.exist();
+        expect(wrapper).to.have.className('uir-icon-task--medium');
     });
 
     it('sets priority high', () => {
@@ -45,6 +45,6 @@ describe('IconTask', () => {
             <IconTask priority={IconPriority.HIGH} />
         ));
 
-        expect(wrapper.find('.uir-icon-task--high')).to.exist();
+        expect(wrapper).to.have.className('uir-icon-task--high');
     });
 });

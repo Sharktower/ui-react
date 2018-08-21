@@ -13,7 +13,7 @@ describe('IconStory', () => {
             <IconStory isBlocked />
         ));
 
-        expect(wrapper.find('.uir-icon-story--blocked')).to.exist();
+        expect(wrapper).to.have.className('uir-icon-story--blocked');
     });
 
     it('sets priority to none by default', () => {
@@ -21,7 +21,7 @@ describe('IconStory', () => {
             <IconStory />
         ));
 
-        expect(wrapper.find('.uir-icon-story--none')).to.exist();
+        expect(wrapper).to.have.className('uir-icon-story--none');
     });
 
     it('sets priority low', () => {
@@ -29,7 +29,7 @@ describe('IconStory', () => {
             <IconStory priority={IconPriority.LOW} />
         ));
 
-        expect(wrapper.find('.uir-icon-story--low')).to.exist();
+        expect(wrapper).to.have.className('uir-icon-story--low');
     });
 
     it('sets priority medium', () => {
@@ -37,7 +37,7 @@ describe('IconStory', () => {
             <IconStory priority={IconPriority.MEDIUM} />
         ));
 
-        expect(wrapper.find('.uir-icon-story--medium')).to.exist();
+        expect(wrapper).to.have.className('uir-icon-story--medium');
     });
 
     it('sets priority high', () => {
@@ -45,6 +45,6 @@ describe('IconStory', () => {
             <IconStory priority={IconPriority.HIGH} />
         ));
 
-        expect(wrapper.find('.uir-icon-story--high')).to.exist();
+        expect(wrapper).to.have.className('uir-icon-story--high');
     });
 });
