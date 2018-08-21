@@ -30,6 +30,12 @@ class TabsPane extends Component {
         });
     }
 
+    componentDidUpdate() {
+        if (this.state.isSelecting) {
+            this.focusPane();
+        }
+    }
+
     focusPane() {
         if (!this.componentRef) { return; }
 
@@ -45,8 +51,6 @@ class TabsPane extends Component {
     }
 
     render() {
-        this.focusPane();
-
         return (
             <section
                 aria-hidden={!this.props.isSelected}
