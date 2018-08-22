@@ -4,40 +4,24 @@
 
 ## Update webpack and karma dependencies
 
-
-
-**Backwards Compatibility Implications** 
+**Backwards Compatibility Implications**
 
 - Fixed class names of `IconEpic`, `IconInProgress`, `IconNotStarted`, `IconStory` and `IconTask`. This is a breaking change if anyone relied on the wrong class names.
 - Updated `webpack` to v4.17.0 - this shouldn't be a breaking change but it's something to be aware of.
 
-**New Features** 
+**New Features**
 
 _None_
 
-**Bug Fixes** 
+**Bug Fixes**
 
 - Fixed wrong icon class names
 - Fixed broken icon tests
 - Added missing tests for the `Tabs` component
 
-**Performance Improvements** 
+**Performance Improvements**
 
 - Improves performance of unit tests
-
-## Adjust publish script
-
-**Backwards Compatibility Implications**
-
-_None_
-
-**New Features**
-
-- Adjust publish script to check node version prior to publish
-
-**Bug Fixes**
-
-_None_
 
 
 
