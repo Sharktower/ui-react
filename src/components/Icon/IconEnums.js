@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 
-export const TaskIconPriority = Object.freeze({
+export const IconPriority = Object.freeze({
     NONE: 'none',
     LOW: 'low',
     MEDIUM: 'medium',

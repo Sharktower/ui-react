@@ -24,10 +24,10 @@ const IconNotStarted = ({
     title,
 }) => {
     lastInstanceId += 1;
-    const iconTitleId = `icon-blocked-title-${lastInstanceId}`;
+    const iconTitleId = `icon-not-started-title-${lastInstanceId}`;
     return (
         <svg
-            className={cx('uir-icon uir-icon-status', className)}
+            className={cx('uir-icon uir-icon-not-started', className)}
             style={style}
             viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}

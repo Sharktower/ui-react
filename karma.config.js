@@ -16,7 +16,6 @@ module.exports = (config) => {
         files: [
             'test/unit/setupEnvironment.js',
             'src/**/*.test.js',
-            'src/**/*.js',
         ],
 
         // list of files to exclude

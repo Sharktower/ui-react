@@ -92,12 +92,34 @@ describe('Tabs', () => {
             const wrapper = mount(defaultTabs);
             const tab2 = wrapper.find(TabsNavItem).at(1);
             const pane2 = wrapper.find(TabsPane).at(1);
-            const focusSpy = sinon.spy(pane2.instance(), 'focusPane');
+            const focusSpy = sinon.spy(pane2.instance().componentRef, 'focus');
 
             tab2.simulate('click');
 
             setTimeout(() => {
                 expect(focusSpy).to.have.been.called();
+                done();
+            }, 1000);
+        });
+
+        it('does not focus if componentRef is undefined', (done) => {
+            const wrapper = mount(defaultTabs);
+            const tab2 = wrapper.find(TabsNavItem).at(1);
+            const pane2 = wrapper.find(TabsPane).at(1);
+            const focusPaneSpy = sinon.spy(pane2.instance(), 'focusPane');
+            const focusSpy = sinon.spy(pane2.instance().componentRef, 'focus');
+
+            // Note: componentRef can only be undefined if focusPane() had been called
+            // too early in the lifecycle
+            // This is defensive programming and the issue can only be simulated in a test
+            // by overwriting handleRef() as below:
+            sinon.stub(pane2.instance(), 'handleRef');
+
+            tab2.simulate('click');
+
+            setTimeout(() => {
+                expect(focusPaneSpy).to.have.been.called();
+                expect(focusSpy).to.have.not.been.called();
                 done();
             }, 1000);
         });

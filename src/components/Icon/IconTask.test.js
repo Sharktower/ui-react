@@ -2,6 +2,7 @@
 import React from 'react';
 import * as common from '../../../test/unit/commonTests';
 import IconTask from './IconTask';
+import { IconPriority } from './IconEnums';
 
 describe('IconTask', () => {
     common.isConformant(IconTask, { tagName: 'svg' });
@@ -9,33 +10,41 @@ describe('IconTask', () => {
 
     it('sets blocked', () => {
         const wrapper = shallow((
-            <IconTask blocked />
+            <IconTask isBlocked />
         ));
 
-        expect(wrapper.find('.uir-icon-task-blocked')).to.exist();
+        expect(wrapper).to.have.className('uir-icon-task--blocked');
+    });
+
+    it('sets priority to none by default', () => {
+        const wrapper = shallow((
+            <IconTask />
+        ));
+
+        expect(wrapper).to.have.className('uir-icon-task--none');
     });
 
     it('sets priority low', () => {
         const wrapper = shallow((
-            <IconTask priority="LOW" />
+            <IconTask priority={IconPriority.LOW} />
         ));
 
-        expect(wrapper.find('.uir-icon-task-low')).to.exist();
+        expect(wrapper).to.have.className('uir-icon-task--low');
     });
 
     it('sets priority medium', () => {
         const wrapper = shallow((
-            <IconTask priority="MEDIUM" />
+            <IconTask priority={IconPriority.MEDIUM} />
         ));
 
-        expect(wrapper.find('.uir-icon-task-medium')).to.exist();
+        expect(wrapper).to.have.className('uir-icon-task--medium');
     });
 
     it('sets priority high', () => {
         const wrapper = shallow((
-            <IconTask priority="HIGH" />
+            <IconTask priority={IconPriority.HIGH} />
         ));
 
-        expect(wrapper.find('.uir-icon-task-high')).to.exist();
+        expect(wrapper).to.have.className('uir-icon-task--high');
     });
 });

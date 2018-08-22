@@ -1,6 +1,7 @@
 const webpackConfig = require('./webpack.config.js')[0];
 
 const karmaWebpackConfig = {
+    mode: 'development',
     module: {
         rules: [],
     },

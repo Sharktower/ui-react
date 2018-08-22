@@ -3,7 +3,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import StyleObjectPropType from '../../prop-types/style';
 import ListPropType from '../../prop-types/list';
-import { TaskIconPriority } from './IconEnums';
+import { IconPriority } from './IconEnums';
 import './Icon.scss';
 
 let lastInstanceId = 0;
@@ -12,10 +12,10 @@ const propTypes = {
     className: PropTypes.string,
     style: StyleObjectPropType,
     priority: ListPropType([
-        TaskIconPriority.NONE,
-        TaskIconPriority.LOW,
-        TaskIconPriority.MEDIUM,
-        TaskIconPriority.HIGH,
+        IconPriority.NONE,
+        IconPriority.LOW,
+        IconPriority.MEDIUM,
+        IconPriority.HIGH,
     ]),
     isBlocked: PropTypes.bool,
     title: PropTypes.string,
@@ -24,7 +24,7 @@ const propTypes = {
 const defaultProps = {
     className: null,
     style: null,
-    priority: TaskIconPriority.NONE,
+    priority: IconPriority.NONE,
     isBlocked: false,
     title: 'Task Icon',
 };
