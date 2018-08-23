@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import clickOutside from 'react-click-outside';
 import StyleObjectPropType from '../../prop-types/style';
 import AvatarMenuItem from './AvatarMenu/AvatarMenuItem';
 import AvatarMenuNav from './AvatarMenu/AvatarMenuNav';
@@ -29,7 +30,7 @@ const defaultProps = {
     style: null,
 };
 
-class AvatarMenu extends Component {
+class UnwrappedAvatarMenu extends Component {
     state = {
         open: this.props.open,
     }
@@ -39,6 +40,8 @@ class AvatarMenu extends Component {
     }
 
     handleClick = () => this.setState({ open: false })
+
+    handleClickOutside = () => this.setState({ open: false });
 
     handleKeyDown = (event) => {
         if (event.key === 'Enter') {
@@ -85,10 +88,16 @@ class AvatarMenu extends Component {
     )
 }
 
-AvatarMenu.propTypes = propTypes;
-AvatarMenu.defaultProps = defaultProps;
+UnwrappedAvatarMenu.propTypes = propTypes;
+UnwrappedAvatarMenu.defaultProps = defaultProps;
+
+const AvatarMenu = clickOutside(UnwrappedAvatarMenu);
 
 AvatarMenu.Nav = AvatarMenuNav;
 AvatarMenu.Item = AvatarMenuItem;
+
+// Duplicated for Storybook introspection
+AvatarMenu.defaultProps = defaultProps;
+AvatarMenu.propTypes = propTypes;
 
 export default AvatarMenu;

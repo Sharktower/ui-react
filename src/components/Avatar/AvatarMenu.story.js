@@ -132,3 +132,54 @@ The prop \`position\` adjusts where the \`AvatarMenu\` is displayed. The default
         </AvatarMenu>,
     ),
 );
+
+stories.add(
+    'Close on Click',
+    storyWrapper(
+        `
+The AvatarMenu can be closed by clicking outside
+        `,
+        <AvatarMenu
+            avatar={<Avatar name="Jane Smith" src="https://randomuser.me/api/portraits/women/49.jpg" />}
+            position={AvatarMenuPosition.RIGHT}
+        >
+            <AvatarMenu.Nav>
+                <AvatarMenu.Item>
+                    <Button onClick={() => {}} variant="clear">
+                        Feedback
+                    </Button>
+                </AvatarMenu.Item>
+                <AvatarMenu.Item>
+                    <Button onClick={() => {}} variant="clear">
+                        Settings
+                    </Button>
+                </AvatarMenu.Item>
+                <AvatarMenu.Item>
+                    <Button onClick={() => {}} variant="clear">
+                        Logout
+                    </Button>
+                </AvatarMenu.Item>
+            </AvatarMenu.Nav>
+            <AvatarMenu.Nav>
+                <AvatarMenu.Item icon={<IconDashboard />}>
+                    <a href="//">My Dashboard</a>
+                </AvatarMenu.Item>
+                <AvatarMenu.Item icon={<IconPriority />}>
+                    <a href="//">Priority Tracker</a>
+                </AvatarMenu.Item>
+                <AvatarMenu.Item icon={<IconDashboard />}>
+                    <a href="//">Project Status</a>
+                </AvatarMenu.Item>
+                <AvatarMenu.Item icon={<IconProject />}>
+                    <a href="//">Example Project</a>
+                </AvatarMenu.Item>
+                <AvatarMenu.Item icon={<IconProject />}>
+                    <a href="//">Example Project</a>
+                </AvatarMenu.Item>
+                <AvatarMenu.Item hasSpacer>
+                    <a href="//">Add Project</a>
+                </AvatarMenu.Item>
+            </AvatarMenu.Nav>
+        </AvatarMenu>,
+    ),
+);
