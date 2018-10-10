@@ -1,5 +1,6 @@
 export { default as addsClassName } from './addsClassName';
 export { default as addsComponentClassName } from './addsComponentClassName';
+export { default as allowsDataProps } from './allowsDataProps';
 export { default as assertRequiredHelpers } from './assertRequiredHelpers';
 export { default as isConformant } from './isConformant';
 export { default as noClassNameFromUndefinedProp } from './noClassNameFromUndefinedProp';

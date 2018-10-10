@@ -3,6 +3,7 @@ import { createElement } from 'react';
 import { merge } from 'lodash';
 import assertRequiredHelpers from './assertRequiredHelpers';
 import addsComponentClassName from './addsComponentClassName';
+import allowsDataProps from './allowsDataProps';
 import rendersChildren from './rendersChildren';
 import rendersTag from './rendersTag';
 import addsClassName from './addsClassName';
@@ -56,18 +57,7 @@ export default (Component, options = {}) => {
         });
 
         describe('data- props', () => {
-            const propsWithData = merge(
-                {},
-                requiredProps,
-                { 'data-testProp': 'testProp-123' },
-            );
-
-            it('accepts data- prop', () => {
-                const wrapper = shallow(createElement(Component, propsWithData));
-
-                // Note: rendered html atrributes are automatically lowercased, hence the difference
-                expect(wrapper).to.have.attr('data-testprop', 'testProp-123');
-            });
+            allowsDataProps(Component, options);
         });
 
         if (rendersAnyChildren) {
