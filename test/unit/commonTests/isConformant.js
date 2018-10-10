@@ -55,6 +55,21 @@ export default (Component, options = {}) => {
             });
         });
 
+        describe('data- props', () => {
+            const propsWithData = merge(
+                {},
+                requiredProps,
+                { 'data-testProp': 'testProp-123' },
+            );
+
+            it('accepts data- prop', () => {
+                const wrapper = shallow(createElement(Component, propsWithData));
+
+                // Note: rendered html atrributes are automatically lowercased, hence the difference
+                expect(wrapper).to.have.attr('data-testprop', 'testProp-123');
+            });
+        });
+
         if (rendersAnyChildren) {
             rendersChildren(Component, options);
         }

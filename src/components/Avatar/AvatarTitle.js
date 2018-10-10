@@ -3,6 +3,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import ListPropType from '../../prop-types/list';
 import StyleObjectPropType from '../../prop-types/style';
+import { proxyDataProps } from '../../utils/data-props';
 import { AvatarTitleSize } from './AvatarEnums';
 import './AvatarTitle.scss';
 
@@ -42,6 +43,7 @@ function AvatarTitle(props) {
                 props.className,
             )}
             style={props.style}
+            {...proxyDataProps(props)}
         >
             {profile}
             <div>

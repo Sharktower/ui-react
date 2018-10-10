@@ -3,6 +3,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import flatpickr from 'flatpickr';
 import StyleObjectPropType from '../../prop-types/style';
+import { proxyDataProps } from '../../utils/data-props';
 import './DateInlinePicker.scss';
 
 const propTypes = {
@@ -57,6 +58,7 @@ class DateInlinePicker extends Component {
             <div
                 className={cx('uir-date-inline-picker', className)}
                 style={style}
+                {...proxyDataProps(this.props)}
             >
                 <span ref={(ref) => { this.childRef = ref; }} />
             </div>

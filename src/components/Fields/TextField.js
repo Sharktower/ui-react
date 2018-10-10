@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ElementOrStringPropType from '../../prop-types/element-or-string';
 import ListPropType from '../../prop-types/list';
 import StyleObjectPropType from '../../prop-types/style';
+import { proxyDataProps } from '../../utils/data-props';
 import Tooltip from '../Tooltip/Tooltip';
 import TooltipBox from '../Tooltip/TooltipBox';
 import { TooltipBoxStatus, TooltipPosition } from '../Tooltip/TooltipEnums';
@@ -353,6 +354,7 @@ class TextField extends Component {
                 onMouseEnter={this.handleMouseEnter}
                 onMouseLeave={this.handleMouseLeave}
                 style={this.props.style}
+                {...proxyDataProps(this.props)}
             >
                 {prefix || icon}
                 <div className="uir-text-field-inner">

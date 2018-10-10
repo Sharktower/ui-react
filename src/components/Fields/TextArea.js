@@ -4,6 +4,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import ElementOrStringPropType from '../../prop-types/element-or-string';
 import StyleObjectPropType from '../../prop-types/style';
+import { proxyDataProps } from '../../utils/data-props';
 import Tooltip from '../Tooltip/Tooltip';
 import TooltipBox from '../Tooltip/TooltipBox';
 import { TooltipBoxStatus, TooltipPosition } from '../Tooltip/TooltipEnums';
@@ -233,6 +234,7 @@ class TextArea extends Component {
                 onMouseEnter={this.handleMouseEnter}
                 onMouseLeave={this.handleMouseLeave}
                 style={this.props.style}
+                {...proxyDataProps(this.props)}
             >
                 <div className="uir-text-area-inner">
                     <div className="uir-text-area-label-wrapper">

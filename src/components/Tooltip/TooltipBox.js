@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ElementOrStringPropType from '../../prop-types/element-or-string';
 import ListPropType from '../../prop-types/list';
 import StyleObjectPropType from '../../prop-types/style';
+import { proxyDataProps } from '../../utils/data-props';
 import { TooltipBoxStatus } from './TooltipEnums';
 import './TooltipBox.scss';
 
@@ -33,6 +34,7 @@ function TooltipBox(props) {
                 props.className,
             )}
             style={props.style}
+            {...proxyDataProps(props)}
         >
             {props.children}
         </div>

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ElementOrStringPropType from '../../prop-types/element-or-string';
 import ListPropType from '../../prop-types/list';
 import StyleObjectPropType from '../../prop-types/style';
+import { proxyDataProps } from '../../utils/data-props';
 import TooltipBox from './TooltipBox';
 import { TooltipPosition } from './TooltipEnums';
 import './Tooltip.scss';
@@ -70,6 +71,7 @@ class Tooltip extends Component {
                 role="tooltip"
                 tabIndex={this.props.tabIndex}
                 style={this.props.style}
+                {...proxyDataProps(this.props)}
             >
                 {tooltip}
                 <div className="uir-tooltip-inner">

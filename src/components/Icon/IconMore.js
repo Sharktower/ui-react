@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import StyleObjectPropType from '../../prop-types/style';
+import { proxyDataProps } from '../../utils/data-props';
 import './Icon.scss';
 
 let lastInstanceId = 0;
@@ -19,6 +20,7 @@ const defaultProps = {
 const IconMore = ({
     className,
     style,
+    ...props
 }) => {
     lastInstanceId += 1;
     const iconTitleId = `icon-more-title-${lastInstanceId}`;
@@ -29,6 +31,7 @@ const IconMore = ({
             style={style}
             viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
+            {...proxyDataProps(props)}
         >
             <title id={iconTitleId}>Icon More</title>
             <circle className="uir-icon-more-oval-1" cx="12" cy="3" r="2" />

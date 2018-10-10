@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import StyleObjectPropType from '../../prop-types/style';
+import { proxyDataProps } from '../../utils/data-props';
 import DateField from './DateField';
 import IconArrowLongRight from '../Icon/IconArrowLongRight';
 import './DateFieldRange.scss';
@@ -75,6 +76,7 @@ class DateFieldRange extends Component {
             <div
                 className={cx('uir-date-field-range', this.props.className)}
                 style={this.props.style}
+                {...proxyDataProps(this.props)}
             >
                 <DateField
                     label={this.props.fromLabel}

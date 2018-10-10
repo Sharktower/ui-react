@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import StyleObjectPropType from '../../prop-types/style';
+import { proxyDataProps } from '../../utils/data-props';
 import './AvatarCard.scss';
 
 const propTypes = {
@@ -43,6 +44,7 @@ function AvatarCard(props) {
                 props.className,
             )}
             style={props.style}
+            {...proxyDataProps(props)}
         >
             {profile}
             <div>
