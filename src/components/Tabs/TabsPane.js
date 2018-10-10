@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import { proxyDataProps } from '../../utils/data-props';
 import './TabsPane.scss';
 
 const propTypes = {
@@ -66,6 +67,7 @@ class TabsPane extends Component {
                 )}
                 ref={this.handleRef}
                 tabIndex="-1"
+                {...proxyDataProps(this.props)}
             >
                 {this.props.children}
             </section>
