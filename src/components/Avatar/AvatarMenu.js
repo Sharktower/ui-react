@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import StyleObjectPropType from '../../prop-types/style';
+import { proxyDataProps } from '../../utils/data-props';
 import AvatarMenuItem from './AvatarMenu/AvatarMenuItem';
 import AvatarMenuNav from './AvatarMenu/AvatarMenuNav';
 import { AvatarMenuPosition } from './AvatarMenu/AvatarMenuEnums';
@@ -69,6 +70,7 @@ class AvatarMenu extends Component {
                 this.props.className,
             )}
             style={this.props.style}
+            {...proxyDataProps(this.props)}
         >
             {this.augmentAvatar(this.props.avatar)}
             {this.state.open ? (

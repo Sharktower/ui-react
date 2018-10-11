@@ -3,6 +3,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import StyleObjectPropType from '../../prop-types/style';
 import ListPropType from '../../prop-types/list';
+import { proxyDataProps } from '../../utils/data-props';
 import { IconPriority } from './IconEnums';
 import './Icon.scss';
 
@@ -35,6 +36,7 @@ const IconTask = ({
     priority,
     isBlocked,
     title,
+    ...props
 }) => {
     lastInstanceId += 1;
     const iconTitleId = `icon-task-title-${lastInstanceId}`;
@@ -49,6 +51,7 @@ const IconTask = ({
             style={style}
             viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
+            {...proxyDataProps(props)}
         >
             <title id={iconTitleId}>{title}</title>
             <rect x="13.2" y="6.2" className="uir-icon-line-a" width="8.5" height="1.5" />

@@ -3,6 +3,7 @@ import { createElement } from 'react';
 import { merge } from 'lodash';
 import assertRequiredHelpers from './assertRequiredHelpers';
 import addsComponentClassName from './addsComponentClassName';
+import allowsDataProps from './allowsDataProps';
 import rendersChildren from './rendersChildren';
 import rendersTag from './rendersTag';
 import addsClassName from './addsClassName';
@@ -53,6 +54,10 @@ export default (Component, options = {}) => {
 
                 expect(wrapper).to.have.attr('style', 'width:2px;color:#ff0000;');
             });
+        });
+
+        describe('data- props', () => {
+            allowsDataProps(Component, options);
         });
 
         if (rendersAnyChildren) {

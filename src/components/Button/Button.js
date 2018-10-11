@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ElementOrStringPropType from '../../prop-types/element-or-string';
 import ListPropType from '../../prop-types/list';
 import StyleObjectPropType from '../../prop-types/style';
+import { proxyDataProps } from '../../utils/data-props';
 import { ButtonIconPosition, ButtonType, ButtonVariant } from './ButtonEnums';
 import './Button.scss';
 
@@ -176,6 +177,7 @@ class Button extends Component {
                 onClick={this.handleClick}
                 ref={this.handleRef}
                 tabIndex={this.props.tabIndex}
+                {...proxyDataProps(this.props)}
             >
                 {this.props.iconPosition === ButtonIconPosition.LEFT ? this.props.icon : null}
                 <span className="uir-button-content">

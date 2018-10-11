@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import StyleObjectPropType from '../../prop-types/style';
+import { proxyDataProps } from '../../utils/data-props';
 import './Icon.scss';
 
 let lastInstanceId = 0;
@@ -19,6 +20,7 @@ const defaultProps = {
 const IconPriority = ({
     className,
     style,
+    ...props
 }) => {
     lastInstanceId += 1;
     const iconTitleId = `icon-priority-title-${lastInstanceId}`;
@@ -29,6 +31,7 @@ const IconPriority = ({
             style={style}
             viewBox="0 1 24 24"
             aria-labelledby={iconTitleId}
+            {...proxyDataProps(props)}
         >
             <title id={iconTitleId}>Priority Icon</title>
             <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">

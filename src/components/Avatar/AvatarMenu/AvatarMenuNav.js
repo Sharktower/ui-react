@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import StyleObjectPropType from '../../../prop-types/style';
+import { proxyDataProps } from '../../../utils/data-props';
 
 const propTypes = {
     className: PropTypes.string,
@@ -24,6 +25,7 @@ const AvatarMenuNav = props => (
             props.className,
         )}
         style={props.style}
+        {...proxyDataProps(props)}
     >
         {props.children}
     </ul>

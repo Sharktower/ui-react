@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import { proxyDataProps } from '../../utils/data-props';
 import Button from '../Button/Button';
 import './TabsNavItem.scss';
 
@@ -29,6 +30,7 @@ const TabsNavItem = ({
     isDisabled,
     isSelected,
     onSelect,
+    ...props
 }) => (
     <Button
         className={cx(
@@ -40,6 +42,7 @@ const TabsNavItem = ({
         isDisabled={isDisabled}
         onClick={onSelect}
         variant="clear"
+        {...proxyDataProps(props)}
     >
         {children}
     </Button>

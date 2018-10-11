@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import sinon from 'sinon';
+import * as common from '../../../test/unit/commonTests';
 import Tabs from './Tabs';
 import TabsNav from './TabsNav';
 import TabsNavItem from './TabsNavItem';
@@ -23,17 +24,7 @@ describe('Tabs', () => {
         </Tabs>
     );
 
-    it('renders an HTML tag div', () => {
-        const wrapper = shallow(defaultTabs);
-
-        expect(wrapper).to.have.tagName('div');
-    });
-
-    it('renders with class .uir-tabs', () => {
-        const wrapper = shallow(defaultTabs);
-
-        expect(wrapper).to.have.className('uir-tabs');
-    });
+    common.isConformant(Tabs);
 
     it('contains correct number of tabs', () => {
         const wrapper = mount(defaultTabs);

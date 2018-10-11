@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import InitialsPropType from '../../prop-types/initials';
 import ListPropType from '../../prop-types/list';
 import StyleObjectPropType from '../../prop-types/style';
+import { proxyDataProps } from '../../utils/data-props';
 import { AvatarSize } from './AvatarEnums';
 import './Avatar.scss';
 
@@ -90,6 +91,7 @@ class Avatar extends Component {
                 onKeyDown={this.handleKeyDown}
                 tabIndex={this.props.tabIndex}
                 style={this.props.style}
+                {...proxyDataProps(this.props)}
             >
                 <span className="uir-avatar-inner">
                     {initials}

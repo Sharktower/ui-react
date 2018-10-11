@@ -216,5 +216,11 @@ When modifying a component we use the format \`uir-component--modifier\` e.g. \`
 Event callbacks provided to a component should be called after the component's internal state has been updated.
 
 It should be noted that we do not suppress callback errors.  You will need to handle your own errors.
+
+### \`data-\` props
+
+Props prefixed with \`data-\` are automatically passed on to the underlying component.
+
+This is useful for adding custom component IDs to use with testing frameworks, for example: \`data-testid="login-btn"\`
     `),
 );

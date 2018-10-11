@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import StyleObjectPropType from '../../prop-types/style';
+import { proxyDataProps } from '../../utils/data-props';
 import './Icon.scss';
 
 let lastInstanceId = 0;
@@ -22,6 +23,7 @@ const IconCalendar = ({
     className,
     style,
     title,
+    ...props
 }) => {
     lastInstanceId += 1;
     const iconTitleId = `icon-calendar-title-${lastInstanceId}`;
@@ -32,6 +34,7 @@ const IconCalendar = ({
             style={style}
             viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
+            {...proxyDataProps(props)}
         >
             <title id={iconTitleId}>{title}</title>
             <g>

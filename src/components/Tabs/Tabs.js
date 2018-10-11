@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import StyleObjectPropType from '../../prop-types/style';
+import { proxyDataProps } from '../../utils/data-props';
 import TabsNav from './TabsNav';
 import TabsNavItem from './TabsNavItem';
 import TabsPanes from './TabsPanes';
@@ -68,7 +69,11 @@ class Tabs extends Component {
 
     render() {
         return (
-            <div className={cx('uir-tabs', this.props.className)} style={this.props.style}>
+            <div
+                className={cx('uir-tabs', this.props.className)}
+                style={this.props.style}
+                {...proxyDataProps(this.props)}
+            >
                 {this.getTabsChildren()}
             </div>
         );

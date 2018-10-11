@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import StyleObjectPropType from '../../prop-types/style';
+import { proxyDataProps } from '../../utils/data-props';
 import './Breadcrumbs.scss';
 
 const SvgArrowRight = () => (
@@ -64,6 +65,7 @@ class Breadcrumbs extends Component {
                 )}
                 aria-label={this.props.ariaLabel}
                 style={this.props.style}
+                {...proxyDataProps(this.props)}
             >
                 {breadcrumbTrail}
             </div>

@@ -3,6 +3,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import StyleObjectPropType from '../../prop-types/style';
 import ListPropType from '../../prop-types/list';
+import { proxyDataProps } from '../../utils/data-props';
 import TextField from './TextField';
 import DateInlinePicker from './DateInlinePicker';
 import Tooltip from '../Tooltip/Tooltip';
@@ -155,6 +156,7 @@ class DateField extends Component {
                 ref={(ref) => { this.divRef = ref; }}
                 className={cx('uir-date-field', className)}
                 style={style}
+                {...proxyDataProps(this.props)}
             >
                 <Tooltip
                     tooltip={datePicker}
