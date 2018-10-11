@@ -1,4 +1,25 @@
-<!-- Last Updated: 2018-08-22 12:17:26 -->
+<!-- Last Updated: 2018-10-11 11:22:26 -->
+
+# UI React v3.7.0 (2018-10-11 11:22:26)
+
+## Allow data- props
+
+
+
+**Backwards Compatibility Implications**
+
+_None_
+
+**New Features**
+
+- Allow any `data-` prefixed props on all components
+
+**Bug Fixes**
+
+_None_
+
+
+
 
 # UI React v3.6.0 (2018-08-22 12:17:26)
 
