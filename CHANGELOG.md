@@ -6,41 +6,18 @@
 
 
 
-**Backwards Compatibility Implications** 
+**Backwards Compatibility Implications**
 
 _None_
 
-**New Features** 
+**New Features**
 
 - Allow any `data-` prefixed props on all components
 
-**Bug Fixes** 
+**Bug Fixes**
 
 _None_
 
-
-## Update webpack and karma dependencies
-
-
-
-**Backwards Compatibility Implications** 
-
-- Fixed class names of `IconEpic`, `IconInProgress`, `IconNotStarted`, `IconStory` and `IconTask`. This is a breaking change if anyone relied on the wrong class names.
-- Updated `webpack` to v4.17.0 - this shouldn't be a breaking change but it's something to be aware of.
-
-**New Features** 
-
-_None_
-
-**Bug Fixes** 
-
-- Fixed wrong icon class names
-- Fixed broken icon tests
-- Added missing tests for the `Tabs` component
-
-**Performance Improvements** 
-
-- Improves performance of unit tests
 
 
 
