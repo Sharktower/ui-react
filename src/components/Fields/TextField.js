@@ -166,6 +166,10 @@ class TextField extends Component {
         this.setState({ hasMouseOver: false });
     }
 
+    /*
+     * This is used to detect Chrome autofill
+     * For explanation see: https://medium.com/@brunn/detecting-autofilled-fields-in-javascript-aed598d25da7
+     */
     handleInputAnimationStart = (event) => {
         switch (event.animationName) {
         case 'uirOnAutoFillStart':
