@@ -287,8 +287,8 @@ class TextField extends Component {
     }
 
     render() {
-        const hasValue = this.state.isAutofilled ||
-            (this.state.value === 0 ? true : Boolean(this.state.value));
+        const hasValue =
+            this.state.isAutofilled || this.state.value === 0 || Boolean(this.state.value);
         const showLabel = (
             this.props.autoHideLabel === false ||
             this.state.hasFocus ||
