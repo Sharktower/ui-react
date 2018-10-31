@@ -107,12 +107,21 @@ class TextField extends Component {
         this.state = {
             hasFocus: false,
             hasMouseOver: false,
+            isAutofilled: false,
             showTooltip: false,
             value: props.value,
         };
 
         lastInstanceId += 1;
         this.uid = `text-field-${lastInstanceId}`;
+    }
+
+    componentDidMount() {
+        const { inputRef } = this;
+
+        if (inputRef && inputRef.addEventListener) {
+            inputRef.addEventListener('animationstart', this.handleInputAnimationStart);
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -155,6 +164,19 @@ class TextField extends Component {
 
     handleMouseLeave = () => {
         this.setState({ hasMouseOver: false });
+    }
+
+    handleInputAnimationStart = (event) => {
+        switch (event.animationName) {
+        case 'uirOnAutoFillStart':
+            this.setState({ isAutofilled: true });
+            break;
+        case 'uirOnAutoFillCancel':
+            this.setState({ isAutofilled: false });
+            break;
+        default:
+            break;
+        }
     }
 
     handleInputRef = (ref) => {
@@ -261,7 +283,8 @@ class TextField extends Component {
     }
 
     render() {
-        const hasValue = this.state.value === 0 ? true : Boolean(this.state.value);
+        const hasValue = this.state.isAutofilled ||
+            (this.state.value === 0 ? true : Boolean(this.state.value));
         const showLabel = (
             this.props.autoHideLabel === false ||
             this.state.hasFocus ||

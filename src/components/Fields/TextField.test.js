@@ -1,4 +1,4 @@
-/* global describe, expect, it, shallow, mount */
+/* global AnimationEvent, describe, expect, it, shallow, mount */
 import React from 'react';
 import sinon from 'sinon';
 import * as common from '../../../test/unit/commonTests';
@@ -467,6 +467,31 @@ describe('TextField', () => {
             const textField = mount(<TextField prefix="£" value={mockValue} />);
             textField.find(Button).simulate('click');
             expect(textField.state('value')).to.equal(mockValue);
+        });
+    });
+
+    describe('browser autofill', () => {
+        it('adds --has-value class when Chrome autofill is detected using CSS animations', () => {
+            const textField = mount(<TextField />);
+            const inputNode = textField.find('input').getDOMNode();
+            inputNode.dispatchEvent(new AnimationEvent('animationstart', { animationName: 'uirOnAutoFillStart' }));
+            expect(textField).to.have.className('uir-text-field--has-value');
+        });
+
+        it('removes a previously added --has-value class when Chrome autofill removal is detected', () => {
+            const textField = mount(<TextField />);
+            const inputNode = textField.find('input').getDOMNode();
+            inputNode.dispatchEvent(new AnimationEvent('animationstart', { animationName: 'uirOnAutoFillStart' }));
+            expect(textField).to.have.className('uir-text-field--has-value');
+            inputNode.dispatchEvent(new AnimationEvent('animationstart', { animationName: 'uirOnAutoFillCancel' }));
+            expect(textField).not.to.have.className('uir-text-field--has-value');
+        });
+
+        it('does not add a --has-value class when an unrelated CSS animation is detected', () => {
+            const textField = mount(<TextField />);
+            const inputNode = textField.find('input').getDOMNode();
+            inputNode.dispatchEvent(new AnimationEvent('animationstart', { animationName: 'test' }));
+            expect(textField).not.to.have.className('uir-text-field--has-value');
         });
     });
 });
