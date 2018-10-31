@@ -135,8 +135,32 @@ $textFieldLabelColor: $charcoal !default;
         border: 0;
         outline: none;
 
+        @keyframes uirOnAutoFillStart {
+            // Use empty animation definitions to ensure they are included in production CSS
+            from {/**/}
+
+            to {/**/}
+        }
+
+        @keyframes uirOnAutoFillCancel {
+            // Use empty animation definitions to ensure they are included in production CSS
+            from {/**/}
+
+            to {/**/}
+        }
+
         &:invalid {
             box-shadow: none; // hide Firefox invalid shadow
+        }
+
+        &:-webkit-autofill {
+            // Expose a hook for JS when auto fill is shown.
+            animation-name: uirOnAutoFillStart;
+        }
+
+        &:not(:-webkit-autofill) {
+            // Expose a hook for JS when auto fill is removed
+            animation-name: uirOnAutoFillCancel;
         }
     }
 
