@@ -1,4 +1,29 @@
-<!-- Last Updated: 2018-10-11 11:22:26 -->
+<!-- Last Updated: 2018-11-01 11:15:08 -->
+
+# UI React v3.7.1 (2018-11-01 11:15:08)
+
+## Fixes TextField label overlapping the autofilled value in Chrome
+
+
+
+**Backwards Compatibility Implications** 
+
+_None_
+
+**New Features** 
+
+_None_
+
+**Bug Fixes** 
+
+- Fixes `TextField` label overlapping the autofilled field value in Chrome
+Thanks to the Klarna team for the solution: https://medium.com/@brunn/detecting-autofilled-fields-in-javascript-aed598d25da7
+Their implementation can be found here:
+https://github.com/klarna/ui/blob/v4.10.0/Field/index.jsx#L104-L114
+https://github.com/klarna/ui/blob/v4.10.0/Field/styles.scss#L228-L241
+
+
+
 
 # UI React v3.7.0 (2018-10-11 11:22:26)
 
