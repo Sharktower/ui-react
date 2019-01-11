@@ -29,7 +29,7 @@ const IconProject = ({
         <svg
             className={cx('uir-icon uir-icon-project', className)}
             style={style}
-            viewBox="-4 -1 24 24"
+            viewBox="-4 0 24 24"
             aria-labelledby={iconTitleId}
             {...proxyDataProps(props)}
         >
