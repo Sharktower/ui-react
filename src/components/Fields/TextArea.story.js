@@ -207,3 +207,17 @@ stories.add(
         </div>,
     ),
 );
+
+stories.add(
+    'Autocomplete',
+    storyWrapper(
+        `
+\`autoComplete\` prop allows you to control whether the browser should autocomplete input value
+        `,
+        <TextArea label="Description" name="description" autoComplete="on" />,
+        <div>
+            <TextArea label="Description" name="description" autoComplete="on" />,
+            <TextArea label="No autocomplete description" name="description" autoComplete="off" />
+        </div>,
+    ),
+);

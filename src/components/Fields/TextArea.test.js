@@ -173,6 +173,13 @@ describe('TextArea', () => {
         mount(<TextArea />);
     });
 
+    it('accepts autoComplete prop', () => {
+        const textArea = mount(<TextArea autoComplete="off" />);
+        const input = textArea.find('textarea');
+
+        expect(input.prop('autoComplete')).to.equal('off');
+    });
+
     ['blur', 'change', 'focus', 'keyDown', 'keyPress', 'keyUp'].forEach((event) => {
         it(`triggers handler on textarea ${event}`, () => {
             const spy = sinon.spy();
