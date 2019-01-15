@@ -1,4 +1,42 @@
-<!-- Last Updated: 2018-11-01 11:15:08 -->
+<!-- Last Updated: 2019-01-15 16:57:16 -->
+
+# UI React v3.8.0 (2019-01-15 16:57:16)
+
+## Add autoComplete prop to TextField and TextArea
+
+
+
+**Backwards Compatibility Implications** 
+
+_None_
+
+**New Features** 
+
+- Added `autoComplete` prop to `TextField` and `TextArea`
+
+**Bug Fixes** 
+
+_None_
+
+
+## Fix missing icons exports
+
+
+
+**Backwards Compatibility Implications** 
+
+_None_
+
+**New Features** 
+
+_None_
+
+**Bug Fixes** 
+
+- Add missing `/lib` exports for the latest icons (added in https://github.com/Mudano/ui-react/pull/126 ) to ensure they can be imported directly from `@mudano/ui-react`
+
+
+
 
 # UI React v3.7.1 (2018-11-01 11:15:08)
 
