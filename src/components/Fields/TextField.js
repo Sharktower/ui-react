@@ -30,7 +30,6 @@ const propTypes = {
     max: PropTypes.number,
     min: PropTypes.number,
     name: PropTypes.string,
-    autoComplete: PropTypes.oneOf(['on', 'off']),
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onEnterKey: PropTypes.func,
@@ -79,7 +78,6 @@ const defaultProps = {
     max: null,
     min: null,
     name: null,
-    autoComplete: null,
     onBlur: null,
     onChange: null,
     onEnterKey: null,
@@ -399,7 +397,6 @@ class TextField extends Component {
                             max={this.props.max}
                             min={this.props.min}
                             name={this.props.name}
-                            autoComplete={this.props.autoComplete}
                             onChange={this.handleInputChange}
                             onBlur={this.handleInputBlur}
                             onFocus={this.handleInputFocus}

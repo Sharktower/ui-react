@@ -23,7 +23,6 @@ const propTypes = {
     isValid: PropTypes.bool,
     label: PropTypes.string,
     name: PropTypes.string,
-    autoComplete: PropTypes.oneOf(['on', 'off']),
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onEnterKey: PropTypes.func,
@@ -52,7 +51,6 @@ const defaultProps = {
     isValid: null,
     label: null,
     name: null,
-    autoComplete: null,
     onBlur: null,
     onChange: null,
     onEnterKey: null,
@@ -249,7 +247,6 @@ class TextArea extends Component {
                             disabled={this.props.isDisabled}
                             id={this.uid}
                             name={this.props.name}
-                            autoComplete={this.props.autoComplete}
                             onChange={this.handleInputChange}
                             onBlur={this.handleInputBlur}
                             onFocus={this.handleInputFocus}
