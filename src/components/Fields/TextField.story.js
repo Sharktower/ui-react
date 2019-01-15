@@ -409,7 +409,7 @@ stories.add(
         `,
         <TextField label="Username" name="username" autoComplete="on" />,
         <div>
-            <TextField label="Username" name="username" autoComplete="on" />,
+            <TextField label="Username" name="username" autoComplete="on" />
             <TextField label="No autocomplete" name="username" autoComplete="off" />
         </div>,
     ),
