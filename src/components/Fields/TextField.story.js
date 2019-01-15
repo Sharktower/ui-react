@@ -400,3 +400,17 @@ _NB: if you add a prefix and an icon, only the prefix will be displayed_
         </div>,
     ),
 );
+
+stories.add(
+    'Autocomplete',
+    storyWrapper(
+        `
+\`autoComplete\` prop allows you to control whether the browser should autocomplete input value
+        `,
+        <TextField label="Username" name="username" autoComplete="on" />,
+        <div>
+            <TextField label="Username" name="username" autoComplete="on" />
+            <TextField label="No autocomplete" name="username" autoComplete="off" />
+        </div>,
+    ),
+);
