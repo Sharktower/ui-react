@@ -12,6 +12,7 @@ import requiredIconAndTooltip from './RequiredIconAndTooltip';
 import './TextArea.scss';
 
 const propTypes = {
+    autoComplete: PropTypes.oneOf(['on', 'off']),
     autoHideLabel: PropTypes.bool,
     className: PropTypes.string,
     componentRef: PropTypes.func,
@@ -40,6 +41,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    autoComplete: null,
     autoHideLabel: false,
     className: null,
     componentRef: null,
@@ -243,6 +245,7 @@ class TextArea extends Component {
                     {this.wrapInputWithTooltip(
                         <textarea
                             aria-invalid={this.props.isValid === false}
+                            autoComplete={this.props.autoComplete}
                             className="uir-text-area-input"
                             disabled={this.props.isDisabled}
                             id={this.uid}
