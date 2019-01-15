@@ -426,13 +426,6 @@ describe('TextField', () => {
         expect(textField.instance().inputRef.selectionEnd).to.equal(2);
     });
 
-    it('accepts autoComplete prop', () => {
-        const textField = mount(<TextField autoComplete="off" />);
-        const input = textField.find('input');
-
-        expect(input.prop('autoComplete')).to.equal('off');
-    });
-
     describe('prefix', () => {
         it('displays a prefix if value present', () => {
             const textField = shallow(<TextField prefix="£" value="test" />);
