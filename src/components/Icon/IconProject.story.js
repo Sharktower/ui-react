@@ -12,6 +12,6 @@ stories.add(
         `
 SVG project icon
         `,
-        <IconProject />,
+        <IconProject title="Project" />,
     ),
 );
