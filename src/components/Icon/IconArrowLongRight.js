@@ -10,16 +10,19 @@ let lastInstanceId = 0;
 const propTypes = {
     className: PropTypes.string,
     style: StyleObjectPropType,
+    title: PropTypes.string,
 };
 
 const defaultProps = {
     className: null,
     style: null,
+    title: 'Right Arrow Icon',
 };
 
 const IconArrowLongRight = ({
     className,
     style,
+    title,
     ...props
 }) => {
     lastInstanceId += 1;
@@ -33,7 +36,7 @@ const IconArrowLongRight = ({
             aria-labelledby={iconTitleId}
             {...proxyDataProps(props)}
         >
-            <title id={iconTitleId}>Right Arrow Icon</title>
+            <title id={iconTitleId}>{title}</title>
             <g fill="none" fillRule="evenodd">
                 <path className="uir-icon-path-fill" d="M3 12h18v1H3z" />
                 <path className="uir-icon-path-stroke" d="M14.071 5.5l7.071 7.071-7.07 7.071" />

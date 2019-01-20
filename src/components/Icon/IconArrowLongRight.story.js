@@ -12,6 +12,6 @@ stories.add(
         `
 SVG arrow (long, right) icon
         `,
-        <IconArrowLongRight />,
+        <IconArrowLongRight title="Right Arrow" />,
     ),
 );
