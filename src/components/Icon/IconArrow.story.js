@@ -12,7 +12,7 @@ stories.add(
         `
 SVG arrow icon
         `,
-        <IconArrow />,
+        <IconArrow title="Arrow" />,
     ),
 );
 
