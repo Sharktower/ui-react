@@ -10,16 +10,19 @@ let lastInstanceId = 0;
 const propTypes = {
     className: PropTypes.string,
     style: StyleObjectPropType,
+    title: PropTypes.string,
 };
 
 const defaultProps = {
     className: null,
     style: null,
+    title: 'Clear Icon',
 };
 
 const IconClear = ({
     className,
     style,
+    title,
     ...props
 }) => {
     lastInstanceId += 1;
@@ -33,7 +36,7 @@ const IconClear = ({
             aria-labelledby={iconTitleId}
             {...proxyDataProps(props)}
         >
-            <title id={iconTitleId}>Clear Icon</title>
+            <title id={iconTitleId}>{title}</title>
             <path d="M12 10.6L7.2 5.8 5.8 7.2l4.8 4.8-4.8 4.8 1.4 1.4 4.8-4.8 4.8 4.8 1.4-1.4-4.8-4.8 4.8-4.8-1.4-1.4-4.8 4.8zM12 .5C18.3.5 23.5 5.6 23.5 12c0 6.3-5.1 11.5-11.5 11.5C5.7 23.5.5 18.4.5 12 .5 5.7 5.7.5 12 .5z" />
         </svg>
     );
