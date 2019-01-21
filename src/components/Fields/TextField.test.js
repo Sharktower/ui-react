@@ -182,6 +182,13 @@ describe('TextField', () => {
         expect(textField.find('input').prop('step')).to.equal(3);
     });
 
+    it('allows minLength and maxLength to be set', () => {
+        const textField = shallow(<TextField label="My Input" type="text" minLength={5} maxLength={15} />);
+        expect(textField.find('input').prop('type')).to.equal('text');
+        expect(textField.find('input').prop('minLength')).to.equal(5);
+        expect(textField.find('input').prop('maxLength')).to.equal(15);
+    });
+
     ['blur', 'change', 'focus', 'keyDown', 'keyPress', 'keyUp'].forEach((event) => {
         it(`triggers handler on input ${event}`, () => {
             const spy = sinon.spy();

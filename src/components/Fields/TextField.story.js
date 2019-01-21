@@ -224,6 +224,22 @@ stories.add(
 );
 
 stories.add(
+    'Min and Max Length',
+    storyWrapper(
+        `
+\`minLength\` and \`maxLength\` allow you to set the minimum and maximum length of the input value.
+
+_NB: \`minLength\` does not visibly change the Component when the input value isn't long enough. Client code should handle this with \`isValid\`._
+        `,
+        <TextField label="Max Length 5" maxLength={5} />,
+        <div>
+            <TextField label="Min Length 5" minLength={5} />
+            <TextField label="Min Length 5, Max Length 15" minLength={5} maxLength={15} />
+        </div>,
+    ),
+);
+
+stories.add(
     'Validation',
     storyWrapper(
         '`isValid` allows you to control input validation state.',
