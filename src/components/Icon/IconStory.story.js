@@ -12,7 +12,7 @@ stories.add(
         `
 SVG story icon
         `,
-        <IconStory />,
+        <IconStory title="Story" />,
         <div>
             <IconStory priority="none" />
             <IconStory priority="low" />
