@@ -1,4 +1,44 @@
-<!-- Last Updated: 2019-01-15 16:57:16 -->
+<!-- Last Updated: 2019-01-21 16:23:02 -->
+
+# UI React v3.9.0 (2019-01-21 16:23:02)
+
+## Add minLength and maxLength props to TextField
+
+
+
+**Backwards Compatibility Implications** 
+
+_None_
+
+**New Features** 
+
+- Added `minLength` and `maxLength` props to `TextField`
+
+**Note**: Because we allow client code to completely control (e.g.) validation state on TextField, there isn't an easy way of showing when an input value is too short. This is reflected in the updated documentation.
+
+**Bug Fixes** 
+
+_None_
+
+
+## Add autoComplete prop to TextField and TextArea
+
+
+
+**Backwards Compatibility Implications** 
+
+_None_
+
+**New Features** 
+
+- Added `autoComplete` prop to `TextField` and `TextArea`
+
+**Bug Fixes** 
+
+_None_
+
+
+
 
 # UI React v3.8.0 (2019-01-15 16:57:16)
 
