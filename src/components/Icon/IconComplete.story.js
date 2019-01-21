@@ -12,6 +12,6 @@ stories.add(
         `
 SVG complete icon
         `,
-        <IconComplete />,
+        <IconComplete title="Complete" />,
     ),
 );
