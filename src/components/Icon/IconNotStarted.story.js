@@ -12,6 +12,6 @@ stories.add(
         `
 SVG not started icon
         `,
-        <IconNotStarted />,
+        <IconNotStarted title="Not Started" />,
     ),
 );
