@@ -5,8 +5,7 @@ import IconTask from './IconTask';
 import { IconPriority } from './IconEnums';
 
 describe('IconTask', () => {
-    common.isConformant(IconTask, { tagName: 'svg' });
-    common.addsClassName(IconTask, 'uir-icon');
+    common.isConformantIcon(IconTask);
 
     it('sets blocked', () => {
         const wrapper = shallow((

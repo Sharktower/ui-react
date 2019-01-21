@@ -12,7 +12,7 @@ stories.add(
         `
 SVG task icon
         `,
-        <IconTask />,
+        <IconTask title="Task" />,
         <div>
             <IconTask priority="none" />
             <IconTask priority="low" />
