@@ -6,34 +6,17 @@
 
 
 
-**Backwards Compatibility Implications** 
+**Backwards Compatibility Implications**
 
 _None_
 
-**New Features** 
+**New Features**
 
 - Added `minLength` and `maxLength` props to `TextField`
 
 **Note**: Because we allow client code to completely control (e.g.) validation state on TextField, there isn't an easy way of showing when an input value is too short. This is reflected in the updated documentation.
 
-**Bug Fixes** 
-
-_None_
-
-
-## Add autoComplete prop to TextField and TextArea
-
-
-
-**Backwards Compatibility Implications** 
-
-_None_
-
-**New Features** 
-
-- Added `autoComplete` prop to `TextField` and `TextArea`
-
-**Bug Fixes** 
+**Bug Fixes**
 
 _None_
 
@@ -46,15 +29,15 @@ _None_
 
 
 
-**Backwards Compatibility Implications** 
+**Backwards Compatibility Implications**
 
 _None_
 
-**New Features** 
+**New Features**
 
 - Added `autoComplete` prop to `TextField` and `TextArea`
 
-**Bug Fixes** 
+**Bug Fixes**
 
 _None_
 
@@ -63,15 +46,15 @@ _None_
 
 
 
-**Backwards Compatibility Implications** 
+**Backwards Compatibility Implications**
 
 _None_
 
-**New Features** 
+**New Features**
 
 _None_
 
-**Bug Fixes** 
+**Bug Fixes**
 
 - Add missing `/lib` exports for the latest icons (added in https://github.com/Mudano/ui-react/pull/126 ) to ensure they can be imported directly from `@mudano/ui-react`
 
@@ -84,15 +67,15 @@ _None_
 
 
 
-**Backwards Compatibility Implications** 
+**Backwards Compatibility Implications**
 
 _None_
 
-**New Features** 
+**New Features**
 
 _None_
 
-**Bug Fixes** 
+**Bug Fixes**
 
 - Fixes `TextField` label overlapping the autofilled field value in Chrome
 Thanks to the Klarna team for the solution: https://medium.com/@brunn/detecting-autofilled-fields-in-javascript-aed598d25da7
