@@ -10,16 +10,19 @@ let lastInstanceId = 0;
 const propTypes = {
     className: PropTypes.string,
     style: StyleObjectPropType,
+    title: PropTypes.string,
 };
 
 const defaultProps = {
     className: null,
     style: null,
+    title: 'Dashboard Icon',
 };
 
 const IconDashboard = ({
     className,
     style,
+    title,
     ...props
 }) => {
     lastInstanceId += 1;
@@ -33,7 +36,7 @@ const IconDashboard = ({
             aria-labelledby={iconTitleId}
             {...proxyDataProps(props)}
         >
-            <title id={iconTitleId}>Dashboard Icon</title>
+            <title id={iconTitleId}>{title}</title>
             <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                 <g fillRule="nonzero">
                     <path className="uir-icon-path-fill" fillOpacity="0.5" transform="translate(0,0)" d="M8 1.155L1.206 5.077v7.846L8 16.845l6.794-3.922V5.077L8 1.155zM8 0l7.794 4.5v9L8 18 .206 13.5v-9L8 0z" />
