@@ -12,6 +12,6 @@ stories.add(
         `
 SVG search icon
         `,
-        <IconSearch />,
+        <IconSearch title="Search" />,
     ),
 );

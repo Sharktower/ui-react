@@ -10,16 +10,19 @@ let lastInstanceId = 0;
 const propTypes = {
     className: PropTypes.string,
     style: StyleObjectPropType,
+    title: PropTypes.string,
 };
 
 const defaultProps = {
     className: null,
     style: null,
+    title: 'Search Icon',
 };
 
 const IconSearch = ({
     className,
     style,
+    title,
     ...props
 }) => {
     lastInstanceId += 1;
@@ -33,7 +36,7 @@ const IconSearch = ({
             aria-labelledby={iconTitleId}
             {...proxyDataProps(props)}
         >
-            <title id={iconTitleId}>Search Icon</title>
+            <title id={iconTitleId}>{title}</title>
             <g>
                 <path transform="rotate(-45.001 -47.337 -476.979)" d="M-351.6-81.4h1v6.5h-1z" />
                 <path transform="translate(371 98)" d="M-361.5-79.8c-4.8 0-8.7-3.9-8.7-8.7s3.9-8.7 8.7-8.7 8.7 3.9 8.7 8.7-3.9 8.7-8.7 8.7zm0-16.4c-4.2 0-7.7 3.5-7.7 7.7s3.5 7.7 7.7 7.7 7.7-3.5 7.7-7.7-3.4-7.7-7.7-7.7z" />
