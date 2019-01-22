@@ -10,16 +10,19 @@ let lastInstanceId = 0;
 const propTypes = {
     className: PropTypes.string,
     style: StyleObjectPropType,
+    title: PropTypes.string,
 };
 
 const defaultProps = {
     className: null,
     style: null,
+    title: 'Project Icon',
 };
 
 const IconProject = ({
     className,
     style,
+    title,
     ...props
 }) => {
     lastInstanceId += 1;
@@ -29,13 +32,13 @@ const IconProject = ({
         <svg
             className={cx('uir-icon uir-icon-project', className)}
             style={style}
-            viewBox="-4 -1 24 24"
+            viewBox="0 0 24 24"
             aria-labelledby={iconTitleId}
             {...proxyDataProps(props)}
         >
-            <title id={iconTitleId}>Project Icon</title>
+            <title id={iconTitleId}>{title}</title>
             <g stroke="none" strokeWidth="1" fillRule="evenodd">
-                <path d="M8,1.155 L1.206,5.077 L1.206,12.923 L8,16.845 L14.794,12.923 L14.794,5.077 L8,1.155 Z M8,0 L15.794,4.5 L15.794,13.5 L8,18 L0.206,13.5 L0.206,4.5 L8,0 Z" fillRule="nonzero" />
+                <path d="M12 3.185L5.027 7.212v8.052L12 19.29l6.974-4.026V7.212L12 3.185zM12 2l8 4.619v9.238l-8 4.619-8-4.619V6.619L12 2z" />
             </g>
         </svg>
     );

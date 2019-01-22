@@ -29,7 +29,9 @@ const propTypes = {
     isValid: PropTypes.bool,
     label: PropTypes.string,
     max: PropTypes.number,
+    maxLength: PropTypes.number,
     min: PropTypes.number,
+    minLength: PropTypes.number,
     name: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
@@ -78,7 +80,9 @@ const defaultProps = {
     isValid: null,
     label: null,
     max: null,
+    maxLength: null,
     min: null,
+    minLength: null,
     name: null,
     onBlur: null,
     onChange: null,
@@ -398,7 +402,9 @@ class TextField extends Component {
                             disabled={this.props.isDisabled}
                             id={this.uid}
                             max={this.props.max}
+                            maxLength={this.props.maxLength}
                             min={this.props.min}
+                            minLength={this.props.minLength}
                             name={this.props.name}
                             onChange={this.handleInputChange}
                             onBlur={this.handleInputBlur}
