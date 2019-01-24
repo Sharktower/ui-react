@@ -12,6 +12,6 @@ stories.add(
         `
 SVG notification icon
         `,
-        <IconNotification />,
+        <IconNotification title="Notification" />,
     ),
 );

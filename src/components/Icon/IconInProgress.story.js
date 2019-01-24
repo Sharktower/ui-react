@@ -12,6 +12,6 @@ stories.add(
         `
 SVG in progress icon
         `,
-        <IconInProgress />,
+        <IconInProgress title="In Progress" />,
     ),
 );

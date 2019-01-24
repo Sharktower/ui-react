@@ -10,16 +10,19 @@ let lastInstanceId = 0;
 const propTypes = {
     className: PropTypes.string,
     style: StyleObjectPropType,
+    title: PropTypes.string,
 };
 
 const defaultProps = {
     className: null,
     style: null,
+    title: 'Priority Icon',
 };
 
 const IconPriority = ({
     className,
     style,
+    title,
     ...props
 }) => {
     lastInstanceId += 1;
@@ -33,7 +36,7 @@ const IconPriority = ({
             aria-labelledby={iconTitleId}
             {...proxyDataProps(props)}
         >
-            <title id={iconTitleId}>Priority Icon</title>
+            <title id={iconTitleId}>{title}</title>
             <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                 <g fillRule="nonzero">
                     <polygon className="uir-icon-path-fill" points="12 19.5857864 16.7832395 14.802547 12.4460456 6.12815913 13 5 18 15 12 21 6 15 12 3 12.559017 4.11803399 7.21676051 14.802547" />

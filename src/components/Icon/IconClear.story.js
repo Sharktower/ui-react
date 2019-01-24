@@ -12,6 +12,6 @@ stories.add(
         `
 SVG clear icon
         `,
-        <IconClear />,
+        <IconClear title="Clear" />,
     ),
 );

@@ -13,6 +13,6 @@ stories.add(
 SVG "More" icon
 Use this icon to indicate extra content, for example extra options in a menu.
         `,
-        <IconMore />,
+        <IconMore title="More" />,
     ),
 );

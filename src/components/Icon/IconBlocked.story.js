@@ -12,6 +12,6 @@ stories.add(
         `
 SVG blocked icon
         `,
-        <IconBlocked />,
+        <IconBlocked title="Blocked" />,
     ),
 );

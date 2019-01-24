@@ -10,16 +10,19 @@ let lastInstanceId = 0;
 const propTypes = {
     className: PropTypes.string,
     style: StyleObjectPropType,
+    title: PropTypes.string,
 };
 
 const defaultProps = {
     className: null,
     style: null,
+    title: 'Icon More',
 };
 
 const IconMore = ({
     className,
     style,
+    title,
     ...props
 }) => {
     lastInstanceId += 1;
@@ -33,7 +36,7 @@ const IconMore = ({
             aria-labelledby={iconTitleId}
             {...proxyDataProps(props)}
         >
-            <title id={iconTitleId}>Icon More</title>
+            <title id={iconTitleId}>{title}</title>
             <circle className="uir-icon-more-oval-1" cx="12" cy="3" r="2" />
             <circle className="uir-icon-more-oval-2" cx="12" cy="12" r="2" />
             <circle className="uir-icon-more-oval-3" cx="12" cy="21" r="2" />

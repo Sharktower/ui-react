@@ -3,6 +3,7 @@ export { default as addsComponentClassName } from './addsComponentClassName';
 export { default as allowsDataProps } from './allowsDataProps';
 export { default as assertRequiredHelpers } from './assertRequiredHelpers';
 export { default as isConformant } from './isConformant';
+export { default as isConformantIcon } from './isConformantIcon';
 export { default as noClassNameFromUndefinedProp } from './noClassNameFromUndefinedProp';
 export { default as propKeyToClassName } from './propKeyToClassName';
 export { default as rendersChildren } from './rendersChildren';

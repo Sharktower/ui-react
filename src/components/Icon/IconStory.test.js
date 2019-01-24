@@ -5,8 +5,7 @@ import IconStory from './IconStory';
 import { IconPriority } from './IconEnums';
 
 describe('IconStory', () => {
-    common.isConformant(IconStory, { tagName: 'svg' });
-    common.addsClassName(IconStory, 'uir-icon');
+    common.isConformantIcon(IconStory);
 
     it('sets blocked', () => {
         const wrapper = shallow((

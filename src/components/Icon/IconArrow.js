@@ -10,16 +10,19 @@ let lastInstanceId = 0;
 const propTypes = {
     className: PropTypes.string,
     style: StyleObjectPropType,
+    title: PropTypes.string,
 };
 
 const defaultProps = {
     className: null,
     style: null,
+    title: 'Arrow Icon',
 };
 
 const IconArrow = ({
     className,
     style,
+    title,
     ...props
 }) => {
     lastInstanceId += 1;
@@ -33,7 +36,7 @@ const IconArrow = ({
             aria-labelledby={iconTitleId}
             {...proxyDataProps(props)}
         >
-            <title id={iconTitleId}>Arrow Icon</title>
+            <title id={iconTitleId}>{title}</title>
             <path d="M 13.1 15.319 L 21.9 6.521 L 23 7.621 L 14.2 16.42 L 13.1 15.319 Z  M 1 7.621 L 2.1 6.521 L 13.1 17.52 L 12 18.619 L 1 7.621 Z" fillRule="evenodd" />
         </svg>
     );

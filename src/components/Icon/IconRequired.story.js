@@ -12,6 +12,6 @@ stories.add(
         `
 SVG required icon
         `,
-        <IconRequired />,
+        <IconRequired title="Required" />,
     ),
 );
