@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
 import storyWrapper from '../../storybook-addons/storyWrapper';
 import TextArea from './TextArea';
@@ -10,6 +10,44 @@ const multilineText = `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 Velit ipsam, nesciunt doloribus, aspernatur a itaque assumenda odit alias rem dignissimos culpa error magnam veniam cupiditate repellendus nam id perferendis sit.
 
 Velit ipsam, nesciunt doloribus, aspernatur a itaque assumenda odit alias rem dignissimos culpa error magnam veniam cupiditate repellendus nam id perferendis sit.`;
+
+const MAX_COMMENT_LENGTH = 50;
+
+class CharartersLimitDemo extends Component {
+    state = {
+        isValid: true,
+        comment: '',
+        errorMessage: '',
+    }
+
+    handleCommentChange(value) {
+        if (value.length > MAX_COMMENT_LENGTH) {
+            this.setState({
+                isValid: false,
+                errorMessage: `Comment should have ${MAX_COMMENT_LENGTH} characters or fewer`,
+            });
+            return;
+        }
+
+        this.setState({
+            comment: value,
+            isValid: true,
+            errorMessage: '',
+        });
+    }
+
+    render() {
+        return (
+            <TextArea
+                label="Input with characters limit error"
+                tooltipError={this.state.errorMessage}
+                isValid={this.state.isValid}
+                value={this.state.comment}
+                onChange={value => this.handleCommentChange(value)}
+            />
+        );
+    }
+}
 
 stories.add(
     'Overview',
@@ -172,6 +210,7 @@ _NB: tooltipError will ONLY be displayed if isValid is false._
                 label="Input with a hint"
                 tooltipHint="My Example Hint"
             />
+            <CharartersLimitDemo />
         </div>,
     ),
 );
