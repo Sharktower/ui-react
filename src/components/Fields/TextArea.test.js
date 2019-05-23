@@ -335,7 +335,7 @@ describe('TextArea', () => {
         expect(textField.instance().inputRef.focus).to.be.called();
     });
 
-    it('fixInputFocus sets input the selection to the last character', () => {
+    it('fixInputFocus sets the input selection to the last character', () => {
         const textField = mount(<TextArea />);
         textField.instance().inputRef = {
             focus: sinon.spy(),
