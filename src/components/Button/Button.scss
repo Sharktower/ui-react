@@ -14,10 +14,10 @@
     $button-background-color-focus: rgba($charcoal, .2) !default;
     $button-background-color-active: rgba($charcoal, .1) !default;
     $button-background-color-active-hover: rgba($charcoal, .05) !default;
-    $button-primary-background-top: #951b81 !default;
-    $button-primary-background-bottom: #e6007e !default;
-    $button-primary-background-top-focus: darken($button-primary-background-top, 10%) !default;
-    $button-primary-background-bottom-focus: darken($button-primary-background-top, 10%) !default;
+    $button-primary-background-start: #951b81 !default;
+    $button-primary-background-end: #e6007e !default;
+    $button-primary-background-start-focus: darken($button-primary-background-start, 10%) !default;
+    $button-primary-background-end-focus: darken($button-primary-background-start, 10%) !default;
     $button-icon-width: $base-font-size + 4 !default;
     $button-icon-height: $base-font-size + 4 !default;
 
@@ -129,18 +129,18 @@
     // type=primary prop
     &--primary {
         color: #fff;
-        background-image: linear-gradient(85deg, $button-primary-background-top, $button-primary-background-bottom);
+        background-image: linear-gradient(85deg, $button-primary-background-start, $button-primary-background-end);
         border-radius: 2px;
 
         &:hover {
             color: #fff;
-            background-image: linear-gradient(85deg, $button-primary-background-top, $button-primary-background-top);
+            background-image: linear-gradient(85deg, $button-primary-background-start, $button-primary-background-end);
             box-shadow: 0 0 12px 0 rgba(47, 40, 51, .3);
         }
 
         &:focus {
             color: #fff;
-            background-image: linear-gradient(85deg, $button-primary-background-top-focus, $button-primary-background-bottom-focus);
+            background-image: linear-gradient(85deg, $button-primary-background-start-focus, $button-primary-background-end-focus);
             box-shadow: 0 0 12px 0 rgba(47, 40, 51, .3);
         }
 
@@ -200,7 +200,7 @@
         overflow: visible;
         line-height: 1.5;
         color: #fff;
-        background-image: linear-gradient(to bottom, $button-primary-background-top 0%, $button-primary-background-bottom 100%);
+        background-image: linear-gradient(to bottom, $button-primary-background-start 0%, $button-primary-background-end 100%);
 
         &:focus,
         &:hover {
