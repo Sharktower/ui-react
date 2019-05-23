@@ -104,14 +104,15 @@ class TextArea extends Component {
 
         const isShowingErrorTooltip = !isValid && !!tooltipError;
         const wasShowingErrorTooltip = !prevProps.isValid && !!prevProps.tooltipError;
+
         if (
             (hasFocus && isShowingErrorTooltip && !wasShowingErrorTooltip) ||
             (hasFocus && !isShowingErrorTooltip && wasShowingErrorTooltip)
         ) {
+            autosize.destroy(this.inputRef);
+            autosize(this.inputRef);
             this.fixInputFocus();
         }
-        autosize.destroy(this.inputRef);
-        autosize(this.inputRef);
     }
 
     fixInputFocus() {

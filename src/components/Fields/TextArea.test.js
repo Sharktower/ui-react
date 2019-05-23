@@ -327,7 +327,7 @@ describe('TextArea', () => {
         expect(textField.instance().fixInputFocus).to.be.called();
     });
 
-    it('fixInputFocs calls input ref focus', () => {
+    it('fixInputFocus calls input ref focus', () => {
         const textField = mount(<TextArea />);
         sinon.spy(textField.instance().inputRef, 'focus');
         textField.instance().fixInputFocus();
@@ -335,7 +335,7 @@ describe('TextArea', () => {
         expect(textField.instance().inputRef.focus).to.be.called();
     });
 
-    it('fixInputFocs sets input the selection to the last character', () => {
+    it('fixInputFocus sets input the selection to the last character', () => {
         const textField = mount(<TextArea />);
         textField.instance().inputRef = {
             focus: sinon.spy(),

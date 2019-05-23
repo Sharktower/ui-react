@@ -13,7 +13,7 @@ Velit ipsam, nesciunt doloribus, aspernatur a itaque assumenda odit alias rem di
 
 const MAX_COMMENT_LENGTH = 50;
 
-class CharartersLimitDemo extends Component {
+class CharactersLimitDemo extends Component {
     state = {
         isValid: true,
         comment: '',
@@ -210,7 +210,7 @@ _NB: tooltipError will ONLY be displayed if isValid is false._
                 label="Input with a hint"
                 tooltipHint="My Example Hint"
             />
-            <CharartersLimitDemo />
+            <CharactersLimitDemo />
         </div>,
     ),
 );
