@@ -1,4 +1,75 @@
-<!-- Last Updated: 2019-01-21 16:23:02 -->
+<!-- Last Updated: 2019-05-23 17:00:27 -->
+
+# UI React v4.0.0 (2019-05-23 17:00:27)
+
+## Fix broken TextArea autosizing and focus
+
+**Backwards Compatibility Implications** 
+
+_None_
+
+**New Features** 
+
+_None_
+
+**Bug Fixes** 
+
+- Fixed `TextArea` loosing its autosize and focus when rendering tooltips
+
+
+## Change primary Button gradient colours
+
+
+
+**Backwards Compatibility Implications** 
+
+- Changed primary `Button` gradient colours according to new brand guidelines
+
+**New Features** 
+
+_None_
+
+**Bug Fixes** 
+
+_None_
+
+
+
+## Add title prop to all icons
+
+
+
+**Backwards Compatibility Implications** 
+
+_None_
+
+**New Features** 
+
+- Added `title` prop to all icon components
+
+**Bug Fixes** 
+
+_None_
+
+
+## Improve IconProject SVG image alignment and add title prop
+
+
+
+**Backwards Compatibility Implications** 
+
+- Modified `IconProject`'s SVG image alignment and `viewBox` which might cause small layout issues
+
+**New Features** 
+
+- Added `title` prop to `IconProject`
+
+**Bug Fixes** 
+
+- `IconProject`'s `viewBox` no longer uses negative values
+
+
+
 
 # UI React v3.9.0 (2019-01-21 16:23:02)
 
