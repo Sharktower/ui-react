@@ -98,6 +98,30 @@ class TextArea extends Component {
         }
     }
 
+    componentDidUpdate(prevProps) {
+        const { hasFocus } = this.state;
+        const { tooltipError, isValid } = this.props;
+
+        const isShowingErrorTooltip = !isValid && !!tooltipError;
+        const wasShowingErrorTooltip = !prevProps.isValid && !!prevProps.tooltipError;
+
+        if (
+            (hasFocus && isShowingErrorTooltip && !wasShowingErrorTooltip) ||
+            (hasFocus && !isShowingErrorTooltip && wasShowingErrorTooltip)
+        ) {
+            autosize.destroy(this.inputRef);
+            autosize(this.inputRef);
+            this.fixInputFocus();
+        }
+    }
+
+    fixInputFocus() {
+        const { inputRef } = this;
+        inputRef.focus();
+        inputRef.selectionStart = inputRef.value.length;
+        inputRef.selectionEnd = inputRef.value.length;
+    }
+
     handleMouseEnter = () => {
         this.setState({ hasMouseOver: true });
     }

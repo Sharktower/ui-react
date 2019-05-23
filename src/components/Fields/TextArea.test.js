@@ -304,4 +304,46 @@ describe('TextArea', () => {
         const textField = shallow(<TextArea />);
         expect(textField.hasClass('uir-text-area--has-value')).to.not.equal(true);
     });
+
+    it('fixes input focus when it\'s wrapped by tooltip', () => {
+        const textField = mount(<TextArea isValid tooltipError="Error" />);
+        textField.setState({ hasFocus: true });
+        sinon.spy(textField.instance(), 'fixInputFocus');
+
+        textField.setProps({
+            isValid: false,
+        });
+        expect(textField.instance().fixInputFocus).to.be.called();
+    });
+
+    it('fixes input focus when it ceases to be wrapped by a tooltip', () => {
+        const textField = mount(<TextArea isValid={false} tooltipError="Error" />);
+        textField.setState({ hasFocus: true });
+        sinon.spy(textField.instance(), 'fixInputFocus');
+
+        textField.setProps({
+            isValid: true,
+        });
+        expect(textField.instance().fixInputFocus).to.be.called();
+    });
+
+    it('fixInputFocus calls input ref focus', () => {
+        const textField = mount(<TextArea />);
+        sinon.spy(textField.instance().inputRef, 'focus');
+        textField.instance().fixInputFocus();
+
+        expect(textField.instance().inputRef.focus).to.be.called();
+    });
+
+    it('fixInputFocus sets the input selection to the last character', () => {
+        const textField = mount(<TextArea />);
+        textField.instance().inputRef = {
+            focus: sinon.spy(),
+            value: 'ab',
+        };
+        textField.instance().fixInputFocus();
+
+        expect(textField.instance().inputRef.selectionStart).to.equal(2);
+        expect(textField.instance().inputRef.selectionEnd).to.equal(2);
+    });
 });
