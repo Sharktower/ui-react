@@ -30,6 +30,8 @@ const propTypes = {
         TooltipPosition.BOTTOM_CENTER,
         TooltipPosition.BOTTOM_RIGHT,
         TooltipPosition.BOTTOM_LEFT,
+        TooltipPosition.RIGHT,
+        TooltipPosition.LEFT,
     ]),
     value: PropTypes.instanceOf(Date),
 };

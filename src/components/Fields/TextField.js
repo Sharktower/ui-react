@@ -53,6 +53,8 @@ const propTypes = {
         TooltipPosition.BOTTOM_CENTER,
         TooltipPosition.BOTTOM_RIGHT,
         TooltipPosition.BOTTOM_LEFT,
+        TooltipPosition.LEFT,
+        TooltipPosition.RIGHT,
     ]),
     tooltipRequired: ElementOrStringPropType,
     type: PropTypes.string,
@@ -271,7 +273,6 @@ class TextField extends Component {
      */
     wrapInputWithTooltip = (input, tooltip) => {
         const { DEFAULT, ERROR } = TooltipBoxStatus;
-        console.log(this.props.tooltipPosition);
         return (
             tooltip ?
                 <Tooltip
