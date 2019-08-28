@@ -51,20 +51,20 @@ class Tooltip extends Component {
         },
     }
 
-    /* eslint-disable react/no-did-mount-set-state */
     componentDidMount() {
-        this.setState({
-            wrapperSize: {
-                width: this.wrapper.clientWidth,
-                height: this.wrapper.clientHeight,
-            },
-            tooltipSize: {
-                width: this.tooltipElement.clientWidth,
-                height: this.tooltipElement.clientHeight,
-            },
-        });
+        setTimeout(() => {
+            this.setState({
+                wrapperSize: {
+                    width: this.wrapper.clientWidth,
+                    height: this.wrapper.clientHeight,
+                },
+                tooltipSize: {
+                    width: this.tooltipElement.clientWidth,
+                    height: this.tooltipElement.clientHeight,
+                },
+            });
+        }, 0);
     }
-    /* eslint-enable react/no-did-mount-set-state */
 
     getTooltipContents = () => {
         const { tooltip } = this.props;
