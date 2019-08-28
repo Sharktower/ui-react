@@ -120,38 +120,6 @@ class Tooltip extends Component {
             ? this.props.showTooltip
             : this.state.showTooltip;
 
-        // up left
-        // const topPosition = `${-(this.state.tooltipSize.height)}px`;
-        // const leftPosition = `${-(this.state.tooltipSize.width + 10)}px`;
-
-        // up
-        // const topPosition = `${-(this.state.tooltipSize.height + 10)}px`;
-        // const leftPosition = `${(this.state.wrapperSize.width - this.state.tooltipSize.width) / 2}px`;
-
-        // up right
-        // const topPosition = `${-(this.state.tooltipSize.height)}px`;
-        // const leftPosition = `${this.state.wrapperSize.width + 10}px`;
-
-        // right
-        // const topPosition = `${(this.state.wrapperSize.height - this.state.tooltipSize.height) / 2}px`;
-        // const leftPosition = `${this.state.wrapperSize.width + 10}px`;
-
-        // down right
-        // const topPosition = `${(this.state.wrapperSize.height)}px`;
-        // const leftPosition = `${this.state.wrapperSize.width + 10}px`;
-
-        // down
-        // const topPosition = `${(this.state.wrapperSize.height + 10)}px`;
-        // const leftPosition = `${(this.state.wrapperSize.width - this.state.tooltipSize.width) / 2}px`;
-
-        // down left
-        // const topPosition = `${(this.state.wrapperSize.height)}px`;
-        // const leftPosition = `${-(this.state.tooltipSize.width + 10)}px`;
-
-        // left
-        // const topPosition = `${(this.state.wrapperSize.height - this.state.tooltipSize.height) / 2}px`;
-        // const leftPosition = `${-(this.state.tooltipSize.width + 10)}px`;
-
         const tooltip = (
             <div
                 className="uir-tooltip-contents"
