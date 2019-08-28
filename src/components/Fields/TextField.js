@@ -271,6 +271,7 @@ class TextField extends Component {
      */
     wrapInputWithTooltip = (input, tooltip) => {
         const { DEFAULT, ERROR } = TooltipBoxStatus;
+        console.log(this.props.tooltipPosition);
         return (
             tooltip ?
                 <Tooltip
