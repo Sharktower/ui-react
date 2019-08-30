@@ -1,3 +1,4 @@
+/* global window */
 import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
@@ -9,7 +10,7 @@ import TooltipBox from './TooltipBox';
 import { TooltipPosition } from './TooltipEnums';
 import './Tooltip.scss';
 
-const propTypes = {
+export const propTypes = {
     children: PropTypes.element.isRequired,
     className: PropTypes.string,
     position: ListPropType([
@@ -19,6 +20,7 @@ const propTypes = {
         TooltipPosition.BOTTOM_CENTER,
         TooltipPosition.BOTTOM_RIGHT,
         TooltipPosition.BOTTOM_LEFT,
+        TooltipPosition.AUTO,
     ]),
     showTooltip: PropTypes.bool,
     style: StyleObjectPropType,
@@ -26,7 +28,7 @@ const propTypes = {
     tooltip: ElementOrStringPropType.isRequired,
 };
 
-const defaultProps = {
+export const defaultProps = {
     className: null,
     position: TooltipPosition.TOP_CENTER,
     showTooltip: null,
@@ -34,9 +36,27 @@ const defaultProps = {
     tabIndex: -1,
 };
 
+
+const aboveCentre = pos => pos.y < pos.screenHeight / 2;
+const leftOfCentre = pos => pos.x < pos.screenWidth / 2;
+const positionFromMouseEvent = (e) => {
+    const { x, y } = e.target.getBoundingClientRect();
+    const eventPosition = {
+        x,
+        y,
+        screenWidth: window.innerWidth,
+        screenHeight: window.innerHeight,
+    };
+
+    const topBottom = aboveCentre(eventPosition) ? 'BOTTOM' : 'TOP';
+    const leftRight = leftOfCentre(eventPosition) ? 'RIGHT' : 'LEFT';
+    return TooltipPosition[`${topBottom}_${leftRight}`];
+};
+
 class Tooltip extends Component {
     state = {
         showTooltip: false,
+        autoPosition: undefined,
     }
 
     getTooltipContents = () => {
@@ -46,11 +66,15 @@ class Tooltip extends Component {
             : tooltip;
     }
 
-    handleFocus = () => this.setState({ showTooltip: true })
+    handleFocus = e =>
+        this.setState({ showTooltip: true, autoPosition: positionFromMouseEvent(e) });
 
     handleBlur = () => this.setState({ showTooltip: false })
 
     render() {
+        const position = this.props.position === TooltipPosition.AUTO
+            ? this.state.autoPosition
+            : this.props.position;
         const showTooltip = this.props.showTooltip !== null
             ? this.props.showTooltip
             : this.state.showTooltip;
@@ -61,7 +85,7 @@ class Tooltip extends Component {
             <div
                 className={cx(
                     'uir-tooltip',
-                    `uir-tooltip--${this.props.position}`,
+                    `uir-tooltip--${position}`,
                     this.props.className,
                 )}
                 onMouseEnter={this.handleFocus}

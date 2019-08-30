@@ -6,6 +6,7 @@ export const TooltipPosition = Object.freeze({
     BOTTOM_CENTER: 'bottom-center',
     BOTTOM_RIGHT: 'bottom-right',
     BOTTOM_LEFT: 'bottom-left',
+    AUTO: 'auto',
 });
 
 // TooltipBoxStatus enum used by the TooltipBox status prop

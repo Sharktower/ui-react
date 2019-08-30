@@ -5,6 +5,7 @@ import Tooltip from './Tooltip';
 import TooltipBox from './TooltipBox';
 import Avatar from '../Avatar/Avatar';
 import AvatarCard from '../Avatar/AvatarCard';
+import { TooltipPosition } from './TooltipEnums';
 
 const stories = storiesOf('Tooltip.Tooltip', module);
 
@@ -128,5 +129,45 @@ stories.add(
                 {exampleAvatar}
             </Tooltip>
         </div>,
+    ),
+);
+
+stories.add(
+    'Auto Position',
+    () => (
+        <div style={{
+            display: 'grid',
+            width: '100%',
+            height: '100vh',
+            placeItems: 'center',
+            gridTemplateColumns: 'repeat(2, 0.5fr)',
+            gridTemplateRows: 'repeat(2, 0.5fr)',
+        }}
+        >
+            <Tooltip
+                position={TooltipPosition.AUTO}
+                tooltip={<TooltipBox>my tooltip</TooltipBox>}
+            >
+                {exampleAvatar}
+            </Tooltip>
+            <Tooltip
+                position={TooltipPosition.AUTO}
+                tooltip={<TooltipBox>my tooltip</TooltipBox>}
+            >
+                {exampleAvatar}
+            </Tooltip>
+            <Tooltip
+                position={TooltipPosition.AUTO}
+                tooltip={<TooltipBox>my tooltip</TooltipBox>}
+            >
+                {exampleAvatar}
+            </Tooltip>
+            <Tooltip
+                position={TooltipPosition.AUTO}
+                tooltip={<TooltipBox>my tooltip</TooltipBox>}
+            >
+                {exampleAvatar}
+            </Tooltip>
+        </div>
     ),
 );

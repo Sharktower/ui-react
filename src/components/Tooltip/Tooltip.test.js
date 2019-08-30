@@ -7,7 +7,18 @@ import TooltipBox from './TooltipBox';
 import Avatar from '../Avatar/Avatar';
 import AvatarCard from '../Avatar/AvatarCard';
 
-describe('Tooltip', () => {
+describe.only('Tooltip', () => {
+    const mockEvent = {
+        target: {
+            getBoundingClientRect: () => ({ x: 0, y: 0 }),
+        },
+    };
+
+    global.window = {
+        innerWidth: 1024,
+        innerHeight: 768,
+    };
+
     const exampleAvatar = (
         <Avatar
             name="John Smith"
@@ -108,7 +119,7 @@ describe('Tooltip', () => {
         const tooltip = shallow((
             <Tooltip tooltip={exampleTooltip} showTooltip={false}>{exampleAvatar}</Tooltip>
         ));
-        tooltip.find('div').at(0).simulate('mouseEnter');
+        tooltip.find('div').at(0).simulate('mouseEnter', mockEvent);
         expect(tooltip.find(AvatarCard).length).to.equal(0);
     });
 
@@ -132,7 +143,7 @@ describe('Tooltip', () => {
 
     it('sets state showTooltip to true on mouse enter', () => {
         const tooltip = shallow(<Tooltip tooltip={<div />} showTooltip>contents</Tooltip>);
-        tooltip.find('div').at(0).simulate('mouseEnter');
+        tooltip.find('div').at(0).simulate('mouseEnter', mockEvent);
         expect(tooltip.state().showTooltip).to.equal(true);
     });
 
@@ -144,7 +155,7 @@ describe('Tooltip', () => {
 
     it('sets state showTooltip to true on focus', () => {
         const tooltip = shallow(<Tooltip tooltip={<div />} showTooltip={false}>contents</Tooltip>);
-        tooltip.find('div').at(0).simulate('focus');
+        tooltip.find('div').at(0).simulate('focus', mockEvent);
         expect(tooltip.state().showTooltip).to.equal(true);
     });
 
