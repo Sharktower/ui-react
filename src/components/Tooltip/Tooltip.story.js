@@ -135,8 +135,8 @@ stories.add(
 stories.add('Auto Position', () => (
     <div>
         <p>
-            Setting the `position` prop to `auto` or using `TooltipPosition.AUTO` allows the tooltip
-            to select the best position for itself.
+            Setting the `position` prop to `auto` allows the tooltip to select the best position
+            for itself.
             <br />
             This is done by looking at the screen position of the tooltip child element and placing
             the tooltip as far from the screen edge as possible.
