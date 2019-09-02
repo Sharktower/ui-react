@@ -10,7 +10,7 @@ import TooltipBox from './TooltipBox';
 import { TooltipPosition } from './TooltipEnums';
 import './Tooltip.scss';
 
-export const propTypes = {
+const propTypes = {
     children: PropTypes.element.isRequired,
     className: PropTypes.string,
     position: ListPropType([
@@ -28,7 +28,7 @@ export const propTypes = {
     tooltip: ElementOrStringPropType.isRequired,
 };
 
-export const defaultProps = {
+const defaultProps = {
     className: null,
     position: TooltipPosition.TOP_CENTER,
     showTooltip: null,
