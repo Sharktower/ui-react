@@ -7,7 +7,7 @@ import TooltipBox from './TooltipBox';
 import Avatar from '../Avatar/Avatar';
 import AvatarCard from '../Avatar/AvatarCard';
 
-describe.only('Tooltip', () => {
+describe('Tooltip', () => {
     const mockEvent = {
         target: {
             getBoundingClientRect: () => ({ x: 0, y: 0 }),
