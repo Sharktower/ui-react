@@ -132,37 +132,47 @@ stories.add(
     ),
 );
 
-stories.add('Auto Position', () => (
+stories.add('Auto Position', storyWrapper(
+    `Setting the \`position\` prop to \`auto\` allows the tooltip to select the best position for itself.
+    This is done by looking at the screen position of the tooltip child element and placing the tooltip as far from the screen edge as possible.`,
+    <Tooltip position="auto" tooltip={<TooltipBox>auto</TooltipBox>}>
+        {exampleAvatar}
+    </Tooltip>,
     <div>
-        <p>
-            Setting the `position` prop to `auto` or using `TooltipPosition.AUTO` allows the tooltip
-            to select the best position for itself.
-            <br />
-            This is done by looking at the screen position of the tooltip child element and placing
-            the tooltip as far from the screen edge as possible.
-        </p>
         <div
             style={{
                 display: 'grid',
                 width: '100%',
                 height: '100vh',
                 placeItems: 'center',
-                gridTemplateColumns: 'repeat(2, 0.5fr)',
-                gridTemplateRows: 'repeat(2, 0.5fr)',
+                gridTemplateColumns: 'repeat(2, .5fr)',
+                gridTemplateRows: 'repeat(2, .5fr)',
             }}
         >
-            <Tooltip position={TooltipPosition.AUTO} tooltip={<TooltipBox>my tooltip</TooltipBox>}>
+            <Tooltip
+                position={TooltipPosition.AUTO}
+                tooltip={<TooltipBox>Auto positioned tooltip with some words</TooltipBox>}
+            >
                 {exampleAvatar}
             </Tooltip>
-            <Tooltip position={TooltipPosition.AUTO} tooltip={<TooltipBox>my tooltip</TooltipBox>}>
+            <Tooltip
+                position={TooltipPosition.AUTO}
+                tooltip={<TooltipBox>Auto positioned tooltip with some words</TooltipBox>}
+            >
                 {exampleAvatar}
             </Tooltip>
-            <Tooltip position={TooltipPosition.AUTO} tooltip={<TooltipBox>my tooltip</TooltipBox>}>
+            <Tooltip
+                position={TooltipPosition.AUTO}
+                tooltip={<TooltipBox>Auto positioned tooltip with some words</TooltipBox>}
+            >
                 {exampleAvatar}
             </Tooltip>
-            <Tooltip position={TooltipPosition.AUTO} tooltip={<TooltipBox>my tooltip</TooltipBox>}>
+            <Tooltip
+                position={TooltipPosition.AUTO}
+                tooltip={<TooltipBox>Auto positioned tooltip with some words</TooltipBox>}
+            >
                 {exampleAvatar}
             </Tooltip>
         </div>
-    </div>
+    </div>,
 ));
