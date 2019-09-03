@@ -63,7 +63,7 @@ class Tooltip extends Component {
                     height: this.tooltipElement.clientHeight,
                 },
             });
-        }, 0);
+        }, 1);
     }
 
     getTooltipContents = () => {
@@ -81,37 +81,35 @@ class Tooltip extends Component {
         switch (this.props.position) {
         case TooltipPosition.TOP_CENTER:
         case TooltipPosition.BOTTOM_CENTER:
-            return `${(this.state.wrapperSize.width - this.state.tooltipSize.width) / 2}px`;
-        case TooltipPosition.TOP_RIGHT:
-        case TooltipPosition.RIGHT:
-        case TooltipPosition.BOTTOM_RIGHT:
-            return `${this.state.wrapperSize.width + this.props.tooltipOffset}px`;
+            return Math.floor((this.state.wrapperSize.width - this.state.tooltipSize.width) / 2);
         case TooltipPosition.BOTTOM_LEFT:
         case TooltipPosition.LEFT:
         case TooltipPosition.TOP_LEFT:
-            return `${-(this.state.tooltipSize.width + this.props.tooltipOffset)}px`;
+            return -(this.state.tooltipSize.width + this.props.tooltipOffset);
+        case TooltipPosition.TOP_RIGHT:
+        case TooltipPosition.RIGHT:
+        case TooltipPosition.BOTTOM_RIGHT:
         default:
-            return `${this.state.wrapperSize.width + this.props.tooltipOffset}px`;
+            return this.state.wrapperSize.width + this.props.tooltipOffset;
         }
     };
 
     topPosition = () => {
         switch (this.props.position) {
         case TooltipPosition.TOP_CENTER:
-            return `${-(this.state.tooltipSize.height + this.props.tooltipOffset)}px`;
-        case TooltipPosition.TOP_RIGHT:
-        case TooltipPosition.TOP_LEFT:
-            return `${-(this.state.tooltipSize.height)}px`;
+            return -(this.state.tooltipSize.height + this.props.tooltipOffset);
         case TooltipPosition.RIGHT:
         case TooltipPosition.LEFT:
-            return `${(this.state.wrapperSize.height - this.state.tooltipSize.height) / 2}px`;
+            return Math.floor((this.state.wrapperSize.height - this.state.tooltipSize.height) / 2);
         case TooltipPosition.BOTTOM_RIGHT:
         case TooltipPosition.BOTTOM_LEFT:
-            return `${(this.state.wrapperSize.height)}px`;
+            return this.state.wrapperSize.height;
         case TooltipPosition.BOTTOM_CENTER:
-            return `${(this.state.wrapperSize.height + this.props.tooltipOffset)}px`;
+            return this.state.wrapperSize.height + this.props.tooltipOffset;
+        case TooltipPosition.TOP_RIGHT:
+        case TooltipPosition.TOP_LEFT:
         default:
-            return `${-(this.state.tooltipSize.height)}px`;
+            return -(this.state.tooltipSize.height);
         }
     };
 
@@ -125,9 +123,9 @@ class Tooltip extends Component {
                 className="uir-tooltip-contents"
                 ref={(divElement) => { this.tooltipElement = divElement; }}
                 style={{
-                    top: this.topPosition(),
-                    left: this.leftPosition(),
-                    opacity: +(showTooltip),
+                    top: `${this.topPosition()}px`,
+                    left: `${this.leftPosition()}px`,
+                    opacity: showTooltip ? 1 : 0,
                     zIndex: showTooltip ? 1000 : -1,
                 }}
             >
