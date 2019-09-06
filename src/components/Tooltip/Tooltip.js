@@ -20,12 +20,15 @@ const propTypes = {
         TooltipPosition.BOTTOM_CENTER,
         TooltipPosition.BOTTOM_RIGHT,
         TooltipPosition.BOTTOM_LEFT,
+        TooltipPosition.LEFT,
+        TooltipPosition.RIGHT,
         TooltipPosition.AUTO,
     ]),
     showTooltip: PropTypes.bool,
     style: StyleObjectPropType,
     tabIndex: PropTypes.number,
     tooltip: ElementOrStringPropType.isRequired,
+    tooltipOffset: PropTypes.number,
 };
 
 const defaultProps = {
@@ -34,12 +37,13 @@ const defaultProps = {
     showTooltip: null,
     style: null,
     tabIndex: -1,
+    tooltipOffset: 10,
 };
 
 
 const aboveCentre = pos => pos.y < pos.screenHeight / 2;
 const leftOfCentre = pos => pos.x < pos.screenWidth / 2;
-const positionFromMouseEvent = (e) => {
+const positionFromFocusEvent = (e) => {
     const { x, y } = e.target.getBoundingClientRect();
     const eventPosition = {
         x,
@@ -56,7 +60,30 @@ const positionFromMouseEvent = (e) => {
 class Tooltip extends Component {
     state = {
         showTooltip: false,
+        wrapperSize: {
+            width: 0,
+            height: 0,
+        },
+        tooltipSize: {
+            width: 0,
+            height: 0,
+        },
         autoPosition: undefined,
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({
+                wrapperSize: {
+                    width: this.wrapper.clientWidth,
+                    height: this.wrapper.clientHeight,
+                },
+                tooltipSize: {
+                    width: this.tooltipElement.clientWidth,
+                    height: this.tooltipElement.clientHeight,
+                },
+            });
+        }, 1);
     }
 
     getTooltipContents = () => {
@@ -67,9 +94,45 @@ class Tooltip extends Component {
     }
 
     handleFocus = e =>
-        this.setState({ showTooltip: true, autoPosition: positionFromMouseEvent(e) });
+        this.setState({ showTooltip: true, autoPosition: positionFromFocusEvent(e) });
 
     handleBlur = () => this.setState({ showTooltip: false })
+
+    leftPosition = () => {
+        switch (this.props.position) {
+        case TooltipPosition.TOP_CENTER:
+        case TooltipPosition.BOTTOM_CENTER:
+            return Math.floor((this.state.wrapperSize.width - this.state.tooltipSize.width) / 2);
+        case TooltipPosition.BOTTOM_LEFT:
+        case TooltipPosition.LEFT:
+        case TooltipPosition.TOP_LEFT:
+            return -(this.state.tooltipSize.width + this.props.tooltipOffset);
+        case TooltipPosition.TOP_RIGHT:
+        case TooltipPosition.RIGHT:
+        case TooltipPosition.BOTTOM_RIGHT:
+        default:
+            return this.state.wrapperSize.width + this.props.tooltipOffset;
+        }
+    };
+
+    topPosition = () => {
+        switch (this.props.position) {
+        case TooltipPosition.TOP_CENTER:
+            return -(this.state.tooltipSize.height + this.props.tooltipOffset);
+        case TooltipPosition.RIGHT:
+        case TooltipPosition.LEFT:
+            return Math.floor((this.state.wrapperSize.height - this.state.tooltipSize.height) / 2);
+        case TooltipPosition.BOTTOM_RIGHT:
+        case TooltipPosition.BOTTOM_LEFT:
+            return this.state.wrapperSize.height;
+        case TooltipPosition.BOTTOM_CENTER:
+            return this.state.wrapperSize.height + this.props.tooltipOffset;
+        case TooltipPosition.TOP_RIGHT:
+        case TooltipPosition.TOP_LEFT:
+        default:
+            return -(this.state.tooltipSize.height);
+        }
+    };
 
     render() {
         const position = this.props.position === TooltipPosition.AUTO
@@ -78,9 +141,22 @@ class Tooltip extends Component {
         const showTooltip = this.props.showTooltip !== null
             ? this.props.showTooltip
             : this.state.showTooltip;
-        const tooltip = showTooltip
-            ? <div className="uir-tooltip-contents">{this.getTooltipContents()}</div>
-            : null;
+
+        const tooltip = (
+            <div
+                className="uir-tooltip-contents"
+                ref={(divElement) => { this.tooltipElement = divElement; }}
+                style={{
+                    top: `${this.topPosition()}px`,
+                    left: `${this.leftPosition()}px`,
+                    opacity: showTooltip ? 1 : 0,
+                    zIndex: showTooltip ? 1000 : -1,
+                }}
+            >
+                {this.getTooltipContents()}
+            </div>
+        );
+
         return (
             <div
                 className={cx(
@@ -88,17 +164,20 @@ class Tooltip extends Component {
                     `uir-tooltip--${position}`,
                     this.props.className,
                 )}
-                onMouseEnter={this.handleFocus}
-                onMouseLeave={this.handleBlur}
-                onFocus={this.handleFocus}
-                onBlur={this.handleBlur}
                 role="tooltip"
                 tabIndex={this.props.tabIndex}
                 style={this.props.style}
                 {...proxyDataProps(this.props)}
             >
                 {tooltip}
-                <div className="uir-tooltip-inner">
+                <div
+                    className="uir-tooltip-inner"
+                    onMouseEnter={this.handleFocus}
+                    onMouseLeave={this.handleBlur}
+                    onFocus={this.handleFocus}
+                    onBlur={this.handleBlur}
+                    ref={(divElement) => { this.wrapper = divElement; }}
+                >
                     {this.props.children}
                 </div>
             </div>
