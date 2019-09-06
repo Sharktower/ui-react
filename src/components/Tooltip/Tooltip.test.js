@@ -14,11 +14,6 @@ describe('Tooltip', () => {
         },
     };
 
-    global.window = {
-        innerWidth: 1024,
-        innerHeight: 768,
-    };
-
     const exampleAvatar = (
         <Avatar
             name="John Smith"

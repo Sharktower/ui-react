@@ -179,25 +179,25 @@ stories.add('Auto Position', storyWrapper(
             }}
         >
             <Tooltip
-                position={TooltipPosition.AUTO}
+                position="auto"
                 tooltip={<TooltipBox>Auto positioned tooltip with some words</TooltipBox>}
             >
                 {exampleAvatar}
             </Tooltip>
             <Tooltip
-                position={TooltipPosition.AUTO}
+                position="auto"
                 tooltip={<TooltipBox>Auto positioned tooltip with some words</TooltipBox>}
             >
                 {exampleAvatar}
             </Tooltip>
             <Tooltip
-                position={TooltipPosition.AUTO}
+                position="auto"
                 tooltip={<TooltipBox>Auto positioned tooltip with some words</TooltipBox>}
             >
                 {exampleAvatar}
             </Tooltip>
             <Tooltip
-                position={TooltipPosition.AUTO}
+                position="auto"
                 tooltip={<TooltipBox>Auto positioned tooltip with some words</TooltipBox>}
             >
                 {exampleAvatar}

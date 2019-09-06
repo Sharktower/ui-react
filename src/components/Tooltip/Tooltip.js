@@ -98,8 +98,8 @@ class Tooltip extends Component {
 
     handleBlur = () => this.setState({ showTooltip: false })
 
-    leftPosition = () => {
-        switch (this.props.position) {
+    leftPosition = (position) => {
+        switch (position) {
         case TooltipPosition.TOP_CENTER:
         case TooltipPosition.BOTTOM_CENTER:
             return Math.floor((this.state.wrapperSize.width - this.state.tooltipSize.width) / 2);
@@ -115,8 +115,8 @@ class Tooltip extends Component {
         }
     };
 
-    topPosition = () => {
-        switch (this.props.position) {
+    topPosition = (position) => {
+        switch (position) {
         case TooltipPosition.TOP_CENTER:
             return -(this.state.tooltipSize.height + this.props.tooltipOffset);
         case TooltipPosition.RIGHT:
@@ -147,8 +147,8 @@ class Tooltip extends Component {
                 className="uir-tooltip-contents"
                 ref={(divElement) => { this.tooltipElement = divElement; }}
                 style={{
-                    top: `${this.topPosition()}px`,
-                    left: `${this.leftPosition()}px`,
+                    top: `${this.topPosition(position)}px`,
+                    left: `${this.leftPosition(position)}px`,
                     opacity: showTooltip ? 1 : 0,
                     zIndex: showTooltip ? 1000 : -1,
                 }}
@@ -161,7 +161,6 @@ class Tooltip extends Component {
             <div
                 className={cx(
                     'uir-tooltip',
-                    `uir-tooltip--${position}`,
                     this.props.className,
                 )}
                 role="tooltip"
