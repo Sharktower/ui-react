@@ -11,13 +11,13 @@ import './AvatarMenu.scss';
 
 const propTypes = {
     avatar: PropTypes.element.isRequired,
-    className: PropTypes.string,
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.element),
         PropTypes.element,
         PropTypes.number,
         PropTypes.string,
     ]).isRequired,
+    className: PropTypes.string,
     open: PropTypes.bool,
     position: PropTypes.string,
     style: StyleObjectPropType,
