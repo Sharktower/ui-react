@@ -1,4 +1,25 @@
-<!-- Last Updated: 2019-05-23 17:00:27 -->
+<!-- Last Updated: 2019-09-19 15:50:17 -->
+
+# UI React v4.1.0 (2019-09-19 15:50:17)
+
+## Add background colour to avatar images
+
+
+
+**Backwards Compatibility Implications** 
+
+_None_ - unless someone relied on no background colour and user initials being visible behind transparent images.
+
+**New Features** 
+
+- Added white background colour to `<Avatar>` images to ensure user initials are not visible behind transparent images.
+
+**Bug Fixes** 
+
+_None_
+
+
+
 
 # UI React v4.0.0 (2019-05-23 17:00:27)
 
