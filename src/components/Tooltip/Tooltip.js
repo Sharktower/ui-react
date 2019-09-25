@@ -59,7 +59,7 @@ const positionFromFocusEvent = (e) => {
 
 class Tooltip extends Component {
     state = {
-        showTooltip: false,
+        showTooltip: this.showTooltip || false,
         wrapperSize: {
             width: 0,
             height: 0,
@@ -73,16 +73,19 @@ class Tooltip extends Component {
 
     componentDidMount() {
         setTimeout(() => {
-            this.setState({
-                wrapperSize: {
+            if (this.wrapper && this.tooltipElement) {
+                const wrapperSize = {
                     width: this.wrapper.clientWidth,
                     height: this.wrapper.clientHeight,
-                },
-                tooltipSize: {
+                };
+
+                const tooltipSize = {
                     width: this.tooltipElement.clientWidth,
                     height: this.tooltipElement.clientHeight,
-                },
-            });
+                };
+
+                this.setState({ wrapperSize, tooltipSize });
+            }
         }, 1);
     }
 
