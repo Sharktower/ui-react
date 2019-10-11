@@ -166,6 +166,7 @@ $sizes: (
 
         &-img {
             z-index: $image-z-index;
+            background-color: $avatarBgColor;
             background-repeat: no-repeat;
             background-size: cover;
         }
