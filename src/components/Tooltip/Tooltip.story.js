@@ -5,7 +5,6 @@ import Tooltip from './Tooltip';
 import TooltipBox from './TooltipBox';
 import Avatar from '../Avatar/Avatar';
 import AvatarCard from '../Avatar/AvatarCard';
-import { TooltipPosition } from './TooltipEnums';
 
 const stories = storiesOf('Tooltip.Tooltip', module);
 
