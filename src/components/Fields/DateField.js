@@ -13,16 +13,6 @@ import './DateField.scss';
 
 const propTypes = {
     className: PropTypes.string,
-    forceHideCalendar: PropTypes.bool,
-    isRange: PropTypes.bool,
-    maxDate: PropTypes.instanceOf(Date),
-    minDate: PropTypes.instanceOf(Date),
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    rangeFromValue: PropTypes.instanceOf(Date),
-    rangeToValue: PropTypes.instanceOf(Date),
-    style: StyleObjectPropType,
     datePickerPosition: ListPropType([
         TooltipPosition.TOP_CENTER,
         TooltipPosition.TOP_LEFT,
@@ -33,6 +23,16 @@ const propTypes = {
         TooltipPosition.RIGHT,
         TooltipPosition.LEFT,
     ]),
+    forceHideCalendar: PropTypes.bool,
+    isRange: PropTypes.bool,
+    maxDate: PropTypes.instanceOf(Date),
+    minDate: PropTypes.instanceOf(Date),
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    onFocus: PropTypes.func,
+    rangeFromValue: PropTypes.instanceOf(Date),
+    rangeToValue: PropTypes.instanceOf(Date),
+    style: StyleObjectPropType,
     value: PropTypes.instanceOf(Date),
 };
 

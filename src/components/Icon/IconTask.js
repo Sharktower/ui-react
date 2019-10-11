@@ -11,14 +11,14 @@ let lastInstanceId = 0;
 
 const propTypes = {
     className: PropTypes.string,
-    style: StyleObjectPropType,
+    isBlocked: PropTypes.bool,
     priority: ListPropType([
         IconPriority.NONE,
         IconPriority.LOW,
         IconPriority.MEDIUM,
         IconPriority.HIGH,
     ]),
-    isBlocked: PropTypes.bool,
+    style: StyleObjectPropType,
     title: PropTypes.string,
 };
 
