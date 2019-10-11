@@ -13,6 +13,14 @@ import './DateField.scss';
 
 const propTypes = {
     className: PropTypes.string,
+    datePickerPosition: ListPropType([
+        TooltipPosition.TOP_CENTER,
+        TooltipPosition.TOP_LEFT,
+        TooltipPosition.TOP_RIGHT,
+        TooltipPosition.BOTTOM_CENTER,
+        TooltipPosition.BOTTOM_RIGHT,
+        TooltipPosition.BOTTOM_LEFT,
+    ]),
     forceHideCalendar: PropTypes.bool,
     isRange: PropTypes.bool,
     maxDate: PropTypes.instanceOf(Date),
@@ -23,14 +31,6 @@ const propTypes = {
     rangeFromValue: PropTypes.instanceOf(Date),
     rangeToValue: PropTypes.instanceOf(Date),
     style: StyleObjectPropType,
-    datePickerPosition: ListPropType([
-        TooltipPosition.TOP_CENTER,
-        TooltipPosition.TOP_LEFT,
-        TooltipPosition.TOP_RIGHT,
-        TooltipPosition.BOTTOM_CENTER,
-        TooltipPosition.BOTTOM_RIGHT,
-        TooltipPosition.BOTTOM_LEFT,
-    ]),
     value: PropTypes.instanceOf(Date),
 };
 

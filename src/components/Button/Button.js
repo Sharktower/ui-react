@@ -12,6 +12,7 @@ const propTypes = {
     'aria-expanded': PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
+    componentRef: PropTypes.func,
     confirmText: PropTypes.string,
     confirmedText: PropTypes.string,
     hasConfirm: PropTypes.bool,
@@ -27,7 +28,6 @@ const propTypes = {
     onClick: PropTypes.func.isRequired,
     style: StyleObjectPropType,
     tabIndex: PropTypes.number,
-    componentRef: PropTypes.func,
     type: ListPropType([
         ButtonType.BUTTON,
         ButtonType.RESET,
