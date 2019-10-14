@@ -128,6 +128,8 @@ describe('Tooltip', () => {
         ['bottom-center', '10px', '0px'],
         ['bottom-left', '0px', '-10px'],
         ['bottom-right', '0px', '10px'],
+        ['right', '0px', '10px'],
+        ['left', '0px', '-10px'],
     ].forEach(([position, expectedTop, expectedLeft]) => {
         it(`sets top and left values for position ${position}`, () => {
             const tooltip = shallow((
@@ -175,5 +177,51 @@ describe('Tooltip', () => {
         const tooltip = shallow(<Tooltip tooltip={<div />} showTooltip>contents</Tooltip>);
         tooltip.find('div').at(0).simulate('blur');
         expect(tooltip.state().showTooltip).to.equal(false);
+    });
+
+    it('uses autoPosition from state if position is set to auto', () => {
+        const tooltipComponent = shallow((
+            <Tooltip tooltip={<div />} showTooltip position="auto">
+                <div className="componentWithTooltip">content</div>
+            </Tooltip>
+        ));
+
+        tooltipComponent.setState({ autoPosition: 'bottom-left' });
+
+        const contents = tooltipComponent.find('div').at(1);
+        const { top, left } = contents.props().style;
+
+        expect(top).to.equal('0px');
+        expect(left).to.equal('-10px');
+    });
+
+    it('sets autoPosition on focus', () => {
+        const tooltip = shallow(<Tooltip tooltip={<div />} showTooltip={false} position="auto">contents</Tooltip>);
+
+        tooltip.find('.uir-tooltip-inner').simulate('focus', mockEvent);
+
+        expect(tooltip.state().autoPosition).to.equal('bottom-right');
+    });
+
+    [
+        [10, 10, 'bottom-right'],
+        [400, 10, 'bottom-left'],
+        [10, 350, 'top-right'],
+        [400, 400, 'top-left'],
+    ].forEach(([x, y, expected]) => {
+        it('sets autoPosition correctly based on event coordinates', () => {
+            const tooltip = shallow((
+                <Tooltip position="auto" tooltip={<div />}>{exampleAvatar}</Tooltip>
+            ));
+
+            // headless browser screenWidth: 785, screenHeight: 600
+            const fakeEvent = {
+                target: {
+                    getBoundingClientRect: () => ({ x, y }),
+                },
+            };
+            tooltip.find('.uir-tooltip-inner').simulate('focus', fakeEvent);
+            expect(tooltip.state().autoPosition).to.equal(expected);
+        });
     });
 });
