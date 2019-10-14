@@ -96,46 +96,36 @@ class Tooltip extends Component {
             : tooltip;
     }
 
+    getLeftPosition = position => ({
+        [TooltipPosition.TOP_CENTER]:
+            Math.floor((this.state.wrapperSize.width - this.state.tooltipSize.width) / 2),
+        [TooltipPosition.BOTTOM_CENTER]:
+            Math.floor((this.state.wrapperSize.width - this.state.tooltipSize.width) / 2),
+        [TooltipPosition.BOTTOM_LEFT]: -(this.state.tooltipSize.width + this.props.tooltipOffset),
+        [TooltipPosition.LEFT]: -(this.state.tooltipSize.width + this.props.tooltipOffset),
+        [TooltipPosition.TOP_LEFT]: -(this.state.tooltipSize.width + this.props.tooltipOffset),
+        [TooltipPosition.TOP_RIGHT]: this.state.wrapperSize.width + this.props.tooltipOffset,
+        [TooltipPosition.RIGHT]: this.state.wrapperSize.width + this.props.tooltipOffset,
+        [TooltipPosition.BOTTOM_RIGHT]: this.state.wrapperSize.width + this.props.tooltipOffset,
+    })[position || TooltipPosition.BOTTOM_RIGHT];
+
+    getTopPosition = position => ({
+        [TooltipPosition.TOP_CENTER]: -(this.state.tooltipSize.height + this.props.tooltipOffset),
+        [TooltipPosition.RIGHT]:
+            Math.floor((this.state.wrapperSize.height - this.state.tooltipSize.height) / 2),
+        [TooltipPosition.LEFT]:
+            Math.floor((this.state.wrapperSize.height - this.state.tooltipSize.height) / 2),
+        [TooltipPosition.BOTTOM_RIGHT]: this.state.wrapperSize.height,
+        [TooltipPosition.BOTTOM_LEFT]: this.state.wrapperSize.height,
+        [TooltipPosition.BOTTOM_CENTER]: this.state.wrapperSize.height + this.props.tooltipOffset,
+        [TooltipPosition.TOP_RIGHT]: -(this.state.tooltipSize.height),
+        [TooltipPosition.TOP_LEFT]: -(this.state.tooltipSize.height),
+    })[position || TooltipPosition.TOP_LEFT];
+
     handleFocus = e =>
         this.setState({ showTooltip: true, autoPosition: positionFromFocusEvent(e) });
 
     handleBlur = () => this.setState({ showTooltip: false })
-
-    leftPosition = (position) => {
-        switch (position) {
-        case TooltipPosition.TOP_CENTER:
-        case TooltipPosition.BOTTOM_CENTER:
-            return Math.floor((this.state.wrapperSize.width - this.state.tooltipSize.width) / 2);
-        case TooltipPosition.BOTTOM_LEFT:
-        case TooltipPosition.LEFT:
-        case TooltipPosition.TOP_LEFT:
-            return -(this.state.tooltipSize.width + this.props.tooltipOffset);
-        case TooltipPosition.TOP_RIGHT:
-        case TooltipPosition.RIGHT:
-        case TooltipPosition.BOTTOM_RIGHT:
-        default:
-            return this.state.wrapperSize.width + this.props.tooltipOffset;
-        }
-    };
-
-    topPosition = (position) => {
-        switch (position) {
-        case TooltipPosition.TOP_CENTER:
-            return -(this.state.tooltipSize.height + this.props.tooltipOffset);
-        case TooltipPosition.RIGHT:
-        case TooltipPosition.LEFT:
-            return Math.floor((this.state.wrapperSize.height - this.state.tooltipSize.height) / 2);
-        case TooltipPosition.BOTTOM_RIGHT:
-        case TooltipPosition.BOTTOM_LEFT:
-            return this.state.wrapperSize.height;
-        case TooltipPosition.BOTTOM_CENTER:
-            return this.state.wrapperSize.height + this.props.tooltipOffset;
-        case TooltipPosition.TOP_RIGHT:
-        case TooltipPosition.TOP_LEFT:
-        default:
-            return -(this.state.tooltipSize.height);
-        }
-    };
 
     render() {
         const position = this.props.position === TooltipPosition.AUTO
@@ -144,14 +134,16 @@ class Tooltip extends Component {
         const showTooltip = this.props.showTooltip !== null
             ? this.props.showTooltip
             : this.state.showTooltip;
+        const topPosition = this.getTopPosition(position);
+        const leftPosition = this.getLeftPosition(position);
 
         const tooltip = (
             <div
                 className="uir-tooltip-contents"
                 ref={(divElement) => { this.tooltipElement = divElement; }}
                 style={{
-                    top: `${this.topPosition(position)}px`,
-                    left: `${this.leftPosition(position)}px`,
+                    top: `${topPosition}px`,
+                    left: `${leftPosition}px`,
                     opacity: showTooltip ? 1 : 0,
                     zIndex: showTooltip ? 1000 : -1,
                 }}

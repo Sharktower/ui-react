@@ -54,32 +54,6 @@ describe('Tooltip', () => {
         expect(tooltip.find('div').at(1)).to.have.className('uir-tooltip-contents');
     });
 
-    it('has top-center class by default', () => {
-        const tooltip = shallow(<Tooltip tooltip={<div />}>{exampleAvatar}</Tooltip>);
-        expect(tooltip.find('div').at(0)).to.have.className('uir-tooltip--top-center');
-    });
-
-    [
-        'top-center',
-        'top-left',
-        'top-right',
-        'bottom-center',
-        'bottom-left',
-        'bottom-right',
-    ].forEach((position) => {
-        it(`can pass through position class ${position}`, () => {
-            const tooltip = shallow((
-                <Tooltip
-                    position={position}
-                    tooltip={<div />}
-                >
-                    {exampleAvatar}
-                </Tooltip>
-            ));
-            expect(tooltip).to.have.className(`uir-tooltip--${position}`);
-        });
-    });
-
     it('can pass in children props', () => {
         const tooltip = shallow(<Tooltip tooltip={<div />}>{exampleAvatar}</Tooltip>);
         expect(tooltip.find(Avatar).length).to.equal(1);
