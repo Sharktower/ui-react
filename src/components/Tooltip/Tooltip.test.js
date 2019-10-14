@@ -112,6 +112,41 @@ describe('Tooltip', () => {
         expect(tooltipBox.text()).to.equal('example tooltip');
     });
 
+    it('sets sensible top and left positions by default', () => {
+        const tooltip = shallow(<Tooltip tooltip={<div />}>{exampleAvatar}</Tooltip>);
+        const contents = tooltip.find('div').at(1);
+        const { top, left } = contents.props().style;
+
+        expect(top).to.equal('-10px');
+        expect(left).to.equal('0px');
+    });
+
+    [
+        ['top-center', '-10px', '0px'],
+        ['top-left', '0px', '-10px'],
+        ['top-right', '0px', '10px'],
+        ['bottom-center', '10px', '0px'],
+        ['bottom-left', '0px', '-10px'],
+        ['bottom-right', '0px', '10px'],
+    ].forEach(([position, expectedTop, expectedLeft]) => {
+        it(`sets top and left values for position ${position}`, () => {
+            const tooltip = shallow((
+                <Tooltip
+                    position={position}
+                    tooltip={<div />}
+                >
+                    {exampleAvatar}
+                </Tooltip>
+            ));
+
+            const contents = tooltip.find('div').at(1);
+            const { top, left } = contents.props().style;
+
+            expect(top).to.equal(expectedTop);
+            expect(left).to.equal(expectedLeft);
+        });
+    });
+
     it('sets state showTooltip to true on mouse enter', () => {
         const tooltipComponent = (
             <Tooltip tooltip={<div />} showTooltip>
