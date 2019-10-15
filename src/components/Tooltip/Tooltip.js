@@ -58,6 +58,13 @@ const positionFromFocusEvent = (e) => {
 };
 
 class Tooltip extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleFocus = this.handleFocus.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
+    }
+
     state = {
         showTooltip: this.showTooltip || false,
         wrapperSize: {
@@ -89,43 +96,62 @@ class Tooltip extends Component {
         }, 1);
     }
 
-    getTooltipContents = () => {
+    getTooltipContents() {
         const { tooltip } = this.props;
         return typeof tooltip === 'string'
             ? <TooltipBox>{tooltip}</TooltipBox>
             : tooltip;
     }
 
-    getLeftPosition = position => ({
-        [TooltipPosition.TOP_CENTER]:
-            Math.floor((this.state.wrapperSize.width - this.state.tooltipSize.width) / 2),
-        [TooltipPosition.BOTTOM_CENTER]:
-            Math.floor((this.state.wrapperSize.width - this.state.tooltipSize.width) / 2),
-        [TooltipPosition.BOTTOM_LEFT]: -(this.state.tooltipSize.width + this.props.tooltipOffset),
-        [TooltipPosition.LEFT]: -(this.state.tooltipSize.width + this.props.tooltipOffset),
-        [TooltipPosition.TOP_LEFT]: -(this.state.tooltipSize.width + this.props.tooltipOffset),
-        [TooltipPosition.TOP_RIGHT]: this.state.wrapperSize.width + this.props.tooltipOffset,
-        [TooltipPosition.RIGHT]: this.state.wrapperSize.width + this.props.tooltipOffset,
-        [TooltipPosition.BOTTOM_RIGHT]: this.state.wrapperSize.width + this.props.tooltipOffset,
-    })[position || TooltipPosition.BOTTOM_RIGHT];
+    getLeftPosition(position) {
+        return {
+            [TooltipPosition.TOP_CENTER]:
+                Math.floor((this.state.wrapperSize.width - this.state.tooltipSize.width) / 2),
+            [TooltipPosition.BOTTOM_CENTER]:
+                Math.floor((this.state.wrapperSize.width - this.state.tooltipSize.width) / 2),
+            [TooltipPosition.BOTTOM_LEFT]:
+                -(this.state.tooltipSize.width + this.props.tooltipOffset),
+            [TooltipPosition.LEFT]:
+                -(this.state.tooltipSize.width + this.props.tooltipOffset),
+            [TooltipPosition.TOP_LEFT]:
+                -(this.state.tooltipSize.width + this.props.tooltipOffset),
+            [TooltipPosition.TOP_RIGHT]:
+                this.state.wrapperSize.width + this.props.tooltipOffset,
+            [TooltipPosition.RIGHT]:
+                this.state.wrapperSize.width + this.props.tooltipOffset,
+            [TooltipPosition.BOTTOM_RIGHT]:
+                this.state.wrapperSize.width + this.props.tooltipOffset,
+        }[position || TooltipPosition.BOTTOM_RIGHT];
+    }
 
-    getTopPosition = position => ({
-        [TooltipPosition.TOP_CENTER]: -(this.state.tooltipSize.height + this.props.tooltipOffset),
-        [TooltipPosition.RIGHT]:
-            Math.floor((this.state.wrapperSize.height - this.state.tooltipSize.height) / 2),
-        [TooltipPosition.LEFT]:
-            Math.floor((this.state.wrapperSize.height - this.state.tooltipSize.height) / 2),
-        [TooltipPosition.BOTTOM_RIGHT]: this.state.wrapperSize.height,
-        [TooltipPosition.BOTTOM_LEFT]: this.state.wrapperSize.height,
-        [TooltipPosition.BOTTOM_CENTER]: this.state.wrapperSize.height + this.props.tooltipOffset,
-        [TooltipPosition.TOP_RIGHT]: -(this.state.tooltipSize.height),
-        [TooltipPosition.TOP_LEFT]: -(this.state.tooltipSize.height),
-    })[position || TooltipPosition.TOP_LEFT];
+    getTopPosition(position) {
+        return {
+            [TooltipPosition.TOP_CENTER]:
+                -(this.state.tooltipSize.height + this.props.tooltipOffset),
+            [TooltipPosition.RIGHT]:
+                Math.floor((this.state.wrapperSize.height - this.state.tooltipSize.height) / 2),
+            [TooltipPosition.LEFT]:
+                Math.floor((this.state.wrapperSize.height - this.state.tooltipSize.height) / 2),
+            [TooltipPosition.BOTTOM_RIGHT]:
+                this.state.wrapperSize.height,
+            [TooltipPosition.BOTTOM_LEFT]:
+                this.state.wrapperSize.height,
+            [TooltipPosition.BOTTOM_CENTER]:
+                this.state.wrapperSize.height + this.props.tooltipOffset,
+            [TooltipPosition.TOP_RIGHT]:
+                -(this.state.tooltipSize.height),
+            [TooltipPosition.TOP_LEFT]:
+                -(this.state.tooltipSize.height),
+        }[position || TooltipPosition.TOP_LEFT];
+    }
 
-    handleFocus = e =>
+    handleFocus(e) {
         this.setState({ showTooltip: true, autoPosition: positionFromFocusEvent(e) });
+    }
 
-    handleBlur = () => this.setState({ showTooltip: false })
+    handleBlur() {
+        this.setState({ showTooltip: false });
+    }
 
     render() {
         const position = this.props.position === TooltipPosition.AUTO
