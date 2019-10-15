@@ -5,11 +5,11 @@ import StyleObjectPropType from '../../../prop-types/style';
 import { proxyDataProps } from '../../../utils/data-props';
 
 const propTypes = {
-    className: PropTypes.string,
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.element),
         PropTypes.element,
     ]).isRequired,
+    className: PropTypes.string,
     style: StyleObjectPropType,
 };
 
