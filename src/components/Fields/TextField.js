@@ -53,6 +53,8 @@ const propTypes = {
         TooltipPosition.BOTTOM_CENTER,
         TooltipPosition.BOTTOM_RIGHT,
         TooltipPosition.BOTTOM_LEFT,
+        TooltipPosition.LEFT,
+        TooltipPosition.RIGHT,
     ]),
     tooltipRequired: ElementOrStringPropType,
     type: PropTypes.string,

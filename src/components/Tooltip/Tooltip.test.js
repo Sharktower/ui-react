@@ -8,6 +8,12 @@ import Avatar from '../Avatar/Avatar';
 import AvatarCard from '../Avatar/AvatarCard';
 
 describe('Tooltip', () => {
+    const mockEvent = {
+        target: {
+            getBoundingClientRect: () => ({ x: 0, y: 0 }),
+        },
+    };
+
     const exampleAvatar = (
         <Avatar
             name="John Smith"
@@ -43,35 +49,9 @@ describe('Tooltip', () => {
         expect(console.error).to.be.calledWithMatch('The prop `tooltip` is marked as required in `Tooltip`');
     });
 
-    it('has correct inner class', () => {
+    it('has correct contents class', () => {
         const tooltip = shallow(<Tooltip tooltip={<div />}>{exampleAvatar}</Tooltip>);
-        expect(tooltip.find('div').at(1)).to.have.className('uir-tooltip-inner');
-    });
-
-    it('has top-center class by default', () => {
-        const tooltip = shallow(<Tooltip tooltip={<div />}>{exampleAvatar}</Tooltip>);
-        expect(tooltip.find('div').at(0)).to.have.className('uir-tooltip--top-center');
-    });
-
-    [
-        'top-center',
-        'top-left',
-        'top-right',
-        'bottom-center',
-        'bottom-left',
-        'bottom-right',
-    ].forEach((position) => {
-        it(`can pass through position class ${position}`, () => {
-            const tooltip = shallow((
-                <Tooltip
-                    position={position}
-                    tooltip={<div />}
-                >
-                    {exampleAvatar}
-                </Tooltip>
-            ));
-            expect(tooltip).to.have.className(`uir-tooltip--${position}`);
-        });
+        expect(tooltip.find('div').at(1)).to.have.className('uir-tooltip-contents');
     });
 
     it('can pass in children props', () => {
@@ -86,7 +66,8 @@ describe('Tooltip', () => {
 
     it('hides tooltip by default', () => {
         const tooltip = shallow(<Tooltip tooltip={exampleTooltip}>{exampleAvatar}</Tooltip>);
-        expect(tooltip.find(AvatarCard).length).to.equal(0);
+        expect(tooltip.find(AvatarCard).length).to.equal(1);
+        expect(tooltip.find('div').at(1).props().style.opacity).to.equal(0);
     });
 
     it('can choose to show tooltip', () => {
@@ -108,8 +89,9 @@ describe('Tooltip', () => {
         const tooltip = shallow((
             <Tooltip tooltip={exampleTooltip} showTooltip={false}>{exampleAvatar}</Tooltip>
         ));
-        tooltip.find('div').at(0).simulate('mouseEnter');
-        expect(tooltip.find(AvatarCard).length).to.equal(0);
+        tooltip.find('div').at(0).simulate('mouseEnter', mockEvent);
+        expect(tooltip.find(AvatarCard).length).to.equal(1);
+        expect(tooltip.find('div').at(1).props().style.opacity).to.equal(0);
     });
 
     it('can take an element as a tooltip', () => {
@@ -130,9 +112,52 @@ describe('Tooltip', () => {
         expect(tooltipBox.text()).to.equal('example tooltip');
     });
 
+    it('sets sensible top and left positions by default', () => {
+        const tooltip = shallow(<Tooltip tooltip={<div />}>{exampleAvatar}</Tooltip>);
+        const contents = tooltip.find('div').at(1);
+        const { top, left } = contents.props().style;
+
+        expect(top).to.equal('-10px');
+        expect(left).to.equal('0px');
+    });
+
+    [
+        ['top-center', '-10px', '0px'],
+        ['top-left', '0px', '-10px'],
+        ['top-right', '0px', '10px'],
+        ['bottom-center', '10px', '0px'],
+        ['bottom-left', '0px', '-10px'],
+        ['bottom-right', '0px', '10px'],
+        ['right', '0px', '10px'],
+        ['left', '0px', '-10px'],
+    ].forEach(([position, expectedTop, expectedLeft]) => {
+        it(`sets top and left values for position ${position}`, () => {
+            const tooltip = shallow((
+                <Tooltip
+                    position={position}
+                    tooltip={<div />}
+                >
+                    {exampleAvatar}
+                </Tooltip>
+            ));
+
+            const contents = tooltip.find('div').at(1);
+            const { top, left } = contents.props().style;
+
+            expect(top).to.equal(expectedTop);
+            expect(left).to.equal(expectedLeft);
+        });
+    });
+
     it('sets state showTooltip to true on mouse enter', () => {
-        const tooltip = shallow(<Tooltip tooltip={<div />} showTooltip>contents</Tooltip>);
-        tooltip.find('div').at(0).simulate('mouseEnter');
+        const tooltipComponent = (
+            <Tooltip tooltip={<div />} showTooltip>
+                <div className="componentWithTooltip">content</div>
+            </Tooltip>
+        );
+        const tooltip = shallow(tooltipComponent);
+        const div = tooltip.find('.uir-tooltip-inner');
+        div.simulate('mouseEnter', mockEvent);
         expect(tooltip.state().showTooltip).to.equal(true);
     });
 
@@ -144,7 +169,7 @@ describe('Tooltip', () => {
 
     it('sets state showTooltip to true on focus', () => {
         const tooltip = shallow(<Tooltip tooltip={<div />} showTooltip={false}>contents</Tooltip>);
-        tooltip.find('div').at(0).simulate('focus');
+        tooltip.find('.uir-tooltip-inner').simulate('focus', mockEvent);
         expect(tooltip.state().showTooltip).to.equal(true);
     });
 
@@ -152,5 +177,51 @@ describe('Tooltip', () => {
         const tooltip = shallow(<Tooltip tooltip={<div />} showTooltip>contents</Tooltip>);
         tooltip.find('div').at(0).simulate('blur');
         expect(tooltip.state().showTooltip).to.equal(false);
+    });
+
+    it('uses autoPosition from state if position is set to auto', () => {
+        const tooltipComponent = shallow((
+            <Tooltip tooltip={<div />} showTooltip position="auto">
+                <div className="componentWithTooltip">content</div>
+            </Tooltip>
+        ));
+
+        tooltipComponent.setState({ autoPosition: 'bottom-left' });
+
+        const contents = tooltipComponent.find('div').at(1);
+        const { top, left } = contents.props().style;
+
+        expect(top).to.equal('0px');
+        expect(left).to.equal('-10px');
+    });
+
+    it('sets autoPosition on focus', () => {
+        const tooltip = shallow(<Tooltip tooltip={<div />} showTooltip={false} position="auto">contents</Tooltip>);
+
+        tooltip.find('.uir-tooltip-inner').simulate('focus', mockEvent);
+
+        expect(tooltip.state().autoPosition).to.equal('bottom-right');
+    });
+
+    [
+        [10, 10, 'bottom-right'],
+        [400, 10, 'bottom-left'],
+        [10, 350, 'top-right'],
+        [400, 400, 'top-left'],
+    ].forEach(([x, y, expected]) => {
+        it('sets autoPosition correctly based on event coordinates', () => {
+            const tooltip = shallow((
+                <Tooltip position="auto" tooltip={<div />}>{exampleAvatar}</Tooltip>
+            ));
+
+            // headless browser screenWidth: 785, screenHeight: 600
+            const fakeEvent = {
+                target: {
+                    getBoundingClientRect: () => ({ x, y }),
+                },
+            };
+            tooltip.find('.uir-tooltip-inner').simulate('focus', fakeEvent);
+            expect(tooltip.state().autoPosition).to.equal(expected);
+        });
     });
 });
