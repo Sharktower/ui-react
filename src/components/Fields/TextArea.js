@@ -16,6 +16,7 @@ const propTypes = {
     autoHideLabel: PropTypes.bool,
     className: PropTypes.string,
     componentRef: PropTypes.func,
+    errorMessageType: PropTypes.oneOf(['tooltip', 'message']),
     hasFixedHeight: PropTypes.bool,
     isDisabled: PropTypes.bool,
     isFullWidth: PropTypes.bool,
@@ -37,6 +38,7 @@ const propTypes = {
     tooltipError: ElementOrStringPropType,
     tooltipHint: ElementOrStringPropType,
     tooltipRequired: ElementOrStringPropType,
+    validationMessage: PropTypes.string,
     value: PropTypes.string,
 };
 
@@ -45,6 +47,7 @@ const defaultProps = {
     autoHideLabel: false,
     className: null,
     componentRef: null,
+    errorMessageType: 'tooltip',
     hasFixedHeight: false,
     isDisabled: false,
     isFullWidth: false,
@@ -66,6 +69,7 @@ const defaultProps = {
     tooltipError: null,
     tooltipHint: null,
     tooltipRequired: 'required',
+    validationMessage: null,
     value: '',
 };
 
@@ -238,7 +242,12 @@ class TextArea extends Component {
             null;
         /* eslint-enable */
         const showPlaceholder = (!this.props.label || this.state.hasFocus);
-        const tooltipError = this.props.isValid === false ? this.props.tooltipError : null;
+        const showValidationMessage = !this.props.isValid && this.props.errorMessageType === 'message'
+            && (this.props.validationMessage || this.props.tooltipError);
+        const validationMessage = showValidationMessage ?
+            this.props.validationMessage || this.props.tooltipError : null;
+        const tooltipError = (!showValidationMessage && !this.props.isValid
+            ? this.props.tooltipError : null);
         return (
             <div
                 className={cx(
@@ -251,7 +260,6 @@ class TextArea extends Component {
                         'uir-text-area--full-width': this.props.isFullWidth,
                         'uir-text-area--has-right-icon': this.props.isRequired,
                         'uir-text-area--has-value': this.state.value === null ? false : `${this.state.value}`,
-                        'uir-text-area--invalid': this.props.isValid === false,
                         'uir-text-area--readonly': this.props.isReadOnly,
                         'uir-text-area--valid': this.props.isValid,
                     },
@@ -262,38 +270,49 @@ class TextArea extends Component {
                 style={this.props.style}
                 {...proxyDataProps(this.props)}
             >
-                <div className="uir-text-area-inner">
-                    <div className="uir-text-area-label-wrapper">
-                        {label}
+                <div>
+                    <div
+                        className={cx(
+                            'uir-text-area-inner',
+                            {
+                                'uir-text-area-inner--invalid': this.props.isValid === false,
+                                'uir-text-area-inner--disabled': this.props.isDisabled,
+                            },
+                        )}
+                    >
+                        <div className="uir-text-area-label-wrapper">
+                            {label}
+                        </div>
+                        {this.wrapInputWithTooltip(
+                            <textarea
+                                aria-invalid={this.props.isValid === false}
+                                autoComplete={this.props.autoComplete}
+                                className="uir-text-area-input"
+                                disabled={this.props.isDisabled}
+                                id={this.uid}
+                                name={this.props.name}
+                                onChange={this.handleInputChange}
+                                onBlur={this.handleInputBlur}
+                                onFocus={this.handleInputFocus}
+                                onKeyDown={this.handleInputKeyDown}
+                                onKeyUp={this.handleInputKeyUp}
+                                onKeyPress={this.handleInputKeyPress}
+                                placeholder={showPlaceholder ? this.props.placeholder : null}
+                                readOnly={this.props.isReadOnly}
+                                required={this.props.isRequired}
+                                ref={this.handleInputRef}
+                                rows={this.props.rows}
+                                value={this.state.value === null ? '' : this.state.value}
+                            />,
+                            tooltipError || this.props.tooltipHint,
+                        )}
+                        {requiredIconAndTooltip(
+                            this.props.isRequired && !this.props.label,
+                            this.props.tooltipRequired,
+                        )}
                     </div>
-                    {this.wrapInputWithTooltip(
-                        <textarea
-                            aria-invalid={this.props.isValid === false}
-                            autoComplete={this.props.autoComplete}
-                            className="uir-text-area-input"
-                            disabled={this.props.isDisabled}
-                            id={this.uid}
-                            name={this.props.name}
-                            onChange={this.handleInputChange}
-                            onBlur={this.handleInputBlur}
-                            onFocus={this.handleInputFocus}
-                            onKeyDown={this.handleInputKeyDown}
-                            onKeyUp={this.handleInputKeyUp}
-                            onKeyPress={this.handleInputKeyPress}
-                            placeholder={showPlaceholder ? this.props.placeholder : null}
-                            readOnly={this.props.isReadOnly}
-                            required={this.props.isRequired}
-                            ref={this.handleInputRef}
-                            rows={this.props.rows}
-                            value={this.state.value === null ? '' : this.state.value}
-                        />,
-                        tooltipError || this.props.tooltipHint,
-                    )}
-                    {requiredIconAndTooltip(
-                        this.props.isRequired && !this.props.label,
-                        this.props.tooltipRequired,
-                    )}
                 </div>
+                {showValidationMessage && <div className="uir-text-area-validation-message">{validationMessage}</div>}
             </div>
         );
     }

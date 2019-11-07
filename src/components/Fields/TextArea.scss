@@ -10,24 +10,8 @@ $textFieldLabelColor: $charcoal !default;
     font-weight: 400;
     color: $textFieldLabelColor;
 
-    &:after {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        display: block;
-        width: 40%;
-        height: 1px;
-        content: "";
-        background: linear-gradient(to right, $grey 0%, transparent 100%);
-        transition: width .25s;
-    }
-
     &--focus:after {
         width: 100%;
-    }
-
-    &--invalid:after {
-        background: linear-gradient(to right, $pink 0%, transparent 100%);
     }
 
     &--full-width {
@@ -53,10 +37,6 @@ $textFieldLabelColor: $charcoal !default;
         input::-ms-clear {
             display: none; // hide IE clear icon
         }
-    }
-
-    &--disabled:after {
-        background: none;
     }
 
     &-label-wrapper {
@@ -107,9 +87,41 @@ $textFieldLabelColor: $charcoal !default;
         width: 100%;
     }
 
+    &-validation-message {
+        margin-top: 8px;
+        font-family: "DINOT", Arial, sans-serif;
+        font-size: 11px;
+        font-weight: normal;
+        color: $pink2;
+        letter-spacing: .92px;
+    }
+
     .uir-icon-required {
         width: 10px;
         height: 10px;
         margin-left: 5px;
+    }
+}
+
+.uir-text-area-inner {
+
+    &:after {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        display: inline-block;
+        width: 40%;
+        height: 1px;
+        content: "";
+        background: linear-gradient(to right, $grey 0%, transparent 100%);
+        transition: width .25s;
+    }
+
+    &--invalid:after {
+        background: linear-gradient(to right, $pink 0%, transparent 100%);
+    }
+
+    &--disabled:after {
+        background: none;
     }
 }
