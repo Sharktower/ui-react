@@ -233,14 +233,16 @@ describe('TextArea', () => {
 
     it('has no validation classes by default', () => {
         const textArea = shallow(<TextArea />);
+        const textAreaInner = textArea.find('.uir-text-area-inner');
         expect(textArea).to.not.have.className('uir-text-area--valid');
-        expect(textArea).to.not.have.className('uir-text-area--invalid');
+        expect(textAreaInner).to.not.have.className('uir-text-area-inner--invalid');
     });
 
     it('has no validation classes if isValid is null', () => {
         const textArea = shallow(<TextArea isValid={null} />);
+        const textAreaInner = textArea.find('.uir-text-area-inner');
         expect(textArea).to.not.have.className('uir-text-area--valid');
-        expect(textArea).to.not.have.className('uir-text-area--invalid');
+        expect(textAreaInner).to.not.have.className('uir-text-area-inner--invalid');
     });
 
     it('adds valid class if isValid is true', () => {
@@ -249,8 +251,8 @@ describe('TextArea', () => {
     });
 
     it('adds invalid class if isValid is false', () => {
-        const textArea = shallow(<TextArea isValid={false} />);
-        expect(textArea).to.have.className('uir-text-area--invalid');
+        const textAreaInner = shallow(<TextArea isValid={false} />).find('.uir-text-area-inner');
+        expect(textAreaInner).to.have.className('uir-text-area-inner--invalid');
     });
 
     it('wraps textarea in a tooltip if tooltipError is given and isValid is false', () => {
@@ -345,5 +347,29 @@ describe('TextArea', () => {
 
         expect(textField.instance().inputRef.selectionStart).to.equal(2);
         expect(textField.instance().inputRef.selectionEnd).to.equal(2);
+    });
+
+    it('does not shows validation message if validationMessage is given but isValid is true', () => {
+        const textArea = shallow(<TextArea isValid errorMessageType="message" validationMessage="This field is invalid" />);
+        expect(textArea.find('.uir-text-area-validation-message').length).to.equal(0);
+    });
+
+    it('does not shows validation message if errorMessageType is not \'message\'', () => {
+        const textArea = shallow(<TextArea isValid={false} validationMessage="This field is invalid" />);
+        expect(textArea.find('.uir-text-area-validation-message').length).to.equal(0);
+    });
+
+    it('shows validation message if errorMessageType is \'message\' and the field is invalid', () => {
+        const textArea = shallow(<TextArea isValid={false} errorMessageType="message" validationMessage="This field is invalid" />);
+        const message = textArea.find('.uir-text-area-validation-message');
+        expect(message.length).to.equal(1);
+        expect(message.text()).to.equal('This field is invalid');
+    });
+
+    it('shows validation message using the tooltipError value if errorMessageType is \'message\' and validationMessage is not provided', () => {
+        const textArea = shallow(<TextArea isValid={false} errorMessageType="message" tooltipError="This field is invalid" />);
+        const message = textArea.find('.uir-text-area-validation-message');
+        expect(message.length).to.equal(1);
+        expect(message.text()).to.equal('This field is invalid');
     });
 });

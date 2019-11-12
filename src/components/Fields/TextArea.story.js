@@ -260,3 +260,17 @@ stories.add(
         </div>,
     ),
 );
+
+stories.add(
+    'Validation message',
+    storyWrapper(
+        '`validationMessage` defines a message to show when `isValid` is `false` and you want to show it instead of a tooltip error. ' +
+        'It works along with `errorMessageType`, which must have the value `message`.',
+        <TextArea
+            label="Invalid input value"
+            errorMessageType="message"
+            validationMessage="The content of this field is invalid"
+            isValid={false}
+        />,
+    ),
+);
