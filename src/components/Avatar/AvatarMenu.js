@@ -40,13 +40,13 @@ class AvatarMenu extends Component {
     }
 
     handleAvatarClick = () => {
-        const open = !this.state.open;
-        if (open) {
+        const shouldOpen = !this.state.open;
+        if (shouldOpen) {
             this.props.onMenuOpen();
         } else {
             this.props.onMenuClose();
         }
-        this.setState({ open });
+        this.setState({ open: shouldOpen });
     }
 
     handleClick = () => {
