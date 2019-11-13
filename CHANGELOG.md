@@ -1,4 +1,55 @@
-<!-- Last Updated: 2019-09-19 15:50:17 -->
+<!-- Last Updated: 2019-11-12 15:53:54 -->
+
+# UI React v5.0.0 (2019-11-12 15:53:54)
+
+## Textarea - Validation message under the field
+
+**Backwards Compatibility Implications**
+_None_
+
+**New Features** 
+Allow the use of a validation message that will be shown under the textarea field (instead of a tooltip for error)
+
+**Bug Fixes** 
+_None_
+
+**Miscellaneous**
+Adds an optional validation message under the field as an alternative to `tooltipError`
+![TextArea with validation message](https://user-images.githubusercontent.com/348776/68447182-cbed6180-01bd-11ea-9c98-f7e16cefec4a.png)
+
+1. Choose the type of validation message to `message` (the default is `tooltip`)
+2. Provide a value for `validationMessage`
+3. When the `isValid` is false the message will be shown under the textarea field
+
+
+## Add auto position prop to tooltip
+
+
+
+**Backwards Compatibility Implications** 
+
+- Changes the meaning of tooltip position names. `left` now means "to the left of the component" rather than "originating from the left edge"
+
+**New Features** 
+
+- Adds 'auto' value for tooltip position enum
+- Positions tooltip as far from screen edge as possible
+
+**Bug Fixes** 
+
+_None_
+
+**Performance Improvements** 
+
+_None_
+
+**Miscellaneous** 
+
+![Peek 2019-09-02 14-50](https://user-images.githubusercontent.com/8657986/64119314-75187580-cd91-11e9-9950-aa76bb9f44aa.gif)
+
+
+
+
 
 # UI React v4.1.0 (2019-09-19 15:50:17)
 
