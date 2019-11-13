@@ -10,17 +10,24 @@ const sampleData = {
     src: 'https://randomuser.me/api/portraits/lego/2.jpg',
 };
 
-const renderMockMenu = () => shallow((
-    <AvatarMenu avatar={<Avatar name={sampleData.name} src={sampleData.src} />}>
-        <AvatarMenu.Nav />
-        <AvatarMenu.Nav />
-    </AvatarMenu>
-));
-
 describe('AvatarMenu', () => {
     const sandbox = sinon.sandbox.create();
+    let onMenuOpenStub;
+    let onMenuCloseStub;
+
+    const renderMockMenu = (overrides = {}) => shallow((
+        <AvatarMenu
+            avatar={<Avatar name={sampleData.name} src={sampleData.src} />}
+            {...overrides}
+        >
+            <AvatarMenu.Nav />
+            <AvatarMenu.Nav />
+        </AvatarMenu>
+    ));
 
     beforeEach(() => {
+        onMenuOpenStub = sandbox.stub();
+        onMenuCloseStub = sandbox.stub();
         sandbox.stub(console, 'error');
     });
 
@@ -82,6 +89,18 @@ describe('AvatarMenu', () => {
         expect(avatarMenu.state('open')).to.equal(true);
     });
 
+    it('calls onMenuOpen on avatarMenu click, if it is closed', () => {
+        const avatarMenu = renderMockMenu({ onMenuOpen: onMenuOpenStub });
+        avatarMenu.find(Avatar).simulate('click');
+        expect(onMenuOpenStub).to.calledOnce();
+    });
+
+    it('calls onMenuClose on avatarMenu click, if it is open', () => {
+        const avatarMenu = renderMockMenu({ open: true, onMenuClose: onMenuCloseStub });
+        avatarMenu.find(Avatar).simulate('click');
+        expect(onMenuCloseStub).to.calledOnce();
+    });
+
     it('toggles open state to false when Avatar is clicked', () => {
         const avatarMenu = mount((
             <AvatarMenu avatar={<Avatar name={sampleData.name} />} open>
@@ -131,6 +150,12 @@ describe('AvatarMenu', () => {
         expect(avatarMenu.state('open')).to.equal(true);
         avatarMenu.find('div').first().simulate('keydown', { key: 'Enter' });
         expect(avatarMenu.state('open')).to.equal(false);
+    });
+
+    it('calls onMenuClose keyDown if Enter pressed', () => {
+        const avatarMenu = renderMockMenu({ open: true, onMenuClose: onMenuCloseStub });
+        avatarMenu.find('div').first().simulate('keydown', { key: 'Enter' });
+        expect(onMenuCloseStub).to.calledOnce();
     });
 
     it('does not close menu on keyDown if any other key pressed', () => {
