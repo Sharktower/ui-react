@@ -18,6 +18,8 @@ const propTypes = {
         PropTypes.string,
     ]).isRequired,
     className: PropTypes.string,
+    onMenuClose: PropTypes.func,
+    onMenuOpen: PropTypes.func,
     open: PropTypes.bool,
     position: PropTypes.string,
     style: StyleObjectPropType,
@@ -28,6 +30,8 @@ const defaultProps = {
     open: false,
     position: AvatarMenuPosition.RIGHT,
     style: null,
+    onMenuClose: () => {},
+    onMenuOpen: () => {},
 };
 
 class AvatarMenu extends Component {
@@ -36,10 +40,19 @@ class AvatarMenu extends Component {
     }
 
     handleAvatarClick = () => {
-        this.setState({ open: !this.state.open });
+        const shouldOpen = !this.state.open;
+        if (shouldOpen) {
+            this.props.onMenuOpen();
+        } else {
+            this.props.onMenuClose();
+        }
+        this.setState({ open: shouldOpen });
     }
 
-    handleClick = () => this.setState({ open: false })
+    handleClick = () => {
+        this.props.onMenuClose();
+        this.setState({ open: false });
+    }
 
     handleKeyDown = (event) => {
         if (event.key === 'Enter') {
