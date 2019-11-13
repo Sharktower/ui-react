@@ -641,28 +641,6 @@ _None_
 **Miscellaneous** 
 
 
-## Textarea - Validation message under the field
-
-**Backwards Compatibility Implications**
-_None_
-
-**New Features** 
-Allow the use of a validation message that will be shown under the textarea field (instead of a tooltip for error)
-
-**Bug Fixes** 
-_None_
-
-**Miscellaneous**
-Adds an optional validation message under the field as an alternative to `tooltipError`
-![TextArea with validation message](https://user-images.githubusercontent.com/348776/68447182-cbed6180-01bd-11ea-9c98-f7e16cefec4a.png)
-
-1. Choose the type of validation message to `message` (the default is `tooltip`)
-2. Provide a value for `validationMessage`
-3. When the `isValid` is false the message will be shown under the textarea field
-
-
-
-
 # UI React v5.0.0 (2019-11-12 15:53:54)
 
 ## Textarea - Validation message under the field
