@@ -1,43 +1,19 @@
-$tooltipPositions: (
-    top-center: (
-        animation-direction: "top"
-    ),
-    top-left: (
-        animation-direction: "top"
-    ),
-    top-right: (
-        animation-direction: "top"
-    ),
-    bottom-center: (
-        animation-direction: "bottom"
-    ),
-    bottom-right: (
-        animation-direction: "bottom"
-    ),
-    bottom-left: (
-        animation-direction: "bottom"
-    ),
-    left: (
-        animation-direction: "left"
-    ),
-    right: (
-        animation-direction: "right"
-    ),
-);
+@keyframes uir-animate-tooltip {
+
+    from {
+        margin-top: 20px;
+        opacity: 0;
+    }
+
+    to {
+        margin-top: 0;
+        opacity: 1;
+    }
+}
 
 .uir-tooltip {
     position: relative;
     display: inline-block;
-
-    @each $label, $positons in $tooltipPositions {
-
-        &--#{$label} {
-
-            .uir-tooltip-contents {
-                animation-name: uir-animate-tooltip-in-#{map-get($positons, "animation-direction")}--#{$label};
-            }
-        }
-    }
 
     &:focus {
         outline: none;
@@ -49,6 +25,8 @@ $tooltipPositions: (
 
     .uir-tooltip-contents {
         position: absolute;
+        z-index: 1000;
+        animation-name: uir-animate-tooltip;
         animation-duration: .2s;
         animation-timing-function: ease;
     }

@@ -1,4 +1,3 @@
-/* global window */
 import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
@@ -8,6 +7,7 @@ import StyleObjectPropType from '../../prop-types/style';
 import { proxyDataProps } from '../../utils/data-props';
 import TooltipBox from './TooltipBox';
 import { TooltipPosition } from './TooltipEnums';
+import { calculateTopPosition, calculateLeftPosition, calculateAutoPosition } from './calculatePosition';
 import './Tooltip.scss';
 
 const propTypes = {
@@ -40,31 +40,7 @@ const defaultProps = {
     tooltipOffset: 10,
 };
 
-
-const aboveCentre = pos => pos.y < pos.screenHeight / 2;
-const leftOfCentre = pos => pos.x < pos.screenWidth / 2;
-const positionFromFocusEvent = (e) => {
-    const { x, y } = e.target.getBoundingClientRect();
-    const eventPosition = {
-        x,
-        y,
-        screenWidth: window.innerWidth,
-        screenHeight: window.innerHeight,
-    };
-
-    const topBottom = aboveCentre(eventPosition) ? 'BOTTOM' : 'TOP';
-    const leftRight = leftOfCentre(eventPosition) ? 'RIGHT' : 'LEFT';
-    return TooltipPosition[`${topBottom}_${leftRight}`];
-};
-
 class Tooltip extends Component {
-    constructor(props) {
-        super(props);
-
-        this.handleFocus = this.handleFocus.bind(this);
-        this.handleBlur = this.handleBlur.bind(this);
-    }
-
     state = {
         showTooltip: this.showTooltip || false,
         wrapperSize: {
@@ -79,77 +55,62 @@ class Tooltip extends Component {
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            if (this.wrapper && this.tooltipElement) {
-                const wrapperSize = {
-                    width: this.wrapper.clientWidth,
-                    height: this.wrapper.clientHeight,
-                };
-
-                const tooltipSize = {
-                    width: this.tooltipElement.clientWidth,
-                    height: this.tooltipElement.clientHeight,
-                };
-
-                this.setState({ wrapperSize, tooltipSize });
-            }
-        }, 1);
+        this.setPosition();
     }
 
-    getTooltipContents() {
+    getTooltipContents = () => {
         const { tooltip } = this.props;
         return typeof tooltip === 'string'
             ? <TooltipBox>{tooltip}</TooltipBox>
             : tooltip;
     }
 
-    getLeftPosition(position) {
-        return {
-            [TooltipPosition.TOP_CENTER]:
-                Math.floor((this.state.wrapperSize.width - this.state.tooltipSize.width) / 2),
-            [TooltipPosition.BOTTOM_CENTER]:
-                Math.floor((this.state.wrapperSize.width - this.state.tooltipSize.width) / 2),
-            [TooltipPosition.BOTTOM_LEFT]:
-                -(this.state.tooltipSize.width + this.props.tooltipOffset),
-            [TooltipPosition.LEFT]:
-                -(this.state.tooltipSize.width + this.props.tooltipOffset),
-            [TooltipPosition.TOP_LEFT]:
-                -(this.state.tooltipSize.width + this.props.tooltipOffset),
-            [TooltipPosition.TOP_RIGHT]:
-                this.state.wrapperSize.width + this.props.tooltipOffset,
-            [TooltipPosition.RIGHT]:
-                this.state.wrapperSize.width + this.props.tooltipOffset,
-            [TooltipPosition.BOTTOM_RIGHT]:
-                this.state.wrapperSize.width + this.props.tooltipOffset,
-        }[position || TooltipPosition.BOTTOM_RIGHT];
+    getLeftPosition = (position = TooltipPosition.BOTTOM_RIGHT) => {
+        const { wrapperSize, tooltipSize } = this.state;
+        const { tooltipOffset } = this.props;
+        const leftPosition = calculateLeftPosition(
+            position,
+            wrapperSize,
+            tooltipSize,
+            tooltipOffset,
+        );
+        return leftPosition;
     }
 
-    getTopPosition(position) {
-        return {
-            [TooltipPosition.TOP_CENTER]:
-                -(this.state.tooltipSize.height + this.props.tooltipOffset),
-            [TooltipPosition.RIGHT]:
-                Math.floor((this.state.wrapperSize.height - this.state.tooltipSize.height) / 2),
-            [TooltipPosition.LEFT]:
-                Math.floor((this.state.wrapperSize.height - this.state.tooltipSize.height) / 2),
-            [TooltipPosition.BOTTOM_RIGHT]:
-                this.state.wrapperSize.height,
-            [TooltipPosition.BOTTOM_LEFT]:
-                this.state.wrapperSize.height,
-            [TooltipPosition.BOTTOM_CENTER]:
-                this.state.wrapperSize.height + this.props.tooltipOffset,
-            [TooltipPosition.TOP_RIGHT]:
-                -(this.state.tooltipSize.height),
-            [TooltipPosition.TOP_LEFT]:
-                -(this.state.tooltipSize.height),
-        }[position || TooltipPosition.TOP_LEFT];
+    getTopPosition = (position = TooltipPosition.TOP_LEFT) => {
+        const { wrapperSize, tooltipSize } = this.state;
+        const { tooltipOffset } = this.props;
+        const topPosition = calculateTopPosition(position, wrapperSize, tooltipSize, tooltipOffset);
+        return topPosition;
     }
 
-    handleFocus(e) {
-        this.setState({ showTooltip: true, autoPosition: positionFromFocusEvent(e) });
+    setPosition = () => {
+        const showTooltip = this.props.showTooltip || this.state.showTooltip;
+        if (showTooltip && this.wrapper && this.tooltipElement) {
+            const wrapperBounding = this.wrapper.getBoundingClientRect();
+            const tooltipBounding = this.tooltipElement.getBoundingClientRect();
+
+            this.setState({
+                wrapperSize: {
+                    height: wrapperBounding.height,
+                    width: wrapperBounding.width,
+                },
+                tooltipSize: {
+                    height: tooltipBounding.height,
+                    width: tooltipBounding.width,
+                },
+                autoPosition: calculateAutoPosition(wrapperBounding),
+            });
+        }
     }
 
-    handleBlur() {
+    handleFocus = () => {
+        this.setState({ showTooltip: true }, () => {
+            this.setPosition();
+        });
+    }
+
+    handleBlur = () => {
         this.setState({ showTooltip: false });
     }
 
@@ -163,20 +124,18 @@ class Tooltip extends Component {
         const topPosition = this.getTopPosition(position);
         const leftPosition = this.getLeftPosition(position);
 
-        const tooltip = (
+        const tooltip = showTooltip ? (
             <div
                 className="uir-tooltip-contents"
                 ref={(divElement) => { this.tooltipElement = divElement; }}
                 style={{
                     top: `${topPosition}px`,
                     left: `${leftPosition}px`,
-                    opacity: showTooltip ? 1 : 0,
-                    zIndex: showTooltip ? 1000 : -1,
                 }}
             >
                 {this.getTooltipContents()}
             </div>
-        );
+        ) : null;
 
         return (
             <div
