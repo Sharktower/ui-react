@@ -23,7 +23,7 @@ Scenario('Storybook Documentation', (I) => {
 Scenario('Tooltip', (I) => {
     I.searchWithinIframe(KIND, 'Wrapper', () => {
         I.seeElement('.uir-tooltip');
-        I.moveCursorTo('.uir-tooltip');
+        I.moveCursorTo('.uir-tooltip-inner');
         I.seeElement('.uir-avatar-card');
     });
 });
