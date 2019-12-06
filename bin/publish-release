@@ -10,20 +10,12 @@ if (!process.version.match(/v9\.10.*/)) {
 const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
-const npm = require('npm-utils');
 const { userMessage, executeSilently } = require('../release-src/shell-utils');
 const { hasUntrackedFiles } = require('../release-src/untracked-files');
 
 const homeDir = require('os').homedir();
 
 const hasNpmRc = fs.existsSync(path.resolve(homeDir, '.npmrc'));
-
-function publishToNPM() {
-    const npmPromise = hasNpmRc ?
-        npm.publish() :
-        npm.setAuthToken().then(npm.publish);
-    return npmPromise.catch(error => console.error(error));
-}
 
 // @TODO: dry run flag, silent flag, help flag
 
@@ -83,7 +75,7 @@ async function publish() {
 
     userMessage('Publishing to NPM...', 'yellow');
 
-    await publishToNPM();
+    shell.exec('npm publish');
 
     userMessage(`Checking out original branch (${currentBranch})...`, 'yellow');
     checkoutBranch(currentBranch);
