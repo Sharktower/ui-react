@@ -1,4 +1,29 @@
-<!-- Last Updated: 2019-11-13 15:42:29 -->
+<!-- Last Updated: 2019-12-06 14:11:22 -->
+
+# UI React v5.1.1 (2019-12-06 14:11:22)
+
+## Fix DateField and Tooltip hide and show and text area height
+
+
+
+**Backwards Compatibility Implications** 
+
+_None_
+
+**New Features** 
+
+_None_
+
+**Bug Fixes** 
+
+- Fix Tooltip show and hide, now it should remove and add the component instead of changing its opacity and z-index.
+- Fix TextArea height
+
+**Performance Improvements** 
+
+
+**Miscellaneous** 
+
 
 # UI React v5.1.0 (2019-11-13 15:42:29)
 
