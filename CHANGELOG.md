@@ -1,4 +1,174 @@
-<!-- Last Updated: 2019-11-13 15:42:29 -->
+<!-- Last Updated: 2019-12-06 14:11:22 -->
+
+# UI React v5.1.1 (2019-12-06 14:11:22)
+
+## Fix DateField and Tooltip hide and show and text area height
+
+
+
+**Backwards Compatibility Implications** 
+
+_None_
+
+**New Features** 
+
+_None_
+
+**Bug Fixes** 
+
+- Fix Tooltip show and hide, now it should remove and add the component instead of changing its opacity and z-index.
+- Fix TextArea height
+
+**Performance Improvements** 
+
+
+**Miscellaneous** 
+
+
+## Bump fstream from 1.0.11 to 1.0.12
+
+Bumps [fstream](https://github.com/npm/fstream) from 1.0.11 to 1.0.12.
+<details>
+<summary>Commits</summary>
+
+- [`4235459`](https://github.com/npm/fstream/commit/42354590e23bb514eb5c869eea64406be2947c6c) 1.0.12
+- [`6a77d2f`](https://github.com/npm/fstream/commit/6a77d2fa6e1462693cf8e46f930da96ec1b0bb22) Clobber a Link if it's in the way of a File
+- See full diff in [compare view](https://github.com/npm/fstream/compare/v1.0.11...v1.0.12)
+</details>
+<br />
+
+[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=fstream&package-manager=npm_and_yarn&previous-version=1.0.11&new-version=1.0.12)](https://help.github.com/articles/configuring-automated-security-fixes)
+
+Dependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.
+
+[//]: # (dependabot-automerge-start)
+[//]: # (dependabot-automerge-end)
+
+---
+
+<details>
+<summary>Dependabot commands and options</summary>
+<br />
+
+You can trigger Dependabot actions by commenting on this PR:
+- `@dependabot rebase` will rebase this PR
+- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it
+- `@dependabot merge` will merge this PR after your CI passes on it
+- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it
+- `@dependabot cancel merge` will cancel a previously requested merge and block automerging
+- `@dependabot reopen` will reopen this PR if it is closed
+- `@dependabot ignore this [patch|minor|major] version` will close this PR and stop Dependabot creating any more for this minor/major version (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot use these labels` will set the current labels as the default for future PRs for this repo and language
+- `@dependabot use these reviewers` will set the current reviewers as the default for future PRs for this repo and language
+- `@dependabot use these assignees` will set the current assignees as the default for future PRs for this repo and language
+- `@dependabot use this milestone` will set the current milestone as the default for future PRs for this repo and language
+
+You can disable automated security fix PRs for this repo from the [Security Alerts page](https://github.com/Mudano/ui-react/network/alerts).
+
+</details>
+
+## Bump electron from 1.8.6 to 1.8.8
+
+Bumps [electron](https://github.com/electron/electron) from 1.8.6 to 1.8.8.
+<details>
+<summary>Commits</summary>
+
+- [`0602ca8`](https://github.com/electron/electron/commit/0602ca8e9c179027023d2801374407c4e9812465) v1.8.8
+- [`519a02d`](https://github.com/electron/electron/commit/519a02d8d4d28e8a467acb40fb26172a80c9454f) fix: inheritance of webPreferences sub properties
+- [`8ebd0ce`](https://github.com/electron/electron/commit/8ebd0ce1b18435f90f5f2e64a1d982d396e0d278) chore: stop auto releasing from windows CI
+- [`61d9470`](https://github.com/electron/electron/commit/61d9470b7a8a1086cd0dbff46cfe75cded1ed7c2) docs: fix electron.d.ts typings ([#14136](https://github-redirect.dependabot.com/electron/electron/issues/14136))
+- [`16e1b23`](https://github.com/electron/electron/commit/16e1b2340fd548cb13c12541e40de05adb944b98) Merge pull request [#14086](https://github-redirect.dependabot.com/electron/electron/issues/14086) from electron/appveyor-rename-1-8-x
+- [`f91aa3f`](https://github.com/electron/electron/commit/f91aa3f37d1e6da7a15087e44f7871b2d2e0ee8e) Rename appveyor-override to appveyor
+- [`a1a9213`](https://github.com/electron/electron/commit/a1a921325dabece06a66e53b94c17e93053eb3c6) chore: roll libcc
+- [`6553396`](https://github.com/electron/electron/commit/65533961e2b05f480d08414d5a2aa8d85fdeed57) fix: util.promisify(setTimeout) ([#13858](https://github-redirect.dependabot.com/electron/electron/issues/13858))
+- [`77093d5`](https://github.com/electron/electron/commit/77093d540ff39fb8e825f3e9a747da9e50b07a86) docs: fix electron.d.ts typings ([#13855](https://github-redirect.dependabot.com/electron/electron/issues/13855))
+- [`8643863`](https://github.com/electron/electron/commit/86438632d78d55ffdcc9b63990d4023073bcc5a0) Merge pull request [#13610](https://github-redirect.dependabot.com/electron/electron/issues/13610) from trop-bot/1-8-x-bp-ci--use-visual-studio-2015-f...
+- Additional commits viewable in [compare view](https://github.com/electron/electron/compare/v1.8.6...v1.8.8)
+</details>
+<details>
+<summary>Maintainer changes</summary>
+
+This version was pushed to npm by [electron-nightly](https://www.npmjs.com/~electron-nightly), a new releaser for electron since your current version.
+</details>
+<br />
+
+[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=electron&package-manager=npm_and_yarn&previous-version=1.8.6&new-version=1.8.8)](https://help.github.com/articles/configuring-automated-security-fixes)
+
+Dependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.
+
+[//]: # (dependabot-automerge-start)
+[//]: # (dependabot-automerge-end)
+
+---
+
+<details>
+<summary>Dependabot commands and options</summary>
+<br />
+
+You can trigger Dependabot actions by commenting on this PR:
+- `@dependabot rebase` will rebase this PR
+- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it
+- `@dependabot merge` will merge this PR after your CI passes on it
+- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it
+- `@dependabot cancel merge` will cancel a previously requested merge and block automerging
+- `@dependabot reopen` will reopen this PR if it is closed
+- `@dependabot ignore this [patch|minor|major] version` will close this PR and stop Dependabot creating any more for this minor/major version (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot use these labels` will set the current labels as the default for future PRs for this repo and language
+- `@dependabot use these reviewers` will set the current reviewers as the default for future PRs for this repo and language
+- `@dependabot use these assignees` will set the current assignees as the default for future PRs for this repo and language
+- `@dependabot use this milestone` will set the current milestone as the default for future PRs for this repo and language
+
+You can disable automated security fix PRs for this repo from the [Security Alerts page](https://github.com/Mudano/ui-react/network/alerts).
+
+</details>
+
+## Bump stringstream from 0.0.5 to 0.0.6
+
+Bumps [stringstream](https://github.com/mhart/StringStream) from 0.0.5 to 0.0.6.
+<details>
+<summary>Commits</summary>
+
+- [`fee31c5`](https://github.com/mhart/StringStream/commit/fee31c5c4a5efc7c7cc2fde4aee633dedefd6d67) 0.0.6
+- [`2f4a9d4`](https://github.com/mhart/StringStream/commit/2f4a9d496f94b0880e01a26857aa266a5a3ef274) Merge pull request [#9](https://github-redirect.dependabot.com/mhart/StringStream/issues/9) from mhart/fix-buffer-constructor-vuln
+- [`afbc744`](https://github.com/mhart/StringStream/commit/afbc7442220358419e330618e47f3a65fc265b1b) Ensure data is not a number in Buffer constructor
+- See full diff in [compare view](https://github.com/mhart/StringStream/compare/v0.0.5...v0.0.6)
+</details>
+<br />
+
+[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=stringstream&package-manager=npm_and_yarn&previous-version=0.0.5&new-version=0.0.6)](https://help.github.com/articles/configuring-automated-security-fixes)
+
+Dependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.
+
+[//]: # (dependabot-automerge-start)
+[//]: # (dependabot-automerge-end)
+
+---
+
+<details>
+<summary>Dependabot commands and options</summary>
+<br />
+
+You can trigger Dependabot actions by commenting on this PR:
+- `@dependabot rebase` will rebase this PR
+- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it
+- `@dependabot merge` will merge this PR after your CI passes on it
+- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it
+- `@dependabot cancel merge` will cancel a previously requested merge and block automerging
+- `@dependabot reopen` will reopen this PR if it is closed
+- `@dependabot ignore this [patch|minor|major] version` will close this PR and stop Dependabot creating any more for this minor/major version (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot use these labels` will set the current labels as the default for future PRs for this repo and language
+- `@dependabot use these reviewers` will set the current reviewers as the default for future PRs for this repo and language
+- `@dependabot use these assignees` will set the current assignees as the default for future PRs for this repo and language
+- `@dependabot use this milestone` will set the current milestone as the default for future PRs for this repo and language
+
+You can disable automated security fix PRs for this repo from the [Security Alerts page](https://github.com/Mudano/ui-react/network/alerts).
+
+</details>
+
+
 
 # UI React v5.1.0 (2019-11-13 15:42:29)
 
