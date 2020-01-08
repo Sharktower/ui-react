@@ -19,6 +19,8 @@ const propTypes = {
     autoComplete: PropTypes.oneOf(['on', 'off']),
     autoHideLabel: PropTypes.bool,
     className: PropTypes.string,
+    clearButtonRef: PropTypes.func,
+    clearButtonTabIndex: PropTypes.number,
     componentRef: PropTypes.func,
     icon: ElementOrStringPropType,
     isClearable: PropTypes.bool,
@@ -44,6 +46,7 @@ const propTypes = {
     prefix: ElementOrStringPropType,
     step: PropTypes.number,
     style: StyleObjectPropType,
+    tabIndex: PropTypes.number,
     tooltipError: ElementOrStringPropType,
     tooltipHint: ElementOrStringPropType,
     tooltipPosition: ListPropType([
@@ -72,6 +75,8 @@ const defaultProps = {
     autoComplete: null,
     autoHideLabel: false,
     className: null,
+    clearButtonTabIndex: null,
+    clearButtonRef: null,
     componentRef: null,
     icon: null,
     isClearable: false,
@@ -97,6 +102,7 @@ const defaultProps = {
     prefix: null,
     step: null,
     style: null,
+    tabIndex: null,
     tooltipError: null,
     tooltipHint: null,
     tooltipRequired: 'required',
@@ -164,15 +170,15 @@ class TextField extends Component {
             this.inputRef.value = '';
             this.handleInputChange();
         }
-    }
+    };
 
     handleMouseEnter = () => {
         this.setState({ hasMouseOver: true });
-    }
+    };
 
     handleMouseLeave = () => {
         this.setState({ hasMouseOver: false });
-    }
+    };
 
     /*
      * This is used to detect Chrome autofill
@@ -189,7 +195,7 @@ class TextField extends Component {
         default:
             break;
         }
-    }
+    };
 
     handleInputRef = (ref) => {
         const { componentRef } = this.props;
@@ -197,7 +203,7 @@ class TextField extends Component {
         if (componentRef) {
             componentRef(ref);
         }
-    }
+    };
 
     handleInputBlur = (event) => {
         const onBlur = this.props.onBlur || (() => {});
@@ -206,7 +212,7 @@ class TextField extends Component {
             showTooltip: false,
         });
         onBlur(event);
-    }
+    };
 
     handleInputChange = (event) => {
         if (this.inputRef) {
@@ -217,7 +223,7 @@ class TextField extends Component {
             }
             onChange(value, event);
         }
-    }
+    };
 
     handleInputFocus = (event) => {
         const onFocus = this.props.onFocus || (() => {});
@@ -226,7 +232,7 @@ class TextField extends Component {
             showTooltip: true,
         });
         onFocus(event);
-    }
+    };
 
     handleInputKeyDown = (event) => {
         const { onKeyDown, onEnterKey } = this.props;
@@ -236,33 +242,33 @@ class TextField extends Component {
         if (onEnterKey && event.key === 'Enter') {
             onEnterKey(event);
         }
-    }
+    };
 
     handleInputKeyPress = (event) => {
         const { onKeyPress } = this.props;
         if (onKeyPress) {
             onKeyPress(event.key, event);
         }
-    }
+    };
 
     handleInputKeyUp = (event) => {
         const { onKeyUp } = this.props;
         if (onKeyUp) {
             onKeyUp(event.key, event);
         }
-    }
+    };
 
     handleIconClick = () => {
         if (this.inputRef) {
             this.inputRef.focus();
         }
-    }
+    };
 
     handleClearIconClick = (event) => {
         this.clearInput();
         this.handleIconClick();
         this.handleInputChange(event);
-    }
+    };
 
     /**
      * wrapInputWithTooltip
@@ -292,7 +298,7 @@ class TextField extends Component {
                 </Tooltip> :
                 input
         );
-    }
+    };
 
     render() {
         const hasValue =
@@ -303,6 +309,9 @@ class TextField extends Component {
             this.state.hasMouseOver ||
             !hasValue
         );
+
+        const setClearButtonRef = this.props.clearButtonRef || (() => {});
+
         /* eslint-disable jsx-a11y/label-has-for */
         // @NB: jsx-a11y/label-has-for fails with UID as id
         const label = this.props.label && showLabel ?
@@ -361,6 +370,8 @@ class TextField extends Component {
                         icon={<IconClear />}
                         onClick={this.handleClearIconClick}
                         variant={ButtonVariant.CLEAR}
+                        tabIndex={this.props.clearButtonTabIndex}
+                        componentRef={(ref) => { setClearButtonRef(ref); }}
                     />
                 </span>
             ) :
@@ -419,6 +430,7 @@ class TextField extends Component {
                             required={this.props.isRequired}
                             ref={this.handleInputRef}
                             step={this.props.step}
+                            tabIndex={this.props.tabIndex}
                             type={this.props.type}
                             value={this.state.value === null ? '' : this.state.value}
                         />,

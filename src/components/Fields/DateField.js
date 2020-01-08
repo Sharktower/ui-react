@@ -13,6 +13,8 @@ import './DateField.scss';
 
 const propTypes = {
     className: PropTypes.string,
+    clearButtonRef: PropTypes.func,
+    clearButtonTabIndex: PropTypes.number,
     datePickerPosition: ListPropType([
         TooltipPosition.TOP_CENTER,
         TooltipPosition.TOP_LEFT,
@@ -33,11 +35,14 @@ const propTypes = {
     rangeFromValue: PropTypes.instanceOf(Date),
     rangeToValue: PropTypes.instanceOf(Date),
     style: StyleObjectPropType,
+    tabIndex: PropTypes.number,
+    textFieldRef: PropTypes.func,
     value: PropTypes.instanceOf(Date),
 };
 
 const defaultProps = {
     className: null,
+    clearButtonTabIndex: null,
     forceHideCalendar: false,
     isRange: false,
     maxDate: null,
@@ -49,6 +54,9 @@ const defaultProps = {
     rangeToValue: null,
     style: null,
     datePickerPosition: TooltipPosition.BOTTOM_CENTER,
+    tabIndex: null,
+    textFieldRef: null,
+    clearButtonRef: null,
     value: null,
 };
 
@@ -58,7 +66,7 @@ class DateField extends Component {
         rangeFromValue: this.props.rangeFromValue,
         rangeToValue: this.props.rangeToValue,
         showDatePicker: false,
-    }
+    };
 
     componentWillReceiveProps(nextProps) {
         if (this.props.value !== nextProps.value) {
@@ -105,13 +113,13 @@ class DateField extends Component {
                 [this.state.rangeFromValue, this.state.rangeToValue] :
                 this.state.value);
         });
-    }
+    };
 
     handleInputBlur = (event) => {
         this.datePickerClose();
         const onBlur = this.props.onBlur || (() => {});
         onBlur(event);
-    }
+    };
 
     handleInputChange = (inputValue) => {
         const onChange = this.props.onChange || (() => {});
@@ -126,13 +134,13 @@ class DateField extends Component {
         } else {
             onChange(this.state.value);
         }
-    }
+    };
 
     handleInputFocus = (event) => {
         this.datePickerOpen();
         const onFocus = this.props.onFocus || (() => {});
         onFocus(event);
-    }
+    };
 
     render() {
         const datePickerValues = this.props.isRange ?
@@ -150,7 +158,11 @@ class DateField extends Component {
         />);
         const {
             className,
+            clearButtonTabIndex,
             style,
+            tabIndex,
+            textFieldRef,
+            clearButtonRef,
             ...textFieldProps
         } = this.props;
         return (
@@ -172,6 +184,10 @@ class DateField extends Component {
                         onChange={this.handleInputChange}
                         onFocus={this.handleInputFocus}
                         value={formattedDate || ''}
+                        tabIndex={tabIndex}
+                        clearButtonTabIndex={clearButtonTabIndex}
+                        componentRef={textFieldRef}
+                        clearButtonRef={clearButtonRef}
                     />
                 </Tooltip>
             </div>

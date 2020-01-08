@@ -4,6 +4,7 @@ import sinon from 'sinon';
 import DateField from './DateField';
 import Button from '../Button/Button';
 import * as common from '../../../test/unit/commonTests';
+import TextField from './TextField';
 
 function createMockDate() {
     const mockDate = new Date();
@@ -176,5 +177,46 @@ describe('DateField', () => {
         expect(dateField.state('showDatePicker')).to.be.true();
         dateField.setProps({ forceHideCalendar: false });
         expect(dateField.state('showDatePicker')).to.be.true();
+    });
+
+    it('Correctly passes tabIndex for the DateField', () => {
+        const tabIndex = 2;
+        const dateField = mount(<DateField
+            value={createMockDate()}
+            tabIndex={tabIndex}
+            isClearable
+        />);
+        const textField = dateField.find(TextField);
+        expect(textField.prop('tabIndex')).to.equal(tabIndex);
+    });
+
+    it('Correctly passes tabIndex for the TextField clear button', () => {
+        const dateField = mount(<DateField
+            value={createMockDate()}
+            clearButtonTabIndex={3}
+            isClearable
+        />);
+        const button = dateField.find(Button);
+        expect(button.prop('tabIndex')).to.equal(3);
+    });
+
+    it('Will set the TextField clear button ref when rendering the date field', () => {
+        const clearButtonRef = sinon.spy();
+        mount(<DateField
+            value={createMockDate()}
+            clearButtonRef={clearButtonRef}
+            isClearable
+        />);
+        expect(clearButtonRef).to.be.calledOnce();
+    });
+
+    it('Will set the TextField ref when rendering the date field', () => {
+        const textFieldRef = sinon.spy();
+        mount(<DateField
+            value={createMockDate()}
+            textFieldRef={textFieldRef}
+            isClearable
+        />);
+        expect(textFieldRef).to.be.calledOnce();
     });
 });

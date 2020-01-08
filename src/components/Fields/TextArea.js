@@ -35,6 +35,7 @@ const propTypes = {
     placeholder: PropTypes.string,
     rows: PropTypes.number,
     style: StyleObjectPropType,
+    tabIndex: PropTypes.number,
     tooltipError: ElementOrStringPropType,
     tooltipHint: ElementOrStringPropType,
     tooltipRequired: ElementOrStringPropType,
@@ -66,6 +67,7 @@ const defaultProps = {
     placeholder: null,
     rows: 1,
     style: null,
+    tabIndex: null,
     tooltipError: null,
     tooltipHint: null,
     tooltipRequired: 'required',
@@ -303,6 +305,7 @@ class TextArea extends Component {
                                 ref={this.handleInputRef}
                                 rows={this.props.rows}
                                 value={this.state.value === null ? '' : this.state.value}
+                                tabIndex={this.props.tabIndex}
                             />,
                             tooltipError || this.props.tooltipHint,
                         )}

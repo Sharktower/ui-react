@@ -372,4 +372,10 @@ describe('TextArea', () => {
         expect(message.length).to.equal(1);
         expect(message.text()).to.equal('This field is invalid');
     });
+
+    it('Correctly passes tabIndex for textarea input', () => {
+        const tabIndexValue = 3;
+        const textArea = mount(<TextArea tabIndex={tabIndexValue} />);
+        expect(textArea.prop('tabIndex')).to.equal(tabIndexValue);
+    });
 });
