@@ -33,7 +33,7 @@ const propTypes = {
 
 const defaultProps = {
     className: null,
-    position: TooltipPosition.TOP_CENTER,
+    position: TooltipPosition.AUTO,
     showTooltip: null,
     style: null,
     tabIndex: -1,
