@@ -1,12 +1,10 @@
 @keyframes uir-animate-tooltip {
 
     from {
-        margin-top: 20px;
         opacity: 0;
     }
 
     to {
-        margin-top: 0;
         opacity: 1;
     }
 }
@@ -27,7 +25,7 @@
         position: absolute;
         z-index: 1000;
         animation-name: uir-animate-tooltip;
-        animation-duration: .2s;
+        animation-duration: .5s;
         animation-timing-function: ease;
     }
 }
