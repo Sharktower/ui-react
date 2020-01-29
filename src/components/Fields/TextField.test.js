@@ -283,9 +283,28 @@ describe('TextField', () => {
         expect(textField.find(TooltipBox).prop('status')).to.equal(TooltipBoxStatus.ERROR);
     });
 
+    it('defines tabIndex for the TextField', () => {
+        const tabIndexValue = 3;
+        const textField = mount(<TextField value="an example value" tabIndex={tabIndexValue} isClearable />);
+        expect(textField.prop('tabIndex')).to.equal(tabIndexValue);
+    });
+
     it('displays a clear icon if isClearable is given and textfield has a value', () => {
         const textField = mount(<TextField value="an example value" isClearable />);
         expect(textField.find(IconClear).length).to.equal(1);
+    });
+
+    it('calls clearButtonRef when the clear icon is rendered', () => {
+        const clearButtonRef = sinon.spy();
+        mount(<TextField value="an example value" clearButtonRef={clearButtonRef} isClearable />);
+        expect(clearButtonRef).to.be.calledOnce();
+    });
+
+    it('Defines tabIndex correctly for the clear button', () => {
+        const tabIndexValue = 2;
+        const textField = mount(<TextField value="an example value" clearButtonTabIndex={tabIndexValue} isClearable />);
+        const button = textField.find(Button);
+        expect(button.prop('tabIndex')).to.equal(tabIndexValue);
     });
 
     it('does not display a clear icon if isClearable is given but the textfield has no value', () => {
