@@ -115,8 +115,8 @@ describe('Tooltip', () => {
         const contents = tooltip.find('.uir-tooltip-contents');
         const { top, left } = contents.props().style;
 
-        expect(top).to.equal('-10px');
-        expect(left).to.equal('0px');
+        expect(top).to.equal('0px');
+        expect(left).to.equal('10px');
     });
 
     [
