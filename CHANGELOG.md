@@ -1,4 +1,44 @@
-<!-- Last Updated: 2020-01-29 15:44:39 -->
+<!-- Last Updated: 2020-01-30 14:22:52 -->
+
+# UI React v5.2.0 (2020-01-30 14:22:52)
+
+## Usability: adding tabindex and component ref for some fields
+
+Adds `tabindex` and component `ref` for some fields
+
+**Backwards Compatibility Implications** 
+
+_None_
+
+**New Features** 
+1. Clear button `ref` and `tabIndex` for `DateField`'s `TextField`
+2. `Ref` and `tabIndex` for `DateField`'s `TextField`
+3. Adding `tabIndex` for `TextArea`
+4. Clear button `ref` and `tabIndex` for `TextField`
+
+**Bug Fixes** 
+
+_None_
+
+
+## Small Bug fix for Tooltips
+
+Fixed the animation issue where the initial position of the tooltip was on top of the trigger, which would cause the tooltip to not show. Changed the default tooltip position to 'auto'.
+
+**Backwards Compatibility Implications** 
+- Tooltips will now use 'auto' positioning by default, so if no position is specified through props, it will calculate the best position instead of defaulting to top-center position.
+
+**New Features** 
+_None_
+
+**Bug Fixes** 
+- Fixed bug where tooltip wasn't triggered when approaching the trigger element from the top or sides, this was caused by the animation 'colliding' with the cursor hovering over the trigger element, which triggered the onMouseLeave event.
+
+**Performance Improvements** 
+_None_
+
+
+
 
 # UI React v5.1.3 (2020-01-29 15:44:39)
 
