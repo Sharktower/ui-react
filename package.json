@@ -131,7 +131,7 @@
     "react-dom": ">=0.14.0 <= 16"
   },
   "dependencies": {
-    "autosize": "^4.0.0",
+    "autosize": "^4.0.4",
     "classnames": "^2.2.5",
     "flatpickr": "4.3.2",
     "prop-types": "15.6.0"
